@@ -1,0 +1,21 @@
+[Desktop Entry]
+Type=Application
+Name=Hivemind
+GenericName=Bee Swarm Simulator Autopilot
+Comment=Autonomous Bee Swarm Simulator player
+Exec=hivemind
+Icon=hivemind
+Terminal=false
+Categories=Game;
+Keywords=roblox;bss;bee;swarm;macro;bot;sober;
+StartupNotify=true
+Actions=Demo;Doctor;
+
+[Desktop Action Demo]
+Name=Open with demo data
+Exec=hivemind demo
+
+[Desktop Action Doctor]
+Name=Check this PC
+Exec=sh -c "hivemind doctor; echo; read -p 'Press Enter to close' _"
+Terminal=true

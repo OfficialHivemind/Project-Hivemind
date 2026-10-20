@@ -1,0 +1,62 @@
+# EVERY BEE TYPE IN THE GAME, its rarity and its colour: what the bee menu's
+# rows are read against (vision/beemenu) and what the hive is judged with
+# (brain/hivejudge).
+#
+# SOURCE, read 2026-10-01 through the wiki's API (the pages themselves answer
+# HTTP 402): the rarity tab pages Bees/Common, Bees/Rare, Bees/Epic,
+# Bees/Legendary, Bees/Mythic and Bees/Event, and the colour categories
+# Category:Red, Category:Blue and Category:Colorless. The Bees page says
+# "There are currently 46 bee types", and the six rarity pages list 46:
+# 1 + 9 + 11 + 8 + 6 + 11. The three colour categories hold the same 46
+# (11 red, 11 blue, 24 colourless).
+#
+# `label` is the menu's spelling ("Bubble Bee"); the key is its first word.
+source: https://bee-swarm-simulator.fandom.com/wiki/Bees (and the pages above)
+checked: 2026-10-01
+types:
+  basic:     {label: Basic Bee,     rarity: common,    colour: colourless}
+  bomber:    {label: Bomber Bee,    rarity: rare,      colour: colourless}
+  brave:     {label: Brave Bee,     rarity: rare,      colour: colourless}
+  bumble:    {label: Bumble Bee,    rarity: rare,      colour: blue}
+  cool:      {label: Cool Bee,      rarity: rare,      colour: blue}
+  hasty:     {label: Hasty Bee,     rarity: rare,      colour: colourless}
+  looker:    {label: Looker Bee,    rarity: rare,      colour: colourless}
+  rad:       {label: Rad Bee,       rarity: rare,      colour: red}
+  rascal:    {label: Rascal Bee,    rarity: rare,      colour: red}
+  stubborn:  {label: Stubborn Bee,  rarity: rare,      colour: colourless}
+  bubble:    {label: Bubble Bee,    rarity: epic,      colour: blue}
+  bucko:     {label: Bucko Bee,     rarity: epic,      colour: blue}
+  commander: {label: Commander Bee, rarity: epic,      colour: colourless}
+  demo:      {label: Demo Bee,      rarity: epic,      colour: colourless}
+  exhausted: {label: Exhausted Bee, rarity: epic,      colour: colourless}
+  fire:      {label: Fire Bee,      rarity: epic,      colour: red}
+  frosty:    {label: Frosty Bee,    rarity: epic,      colour: blue}
+  honey:     {label: Honey Bee,     rarity: epic,      colour: colourless}
+  rage:      {label: Rage Bee,      rarity: epic,      colour: red}
+  riley:     {label: Riley Bee,     rarity: epic,      colour: red}
+  shocked:   {label: Shocked Bee,   rarity: epic,      colour: colourless}
+  baby:      {label: Baby Bee,      rarity: legendary, colour: colourless}
+  carpenter: {label: Carpenter Bee, rarity: legendary, colour: colourless}
+  demon:     {label: Demon Bee,     rarity: legendary, colour: red}
+  diamond:   {label: Diamond Bee,   rarity: legendary, colour: blue}
+  lion:      {label: Lion Bee,      rarity: legendary, colour: colourless}
+  music:     {label: Music Bee,     rarity: legendary, colour: colourless}
+  ninja:     {label: Ninja Bee,     rarity: legendary, colour: blue}
+  shy:       {label: Shy Bee,       rarity: legendary, colour: red}
+  buoyant:   {label: Buoyant Bee,   rarity: mythic,    colour: blue}
+  fuzzy:     {label: Fuzzy Bee,     rarity: mythic,    colour: colourless}
+  precise:   {label: Precise Bee,   rarity: mythic,    colour: red}
+  spicy:     {label: Spicy Bee,     rarity: mythic,    colour: red}
+  tadpole:   {label: Tadpole Bee,   rarity: mythic,    colour: blue}
+  vector:    {label: Vector Bee,    rarity: mythic,    colour: colourless}
+  bear:      {label: Bear Bee,      rarity: event,     colour: colourless}
+  cobalt:    {label: Cobalt Bee,    rarity: event,     colour: blue}
+  crimson:   {label: Crimson Bee,   rarity: event,     colour: red}
+  digital:   {label: Digital Bee,   rarity: event,     colour: colourless}
+  festive:   {label: Festive Bee,   rarity: event,     colour: red}
+  gummy:     {label: Gummy Bee,     rarity: event,     colour: colourless}
+  photon:    {label: Photon Bee,    rarity: event,     colour: colourless}
+  puppy:     {label: Puppy Bee,     rarity: event,     colour: colourless}
+  tabby:     {label: Tabby Bee,     rarity: event,     colour: colourless}
+  vicious:   {label: Vicious Bee,   rarity: event,     colour: blue}
+  windy:     {label: Windy Bee,     rarity: event,     colour: colourless}

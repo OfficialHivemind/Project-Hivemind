@@ -1,0 +1,8 @@
+# The UI preview's packages (MEASURED 2026-10-22: the demo window imports
+# PySide6 Core/Gui/Widgets/Svg, numpy, cv2 and yaml, nothing else outside the
+# stdlib). Same versions as installer/requirements-windows.txt.
+PySide6-Essentials==6.12.0
+shiboken6==6.12.0
+opencv-contrib-python-headless==5.0.0.93
+numpy==2.5.4
+PyYAML==6.0.3

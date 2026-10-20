@@ -1,0 +1,72 @@
+# Gather patterns: how to cover a field, written once for every field.
+#
+# WHY THESE EXIST. The owner asked for the bot to see tokens and run into them.
+# Reading Natro Macro settled that the professionals do not do that -- its image
+# recognition is for BUFFS, and tokens are collected by walking a pattern that
+# covers the field. docs/DESIGN.md 8a records four attempts at detecting a token
+# on one real frame and all four failing, so covering the ground is not merely
+# the established answer, it is the only one that currently works at all.
+#
+# THE IDEA WORTH BORROWING, and it is an idea rather than any code: patterns are
+# written in FIELD-RELATIVE directions. `toward` means toward the middle of the
+# field, whichever way that is from wherever we came in. One pattern then covers
+# seventeen fields instead of needing seventeen recordings.
+#
+#   toward / away    along the line from the entry point to the field centre
+#   left / right     across it
+#
+# THERE IS NO "TILE" HERE, DELIBERATELY. Natro measures movement in tiles and
+# this project has never measured what a tile is in studs. Rather than invent a
+# conversion, every `span` below is a FRACTION OF THE FIELD: 1.0 crosses it
+# once, 0.12 shifts across by a lane. The one absolute number lives in code as
+# `FIELD_STUDS`, is derived from the only real recording we have, and is stated
+# as an estimate rather than a fact until a field is measured end to end.
+#
+# Nothing here is copied from Natro Macro (GPL-3.0). A boustrophedon is a
+# boustrophedon; these shapes, spans and this file are ours.
+
+snake:
+  description: >
+    Up and back in lanes, shifting sideways each time. The plainest complete
+    cover of a rectangle and the one to beat: every part of the field is walked
+    once, so every token in it is walked over once.
+  best_for: square or wide fields with nothing in the middle
+  steps:
+    - {dir: toward, span: 1.0}
+    - {dir: right,  span: 0.12, lane: true}
+    - {dir: away,   span: 1.0}
+    - {dir: right,  span: 0.12, lane: true}
+
+lines:
+  description: >
+    Out and back along the same line, then shift. Covers less ground per
+    repetition than the snake but keeps the player near the entry, which
+    matters when the far edge of the field has a mob standing on it.
+  best_for: fields where the far side is dangerous
+  steps:
+    - {dir: toward, span: 1.0}
+    - {dir: away,   span: 1.0}
+    - {dir: right,  span: 0.20, lane: true}
+
+stationary:
+  description: >
+    Do not move at all. For a field booster or a sprinkler, where the pollen
+    comes to the player -- and as the safe default in an unknown field, because
+    standing still cannot walk into a mob, off a ledge, or out of the field.
+  best_for: boosted fields, and anywhere the bot is unsure of its footing
+  steps: []
+
+squares:
+  description: >
+    Concentric loops, outermost first, each one tighter than the last. Walks
+    the edges of a field before its middle.
+  best_for: long or L-shaped fields
+  steps:
+    - {dir: toward, span: 0.9}
+    - {dir: right,  span: 0.9}
+    - {dir: away,   span: 0.9}
+    - {dir: left,   span: 0.75}
+    - {dir: toward, span: 0.6}
+    - {dir: right,  span: 0.6}
+    - {dir: away,   span: 0.6}
+    - {dir: left,   span: 0.45}

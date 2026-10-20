@@ -1,0 +1,355 @@
+# The blue hive plan. EVERY GOAL IN HERE IS THE GUIDE'S, NOT OURS.
+#
+# SOURCE (cited and paraphrased, not copied; the guide is its author's work
+# and is not covered by this project's licence):
+#   "The Definitive Blue Hive Guide", by AG gaming, updated 2026-06-06
+#   https://docs.google.com/document/d/1i9rz9mGYeVQQD7j2PaBB5p2gZPp_PX1HP-0GltTlWgA
+#
+# WHY THIS FILE WAS REWRITTEN, 2026-09-21. The owner looked at the goal web and
+# found its goals odd: they should follow this guide. That was right, and the
+# reason is worth writing down so it does not come back.
+#
+# The goal web was drawing TWO plans at once. Down the middle ran a hand-
+# written paraphrase of this guide. Off to the side ran a ladder built from the
+# Bee Swarm wiki -- which proposed the Porcelain Dipper at 150,000,000 honey,
+# a Basic Egg at "1,000 honey", a hive slot and the Coconut Field. Not one of
+# those four appears anywhere in the guide. The wiki ladder is a fine answer to
+# "what does the shop sell"; it is not an answer to "what should I do next",
+# and drawing it as goals put four cards on screen that the chosen guide
+# never asked for.
+#
+# So: the stages below follow the guide's 'Progression' checklists, in our own
+# words. `say` is our paraphrase of the guide's advice, `note` our summary of
+# its side remarks. Our own commentary is confined to `we_say`, and is always
+# marked as ours.
+#
+# THE MACHINE-READABLE PART. `needs` and `target` exist so the bot can tell
+# which items it can check for itself (bee count, level) from those it cannot
+# (an amulet roll). An item with no `needs` is not checkable and is drawn as
+# such rather than guessed at. `serves` names the mechanism goal -- from
+# progression.yaml, via brain/progress.Ladder -- that actually moves the
+# number, so a price hangs UNDER the guide's goal instead of competing with it.
+source: The Definitive Blue Hive Guide (Google Doc), updated 2026-06-06
+url: https://docs.google.com/document/d/1i9rz9mGYeVQQD7j2PaBB5p2gZPp_PX1HP-0GltTlWgA
+read_on: 2026-09-21
+confidence: >
+  The chosen guide, paraphrased. It is guidance, not measurement: where the
+  guide and a measurement on this account disagree, the measurement wins and
+  the disagreement gets written down. There is one such disagreement so far,
+  on the Bubble Wand, recorded under `our_disagreements`.
+
+# ---------------------------------------------------------------- baseline --
+# Guide section 1.1. The hive everything is aimed at.
+baseline:
+  comp: 16 Buoyants | 7 Tadpoles
+  comp_bees: {buoyant: [16, 16], tadpole: [7, 7]}
+  buoyants: 16
+  tadpoles: 7
+  say: >
+    Aim for 16 Buoyants. 14 is acceptable when badly underfilled (usually
+    early blue); 18 can work when overfilled, but past 16 a Diamond nearly
+    always makes more honey. Tadpoles range from 6 (heavy overfill, 1500+
+    Polar) to 12 (underfill); past 12 a Diamond beats another Tadpole.
+
+never_run: [shy, lion, frosty, cobalt]
+never_run_say: A Diamond makes more honey in that slot.
+
+# THE EVENT BEES ROYAL JELLY MAY ROLL AWAY (brain/hivejudge; event bees are
+# otherwise never rolled -- jelly never rolls one back). The owner agreed
+# (2026-10-21) to using Royal Jelly to swap Basic, Crimson and Cobalt bees for
+# blue ones. Cobalt is blue, but the guide advises against running Shy, Lion,
+# Frosty or Cobalt, since a Diamond makes more honey in that slot
+# (`never_run` above), and its pulse's best part (the Red Pulse,
+# Red Bomb Sync on red flowers) needs a Crimson in the hive too, which goes
+# here as well. Both come back for 250 tickets an egg at the Ticket Tent (wiki
+# Cobalt_Bee via api.php, read 2026-10-21). A gifted one is never rolled.
+jelly_event_ok: [crimson, cobalt]
+
+# WHAT A ROYAL JELLY ROLL IS FOR once the stage's comp is in: the guide's
+# standing want, below -- keep adding Diamonds -- and its end comp's Mythics,
+# Tadpoles and Buoyants (Stage 1: replace the Bubbles with mythics). The owner noted (2026-10-02) that jelly can
+# land mythics too, so no Mythic Egg is bought. brain/hivejudge rolls for the comp's short
+# bees first, then these; a cell that lands one is kept.
+# CORRECTED 2026-10-14: no mythics here. A Royal Jelly roll is a mythic 1 in
+# 25,000 (items.yaml royal_jelly.chances; the research of 2026-10-14 (data/knowledge/progression/blue.yaml, wiki Royal_Jelly via api.php)), so jelly is
+# not planned for Tadpoles or Buoyants: those come from Mythic Eggs (2,500
+# tickets, Black Bear ~75, Brown Bear 100/200/400, Commando 50, Dapper 15) and
+# Diamond Eggs (5% mythic). A mythic a roll lands is still kept.
+jelly_targets: [diamond]
+
+diamonds_are_the_engine:
+  passive: Shimmering Honey
+  say: >
+    The Shimmering Honey passive gives each Diamond Bee +50% Honey at Hive
+    (+5% per level) while converting. With good mutations and beequips, 3-6
+    Diamonds can roughly double honey per hour, so every comp adds more
+    Diamonds and you keep adding them.
+
+# ------------------------------------------------------------- where we are --
+# WHICH STAGE AN ACCOUNT IS IN, and how that is decided rather than assumed.
+# Stage 1's gate is 48 bees; an example 30-bee hive is in Stage 1.
+standing:
+  stage: 1
+  decided_by: bee count against each stage's gate
+  bees_known: 30
+  bees_known_from: an example hive; the real count is the bee menu's own header (account.yaml)
+  note: >
+    30 bees against Stage 1's gate of 48. Bee count is the only stage gate the
+    bot can currently read for itself -- level, amulet rolls and gifting are
+    all invisible to it, so a stage cannot be CONFIRMED complete, only ruled
+    out. See `unreadable` at the bottom.
+
+# ------------------------------------------------------------- the stages ---
+# Guide section 1.3 'Blue Progression'. The `progression` list under each stage
+# follows the guide's checklist, in short form. These ARE the goals -- the goal web
+# draws this list and nothing else as its spine.
+stages:
+  - id: 1
+    name: Stage 1 — Earlygame Blue
+    comp: 13-14 Bubbles | 5 Diamonds
+    # `comp`, for brain/hivejudge to count against the bee menu's read: the
+    # guide's numbers above, [least, most].
+    comp_bees: {bubble: [13, 14], diamond: [5, 5]}
+    say: >
+      Mythics are out of reach on early honey, so Bubble Bees hold the
+      Tadpole and Buoyant slots; they make both bubbles and bombs, which fills
+      better than Frosty or Ninja. Diamonds add Honey at Hive while converting
+      and supply Blue Boost.
+    progression:
+      - say: Get any SSA with Popstar
+        note: any stats will do at first
+      - say: Replace Bubbles with mythics
+        note: 12 Tadpoles plus Buoyants
+      - say: 2/5 Popstar
+        note: Blue Pollen and Convert Rate stats
+      - say: 48 Bees
+        needs: bees
+        target: 48
+        serves: [basic_egg, hive_slot]
+      - say: Level up to 15
+        needs: level
+        target: 15
+    gate: 48 bees and level 15
+
+  - id: 2
+    name: Stage 2 — Transition Blue
+    comp: 10 Buoyants | 12 Tadpoles | 2 Diamonds → 14 | 10 | 5
+    say: >
+      The bridge from early blue to level-18 honeymaking: push honey per hour
+      to speed up gifting, levelling and SSA rolls, while keeping utility bees
+      (Windy, Vicious) for amulet and tool grinding.
+    progression:
+      - say: 50 Bees
+        note: stay at level 15 until then
+        needs: bees
+        target: 50
+        serves: [basic_egg, hive_slot]
+      - say: 4/5 Popstar
+        note: BP, CR and one of BAR/CC/Pollen
+      - say: Level up to 16
+        needs: level
+        target: 16
+      - say: Gift 6 Tadpoles
+        note: they replace the Baby Bees
+      - say: Improve SSA
+        note: a strong 4/5 or a fair 5/5
+      - say: Level up to 17
+        needs: level
+        target: 17
+      - say: Gift all Buoyants
+      - say: 3/5 Double passive SSA
+        note: BP and CR stats
+      - say: Level up to 18
+        needs: level
+        target: 18
+    gate: level 18, fully gifted
+
+  - id: 3
+    name: Stage 3 — Honeymaking Blue
+    comp_full_diamond: 16-17 Buoyants | 8 Tadpoles | 8-9 Diamonds
+    comp_semi_diamond: 17 Buoyants | 9 Tadpoles | 6 Diamonds
+    say: >
+      At level 18 and fully gifted, 80x+ blessing through RBC boosting is
+      comfortable, so the Diamond count can go past the earlier limit. If the
+      blessing cannot be held for long, run the semi-Diamond comp until level
+      20. The full-Diamond comp expects at least one Tadpole alt.
+    progression:
+      - say: Finish gifting all Bees
+      - say: Mutations of Musics, Bear, Bubble, and Diamonds
+        note: use Royal Jelly on Musics, Bubble and Diamonds
+      - say: Improve Diamond mutations to 25%+ CA using RJ and Blueberries
+        note: Bitterberries should have them near 15% CA already; watch the fruit cost
+      - say: Improve DP SSA
+        note: a strong 3/5 or a fair 4/5
+      - say: Transition to Blessing Boosting Blue
+        note: once 80x blessing can be held
+      - say: Level up to 20
+        needs: level
+        target: 20
+    gate: level 20
+
+  - id: 4
+    name: Stage 4 — Endgame Blue
+    comp_standard: 16 Buoyants | 7 Tadpoles | 10 Diamonds
+    comp_glitter_extend: 16 Buoyants | 6-7 Tadpoles | 12-13 Diamonds
+    say: >
+      These comps expect two Tadpole alts and one to three Guiding alts,
+      top-stat amulets and beequips, and many fully mutated bees. After this
+      it is long optimisation and alt-building toward level 22 and
+      leaderboards.
+    progression:
+      - say: Mutations on all bees
+        note: Diamonds want high CA
+      - say: Blessing boosting + maintaining 100x
+      - say: Progression of Glitched Drives on Digi
+        note: daily rounds 20-25
+      - say: Moving to lvl 21
+        note: Diamonds lead
+        needs: level
+        target: 21
+      - say: Getting 200+ Stickers on the stack to macro with
+      - say: Finalisation of alts, Amulets, Beequips, and tools
+
+# ------------------------------------------------------------------ tools ---
+# Guide section 1.3, 'Tool Progression'. THE GUIDE NAMES FIVE TOOLS AND NONE OF
+# THEM IS BOUGHT WITH HONEY FROM A SHOP LADDER -- they come from quests and
+# material grinding, which is why the wiki's honey ladder answered a different
+# question than the one being asked.
+#
+# The progression itself is an IMAGE in the document and did not survive the
+# text conversion. Only the legend did, summarised below. Anything more
+# specific than this has to be read off the diagram in the document.
+tools:
+  named_by_the_guide: [petal, hydro, heat_treated, tide, pop]
+  say_overall: >
+    Treat each endgame tool as its own goal: get Petal, Hydro, Heat-Treated and
+    a colour collector as soon as you can, in no fixed order.
+  legend:
+    blue_border: Tide comes before Petal for very long daily runs
+    red_border: Hydro and Heat may be skipped, going straight to PoP
+    white_border: Petal, Hydro and Heat are best bought before switching hives
+  how_they_are_obtained:
+    heat_treated: >-
+      Riley quests; the guide notes these (and the Dark Scythe) need a
+      switch to a quest comp
+    tide: >-
+      Bucko quests; the guide turns Bucko questing on when working toward
+      Hydro or Tide
+    hydro: >-
+      Bucko quests, from the same line as Tide
+  unknown:
+    - the Tool Progression diagram itself, which is an image in the document
+    - what PoP abbreviates; it is not in the guide's Definitions section
+    - the material and quest requirements for each, and their costs
+
+# ------------------------------------------------- the biggest multipliers --
+# Guide sections 1.1, 2.3 and 3.4, in the guide's own order of importance.
+multipliers:
+  nectar:
+    worth: ~2-5x honey; the guide ranks it the most important buff
+    max_stats: ["2.25x Blue Pollen", "2x Blue Convert Rate",
+                "1.5x Honey at Hive", "1.27x Honey Per Pollen",
+                "2x Convert Rate at Hive", "15% Bee Ability Rate"]
+  balloon_blessing:
+    worth: up to 4x Capacity and 2.5x Honey at Hive at 100x blessing
+    say: >
+      More blessing always means more honey per hour, in any comp. About 15
+      minutes of work reaches 50x+, about an hour reaches 80x+. Set the
+      blessing yourself rather than leaving it to automation.
+  polar_power:
+    worth: 1.05x Max Bee Energy per Polar Bear quest completed, NO LIMIT
+    scale:
+      100-200: DANGER ZONE
+      200-500: Really Bad
+      500-1000: Acceptable
+      1000-1500: Good
+      1500-3000: Excellent
+    say: >
+      Start Polar Bear quests early. Aim for at least 1500 so it stops being a
+      limit, and keep going to Quest Grandmaster (2.25x Capacity). A Vicious
+      Bee adds about 5% to the quest rate; interrupting gathers about 16%.
+    we_say: >
+      OURS, not the guide's: this is the most bot-shaped task in the whole
+      document -- a repeatable quest grind measured in thousands of
+      completions. It is also entirely blocked: the bot cannot talk to a bear,
+      so it cannot accept or hand in a single Polar quest. See docs/GAPS.md §6.
+
+# ------------------------------------------------------------- the orders --
+gifting_order: [1 Buoyant, 1 Fuzzy, 1 Tadpole, 6 Tadpoles,
+                8 Tadpoles + 10 Buoyants, 14 Buoyants,
+                rest Tadpoles (10-12), rest Buoyants (15-16)]
+gifting_gives: ["1.5x Attack", "1.5x Convert Amount", "1.5x Gather Amount",
+                "a unique Gifted Hive Bonus (does not stack)"]
+gifting_how: >
+  Levels 15-18: turn honey into tickets, tickets into Star Treats at the Ticket
+  Shop, helped by the Wealth Clock and Blueberries. Royal Jelly gifting only
+  pays when 500 tickets cost more than 15T honey.
+
+levelling_order: [Diamonds, Digital, Bear, Musics and Bubble, Tadpoles,
+                  Buoyants, Focus/Haste producers, the rest]
+levelling_gives: ["10% Convert Amount", "5% Gather Amount",
+                  "5% Max Bee Energy", "3% Bee Movespeed"]
+
+token_producers_wanted: {token_link: "4-6", focus: "5-7", haste: "1-3",
+                         melody: "3-4"}
+
+notable_bees:
+  bear: "Bear morphs give roughly 1.5-2x honey; the guide treats owning one as essential (buy or trade)."
+  exhausted: "20% White Field Capacity (about 3% Pine Tree, 5% Bamboo, 6% Blue Flower capacity), the best Token Link source, never tires."
+  stubborn: "15% ATL: the biggest token-uptime boost of any bee."
+  windy: "Its tornado gathers fruit and adds Popstar pops; keep it until Tide/Hydro, full gifting or Tadpole alts."
+  vicious: "-15% Monster Respawn Time, which speeds Polar quests and amulet grinding; drop it after 500 Polar."
+  puppy: "20% Bond From Treats, 1.1x Capacity, Focus with Reindeer Antlers; without the Antlers, only worth it past level 16."
+  fuzzy: "1-2 for pollination when there are no alts."
+  baby: "4 until 6 Tadpoles are gifted, then one fewer per 1.5 gifted Tadpoles."
+
+# ----------------------------------------------------- macro settings ------
+# Guide section 3.3, filtered to what is relevant to THIS bot.
+macro_settings:
+  mondo_killing: OFF — costs one gather per hour
+  gather_interrupt: OFF for quests
+  gather_time_minutes: "7-10 (10 is fine for most)"
+  blue_extracts: always use, unless blueberries are genuinely needed
+  pine_pattern: Kettle — or Skillet/Plate if the game lags
+  fields_that_matter: [pine_tree, bamboo, blue_flower]
+  we_say: >
+    OURS: of the three fields the guide says matter, the bot has a recorded
+    route to ONE (pine_tree). Bamboo and Blue Flower have no route at all, and
+    the bot spent the whole of 2026-09-20 farming the Pineapple Patch, which
+    the guide never mentions. See docs/GAPS.md §1.
+
+# ------------------------------------------------ where we disagree, and why --
+# The guide is guidance; a measurement on this account beats it. Every entry
+# here is a place the two parted company, with the evidence.
+our_disagreements:
+  bubble_wand:
+    guide_says: >
+      get a colour collector as soon as you can -- and for a blue hive the
+      Bubble Wand is that collector.
+    we_measured: >
+      The Bubble Wand does 240 pollen/s on blue flowers and 120 on everything
+      else; the Golden Rake already held does 167 on all flowers. That makes
+      the break-even 39.2% blue ground. MEASURED over 420 frames of the
+      Pineapple Patch — the only field the bot actually farms — the ground is
+      42.5% blue, 46.8% white, 10.8% red, and the bot's own independent count
+      while farming agreed at 42/48/10. Blended: 171/s against 167/s.
+    verdict: >
+      DO NOT BUY IT YET, and the reason is a routing problem rather than a
+      tool problem. 1.02x for 3,500,000 honey is not worth it in the Pineapple
+      Patch. In the Blue Flower Field the same tool would be worth roughly
+      1.3-1.4x -- but there is no recorded route to the Blue Flower Field, so
+      that field cannot be farmed. Record that route and this becomes a buy.
+      The owner spotted this first: the Bubble Wand looked worse than the Golden Rake.
+    revisit_when: a recorded route to the Blue Flower Field exists
+
+# ------------------------------------------------------- what we cannot see --
+# Stage progress the bot has no way to read. Listed so the goal web can say
+# "cannot check" instead of drawing an unticked box that may well be done.
+unreadable:
+  level: the player level is not read from any screen
+  amulets: no amulet or Popstar roll is readable
+  gifting: gifted status per bee is not readable
+  mutations: not readable
+  blessing: not readable
+  polar_count: the Polar quest completion count is not readable
+  bee_types: read once from a screenshot, not by the bot

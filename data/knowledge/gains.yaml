@@ -1,0 +1,37 @@
+# HOW MUCH MORE HONEY AN HOUR EACH PURCHASE IS WORTH, for brain/roi's payback
+# ranking. Look-only: nothing the bot does reads this file.
+#
+# Every figure is a percentage of the bot's MEASURED honey/h (brain/goals
+# balance_rate), as low / central / high, copied from one piece of research:
+# a gear-order study of 2026-10-13 (local research notes, not shipped), which
+# compared each item's wiki stats with the item it replaces and ran them
+# through 321 trips measured on the test account (median trip 491 s: 258 s
+# gathering, 14 s converting, 219 s overhead; capacity binds). Its caveats
+# stand here too:
+#   * the gains are on the bag-converted honey (about half the measured
+#     honey/h); tokens, sprinklers and Diamond honey are not modelled, so every
+#     figure is an UPPER estimate;
+#   * they were worked out on an example 40-bee hive with the gear in `vs`;
+#     a different hive or different gear changes them.
+# A purchase NOT listed here has no gain estimate, and brain/roi says
+# "unknown" rather than guess. `central: null` means the research gave a
+# range and no central figure; roi then uses the range's midpoint and says so.
+source: gear-order study 2026-10-13 (wiki stats via api.php 2026-10-13 + var/trips.jsonl, 321 trips)
+checked: 2026-10-13
+
+gains:
+  honeycomb_belt: {low: 3, central: 8, high: 12, vs: Mondo Belt Bag,
+                   why: "+50k static capacity and +25% capacity (k = 1.07-1.31)"}
+  cobalt_guard: {low: 5, central: 8, high: 11, vs: Bucko Guard,
+                 why: "+100k capacity, +15 pts blue pollen on ~73% blue pollen, Haste Pulser"}
+  crimson_guard: {low: 3, central: 4, high: 5, vs: Riley Guard,
+                  why: "+100k capacity; its red stats and Focus Pulser do ~nothing for a blue hive"}
+  diamond_mask: {low: 40, central: 70, high: 120, vs: Bubble Mask,
+                 why: "x3 capacity against x1.5, +25% pollen, Diamond Drain"}
+  petal_wand: {low: 10, central: null, high: 40, vs: Porcelain Dipper,
+               why: "634 pollen/s on every colour plus Petal Shurikens; tool pollen not measured"}
+  # ONE MORE BEE, for every hive slot (and a Basic Egg hatched into an empty
+  # one). "+1% to +2.5%, the upper end only once it is levelled and rolled
+  # well" -- worked out for the 42nd of 42; a later slot is a smaller share.
+  hive_slot: {low: 1, central: 1.75, high: 2.5, vs: one bee fewer,
+              why: "one more bee among ~42, once hatched, levelled and rolled"}

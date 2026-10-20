@@ -1,0 +1,204 @@
+# ONE-CLICK TARGETS: "make this account a Fuzzy alt / a Tad alt / get the
+# Tide Popper ...", and brain/hybrid merges several into one order.
+#
+# THE OWNER, 2026-10-26: players may find it hard to set every goal by hand,
+# so offer ready targets such as an auto Fuzzy alt or auto Tad alt, and a
+# hybrid that picks the fastest way to all of them.
+# ROADMAP G12 (VIEWER DarkWolfRfM, VIEWER Trav: a fast pathway to build Fuzzy /
+# Tad alts from scratch).
+#
+# HOW TO READ (same shape and ids as progression/{blue,red,white}.yaml):
+#   * Each target has `steps`, a list of goal dicts in the progression files'
+#     shape (id, label, kind, slot, cost{honey, items}, requires, why, source).
+#     `ref: <id>` REUSES that goal from progression/<hive>.yaml (then the other
+#     hives' files), cost and all, so a price is written once. `after: [ids]`
+#     says a step must wait for those steps; everything else is free order.
+#   * `bees` / `gifted` are how many of each bee type the target wants in the
+#     hive. brain/hybrid turns them into Mythic Egg and Star Treat steps from
+#     `bee_sources`, so two targets that want the same mythics share the eggs.
+#   * `hive_size` is the bee count the target wants; brain/hybrid prices the
+#     slots from hive_slots.yaml (the wiki's table) with id hive_slot<=N.
+#   * `fact:` MEASURED = a source states it outright (a wiki page or a guide's
+#     own number, read on the date given); ASSUMED = our reading of a guide or a
+#     count we chose, with the reason. No made-up prices: an unknown cost is
+#     left out, never 0.
+#
+# WHAT THE ALTS DO FOR A MAIN (alt plan of 2026-10-13, local research notes, wiki-checked):
+# they stand in the main's field. Bubbles and fuzz bombs any player can pop
+# refill / pollinate the SHARED flowers; the pollen of a bubble goes to its
+# owner, but each alt bubble the main pops feeds the main's Pop Star.
+updated: 2026-10-26
+sources:
+- id: w_fuzzy
+  title: 'Wiki: Fuzzy Bee (Mythic, colourless; Fuzz Bombs, Pollen Haze, Fuzzy Coat 5 / 9 if gifted)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Fuzzy_Bee
+- id: w_tadpole
+  title: 'Wiki: Tadpole Bee (Mythic, blue; bubbles 65% / 85% gifted, Baby Love + Gifted Frogs if gifted)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Tadpole_Bee
+- id: w_pollination
+  title: 'Wiki: Pollination (flowers up to large / star tier, 1 min a stack, 5 stacks)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pollination
+- id: w_ticket_tent
+  title: 'Wiki: Ticket Tent (Mythic Egg 2,500 tickets, Star Treat 1,000, Diamond Egg 400 = 5% mythic)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Ticket_Tent
+- id: w_egg
+  title: 'Wiki: Egg (Mythic Egg always a Mythic; free ones: Black Bear 75th, Dapper 15th, Brown 100/200/400th
+    quests, Commando 50th capture)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Egg
+- id: w_mythic
+  title: 'Wiki: Bees/Mythic (six hatchable Mythics: Buoyant, Fuzzy, Precise, Spicy, Tadpole, Vector)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Bees/Mythic
+- id: w_jelly
+  title: 'Wiki: Royal Jelly (Mythic 0.004% = 1 in 25,000 a roll: not a path)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly
+- id: w_star_treat
+  title: 'Wiki: Star Treat (makes a bee gifted for sure; 1,000 tickets)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Star_Treat
+- id: w_slots
+  title: 'Wiki: Hive Slot (25 free, 50 at most; price table in data/knowledge/hive_slots.yaml)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Hive_Slot
+- id: ag_guide
+  title: The Definitive Blue Hive Guide, AG gaming (sections 4.1 Tadpole Alts and 4.5 Alt Arrangement; cited and
+    paraphrased, not copied)
+  url: https://docs.google.com/document/d/1i9rz9mGYeVQQD7j2PaBB5p2gZPp_PX1HP-0GltTlWgA
+- id: metabee_alt
+  title: 'Meta Bee: How to progress your BSS alt account (gear order; Fuzzy alt lvl 15-20, Tad alt lvl 15+,
+    ideally 20; SSA as fast as possible) read 2026-10-26'
+  url: https://meta-bee.com/how-to-progress-your-bss-alt-account/
+- id: forum_fuzzy
+  title: 'BSS wiki discussions: Fuzzy hive alt guide / Fuzzy Guiding Alt hive build (an all-Fuzzy hive, as
+    many gifted as possible) seen in search 2026-10-26, page itself not readable (402)'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000659083
+- id: alt_plan
+  title: alt plan of 2026-10-13 (local research notes, not shipped; wiki-checked list of what an alt gives a blue
+    main; Commando 50th capture Mythic Egg)
+
+# HOW BEES ARE MADE. brain/hybrid buys Mythic Eggs until every wanted Mythic
+# type is expected to be there: one egg is one of `hatches` (ASSUMED equal odds:
+# the wiki says only "always hatches into a Mythic"), so wanting N of the most
+# wanted type costs about len(hatches) x N eggs, and the other wanted types come
+# along in the same eggs. That is why a hybrid of Fuzzy + Tad costs less than
+# both alone.
+bee_sources:
+  mythic_egg:
+    label: Mythic Egg
+    cost:
+      tickets: 2500
+    fact: MEASURED 2026-10-26 (w_ticket_tent) price; ASSUMED equal odds per type
+    hatches: [buoyant, fuzzy, precise, spicy, tadpole, vector]
+    hatches_fact: MEASURED 2026-10-26 (w_mythic) the six types; Digital Bee is made from drives, not eggs
+    why: The cheapest honest Mythic. Royal Jelly is 1 in 25,000 for any Mythic (w_jelly), a Diamond Egg 5% for
+      400 tickets = 8,000 tickets a Mythic. Free eggs (Commando 50th capture, quest milestones) come on top.
+    source: [w_ticket_tent, w_egg, w_mythic, w_jelly]
+  star_treat:
+    label: Star Treat
+    cost:
+      tickets: 1000
+    fact: MEASURED 2026-10-26 (w_star_treat, w_ticket_tent)
+    why: The only treat that always makes a bee gifted. Feed it AFTER the egg (an egg on a gifted bee replaces it).
+    source: [w_star_treat, w_ticket_tent]
+
+targets:
+- id: fuzzy_alt
+  label: Fuzzy alt
+  line: A second account full of Fuzzy Bees that make the flowers in your main's field bigger.
+  hive: blue
+  hive_fact: ASSUMED (metabee_alt "go blue for 50 slots"); Fuzzy Bee itself is colourless (w_fuzzy)
+  hive_size: 50
+  hive_size_fact: MEASURED (w_slots) 50 is the most a hive holds; ASSUMED the alt wants all of it
+  bees:
+    fuzzy: 45
+  bees_fact: ASSUMED 45 = "fuzz your entire hive" (forum_fuzzy) less a few support bees; the AG guide has no Fuzzy
+    alt comp (blue mains use Tad alts, red/white mains Fuzzy alts, ag_guide line 1429)
+  gifted:
+    fuzzy: 45
+  gifted_fact: ASSUMED all (forum_fuzzy says gift as many as possible); MEASURED reason (w_fuzzy) a gifted Fuzzy's
+    Fuzzy Coat pollinates 9 flowers, not 5. Only ONE Pollen Haze counts per field every 3 minutes (w_fuzzy)
+  level: 15
+  level_fact: MEASURED (metabee_alt) level 15-20 minimum, better every 5 levels
+  steps:
+  - ref: porcelain_dipper
+  - ref: porcelain_port_o_hive
+  - ref: bucko_guard
+  - ref: bubble_mask
+  - ref: supreme_star_amulet
+    fact: SOURCE (metabee_alt) get the SSA as early as possible, whatever it costs
+  source: [w_fuzzy, w_pollination, metabee_alt, forum_fuzzy]
+
+- id: tad_alt
+  label: Tad alt
+  line: A second account full of Tadpole Bees whose bubbles fill your main's blue field and grow its Pop Star.
+  hive: blue
+  hive_fact: MEASURED (ag_guide 4.1) Tad alts serve a blue main
+  hive_size: 50
+  hive_size_fact: MEASURED (w_slots) the most a hive holds; the guide's comps are 50-bee hives
+  bees:
+    tadpole: 18
+    fuzzy: 13
+    buoyant: 5
+  bees_fact: MEASURED (ag_guide line 1438-1441, "Comps for 1 Tad alt") 13 Fuzzies, 5 Buoyants, 18 Tadpoles; the
+    rest are support bees from the free eggs (not priced here)
+  gifted:
+    tadpole: 18
+    fuzzy: 1
+    buoyant: 1
+  gifted_fact: ASSUMED; MEASURED reasons (w_tadpole) a gifted Tadpole bubbles 85% not 65% and makes Gifted Frogs,
+    so every Tadpole; one gifted of each other type for the hive bonus
+  level: 20
+  level_fact: MEASURED (ag_guide line 1430) "Tad Alts can work below level 20, but are substantially less
+    effective"; metabee_alt level 15+, ideally 20
+  steps:
+  - ref: porcelain_dipper
+  - ref: porcelain_port_o_hive
+  - ref: bucko_guard
+  - ref: bubble_mask
+  - ref: supreme_star_amulet
+    fact: MEASURED (ag_guide 4.1) SSA with Scorch + Pop Star is the norm
+  - ref: diamond_mask
+    after: [bubble_mask]
+    fact: MEASURED (metabee_alt) in the alt gear order, before 48 slots
+  source: [w_tadpole, ag_guide, metabee_alt, alt_plan]
+
+- id: tide_popper
+  label: Tide Popper
+  line: The best blue tool. It needs 250 Bucko Bee quests first, then a lot of honey.
+  hive: blue
+  steps:
+  - ref: science_translator_1
+  - ref: bucko_quests_150
+    after: [science_translator_1]
+  - id: bucko_quests_250
+    label: 250 Bucko Bee quests
+    kind: quest
+    name: Finish 250 Gifted Bucko Bee quests
+    cost: {}
+    requires: []
+    after: [bucko_quests_150]
+    why: The Tide Popper's shop gate.
+    fact: MEASURED (progression/blue.yaml tide_popper requires, w_q_bucko there)
+    priority: 1
+    source: [ag_guide]
+  - ref: tide_popper
+    after: [bucko_quests_250]
+  source: [ag_guide]
+
+- id: diamond_mask
+  label: Diamond Mask
+  line: The big blue mask. Needs the Bubble Mask first.
+  hive: blue
+  steps:
+  - ref: bubble_mask
+  - ref: diamond_mask
+    after: [bubble_mask]
+  source: [metabee_alt]
+
+- id: supreme_star_amulet
+  label: Supreme Star Amulet
+  line: The best Star Amulet. Needs 40 kinds of gifted bee found.
+  hive: blue
+  steps:
+  - ref: silver_star_amulet
+  - ref: gold_star_amulet
+  - ref: diamond_star_amulet
+  - ref: supreme_star_amulet
+  source: [metabee_alt, ag_guide]

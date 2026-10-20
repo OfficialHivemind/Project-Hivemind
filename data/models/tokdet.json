@@ -1,0 +1,138 @@
+{
+ "made": "",
+ "model": "tokdet_run2.npz exported by scripts/train_tokdet.py export",
+ "training": {
+  "run1": "fresh weights, 85 min, 2234 steps of 12 crops (256 px) + 24 self crops, bce, neg_ratio 3, lr 2e-3 cosine",
+  "run2": "from run1, 60 min, 1600 steps, bce, neg_ratio 10, lr 1e-3 cosine (shipped)",
+  "threads": 2,
+  "memory_cap": "3000M"
+ },
+ "data": {
+  "labels_made": "2026-10-27 14:39:17",
+  "teacher": "coins_trainnights.npz (today's detector retrained on the train nights)",
+  "held_out_nights": [
+   "2026-09-28",
+   "2026-10-07"
+  ],
+  "self_held_out_nights": [
+   "2026-10-25",
+   "2026-10-26"
+  ],
+  "train_hand_frames": 285,
+  "pseudo_frames": 2400,
+  "self_crops_train": 410,
+  "pseudo_pos": 0.8,
+  "pseudo_ignore": 0.25
+ },
+ "best_f1": {
+  "held_out": {
+   "tokdet": {
+    "cut": "0.90",
+    "P": 0.747,
+    "R": 0.732,
+    "F1": 0.739
+   },
+   "today_retrained": {
+    "cut": "0.60",
+    "P": 0.633,
+    "R": 0.588,
+    "F1": 0.61
+   },
+   "today_shipped": {
+    "cut": "0.50",
+    "P": 0.929,
+    "R": 0.938,
+    "F1": 0.933
+   }
+  },
+  "eyetest": {
+   "tokdet": {
+    "cut": "0.95",
+    "P": 0.692,
+    "R": 0.579,
+    "F1": 0.63
+   },
+   "today_retrained": {
+    "cut": "0.50",
+    "P": 0.645,
+    "R": 0.789,
+    "F1": 0.71
+   },
+   "today_shipped": {
+    "cut": "0.50",
+    "P": 0.769,
+    "R": 0.789,
+    "F1": 0.779
+   }
+  },
+  "eyetest_b": {
+   "tokdet": {
+    "cut": "0.70",
+    "P": 0.538,
+    "R": 0.75,
+    "F1": 0.627
+   },
+   "today_retrained": {
+    "cut": "0.25",
+    "P": 0.574,
+    "R": 0.556,
+    "F1": 0.565
+   },
+   "today_shipped": {
+    "cut": "0.25",
+    "P": 0.583,
+    "R": 0.667,
+    "F1": 0.622
+   }
+  }
+ },
+ "ms_per_frame": {
+  "held_out": {
+   "tokdet": {
+    "median": 8.5,
+    "p90": 9.0
+   },
+   "today_retrained": {
+    "median": 24.3,
+    "p90": 28.6
+   },
+   "today_shipped": {
+    "median": 24.2,
+    "p90": 26.5
+   }
+  },
+  "eyetest": {
+   "tokdet": {
+    "median": 8.3,
+    "p90": 8.8
+   },
+   "today_retrained": {
+    "median": 23.2,
+    "p90": 26.6
+   },
+   "today_shipped": {
+    "median": 23.1,
+    "p90": 25.3
+   }
+  },
+  "eyetest_b": {
+   "tokdet": {
+    "median": 8.5,
+    "p90": 8.8
+   },
+   "today_retrained": {
+    "median": 23.4,
+    "p90": 30.3
+   },
+   "today_shipped": {
+    "median": 23.0,
+    "p90": 28.8
+   }
+  }
+ },
+ "self_crops_accuracy": {
+  "tokdet": 0.911,
+  "today_honey_head": 0.312
+ },
+ "doc": "docs/pending/tokdet-v2.md"
+}

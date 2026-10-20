@@ -1,0 +1,40 @@
+# What is true of THIS player's account, as opposed to the game.
+#
+# THIS IS THE BLANK TEMPLATE every install ships with. Your real one lives in
+# your config folder (~/.config/hivemind/account.yaml on Linux,
+# %LOCALAPPDATA%\Hivemind\account.yaml on Windows) and wins when it exists
+# (brain/knowledge.account_path). Copy this file there and fill in what you
+# know; anything left empty the bot measures itself or simply does not assume.
+#
+# EVIDENCE OR TESTIMONY, ALWAYS LABELLED: `source: owner` = you said so,
+# `source: measured` = the bot read it off the screen.
+checked: null
+
+hive:
+  level: null          # your hive level, e.g. 10
+  bees: null           # read off the bee menu by the bot
+  colour: null         # red / blue / white, if you are committing to one
+  source: unknown
+
+inventory: {}
+badges: {}
+
+tools:
+  holding: null        # e.g. porcelain_dipper
+  source: unknown
+
+bag:
+  holding: null        # e.g. port_o_hive
+  source: unknown
+
+membership:
+  bee_swarm_simulator_club: null
+
+codes:
+  all_redeemed: false
+
+secret_items:
+  all_collected: false
+
+beequips:
+  owned: null

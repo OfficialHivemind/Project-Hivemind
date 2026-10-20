@@ -1,0 +1,12 @@
+# O3 PINNED LINUX PIP DEPENDENCIES: the pure-pip half of the venv (pyproject's
+# `dependencies` for Linux). Used as a pip CONSTRAINTS file (-c) by `make venv`
+# and installer/linux/install.sh, so every Linux venv gets these exact versions.
+# MEASURED 2026-11-02: the versions the running Linux venv has installed.
+# No hashes: msgspec is a native wheel per platform/Python, and pip refuses
+# --require-hashes together with `-e .`. Windows has its own hashed file
+# (requirements-windows.txt). The rest (PySide6, OpenCV, numpy, pywayland,
+# xkbcommon, evdev) comes from the SYSTEM via --system-site-packages, not pip.
+# Update: change a version here, run `make venv` again.
+PyYAML==6.0.3
+msgspec==0.21.1
+platformdirs==4.13.0

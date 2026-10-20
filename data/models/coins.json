@@ -1,0 +1,223 @@
+{
+ "made": "",
+ "labels": "coin_labels.json",
+ "frames": 452,
+ "windows": 136,
+ "coins": 550,
+ "sure": 496,
+ "epochs": 12,
+ "stage1_hit": 2.0,
+ "report_p": 0.9,
+ "merge_share": 0.75,
+ "held_out": {
+  "folds": 5,
+  "grouped_by": "pickup window",
+  "scoring": "strict: one match per coin, repeats count against",
+  "by_confidence": {
+   "labelled whole": {
+    "0.25": {
+     "per_frame": 2.54,
+     "precision": 0.662,
+     "recall": 0.76,
+     "right": 202,
+     "twice": 18,
+     "wrong": 85,
+     "unreviewed": 0,
+     "coins_found": 187,
+     "coins": 246,
+     "coins_among_candidates": 218
+    },
+    "0.40": {
+     "per_frame": 2.15,
+     "precision": 0.721,
+     "recall": 0.707,
+     "right": 186,
+     "twice": 15,
+     "wrong": 57,
+     "unreviewed": 0,
+     "coins_found": 174,
+     "coins": 246,
+     "coins_among_candidates": 218
+    },
+    "0.50": {
+     "per_frame": 1.9,
+     "precision": 0.781,
+     "recall": 0.679,
+     "right": 178,
+     "twice": 12,
+     "wrong": 38,
+     "unreviewed": 0,
+     "coins_found": 167,
+     "coins": 246,
+     "coins_among_candidates": 218
+    },
+    "0.60": {
+     "per_frame": 1.67,
+     "precision": 0.835,
+     "recall": 0.634,
+     "right": 167,
+     "twice": 8,
+     "wrong": 25,
+     "unreviewed": 0,
+     "coins_found": 156,
+     "coins": 246,
+     "coins_among_candidates": 218
+    },
+    "0.70": {
+     "per_frame": 1.49,
+     "precision": 0.86,
+     "recall": 0.589,
+     "right": 154,
+     "twice": 8,
+     "wrong": 17,
+     "unreviewed": 0,
+     "coins_found": 145,
+     "coins": 246,
+     "coins_among_candidates": 218
+    },
+    "0.80": {
+     "per_frame": 1.22,
+     "precision": 0.884,
+     "recall": 0.492,
+     "right": 129,
+     "twice": 6,
+     "wrong": 11,
+     "unreviewed": 0,
+     "coins_found": 121,
+     "coins": 246,
+     "coins_among_candidates": 218
+    }
+   },
+   "reviewed detections": {
+    "0.25": {
+     "per_frame": 1.19,
+     "precision": 0.81,
+     "recall": 0.74,
+     "right": 187,
+     "twice": 6,
+     "wrong": 38,
+     "unreviewed": 165,
+     "coins_found": 185,
+     "coins": 250,
+     "coins_among_candidates": 240
+    },
+    "0.40": {
+     "per_frame": 0.95,
+     "precision": 0.868,
+     "recall": 0.704,
+     "right": 178,
+     "twice": 5,
+     "wrong": 22,
+     "unreviewed": 110,
+     "coins_found": 176,
+     "coins": 250,
+     "coins_among_candidates": 240
+    },
+    "0.50": {
+     "per_frame": 0.81,
+     "precision": 0.903,
+     "recall": 0.66,
+     "right": 167,
+     "twice": 4,
+     "wrong": 14,
+     "unreviewed": 85,
+     "coins_found": 165,
+     "coins": 250,
+     "coins_among_candidates": 240
+    },
+    "0.60": {
+     "per_frame": 0.7,
+     "precision": 0.903,
+     "recall": 0.592,
+     "right": 149,
+     "twice": 4,
+     "wrong": 12,
+     "unreviewed": 66,
+     "coins_found": 148,
+     "coins": 250,
+     "coins_among_candidates": 240
+    },
+    "0.70": {
+     "per_frame": 0.6,
+     "precision": 0.932,
+     "recall": 0.548,
+     "right": 138,
+     "twice": 3,
+     "wrong": 7,
+     "unreviewed": 52,
+     "coins_found": 137,
+     "coins": 250,
+     "coins_among_candidates": 240
+    },
+    "0.80": {
+     "per_frame": 0.48,
+     "precision": 0.944,
+     "recall": 0.476,
+     "right": 119,
+     "twice": 1,
+     "wrong": 6,
+     "unreviewed": 34,
+     "coins_found": 119,
+     "coins": 250,
+     "coins_among_candidates": 240
+    }
+   }
+  }
+ },
+ "honey": {
+  "held_out": {
+   "0.50": {
+    "named_honey": 203,
+    "right": 193,
+    "precision": 0.951,
+    "recall": 0.97,
+    "coins": 437,
+    "honey_coins": 199
+   },
+   "0.70": {
+    "named_honey": 203,
+    "right": 193,
+    "precision": 0.951,
+    "recall": 0.97,
+    "coins": 437,
+    "honey_coins": 199
+   },
+   "0.80": {
+    "named_honey": 203,
+    "right": 193,
+    "precision": 0.951,
+    "recall": 0.97,
+    "coins": 437,
+    "honey_coins": 199
+   },
+   "0.90": {
+    "named_honey": 201,
+    "right": 193,
+    "precision": 0.96,
+    "recall": 0.97,
+    "coins": 437,
+    "honey_coins": 199
+   },
+   "0.95": {
+    "named_honey": 200,
+    "right": 193,
+    "precision": 0.965,
+    "recall": 0.97,
+    "coins": 437,
+    "honey_coins": 199
+   },
+   "0.98": {
+    "named_honey": 195,
+    "right": 191,
+    "precision": 0.979,
+    "recall": 0.96,
+    "coins": 437,
+    "honey_coins": 199
+   }
+  },
+  "folds": 5,
+  "grouped_by": "pickup window",
+  "min_precision": 0.95,
+  "threshold": 0.5
+ }
+}

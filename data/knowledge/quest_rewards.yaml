@@ -1,0 +1,1038 @@
+# QUEST REWARDS by giver (ROADMAP B20: every errand priced). Read from the Bee
+# Swarm Simulator Fandom wiki through api.php on 2026-10-21, each giver's page
+# and revision under `source`. Main quest tables only (no event quests).
+# `rewards` holds only what the wiki states; scaling rewards are 0 with a
+# `# scales` note and the rule in `repeatable`/`note`. "(on accept)" items come
+# when the quest is taken, "(N% chance)" items only sometimes.
+# Used to price quest progress (brain/value): a step is worth its quest's
+# reward / the steps left. Rewards MEASURED from the reward feed at hand-in
+# replace these once there are some.
+black_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear (api.php rev 448714, read 2026-10-21)
+  repeatable: true  # after the 75 fixed quests (Silver Egg 6, Gold Egg 9, Diamond Egg 20, Star Jelly 20, Mythic Egg 20) he randomly assigns the 18 "Repeatable Quests (Current)" forever; fixed rewards, some items are % chance
+  note: "Wiki also lists \"Repeatable Quests (Old)\" (removed content) - omitted."
+  quests:
+    # --- Quests to Silver Egg (6) ---
+    - name: "Sunflower Start"
+      rewards: {honey: 200, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "200 Honey"
+    - name: "Dandelion Deed"
+      rewards: {honey: 400, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "400 Honey"
+    - name: "Pollen Fetcher"
+      rewards: {honey: 500, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "500 Honey"
+    - name: "Red Request"
+      rewards: {honey: 650, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "650 Honey"
+    - name: "Into The Blue"
+      rewards: {honey: 750, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "750 Honey"
+    - name: "Variety Fetcher"
+      rewards: {honey: 1000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Silver Egg": 1}}
+      raw: "1,000 Honey ; 1 Silver Egg"
+    # --- Quests to Gold Egg (9) ---
+    - name: "Bamboo Boogie"
+      rewards: {honey: 2100, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "2,100 Honey"
+    - name: "Red Request 2"
+      rewards: {honey: 2500, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "2,500 Honey"
+    - name: "Cobweb Sweeper"
+      rewards: {honey: 3200, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "3,200 Honey"
+    - name: "Leisure Loot"
+      rewards: {honey: 10000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "10,000 Honey"
+    - name: "White Pollen Wrangler"
+      rewards: {honey: 7500, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "7,500 Honey"
+    - name: "Pineapple Picking"
+      rewards: {honey: 10500, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "10,500 Honey"
+    - name: "Pollen Fetcher 2"
+      rewards: {honey: 12000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "12,000 Honey"
+    - name: "Weed Wacker"
+      rewards: {honey: 25000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "25,000 Honey"
+    - name: "Red + Blue = Gold"
+      rewards: {honey: 25000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Gold Egg": 1}}
+      raw: "25,000 Honey ; 1 Gold Egg"
+    # --- Quests to Diamond Egg (20) ---
+    - name: "Colorless Collection"
+      rewards: {honey: 35000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "35,000 Honey"
+    - name: "Spirit Of Springtime"
+      rewards: {honey: 44000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "44,000 Honey"
+    - name: "Weed Wacker 2"
+      rewards: {honey: 50000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "50,000 Honey"
+    - name: "Pollen Fetcher 3"
+      rewards: {honey: 50000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "50,000 Honey ; 1 Royal Jelly"
+    - name: "Lucky Landscaping"
+      rewards: {honey: 75000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "75,000 Honey"
+    - name: "Azure Adventure"
+      rewards: {honey: 100000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "100,000 Honey"
+    - name: "Pink Pineapples"
+      rewards: {honey: 122000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "122,000 Honey"
+    - name: "Blue Mushrooms"
+      rewards: {honey: 150000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "150,000 Honey ; 1 Royal Jelly"
+    - name: "Cobweb Sweeper 2"
+      rewards: {honey: 185000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "185,000 Honey"
+    - name: "Rojo-A-Go-Go"
+      rewards: {honey: 200000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "200,000 Honey"
+    - name: "Pumpkin Plower"
+      rewards: {honey: 225000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "225,000 Honey"
+    - name: "Pollen Fetcher 4"
+      rewards: {honey: 250000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "250,000 Honey ; 1 Royal Jelly"
+    - name: "Bouncing Around Biomes"
+      rewards: {honey: 275000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "275,000 Honey"
+    - name: "Blue Pineapples"
+      rewards: {honey: 300000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "300,000 Honey"
+    - name: "Rose Request"
+      rewards: {honey: 320000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "320,000 Honey"
+    - name: "Search For The White Clover"
+      rewards: {honey: 350000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "350,000 Honey ; 1 Royal Jelly"
+    - name: "Stomping Grounds"
+      rewards: {honey: 400000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "400,000 Honey ; 1 Royal Jelly"
+    - name: "Collecting Cliffside"
+      rewards: {honey: 450000, tickets: 0, royal_jelly: 2, treat: 0, items: {}}
+      raw: "450,000 Honey ; 2 Royal Jelly"
+    - name: "Mountain Meandering"
+      rewards: {honey: 500000, tickets: 0, royal_jelly: 3, treat: 0, items: {}}
+      raw: "500,000 Honey ; 3 Royal Jelly"
+    - name: "Quest Of Legends"
+      rewards: {honey: 1000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Diamond Egg": 1}}
+      raw: "1,000,000 Honey ; 1 Diamond Egg"
+    # --- Quests to Star Jelly (20) ---
+    - name: "High Altitude"
+      rewards: {honey: 650000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Field Dice": 1}}
+      raw: "5 Ticket ; 1 Field Dice ; 650,000 Honey ; 1 Royal Jelly"
+    - name: "Blissfully Blue"
+      rewards: {honey: 700000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Blueberry": 30}}
+      raw: "5 Ticket ; 30 Blueberry ; 700,000 Honey ; 1 Royal Jelly"
+    - name: "Rouge Round-up"
+      rewards: {honey: 750000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Strawberry": 30}}
+      raw: "5 Ticket ; 30 Strawberry ; 750,000 Honey ; 1 Royal Jelly"
+    - name: "White As Snow"
+      rewards: {honey: 800000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Pineapple": 30}}
+      raw: "5 Ticket ; 30 Pineapple ; 800,000 Honey ; 1 Royal Jelly"
+    - name: "Solo On The Stump"
+      rewards: {honey: 825000, tickets: 10, royal_jelly: 1, treat: 0, items: {"Gumdrops": 30}}
+      raw: "10 Ticket ; 30 Gumdrops ; 825,000 Honey ; 1 Royal Jelly"
+    - name: "Colorful Craving"
+      rewards: {honey: 850000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Field Dice": 3}}
+      raw: "5 Ticket ; 3 Field Dice ; 850,000 Honey ; 1 Royal Jelly"
+    - name: "Pumpkins, Please!"
+      rewards: {honey: 875000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Magic Bean": 1}}
+      raw: "5 Ticket ; 1 Magic Bean ; 875,000 Honey ; 1 Royal Jelly"
+    - name: "Smorgasbord"
+      rewards: {honey: 1000000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Field Dice": 3}}
+      raw: "5 Ticket ; 3 Field Dice ; 1,000,000 Honey ; 1 Royal Jelly"
+    - name: "Pollen Fetcher 5"
+      rewards: {honey: 1150000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Micro-Converter": 5}}
+      raw: "5 Ticket ; 5 Micro-Converter ; 1,150,000 Honey ; 1 Royal Jelly"
+    - name: "White Clover Redux"
+      rewards: {honey: 1250000, tickets: 5, royal_jelly: 5, treat: 0, items: {}}
+      raw: "5 Ticket ; 1,250,000 Honey ; 5 Royal Jelly"
+    - name: "Strawberry Field Forever"
+      rewards: {honey: 1500000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Strawberry": 60}}
+      raw: "5 Ticket ; 60 Strawberry ; 1,500,000 Honey ; 1 Royal Jelly"
+    - name: "Tasting The Sky"
+      rewards: {honey: 2000000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Sunflower Seed": 60}}
+      raw: "5 Ticket ; 60 Sunflower Seed ; 2,000,000 Honey ; 1 Royal Jelly"
+    - name: "Whispy and Crispy"
+      rewards: {honey: 2200000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Micro-Converter": 5}}
+      raw: "5 Ticket ; 5 Micro-Converter ; 2,200,000 Honey ; 1 Royal Jelly"
+    - name: "Walk Through The Woods"
+      rewards: {honey: 2500000, tickets: 5, royal_jelly: 1, treat: 0, items: {"Blue Extract": 1}}
+      raw: "5 Ticket ; 1 Blue Extract ; 2,500,000 Honey ; 1 Royal Jelly"
+    - name: "Get Red-y"
+      rewards: {honey: 2800000, tickets: 5, royal_jelly: 2, treat: 100, items: {"Red Extract": 1}}
+      raw: "5 Ticket ; 100 Treat ; 1 Red Extract ; 2,800,000 Honey ; 2 Royal Jelly"
+    - name: "One Stop On The Tip Top"
+      rewards: {honey: 3000000, tickets: 5, royal_jelly: 2, treat: 200, items: {"Field Dice": 5}}
+      raw: "5 Ticket ; 200 Treat ; 5 Field Dice ; 3,000,000 Honey ; 2 Royal Jelly"
+    - name: "Blue Mushrooms 2"
+      rewards: {honey: 3500000, tickets: 5, royal_jelly: 2, treat: 300, items: {"Micro-Converter": 5}}
+      raw: "5 Ticket ; 300 Treat ; 5 Micro-Converter ; 3,500,000 Honey ; 2 Royal Jelly"
+    - name: "Pretty Pumpkins"
+      rewards: {honey: 4000000, tickets: 5, royal_jelly: 2, treat: 400, items: {"Glitter": 1}}
+      raw: "5 Ticket ; 400 Treat ; 1 Glitter ; 4,000,000 Honey ; 2 Royal Jelly"
+    - name: "Black Bear, Why?"
+      rewards: {honey: 4500000, tickets: 5, royal_jelly: 2, treat: 500, items: {"Stinger": 15}}
+      raw: "5 Ticket ; 500 Treat ; 15 Stinger ; 4,500,000 Honey ; 2 Royal Jelly"
+    - name: "Bee A Star"
+      rewards: {honey: 5000000, tickets: 5, royal_jelly: 0, treat: 1000, items: {"Star Jelly": 1}}
+      raw: "5 Ticket ; 1,000 Treat ; 1 Star Jelly ; 5,000,000 Honey"
+    # --- Quests to Mythic Egg (20) ---
+    - name: "Bamboo Boogie 2: Bamboo Boogaloo"
+      rewards: {honey: 10000000, tickets: 5, royal_jelly: 3, treat: 2000, items: {"Field Dice": 3, "Blue Extract": 1}}
+      raw: "5 Ticket ; 2,000 Treat ; 3 Field Dice ; 1 Blue Extract ; 10,000,000 Honey ; 3 Royal Jelly"
+    - name: "Rocky Red Mountain"
+      rewards: {honey: 12500000, tickets: 5, royal_jelly: 4, treat: 2500, items: {"Magic Bean": 1, "Sunflower Seed": 25, "Red Extract": 1}}
+      raw: "5 Ticket ; 2,500 Treat ; 1 Magic Bean ; 25 Sunflower Seed ; 1 Red Extract ; 12,500,000 Honey ; 4 Royal Jelly"
+    - name: "Can't Without Ants"
+      rewards: {honey: 15000000, tickets: 5, royal_jelly: 5, treat: 2500, items: {"Jelly Beans": 3, "Ant Pass": 3}}
+      raw: "5 Ticket ; 2,500 Treat ; 3 Jelly Beans ; 3 Ant Pass ; 15,000,000 Honey ; 5 Royal Jelly"
+    - name: "The 15 Bee Zone"
+      rewards: {honey: 20000000, tickets: 5, royal_jelly: 6, treat: 3000, items: {"Micro-Converter": 3, "Enzymes": 1}}
+      raw: "5 Ticket ; 3,000 Treat ; 3 Micro-Converter ; 1 Enzymes ; 20,000,000 Honey ; 6 Royal Jelly"
+    - name: "Bubble Trouble"
+      rewards: {honey: 25000000, tickets: 5, royal_jelly: 0, treat: 3500, items: {"Blueberry": 75, "Box-O-Frogs": 1, "Star Jelly": 1}}
+      raw: "5 Ticket ; 3,500 Treat ; 75 Blueberry ; 1 Box-O-Frogs ; 1 Star Jelly ; 25,000,000 Honey"
+    - name: "Sweet And Sour"
+      rewards: {honey: 30000000, tickets: 5, royal_jelly: 8, treat: 4000, items: {"Gumdrops": 25, "Bitterberry": 25}}
+      raw: "5 Ticket ; 4,000 Treat ; 25 Gumdrops ; 25 Bitterberry ; 30,000,000 Honey ; 8 Royal Jelly"
+    - name: "Rare Red Clover"
+      rewards: {honey: 40000000, tickets: 5, royal_jelly: 9, treat: 4500, items: {"Magic Bean": 1, "Moon Charm": 25, "Strawberry": 75}}
+      raw: "5 Ticket ; 4,500 Treat ; 1 Magic Bean ; 25 Moon Charm ; 75 Strawberry ; 40,000,000 Honey ; 9 Royal Jelly"
+    - name: "Low Tier Treck"
+      rewards: {honey: 50000000, tickets: 5, royal_jelly: 10, treat: 5000, items: {"Field Dice": 5, "Pineapple": 75, "Jelly Beans": 3}}
+      raw: "5 Ticket ; 5,000 Treat ; 5 Field Dice ; 75 Pineapple ; 3 Jelly Beans ; 50,000,000 Honey ; 10 Royal Jelly"
+    - name: "Okey-Pokey"
+      rewards: {honey: 60000000, tickets: 5, royal_jelly: 10, treat: 6000, items: {"Stinger": 5, "Magic Bean": 1, "Coconut": 10}}
+      raw: "5 Ticket ; 6,000 Treat ; 5 Stinger ; 1 Magic Bean ; 10 Coconut ; 60,000,000 Honey ; 10 Royal Jelly"
+    - name: "Pollen Fetcher 6"
+      rewards: {honey: 75000000, tickets: 5, royal_jelly: 0, treat: 7500, items: {"Sunflower Seed": 75, "Pineapple": 75, "Star Jelly": 1}}
+      raw: "5 Ticket ; 7,500 Treat ; 75 Sunflower Seed ; 75 Pineapple ; 1 Star Jelly ; 75,000,000 Honey"
+    - name: "Capsaicin Collector"
+      rewards: {honey: 80000000, tickets: 5, royal_jelly: 10, treat: 8000, items: {"Magic Bean": 1, "Micro-Converter": 5, "Red Extract": 1}}
+      raw: "5 Ticket ; 8,000 Treat ; 1 Magic Bean ; 5 Micro-Converter ; 1 Red Extract ; 80,000,000 Honey ; 10 Royal Jelly"
+    - name: "Mountain Mix"
+      rewards: {honey: 90000000, tickets: 5, royal_jelly: 10, treat: 9000, items: {"Magic Bean": 1, "Jelly Beans": 3, "Purple Potion": 1}}
+      raw: "5 Ticket ; 9,000 Treat ; 1 Magic Bean ; 3 Jelly Beans ; 1 Purple Potion ; 90,000,000 Honey ; 10 Royal Jelly"
+    - name: "You Blue It"
+      rewards: {honey: 100000000, tickets: 5, royal_jelly: 10, treat: 10000, items: {"Jelly Beans": 5, "Blueberry": 25, "Blue Extract": 1}}
+      raw: "5 Ticket ; 10,000 Treat ; 5 Jelly Beans ; 25 Blueberry ; 1 Blue Extract ; 100,000,000 Honey ; 10 Royal Jelly"
+    - name: "Variety Fetcher 2"
+      rewards: {honey: 125000000, tickets: 5, royal_jelly: 10, treat: 10000, items: {"Magic Bean": 1, "Field Dice": 5, "Pineapple": 75}}
+      raw: "5 Ticket ; 10,000 Treat ; 1 Magic Bean ; 5 Field Dice ; 75 Pineapple ; 125,000,000 Honey ; 10 Royal Jelly"
+    - name: "Getting Stumped"
+      rewards: {honey: 150000000, tickets: 5, royal_jelly: 0, treat: 10000, items: {"Gumdrops": 50, "Jelly Beans": 10, "Gifted Silver Egg": 1}}
+      raw: "5 Ticket ; 10,000 Treat ; 50 Gumdrops ; 10 Jelly Beans ; 1 Gifted Silver Egg ; 150,000,000 Honey"
+    - name: "Weed Wacker 3"
+      rewards: {honey: 175000000, tickets: 5, royal_jelly: 20, treat: 11000, items: {"Magic Bean": 3, "Gumdrops": 25, "Bitterberry": 25}}
+      raw: "5 Ticket ; 11,000 Treat ; 3 Magic Bean ; 25 Gumdrops ; 25 Bitterberry ; 175,000,000 Honey ; 20 Royal Jelly"
+    - name: "All-Whitey Then"
+      rewards: {honey: 200000000, tickets: 5, royal_jelly: 25, treat: 12500, items: {"Glue": 1, "Glitter": 1}}
+      raw: "5 Ticket ; 12,500 Treat ; 1 Glue ; 1 Glitter ; 200,000,000 Honey ; 25 Royal Jelly"
+    - name: "Red Delicacy"
+      rewards: {honey: 250000000, tickets: 5, royal_jelly: 50, treat: 15000, items: {"Jelly Beans": 3, "Moon Charm": 50, "Strawberry": 75}}
+      raw: "5 Ticket ; 15,000 Treat ; 3 Jelly Beans ; 50 Moon Charm ; 75 Strawberry ; 250,000,000 Honey ; 50 Royal Jelly"
+    - name: "Boss Battles"
+      rewards: {honey: 300000000, tickets: 5, royal_jelly: 50, treat: 20000, items: {"Box-O-Frogs": 3, "Magic Bean": 3, "Tropical Drink": 3}}
+      raw: "5 Ticket ; 20,000 Treat ; 3 Box-O-Frogs ; 3 Magic Bean ; 3 Tropical Drink ; 300,000,000 Honey ; 50 Royal Jelly"
+    - name: "Myth In The Making"
+      rewards: {honey: 500000000, tickets: 5, royal_jelly: 0, treat: 50000, items: {"Mythic Egg": 1}}
+      raw: "5 Ticket ; 50,000 Treat ; 1 Mythic Egg ; 500,000,000 Honey"
+    # --- Repeatable Quests (Current), random, endless ---
+    - name: "Just Red"
+      rewards: {honey: 100000000, tickets: 1, royal_jelly: 0, treat: 0, items: {"Strawberry": 10, "Red Extract (20% chance)": 1}}
+      raw: "1 Ticket ; 10 Strawberry ; 100,000,000 Honey ; 1 Red Extract (20% chance)"
+    - name: "Just Blue"
+      rewards: {honey: 100000000, tickets: 1, royal_jelly: 0, treat: 0, items: {"Blueberry": 10, "Blue Extract (20% chance)": 1}}
+      raw: "1 Ticket ; 10 Blueberry ; 100,000,000 Honey ; 1 Blue Extract (20% chance)"
+    - name: "Just White"
+      rewards: {honey: 100000000, tickets: 1, royal_jelly: 0, treat: 0, items: {"Sunflower Seed": 10, "Glitter (10% chance)": 1}}
+      raw: "1 Ticket ; 10 Sunflower Seed ; 100,000,000 Honey ; 1 Glitter (10% chance)"
+    - name: "Any Pollen"
+      rewards: {honey: 100000000, tickets: 1, royal_jelly: 50, treat: 0, items: {"Oil (10% chance)": 1, "Enzymes (10% chance)": 1}}
+      raw: "1 Ticket ; 50 Royal Jelly ; 100,000,000 Honey ; 1 Oil (10% chance) ; 1 Enzymes (10% chance)"
+    - name: "A Bit Of Both"
+      rewards: {honey: 50000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Strawberry": 20, "Blueberry": 20, "Red Extract (10% chance)": 1, "Blue Extract (10% chance)": 1}}
+      raw: "20 Strawberry ; 20 Blueberry ; 50,000,000 Honey ; 1 Red Extract (10% chance) ; 1 Blue Extract (10% chance)"
+    - name: "The Whole Lot"
+      rewards: {honey: 150000000, tickets: 2, royal_jelly: 25, treat: 0, items: {"Pineapple": 25, "Enzymes (10% chance)": 1}}
+      raw: "2 Ticket ; 25 Royal Jelly ; 25 Pineapple ; 150,000,000 Honey ; 1 Enzymes (10% chance)"
+    - name: "Fun In The Sunflowers"
+      rewards: {honey: 100000000, tickets: 2, royal_jelly: 0, treat: 2500, items: {"Sunflower Seed": 15, "Oil (25% chance)": 1}}
+      raw: "2 Ticket ; 2500 Treat ; 15 Sunflower Seed ; 100,000,000 Honey ; 1 Oil (25% chance)"
+    - name: "Blue Flower Bliss"
+      rewards: {honey: 100000000, tickets: 2, royal_jelly: 0, treat: 2500, items: {"Blueberry": 15, "Blue Extract (25% chance)": 1}}
+      raw: "2 Ticket ; 2500 Treat ; 15 Blueberry ; 100,000,000 Honey ; 1 Blue Extract (25% chance)"
+    - name: "Mission For Mushrooms"
+      rewards: {honey: 100000000, tickets: 2, royal_jelly: 0, treat: 2500, items: {"Strawberry": 15, "Red Extract (25% chance)": 1}}
+      raw: "2 Ticket ; 2500 Treat ; 15 Strawberry ; 100,000,000 Honey ; 1 Red Extract (25% chance)"
+    - name: "Delve Into Dandelions"
+      rewards: {honey: 100000000, tickets: 2, royal_jelly: 0, treat: 2500, items: {"Moon Charm": 10, "Glue (25% chance)": 1, "Glitter (5% chance)": 1}}
+      raw: "2 Ticket ; 2500 Treat ; 100,000,000 Honey ; 10 Moon Charm ; 1 Glue (25% chance) ; 1 Glitter (5% chance)"
+    - name: "Leisurely Lowlands"
+      rewards: {honey: 200000000, tickets: 3, royal_jelly: 25, treat: 2500, items: {"Glue (20% chance)": 1, "Star Jelly (1% chance)": 1}}
+      raw: "3 Ticket ; 25 Royal Jelly ; 2500 Treat ; 200,000,000 Honey ; 1 Glue (20% chance) ; 1 Star Jelly (1% chance)"
+    - name: "Stroll In The Strawberries"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 10, treat: 1000, items: {"Strawberry": 15, "Ticket (25% chance)": 1, "Red Extract (20% chance)": 1}}
+      raw: "10 Royal Jelly ; 1000 Treat ; 15 Strawberry ; 100,000,000 Honey ; 1 Ticket (25% chance) ; 1 Red Extract (20% chance)"
+    - name: "Between the Bamboo"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 10, treat: 1000, items: {"Blueberry": 15, "Ticket (25% chance)": 1, "Blue Extract (20% chance)": 1}}
+      raw: "10 Royal Jelly ; 1000 Treat ; 15 Blueberry ; 100,000,000 Honey ; 1 Ticket (25% chance) ; 1 Blue Extract (20% chance)"
+    - name: "Play In The Pumpkins"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 10, treat: 1000, items: {"Gumdrops": 10, "Ticket (25% chance)": 1, "Glue (20% chance)": 1}}
+      raw: "10 Royal Jelly ; 1000 Treat ; 10 Gumdrops ; 100,000,000 Honey ; 1 Ticket (25% chance) ; 1 Glue (20% chance)"
+    - name: "Plundering Pineapples"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 10, treat: 1000, items: {"Pineapple": 15, "Ticket (25% chance)": 1, "Enzymes (25% chance)": 1}}
+      raw: "10 Royal Jelly ; 1000 Treat ; 15 Pineapple ; 100,000,000 Honey ; 1 Ticket (25% chance) ; 1 Enzymes (25% chance)"
+    - name: "Mid-Level Mission"
+      rewards: {honey: 100000000, tickets: 1, royal_jelly: 25, treat: 2500, items: {"Red Extract (10% chance)": 1, "Blue Extract (10% chance)": 1}}
+      raw: "25 Royal Jelly ; 1 Ticket ; 2500 Treat ; 100,000,000 Honey ; 1 Red Extract (10% chance) ; 1 Blue Extract (10% chance)"
+    - name: "Pepper Patrol"
+      rewards: {honey: 150000000, tickets: 0, royal_jelly: 25, treat: 2500, items: {"Bitterberry": 10, "Stinger (25% chance)": 1, "Red Extract (10% chance)": 1}}
+      raw: "150,000,000 Honey ; 25 Royal Jelly ; 2,500 Treat ; 10 Bitterberry ; 1 Stinger (25% chance) ; 1 Red Extract (10% chance)"
+    - name: "Triple Treck"
+      rewards: {honey: 200000000, tickets: 0, royal_jelly: 25, treat: 2500, items: {"Neonberry": 1, "Ticket (25% chance)": 1, "Tropical Drink (10% chance)": 1, "Glitter (10% chance)": 1}}
+      raw: "200,000,000 Honey ; 25 Royal Jelly ; 2,500 Treat ; 1 Neonberry ; 1 Ticket (25% chance) ; 1 Tropical Drink (10% chance) ; 1 Glitter (10% chance)"
+
+brown_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear (api.php rev 448031, read 2026-10-21)
+  repeatable: true  # infinite: 41 possible quests, pollen goal scales with quests done; every quest = 1 Ticket + Royal Jelly and Honey that scale with count, +3 Jelly Beans every 3rd quest, milestone items every 5th
+  note: "Royal Jelly per quest by quests completed: 0-5:1, 6-15:2, 16-25:3, 26-30:5, 31-40:10, 41-50:20, 51-60:30, 61-75:50, 76-100:100 ... 2251-2500:2,500,000. Milestones e.g. 25 Silver Egg, 50 Gold Egg, 75 Diamond Egg, 100 Mythic Egg, 150 100 Tickets."
+  quests:
+    - name: "Sun-Dand"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Mush-Clove"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Bluf-Clove"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Mush"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Bluf"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Clove"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Straw-Spide"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Bamb-Spide"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Bamb-Mush"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Straw-Sun"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Clov-Spide"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Spide"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Straw"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Bamb"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Pinap-Clov"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Pinap-Dand"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Pinap-Bamb"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Pinap-Straw"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Cact"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Cact-Sun"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Pump-Bluf"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Cact-Rose"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Pine-Mush"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Pine-Straw"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Rose-Bamb"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Pump-Dand"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Mount-Mush"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Mount-Bluf"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Mount"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Mount-Spide-Rose-Pinap"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Mount-Bamb-Pump-Sun"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Coco-Bluf"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Coco-Mush"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Pepp-Pinap"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "White-Pepp-Bamb"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Coco-Pepp-Clove-Pine"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Coco-Mount-Cact-Rose"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Coco"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Solo-Stump"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Red-Stump-Mush"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+    - name: "Blue-Stump-Rose"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 0, items: {}}  # scales (honey, royal_jelly)
+      raw: "Each quest always rewards 1 Ticket, and increasing amounts of Royal Jelly and Honey depending on the difficulty of the current quest."
+
+polar_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Polar_Bear (api.php rev 447913, read 2026-10-21)
+  repeatable: true  # 20 quests assigned at random forever, fixed rewards; each also has a chance of Oil ~6.67%, Enzymes ~6.67%, Magic Bean 4%, Glitter 2%, stickers 1%/0.2%
+  quests:
+    - name: "Spooky Stew"
+      rewards: {honey: 125000, tickets: 1, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "125,000 Honey ; 1x Polar Power ; 10 Treat ; 1 Ticket"
+    - name: "Scorpion Salad"
+      rewards: {honey: 160000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "160,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Strawberry Skewers"
+      rewards: {honey: 132000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "132,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Trail Mix"
+      rewards: {honey: 120000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "120,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Pumpkin Pie"
+      rewards: {honey: 132000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "132,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Beetle Brew"
+      rewards: {honey: 155000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "155,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Aromatic Pie"
+      rewards: {honey: 163000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "163,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Spiced Kebab"
+      rewards: {honey: 150000, tickets: 1, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "150,000 Honey ; 1x Polar Power ; 10 Treat ; 1 Ticket"
+    - name: "Candied Beetles"
+      rewards: {honey: 150000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "150,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Mantis Meatballs"
+      rewards: {honey: 160000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "160,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Spider Pot-Pie"
+      rewards: {honey: 100000, tickets: 1, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "100,000 Honey ; 1x Polar Power ; 10 Treat ; 1 Ticket"
+    - name: "Exotic Salad"
+      rewards: {honey: 135000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "135,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "High Protein Bug Bar"
+      rewards: {honey: 230000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "230,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Teriyaki Jerky"
+      rewards: {honey: 190000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "190,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Thick Smoothie"
+      rewards: {honey: 85000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "85,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Ladybug Poppers"
+      rewards: {honey: 182000, tickets: 1, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "182,000 Honey ; 1x Polar Power ; 10 Treat ; 1 Ticket"
+    - name: "Extreme Stir-Fry"
+      rewards: {honey: 260000, tickets: 2, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "260,000 Honey ; 1x Polar Power ; 10 Treat ; 2x Ticket"
+    - name: "Prickly Pears"
+      rewards: {honey: 155000, tickets: 0, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "155,000 Honey ; 1x Polar Power ; 10 Treat"
+    - name: "Mashed Blooms"
+      rewards: {honey: 0, tickets: 2, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "1x Polar Power ; 10 Treat ; 2 Ticket"
+    - name: "Petal Tabbouleh"
+      rewards: {honey: 0, tickets: 1, royal_jelly: 0, treat: 10, items: {"Polar Power": 1}}
+      raw: "1x Polar Power ; 10 Treat ; 1 Ticket"
+
+panda_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Panda_Bear (api.php rev 449555, read 2026-10-21)
+  repeatable: false  # fixed list of 27 + the Red Drive quest
+  quests:
+    # --- Silver Egg Quests (8) ---
+    - name: "Lesson on Ladybugs"
+      rewards: {honey: 250, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "250 Honey"
+    - name: "Rhino Rumble"
+      rewards: {honey: 500, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "500 Honey"
+    - name: "Beetle Battle"
+      rewards: {honey: 1000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "1,000 Honey"
+    - name: "Spider Slayer"
+      rewards: {honey: 1000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "1,000 Honey ; 1x Royal Jelly"
+    - name: "Ladybug Bonker"
+      rewards: {honey: 4000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "4,000 Honey"
+    - name: "Spider Slayer 2"
+      rewards: {honey: 10000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "10,000 Honey"
+    - name: "Rhino Wrecking"
+      rewards: {honey: 8000, tickets: 0, royal_jelly: 0, treat: 0, items: {}}
+      raw: "8,000 Honey"
+    - name: "Final Showdown"
+      rewards: {honey: 15000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Silver Egg": 1}}
+      raw: "15,000 Honey ; 1 Silver Egg"
+    # --- Gold Egg Quests (4) ---
+    - name: "Werewolf Hunter"
+      rewards: {honey: 1000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "1,000 Honey ; 1x Royal Jelly"
+    - name: "Skirmish with Scorpions"
+      rewards: {honey: 5000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "5,000 Honey ; 1x Royal Jelly"
+    - name: "Mantis Massacre"
+      rewards: {honey: 10000, tickets: 0, royal_jelly: 1, treat: 0, items: {}}
+      raw: "10,000 Honey ; 1x Royal Jelly"
+    - name: "The REAL Final Showdown"
+      rewards: {honey: 100000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Gold Egg": 1}}
+      raw: "100,000 Honey ; 1 Gold Egg"
+    # --- Star Egg/Star Treat/Ant Quests (15) ---
+    - name: "Ant Arrival"
+      rewards: {honey: 50000, tickets: 1, royal_jelly: 0, treat: 0, items: {"Ant Pass (on accept)": 1, "Ant Pass": 1}}
+      raw: "1 Ant Pass (when quest accepted) ; 50,000 Honey ; 1x Ticket ; 1x Ant Pass"
+    - name: "Winged Wack Attack"
+      rewards: {honey: 75000, tickets: 1, royal_jelly: 0, treat: 0, items: {"Ant Pass": 1}}
+      raw: "75,000 Honey ; 1x Ticket ; 1x Ant Pass"
+    - name: "Fire Fighter"
+      rewards: {honey: 100000, tickets: 1, royal_jelly: 1, treat: 0, items: {"Ant Pass": 1}}
+      raw: "100,000 Honey ; 1x Royal Jelly ; 1x Ticket ; 1x Ant Pass"
+    - name: "Army Ant Assault"
+      rewards: {honey: 200000, tickets: 1, royal_jelly: 1, treat: 0, items: {"Ant Pass": 1}}
+      raw: "200,000 Honey ; 1x Royal Jelly ; 1x Ticket ; 1x Ant Pass"
+    - name: "Colossal Combat"
+      rewards: {honey: 400000, tickets: 1, royal_jelly: 0, treat: 0, items: {"Ant Pass": 1, "Diamond Egg": 1}}
+      raw: "400,000 Honey ; 1x Ticket ; 1x Ant Pass ; 1 Diamond Egg"
+    - name: "Eager Exterminator"
+      rewards: {honey: 750000, tickets: 6, royal_jelly: 3, treat: 0, items: {"Ant Pass": 1}}
+      raw: "750,000 Honey ; 3x Royal Jelly ; 6x Ticket ; 1x Ant Pass"
+    - name: "Leaper Lickin'"
+      rewards: {honey: 1000000, tickets: 7, royal_jelly: 3, treat: 0, items: {"Ant Pass": 1}}
+      raw: "1,000,000 Honey ; 3x Royal Jelly ; 7x Ticket ; 1x Ant Pass"
+    - name: "Colossal Combat 2"
+      rewards: {honey: 1500000, tickets: 8, royal_jelly: 3, treat: 0, items: {"Ant Pass": 1}}
+      raw: "1,500,000 Honey ; 3x Royal Jelly ; 8x Ticket ; 1x Ant Pass"
+    - name: "Outrageous Onslaught"
+      rewards: {honey: 2500000, tickets: 9, royal_jelly: 3, treat: 0, items: {"Ant Pass": 1}}
+      raw: "2,500,000 Honey ; 3x Royal Jelly ; 9x Ticket ; 1xAnt Pass"
+    - name: "Royal Rumble"
+      rewards: {honey: 5000000, tickets: 10, royal_jelly: 3, treat: 0, items: {"Ant Pass": 1, "Star Egg": 1}}
+      raw: "5,000,000 Honey ; 3x Royal Jelly ; 10x Ticket ; 1x Ant Pass ; 1 Star Egg"
+    - name: "Ultimate Ant Annihilation 1"
+      rewards: {honey: 10000000, tickets: 11, royal_jelly: 5, treat: 0, items: {"Ant Pass": 1}}
+      raw: "10,000,000 Honey ; 5x Royal Jelly ; 11x Ticket ; 1x Ant Pass"
+    - name: "Ultimate Ant Annihilation 2"
+      rewards: {honey: 15000000, tickets: 12, royal_jelly: 6, treat: 0, items: {"Ant Pass": 1}}
+      raw: "15,000,000 Honey ; 6x Royal Jelly ; 12x Ticket ; 1x Ant Pass"
+    - name: "Ultimate Ant Annihilation 3"
+      rewards: {honey: 20000000, tickets: 13, royal_jelly: 7, treat: 0, items: {"Ant Pass": 1}}
+      raw: "20,000,000 Honey ; 7x Royal Jelly ; 13x Ticket ; 1x Ant Pass"
+    - name: "Ultimate Ant Annihilation 4"
+      rewards: {honey: 25000000, tickets: 14, royal_jelly: 8, treat: 0, items: {"Ant Pass": 1}}
+      raw: "25,000,000 Honey ; 8x Royal Jelly ; 14x Ticket ; 1x Ant Pass"
+    - name: "Ultimate Ant Annihilation 5"
+      rewards: {honey: 50000000, tickets: 25, royal_jelly: 0, treat: 0, items: {"Star Treat": 1}}
+      raw: "50,000,000 Honey ; 25x Ticket ; 1 Star Treat"
+    # --- Red Drive Quest (needs Science Bear "Repairing The White Drive") ---
+    - name: "Ready For The Red Drive?"
+      rewards: {honey: 50000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Stinger": 25, "Loaded Dice": 3, "Red Drive": 1}}
+      raw: "50,000,000 Honey ; 25x Stinger ; 3x Loaded Dice ; 1x Red Drive"
+
+science_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Science_Bear (api.php rev 448149, read 2026-10-21)
+  repeatable: false  # fixed lists: 16 initial, 15 Translator, 2 Drive quests
+  note: "\"Science Enhancement\" is a stacking buff. Drive quests also consume items on turn-in (listed in raw only). Pre-nerf rows omitted."
+  quests:
+    # --- Initial Quest List (16) ---
+    - name: "Preliminary Research"
+      rewards: {honey: 31415, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "31,415 Honey ; 1x Science Enhancement"
+    - name: "Biology Study"
+      rewards: {honey: 47806, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "47,806 Honey ; 1x Science Enhancement"
+    - name: "Proving The Hypothesis"
+      rewards: {honey: 57721, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "57,721 Honey ; 1x Science Enhancement"
+    - name: "Bear Botany"
+      rewards: {honey: 79861, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "79,861 Honey ; 1x Science Enhancement"
+    - name: "Kingdom Collection"
+      rewards: {honey: 90107, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "90,107 Honey ; 1x Science Enhancement"
+    - name: "Defensive Adaptions"
+      rewards: {honey: 104693, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "104,693 Honey ; 1x Science Enhancement"
+    - name: "Benefits Of Technology"
+      rewards: {honey: 141121, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "141,121 Honey ; 1x Science Enhancement"
+    - name: "Spider Study"
+      rewards: {honey: 153623, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "153,623 Honey ; 1x Science Enhancement"
+    - name: "Roses And Weeds"
+      rewards: {honey: 160669, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "160,669 Honey ; 1x Science Enhancement"
+    - name: "Blue Review"
+      rewards: {honey: 161803, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "161,803 Honey ; 1x Science Enhancement"
+    - name: "Ongoing Progress"
+      rewards: {honey: 173205, tickets: 0, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "173,205 Honey ; 1x Science Enhancement"
+    - name: "Red / Blue Duality"
+      rewards: {honey: 229558, tickets: 1, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "229,558 Honey ; 1x Science Enhancement ; 1 Ticket"
+    - name: "Costs Of Computation"
+      rewards: {honey: 271828, tickets: 2, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "271,828 Honey ; 1x Science Enhancement ; 2x Ticket"
+    - name: "Pollination Practice"
+      rewards: {honey: 335988, tickets: 3, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "335,988 Honey ; 1x Science Enhancement ; 3x Ticket"
+    - name: "Optimizing Abilities"
+      rewards: {honey: 453236, tickets: 4, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "453,236 Honey ; 1x Science Enhancement ; 4x Ticket"
+    - name: "Ready For Infrared"
+      rewards: {honey: 524411, tickets: 5, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "524,411 Honey ; 1x Science Enhancement ; 5x Ticket"
+    # --- Translator Quest List (15) ---
+    - name: "Breaking Down Badges"
+      rewards: {honey: 700127, tickets: 6, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Enzymes": 1}}
+      raw: "700,127 Honey ; 1x Science Enhancement ; 6x Ticket ; 1x Enzymes"
+    - name: "Subsidized Agriculture"
+      rewards: {honey: 870588, tickets: 7, royal_jelly: 0, treat: 0, items: {"Magic Bean (on accept)": 1, "Science Enhancement": 1, "Oil": 1}}
+      raw: "1x Magic Bean (Upon receiving quest) ; ---- ; 870,588 Honey ; 1x Science Enhancement ; 7x Ticket ; 1x Oil"
+    - name: "Meticulously Crafted"
+      rewards: {honey: 1131988, tickets: 8, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Red Extract": 1, "Blue Extract": 1}}
+      raw: "1,131,988 Honey ; 1x Science Enhancement ; 8x Ticket ; 1x Red Extract ; 1x Blue Extract"
+    - name: "Smart, Not Hard"
+      rewards: {honey: 1451369, tickets: 9, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Glitter": 1}}
+      raw: "1,451,369 Honey ; 1x Science Enhancement ; 9x Ticket ; 1x Glitter"
+    - name: "Limits of Language"
+      rewards: {honey: 2502907, tickets: 10, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Translator": 1}}
+      raw: "2,502,907 Honey ; 1x Science Enhancement ; 10x Ticket ; 1x Translator"
+    - name: "Patterns and Probability"
+      rewards: {honey: 2685452, tickets: 11, royal_jelly: 13, treat: 0, items: {"Science Enhancement": 1}}
+      raw: "2,685,452 Honey ; 1x Science Enhancement ; 11x Ticket ; 13x Royal Jelly"
+    - name: "Chemical Analysis"
+      rewards: {honey: 3275822, tickets: 12, royal_jelly: 5, treat: 0, items: {"Science Enhancement": 1, "Glue": 1}}
+      raw: "3,275,822 Honey ; 1x Science Enhancement ; 12x Ticket ; 5x Royal Jelly ; 1x Glue"
+    - name: "Mark Mechanics"
+      rewards: {honey: 4669201, tickets: 13, royal_jelly: 0, treat: 3000, items: {"Science Enhancement": 1, "Magic Bean": 1}}
+      raw: "4,669,201 Honey ; 1x Science Enhancement ; 13x Ticket ; 3000x Treat ; 1x Magic Bean"
+    - name: "Meditating On Phenomenon"
+      rewards: {honey: 14142135, tickets: 14, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Oil": 1, "Enzymes": 1, "Glitter": 1}}
+      raw: "14,142,135Honey ; 1x Science Enhancement ; 14x Ticket ; 1x Oil ; 1x Enzymes ; 1x Glitter"
+    - name: "Beesperanto"
+      rewards: {honey: 25600000, tickets: 15, royal_jelly: 0, treat: 0, items: {"Star Jelly": 1, "Translator": 1, "Science Enhancement": 1}}
+      raw: "25,600,000 Honey ; 15x Ticket ; 1x Star Jelly ; 1x Translator ; 1x Science Enhancement"
+    - name: "Hive Minded Bias"
+      rewards: {honey: 44444453, tickets: 16, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Glitter": 3}}
+      raw: "44,444,453 Honey ; 1x Science Enhancement ; 16x Ticket ; 3x Glitter"
+    - name: "Mushroom Measurement Monotony"
+      rewards: {honey: 51000041, tickets: 17, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Red Extract": 3}}
+      raw: "51,000,041 Honey ; 1x Science Enhancement ; 17x Ticket ; 3x Red Extract"
+    - name: "The Power Of Information"
+      rewards: {honey: 101101111, tickets: 18, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Enzymes": 3}}
+      raw: "101,101,111 Honey ; 1x Science Enhancement ; 18x Ticket ; 3x Enzymes"
+    - name: "Testing Teamwork"
+      rewards: {honey: 132471795, tickets: 19, royal_jelly: 0, treat: 0, items: {"Science Enhancement": 1, "Magic Bean": 3}}
+      raw: "132,471,795 Honey ; 1x Science Enhancement ; 19x Ticket ; 3x Magic Bean"
+    - name: "Epistemological Endeavor"
+      rewards: {honey: 314159265, tickets: 20, royal_jelly: 0, treat: 10000, items: {"Science Enhancement": 1, "Translator": 1, "Star Jelly": 2, "Glitter": 4, "Enzymes": 4, "Glue": 4}}
+      raw: "314,159,265 Honey ; 1x Science Enhancement ; 20x Ticket ; 1x Translator ; 10,000x Treat ; 2x Star Jelly ; 4x Glitter ; 4x Enzymes ; 4x Glue"
+    # --- Drive Quest List ---
+    - name: "Repairing The White Drive"
+      rewards: {honey: 67108864, tickets: 25, royal_jelly: 0, treat: 0, items: {"Atomic Treat": 1, "White Balloon": 1, "White Drive": 1}}
+      raw: "67,108,864 Honey ; 25 Ticket ; 1 Atomic Treat ; 1 White Balloon ; 1 White Drive ; ---- ; (Lost upon turning in quest) ; -1 Broken Drive ; -12 Soft Wax ; -4 M..."
+    - name: "Corrupting The Glitched Drive"
+      rewards: {honey: 268435459, tickets: 50, royal_jelly: 0, treat: 0, items: {"Star Jelly": 1, "Caustic Wax": 1, "Super Smoothie": 1, "Glitched Drive": 1}}
+      raw: "268,435,459 Honey ; 50 Ticket ; 1 Star Jelly ; 1 Caustic Wax ; 1 Super Smoothie ; 1 Glitched Drive ; ---- ; (Lost upon turning in quest) ; -12 Hard Wax ; -8 ..."
+
+mother_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Mother_Bear (api.php rev 448101, read 2026-10-21)
+  repeatable: false  # fixed list of 14
+  quests:
+    - name: "Treat Tutorial"
+      rewards: {honey: 250, tickets: 1, royal_jelly: 0, treat: 3, items: {"Treat (on accept)": 1}}
+      raw: "1 Treat (when quest accepted) ; 250 Honey ; 3 Treat ; 1 Ticket"
+    - name: "Bonding With Bees"
+      rewards: {honey: 1000, tickets: 1, royal_jelly: 0, treat: 3, items: {}}
+      raw: "1,000 Honey ; 3 Treat ; 1 Ticket"
+    - name: "Search For A Sunflower Seed"
+      rewards: {honey: 2000, tickets: 2, royal_jelly: 0, treat: 3, items: {}}
+      raw: "2,000 Honey ; 3 Treat ; 2 Ticket"
+    - name: "The Gist Of Jellies"
+      rewards: {honey: 5000, tickets: 2, royal_jelly: 0, treat: 5, items: {"Royal Jelly (on accept)": 1}}
+      raw: "1 Royal Jelly (when quest accepted) ; 5,000 Honey ; 5 Treat ; 2 Ticket"
+    - name: "Search For Strawberries"
+      rewards: {honey: 10000, tickets: 3, royal_jelly: 0, treat: 5, items: {}}
+      raw: "10,000 Honey ; 5 Treat ; 3 Ticket"
+    - name: "Binging On Blueberries"
+      rewards: {honey: 20000, tickets: 3, royal_jelly: 0, treat: 10, items: {}}
+      raw: "20,000 Honey ; 10 Treat ; 3 Ticket"
+    - name: "Royal Jelly Jamboree"
+      rewards: {honey: 50000, tickets: 4, royal_jelly: 0, treat: 20, items: {}}
+      raw: "50,000 Honey ; 20 Treat ; 4 Ticket"
+    - name: "Search For Sunflower Seeds"
+      rewards: {honey: 100000, tickets: 4, royal_jelly: 1, treat: 30, items: {}}
+      raw: "100,000 Honey ; 30 Treat ; 4 Ticket ; 1 Royal Jelly"
+    - name: "Picking Out Pineapples"
+      rewards: {honey: 250000, tickets: 5, royal_jelly: 1, treat: 40, items: {}}
+      raw: "250,000 Honey ; 40 Treat ; 5 Ticket ; 1 Royal Jelly"
+    - name: "Seven To Seven"
+      rewards: {honey: 500000, tickets: 6, royal_jelly: 1, treat: 50, items: {"Star Egg": 1}}
+      raw: "1 Star Egg ; 500,000 Honey ; 50 Treat ; 6 Ticket ; 1 Royal Jelly"
+    - name: "Mother Bear's Midterm"
+      rewards: {honey: 1000000, tickets: 7, royal_jelly: 2, treat: 100, items: {}}
+      raw: "1,000,000 Honey ; 100 Treat ; 7 Ticket ; 2 Royal Jelly"
+    - name: "Eight To Eight"
+      rewards: {honey: 2500000, tickets: 8, royal_jelly: 3, treat: 250, items: {}}
+      raw: "2,500,000 Honey ; 250 Treat ; 8 Ticket ; 3 Royal Jelly"
+    - name: "Sights On The Stars"
+      rewards: {honey: 5000000, tickets: 9, royal_jelly: 4, treat: 1000, items: {}}
+      raw: "5,000,000 Honey ; 1,000 Treat ; 9 Ticket ; 4 Royal Jelly"
+    - name: "The Family Final"
+      rewards: {honey: 10000000, tickets: 10, royal_jelly: 5, treat: 2500, items: {"Star Treat": 1}}
+      raw: "1 Star Treat ; 10,000,000 Honey ; 2,500 Treat ; 10 Ticket ; 5 Royal Jelly"
+
+spirit_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Spirit_Bear (api.php rev 449757, read 2026-10-21)
+  repeatable: false  # fixed list of 30
+  note: "Upon-receiving events (Memory Match, summons, nighttime) are in raw only. Pre-change \"Echoing Call\" row omitted."
+  quests:
+    - name: "Spirit's Starter"
+      rewards: {honey: 25000000, tickets: 0, royal_jelly: 10, treat: 0, items: {"Glitter": 1, "Micro-Converter": 1}}
+      raw: "25000000 Honey ; 1 Glitter ; 1 Micro-Converter ; 10 Royal Jelly"
+    - name: "The First Offering"
+      rewards: {honey: 35000000, tickets: 0, royal_jelly: 20, treat: 0, items: {"Moon Charm": 5, "Field Dice": 3, "Glitter": 1}}
+      raw: "35000000 Honey ; 5 Moon Charm ; 3 Field Dice ; 20 Royal Jelly ; 1 Glitter"
+    - name: "Rules of The Road"
+      rewards: {honey: 40000000, tickets: 0, royal_jelly: 30, treat: 0, items: {"Glitter": 1, "Moon Charm": 10, "Micro-Converter": 3}}
+      raw: "40000000 Honey ; 1 Glitter ; 10 Moon Charm ; 3 Micro-Converter ; 30 Royal Jelly"
+    - name: "QR Quest"
+      rewards: {honey: 45000000, tickets: 0, royal_jelly: 40, treat: 0, items: {"Glitter": 1, "Moon Charm": 15, "Jelly Beans": 5}}
+      raw: "45000000 Honey ; 1 Glitter ; 15 Moon Charm ; 5 Jelly Beans ; 40 Royal Jelly"
+    - name: "Pleasant Pastimes"
+      rewards: {honey: 50000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Jelly Beans (on accept)": 3, "Glitter": 1, "Star Jelly": 1}}
+      raw: "3 Jelly Beans (Upon receiving quest) ; ---- ; 50000000 Honey ; 1 Glitter ; 1 Star Jelly"
+    - name: "Nature's Lessons"
+      rewards: {honey: 60000000, tickets: 0, royal_jelly: 80, treat: 0, items: {"Glitter": 1, "Moon Charm": 20, "Field Dice": 3, "Pineapple": 250}}
+      raw: "60000000 Honey ; 1 Glitter ; 20 Moon Charm ; 3 Field Dice ; 250 Pineapple ; 80 Royal Jelly"
+    - name: "The Gifts Of Life"
+      rewards: {honey: 70000000, tickets: 0, royal_jelly: 90, treat: 0, items: {"Star Jelly (on accept)": 1, "Glitter": 1, "Moon Charm": 25, "Stinger": 10, "Micro-Converter": 1}}
+      raw: "1 Star Jelly (Upon receiving quest) ; ---- ; 70000000 Honey ; 1 Glitter ; 25 Moon Charm ; 10 Stinger ; 1 Micro-Converter ; 90 Royal Jelly"
+    - name: "Out-Questing Questions"
+      rewards: {honey: 80000000, tickets: 0, royal_jelly: 100, treat: 0, items: {"Glitter": 1, "Moon Charm": 25, "Jelly Beans": 10, "Magic Bean": 1, "Blueberry": 1}}
+      raw: "Play Memory Match (Upon receiving quest) ; ---- ; 80000000 Honey ; 1 Glitter ; 25 Moon Charm ; 10 Jelly Beans ; 1 Magic Bean ; 1 Blueberry ; 100 Royal Jelly"
+    - name: "Forcefully Friendly"
+      rewards: {honey: 90000000, tickets: 0, royal_jelly: 120, treat: 0, items: {"Glitter": 1, "Moon Charm": 25, "Gumdrops": 100, "Micro-Converter": 5}}
+      raw: "90000000 Honey ; 1 Glitter ; 25 Moon Charm ; 100 Gumdrops ; 5 Micro-Converter ; 120 Royal Jelly"
+    - name: "Sway Away"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Spirit Petal": 1}}
+      raw: "100000000 Honey ; 1 Spirit Petal"
+    - name: "Memories of Memories"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 120, treat: 0, items: {"Glitter (on accept)": 1, "Glitter": 2, "Moon Charm": 30, "Magic Bean": 3, "Micro-Converter": 5}}
+      raw: "1x Glitter (Upon receiving quest) ; Play Memory Match (Upon receiving quest) ; ---- ; 100000000 Honey ; 2 Glitter ; 30 Moon Charm ; 3 Magic Bean ; 5 Micro-Co..."
+    - name: "Beans Becoming"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 140, treat: 0, items: {"Magic Bean (on accept)": 1, "Glitter": 2, "Moon Charm": 30, "Gumdrops": 250, "Micro-Converter": 5, "Pineapple": 500}}
+      raw: "1 Magic Bean (Upon receiving quest) ; ---- ; 100000000 Honey ; 2 Glitter ; 30 Moon Charm ; 250 Gumdrops ; 5 Micro-Converter ; 500 Pineapple ; 140 Royal Jelly"
+    - name: "Do You Bee-lieve in Magic?"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 160, treat: 0, items: {"Glitter": 2, "Jelly Beans": 10, "Magic Bean": 5, "Night Bell": 1, "Pineapple": 300}}
+      raw: "Summon nighttime (upon receiving quest) ; ---- ; 100000000 Honey ; 2 Glitter ; 10 Jelly Beans ; 5 Magic Bean ; 1 Night Bell ; 300 Pineapple ; 160 Royal Jelly"
+    - name: "The Ways Of The Winds / The Wind And Its Ways"
+      rewards: {honey: 100000000, tickets: 0, royal_jelly: 180, treat: 0, items: {"Glitter": 2, "Moon Charm": 50, "Cloud Vial": 1, "Coconut": 25}}
+      raw: "100000000 Honey ; 2 Glitter ; 50 Moon Charm ; 1 Cloud Vial ; 25 Coconut ; 180 Royal Jelly"
+    - name: "Beauty Duty"
+      rewards: {honey: 150000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 2, "Star Jelly": 2, "Field Dice": 5, "Micro-Converter": 5, "Coconut": 10}}
+      raw: "150000000 Honey ; 2 Glitter ; 2 Star Jelly ; 5 Field Dice ; 5 Micro-Converter ; 10 Coconut"
+    - name: "Witness Grandeur"
+      rewards: {honey: 150000000, tickets: 0, royal_jelly: 200, treat: 0, items: {"Glitter": 2, "Moon Charm": 50, "Cloud Vial": 1, "Jelly Beans": 10, "Pineapple": 100}}
+      raw: "Summon Honeystorm (Upon receiving quest) ; ---- ; 150000000 Honey ; 2 Glitter ; 50 Moon Charm ; 1 Cloud Vial ; 10 Jelly Beans ; 100 Pineapple ; 200 Royal Jelly"
+    - name: "Beeternity"
+      rewards: {honey: 150000000, tickets: 0, royal_jelly: 220, treat: 0, items: {"Moon Charm": 100, "Magic Bean": 5, "Micro-Converter": 5, "Field Dice": 5}}
+      raw: "Play Memory Match (Upon receiving quest) ; ---- ; 150000000 Honey ; 100 Moon Charm ; 5 Magic Bean ; 5 Micro-Converter ; 5 Field Dice ; 220 Royal Jelly"
+    - name: "A Breath Of Blue"
+      rewards: {honey: 150000000, tickets: 0, royal_jelly: 240, treat: 0, items: {"Glitter (on accept)": 2, "Glitter": 2, "Magic Bean": 10, "Gumdrops": 100, "Micro-Converter": 5}}
+      raw: "2 Glitter (Upon receiving quest) ; ---- ; 150000000 Honey ; 2 Glitter ; 10 Magic Bean ; 100 Gumdrops ; 5 Micro-Converter ; 240 Royal Jelly"
+    - name: "Glory Of Goo"
+      rewards: {honey: 150000000, tickets: 0, royal_jelly: 250, treat: 0, items: {"Glitter": 2, "Moon Charm": 50, "Gumdrops": 250, "Jelly Beans": 5}}
+      raw: "150000000 Honey ; 2 Glitter ; 50 Moon Charm ; 250 Gumdrops ; 5 Jelly Beans ; 250 Royal Jelly"
+    - name: "Tickle The Wind"
+      rewards: {honey: 300000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Spirit Petal": 1, "Glitter": 3}}
+      raw: "Summons 3 level 6 Wild Windy Bees at Mountain Top Field (Upon receiving quest) ; ---- ; 300000000 Honey ; 1 Spirit Petal ; 3 Glitter"
+    - name: "Rhubarb That Could Have Been"
+      rewards: {honey: 400000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 3, "Star Jelly": 1, "Jelly Beans": 10, "Magic Bean": 5, "Enzymes": 5, "Pineapple": 250}}
+      raw: "400000000 Honey ; 3 Glitter ; 1 Star Jelly ; 10 Jelly Beans ; 5 Magic Bean ; 5 Enzymes ; 250 Pineapple"
+    - name: "Dreams Of Being A Bee"
+      rewards: {honey: 500000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 3, "Star Jelly": 1, "Stinger": 15, "Magic Bean": 5, "Micro-Converter": 5, "Moon Charm": 200}}
+      raw: "500000000 Honey ; 3 Glitter ; 1 Star Jelly ; 15 Stinger ; 5 Magic Bean ; 5 Micro-Converter ; 200 Moon Charm"
+    - name: "The Sky Over The Stump"
+      rewards: {honey: 700000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 3, "Star Jelly": 2, "Magic Bean": 10, "Micro-Converter": 10, "Cloud Vial": 10, "Moon Charm": 100}}
+      raw: "700000000 Honey ; 3 Glitter ; 2 Star Jelly ; 10 Magic Bean ; 10 Micro-Converter ; 10 Cloud Vial ; 100 Moon Charm"
+    - name: "Space Oblivion"
+      rewards: {honey: 1000000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 3, "Star Jelly": 1, "Moon Charm": 250, "Jelly Beans": 10, "Field Dice": 5}}
+      raw: "1000000000 Honey ; 3 Glitter ; 1 Star Jelly ; 250 Moon Charm ; 10 Jelly Beans ; 5 Field Dice ; Summons a level 9 Wild Windy Bee at Pineapple Patch"
+    - name: "Pollenpalooza"
+      rewards: {honey: 1500000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 5, "Star Jelly": 3, "Cloud Vial": 5, "Field Dice": 5, "Micro-Converter": 5, "Gumdrops": 100}}
+      raw: "1500000000 Honey ; 5 Glitter ; 3 Star Jelly ; 5 Cloud Vial ; 5 Field Dice ; 5 Micro-Converter ; 100 Gumdrops"
+    - name: "Dancing With Stick Bug"
+      rewards: {honey: 2500000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 5, "Star Jelly": 3, "Gumdrops": 250, "Micro-Converter": 10, "Jelly Beans": 10, "Enzymes": 25}}
+      raw: "Play Memory Match (Upon receiving quest) ; Start Stick Bug Challenge (upon receiving quest) ; ---- ; 2500000000 Honey ; 5 Glitter ; 3 Star Jelly ; 250 Gumdro..."
+    - name: "Bear Without Despair"
+      rewards: {honey: 3000000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 5, "Star Jelly": 4, "Magic Bean": 10, "Field Dice": 10, "Jelly Beans": 10, "Micro-Converter": 10, "Tropical Drink": 5}}
+      raw: "3000000000 Honey ; 5 Glitter ; 4 Star Jelly ; 10 Magic Bean ; 10 Field Dice ; 10 Jelly Beans ; 10 Micro-Converter ; 5 Tropical Drink"
+    - name: "Spirit Spree"
+      rewards: {honey: 5000000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 5, "Star Jelly": 5, "Moon Charm": 150, "Micro-Converter": 15, "Jelly Beans": 10}}
+      raw: "5000000000 Honey ; 5 Glitter ; 5 Star Jelly ; 150 Moon Charm ; 15 Micro-Converter ; 10 Jelly Beans"
+    - name: "Echoing Call"
+      rewards: {honey: 7000000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Coconut (on accept)": 25, "Pineapple (on accept)": 500, "Sunflower Seed (on accept)": 500, "Gumdrops (on accept)": 500, "Glitter": 5, "Star Jelly": 5, "Magic Bean": 50, "Moon Charm": 250, "Gumdrops": 250, "Micro-Converter": 15, "Field Dice": 10}}
+      raw: "25 Coconut (Upon receiving quest) ; 500 Pineapple (Upon receiving quest) ; 500 Sunflower Seed (Upon receiving quest) ; 500 Gumdrops (Upon receiving quest) ; ..."
+    - name: "Spring Out Of The Mountain"
+      rewards: {honey: 10000000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Glitter": 5, "Star Jelly": 5, "Spirit Petal": 1}}
+      raw: "Summons, in order, delayed by 2 minutes each (Upon claiming quest): ; * 1 level 6 Wild Windy Bee at Mountain Top Field ; * 1 level 7 Wild Windy Bee at Pineap..."
+
+bucko_bee:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Bucko_Bee (api.php rev 447917, read 2026-10-21)  # NPC page; "Bucko Bee" page is the worker bee
+  repeatable: true  # infinite, random quest, goals scale with X=quests done; every quest = 1 Blue Extract + scaling Honey (Q=done+1: every 100th 25M*Q, every 5th 2.5M*floor(Q^0.95), else 1M*floor(Q^0.9)); every 25th Star Jelly; every 5th (and 5% otherwise) a weighted random item
+  note: "Milestones: 3:5 Moon Charm, 9:50 Moon Charm, 25:Star Jelly, 50:Gifted Gold Egg, 64:Basic Blue Hive Skin, 100:Gifted Diamond Egg, 111:500 Blueberry, 150:10 Glitter, 222:25 Magic Bean, 250/500/750/1000:Gifted Diamond Egg"
+  quests:
+    - name: "Abilities"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Bamboo"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Bombard"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Booster"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Clean-up"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Extraction"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Flowers"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Goo"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Medley"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Petals"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1, "Bloom Shaker": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey. Petals quest also rewards a Bloom Shaker."
+    - name: "Picnic"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Pine Trees"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Pollen"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Scavenge"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Skirmish"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Tango"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+    - name: "Tour"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Blue Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Blue Extract and Honey."
+
+riley_bee:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Riley_Bee (api.php rev 448085, read 2026-10-21)  # NPC page; "Riley Bee" page is the worker bee
+  repeatable: true  # infinite, random quest, goals scale with X=quests done; every quest = 1 Red Extract + scaling Honey (Q=done+1: every 100th 25M*Q, every 5th 2.5M*floor(Q^0.95), else 1M*floor(Q^0.9)); every 25th Star Jelly; every 5th (and 5% otherwise) a weighted random item
+  note: "Milestones: 3:1 Stinger, 9:10 Stinger, 25:Star Jelly, 50:Gifted Gold Egg, 64:Basic Red Hive Skin, 100:Gifted Diamond Egg, 111:500 Strawberry, 150:20 Stinger, 222:100,000 Treat, 250/500/750/1000:Gifted Diamond Egg"
+  quests:
+    - name: "Abilities"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Booster"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Clean-up"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Extraction"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Goo"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Medley"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Mushrooms"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Petals"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1, "Bloom Shaker": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey. Petals quest also rewards a Bloom Shaker."
+    - name: "Picnic"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Pollen"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Rampage"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Roses"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Scavenge"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Skirmish"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Strawberries"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Tango"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+    - name: "Tour"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Red Extract": 1}}  # scales (honey)
+      raw: "Rewards will always contain one Red Extract and Honey."
+
+honey_bee:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Honey_Bee_(NPC) (api.php rev 449569, read 2026-10-21)
+  repeatable: true  # one endless quest (Honey Hunt), n-th time: collect 500*n Honey Tokens; honey 1,000*n^2+10,000 + Conversion Boost + one random extra (Ticket/10 Treat/1 Royal Jelly/5 Sunflower Seed ~24.4% each, Magic Bean ~2.4%); every 10th quest from 10 to 100 gives Star Jelly instead
+  quests:
+    - name: "Honey Bee's Honey Hunt"
+      rewards: {honey: 0, tickets: 0, royal_jelly: 0, treat: 0, items: {"Conversion Boost (30 minutes)": 1}}  # scales (honey); + 1 random extra item
+      raw: "Honey 1,000 x n^2 + 10,000 ; Conversion Boost (30 minutes) ; Other items (see Rewards)"
+
+dapper_bear:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Dapper_Bear (api.php rev 449513, read 2026-10-21)
+  repeatable: false  # fixed list of 16 main quests + Blue Drive quest
+  quests:
+    # --- Main Quests (16) ---
+    - name: "Planter Practice"
+      rewards: {honey: 1000000, tickets: 0, royal_jelly: 1, treat: 0, items: {"Ticket Planter": 1, "Honeysuckle": 10, "Whirligig": 5}}
+      raw: "1,000,000 Honey ; 1 Ticket Planter ; 10 Honeysuckle ; 5 Whirligig ; 1 Royal Jelly"
+    - name: "Liquid Motivation"
+      rewards: {honey: 3000000, tickets: 0, royal_jelly: 1, treat: 0, items: {"Beequip Case Slot": 1, "Soft Wax": 3, "Jelly Beans": 5}}
+      raw: "1 Beequip Case Slot ; 3,000,000 Honey ; 3 Soft Wax ; 5 Jelly Beans ; 1 Royal Jelly"
+    - name: "A Good Infection"
+      rewards: {honey: 5000000, tickets: 0, royal_jelly: 0, treat: 100, items: {"Ticket Planter": 1, "Honeysuckle": 10, "Neonberry": 10, "Field Dice": 3}}
+      raw: "5,000,000 Honey ; 1 Ticket Planter ; 100 Treat ; 10 Honeysuckle ; 10 Neonberry ; 3 Field Dice"
+    - name: "All About Appearances"
+      rewards: {honey: 10000000, tickets: 0, royal_jelly: 3, treat: 0, items: {"Beequip Case Slot": 1, "Hard Wax": 3, "Whirligig": 10, "Micro-Converter": 3}}
+      raw: "1 Beequip Case Slot ; 10,000,000 Honey ; 3 Hard Wax ; 10 Whirligig ; 3 Micro-Converter ; 3 Royal Jelly"
+    - name: "Means of Mutation"
+      rewards: {honey: 25000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Ticket Planter": 3, "Satisfying Vial": 1, "Honeysuckle": 25, "Smooth Dice": 3, "Pink Balloon": 3, "Swirled Wax": 1, "Star Jelly": 1}}
+      raw: "25,000,000 Honey ; 3 Ticket Planter ; 1 Satisfying Vial ; 25 Honeysuckle ; 3 Smooth Dice ; 3 Pink Balloon ; 1 Swirled Wax ; 1 Star Jelly"
+    - name: "Creative Comforts"
+      rewards: {honey: 30000000, tickets: 0, royal_jelly: 0, treat: 500, items: {"Beequip Case Slot": 1, "Comforting Vial": 1, "Neonberry": 10, "Red Balloon": 1, "Hard Wax": 3, "Purple Potion": 1}}
+      raw: "1 Beequip Case Slot ; 30,000,000 Honey ; 1 Comforting Vial ; 500 Treat ; 10 Neonberry ; 1 Red Balloon ; 3 Hard Wax ; 1 Purple Potion"
+    - name: "Keeping It Chromatic"
+      rewards: {honey: 50000000, tickets: 0, royal_jelly: 15, treat: 0, items: {"Ticket Planter": 1, "Refreshing Vial": 1, "Jelly Beans": 15, "Magic Bean": 1, "Smooth Dice": 3, "Purple Potion": 3}}
+      raw: "50,000,000 Honey ; 1 Ticket Planter ; 1 Refreshing Vial ; 15 Royal Jelly ; 15 Jelly Beans ; 1 Magic Bean ; 3 Smooth Dice ; 3 Purple Potion"
+    - name: "Wandering Ambition"
+      rewards: {honey: 90000000, tickets: 0, royal_jelly: 25, treat: 0, items: {"Beequip Case Slot": 1, "Motivating Vial": 1, "Glue": 3, "Enzymes": 3, "White Balloon": 1, "Hard Wax": 1, "Honeysuckle": 25}}
+      raw: "1 Beequip Case Slot ; 90,000,000 Honey ; 1 Motivating Vial ; 25 Royal Jelly ; 3 Glue ; 3 Enzymes ; 1 White Balloon ; 1 Hard Wax ; 25 Honeysuckle"
+    - name: "Unintended Intimidation"
+      rewards: {honey: 120000000, tickets: 0, royal_jelly: 0, treat: 2500, items: {"Ticket Planter": 1, "Invigorating Vial": 1, "Micro-Converter": 10, "Hard Wax": 3, "Glitter": 2, "Purple Potion": 1}}
+      raw: "120,000,000 Honey ; 1 Ticket Planter ; 1 Invigorating Vial ; 2500 Treat ; 10 Micro-Converter ; 3 Hard Wax ; 2 Glitter ; 1 Purple Potion"
+    - name: "The Long Haul"
+      rewards: {honey: 200000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Beequip Case Slot": 1, "Comforting Vial": 1, "Loaded Dice": 1, "Star Jelly": 1, "Swirled Wax": 1, "Caustic Wax": 1, "White Balloon": 1, "Diamond Egg": 1}}
+      raw: "1 Beequip Case Slot ; 200,000,000 Honey ; 1 Comforting Vial ; 1 Loaded Dice ; 1 Star Jelly ; 1 Swirled Wax ; 1 Caustic Wax ; 1 White Balloon ; 1 Diamond Egg"
+    - name: "The Trick To Tickets"
+      rewards: {honey: 250000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Ticket Planter": 1, "Satisfying Vial": 1, "Honeysuckle": 25, "Neonberry": 15, "Soft Wax": 10, "Glitter": 1, "Swirled Wax": 1}}
+      raw: "250,000,000 Honey ; 1 Ticket Planter ; 1 Satisfying Vial ; 25 Honeysuckle ; 15 Neonberry ; 10 Soft Wax ; 1 Glitter ; 1 Swirled Wax"
+    - name: "Invigorating View"
+      rewards: {honey: 300000000, tickets: 0, royal_jelly: 100, treat: 0, items: {"Beequip Case Slot": 1, "Invigorating Vial": 1, "Whirligig": 10, "Smooth Dice": 5, "Black Balloon": 1, "Glue": 1, "Purple Potion": 1}}
+      raw: "1 Beequip Case Slot ; 300,000,000 Honey ; 1 Invigorating Vial ; 100 Royal Jelly ; 10 Whirligig ; 5 Smooth Dice ; 1 Black Balloon ; 1 Glue ; 1 Purple Potion"
+    - name: "Ongoing Maintenance"
+      rewards: {honey: 700000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Ticket Planter": 1, "Comforting Vial": 1, "Whirligig": 25, "Jelly Beans": 15, "Micro-Converter": 15, "Glitter": 5, "Caustic Wax": 1}}
+      raw: "700,000,000 Honey ; 1 Ticket Planter ; 1 Comforting Vial ; 25 Whirligig ; 15 Jelly Beans ; 15 Micro-Converter ; 5 Glitter ; 1 Caustic Wax"
+    - name: "Solitarily Steadfast"
+      rewards: {honey: 1000000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Beequip Case Slot": 1, "Refreshing Vial": 1, "White Balloon": 3, "Hard Wax": 10, "Honeysuckle": 25, "Purple Potion": 3, "Swirled Wax": 1}}
+      raw: "1 Beequip Case Slot ; 1,000,000,000 Honey ; 1 Refreshing Vial ; 3 White Balloon ; 10 Hard Wax ; 25 Honeysuckle ; 3 Purple Potion ; 1 Swirled Wax"
+    - name: "More Than Myth"
+      rewards: {honey: 1500000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Satisfying Vial": 1, "Loaded Dice": 3, "Swirled Wax": 1, "Caustic Wax": 1, "Super Smoothie": 1, "Mythic Egg": 1}}
+      raw: "1,500,000,000 Honey ; 1 Satisfying Vial ; 3 Loaded Dice ; 1 Swirled Wax ; 1 Caustic Wax ; 1 Super Smoothie ; 1 Mythic Egg"
+    - name: "Sticker Style"
+      rewards: {honey: 2500000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Beequip Case Slot": 1, "Nectar Shower Vial": 1, "Sticker Planter": 1, "Bloom Shaker": 1, "Star Jelly": 1, "Neonberry": 10, "Swirled Wax": 2}}
+      raw: "1 Beequip Case Slot ; 2,500,000,000 Honey ; 1 Nectar Shower Vial ; 1 Sticker Planter ; 1 Bloom Shaker ; 1 Star Jelly ; 10 Neonberry ; 2 Swirled Wax"
+    # --- Blue Drive Quest ---
+    - name: "Barter For The Blue Drive"
+      rewards: {honey: 50000000, tickets: 0, royal_jelly: 0, treat: 0, items: {"Ticket Planter": 1, "Swirled Wax": 1, "Comforting Vial": 1, "Blue Drive": 1}}
+      raw: "50,000,000 Honey ; 1 Ticket Planter ; 1 Swirled Wax ; 1 Comforting Vial ; 1 Blue Drive"
+
+onett:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Onett (api.php rev 447920, read 2026-10-21)
+  repeatable: false  # fixed list of 5 (Star Journey)
+  note: "Ornament Quest (Beesmas event) omitted."
+  quests:
+    - name: "Star Journey 1"
+      rewards: {honey: 5000000, tickets: 10, royal_jelly: 25, treat: 1000, items: {"Pineapple": 25}}
+      raw: "5,000,000 Honey ; 25x Royal Jelly ; 1,000x Treat ; 10x Ticket ; 25x Pineapple"
+    - name: "Star Journey 2"
+      rewards: {honey: 10000000, tickets: 15, royal_jelly: 50, treat: 2000, items: {}}
+      raw: "10,000,000 Honey ; 50x Royal Jelly ; 2,000x Treat ; 15x Ticket"
+    - name: "Star Journey 3"
+      rewards: {honey: 25000000, tickets: 20, royal_jelly: 75, treat: 5000, items: {}}
+      raw: "25,000,000 Honey ; 75x Royal Jelly ; 5,000x Treat ; 20x Ticket"
+    - name: "Star Journey 4"
+      rewards: {honey: 50000000, tickets: 25, royal_jelly: 100, treat: 7000, items: {}}
+      raw: "50,000,000 Honey ; 100x Royal Jelly ; 7,000x Treat ; 25x Ticket"
+    - name: "Star Journey 5"
+      rewards: {honey: 100000000, tickets: 50, royal_jelly: 0, treat: 10000, items: {"Star Treat": 1}}
+      raw: "100,000,000 Honey ; 10,000x Treat ; 50x Ticket ; 1x Star Treat"

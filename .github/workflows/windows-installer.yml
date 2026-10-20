@@ -1,0 +1,69 @@
+# Builds Hivemind-Setup.exe on a Windows runner (RL6i) and keeps it as an
+# artifact. installer/build.ps1 does the work, the same script a local build
+# runs; it ends with a selftest of the built app (every import, the Qt
+# platform plugin, run_farm's top level, the bundled Tesseract's afr), so a
+# green run means the packed app starts. Needs no secrets; not code signed.
+name: windows-installer
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, integ, wininstaller]
+    paths: [src/**, scripts/**, data/**, installer/**, pyproject.toml,
+            .github/workflows/windows-installer.yml]
+  pull_request:
+    paths: [src/**, scripts/**, data/**, installer/**, pyproject.toml,
+            .github/workflows/windows-installer.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-installer-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download cache (pinned, hash-checked by build.ps1)
+        uses: actions/cache@v4
+        with:
+          path: installer/cache
+          key: installer-downloads-${{ hashFiles('installer/build.ps1') }}
+
+      - name: Build the app folder, selftest it, pack it with Inno Setup
+        shell: pwsh
+        run: ./installer/build.ps1 -Python python
+
+      - name: Smoke test the installed copy
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $setup = Start-Process -Wait -PassThru installer/build/Hivemind-Setup.exe `
+            -ArgumentList "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART", "/TASKS=desktopicon"
+          if ($setup.ExitCode -ne 0) { throw "Setup exited $($setup.ExitCode)" }
+          $app = Join-Path $env:LOCALAPPDATA "Programs\Hivemind"
+          & "$app\python\python.exe" -B -m hivemind.gui --selftest
+          if ($LASTEXITCODE -ne 0) { throw "the installed selftest failed" }
+          foreach ($f in @("$env:LOCALAPPDATA\Hivemind\settings.yaml",
+                           "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Hivemind.lnk",
+                           "$app\unins000.exe")) {
+            if (-not (Test-Path $f)) { throw "missing after install: $f" }
+          }
+          $un = Start-Process -Wait -PassThru "$app\unins000.exe" -ArgumentList "/VERYSILENT", "/SUPPRESSMSGBOXES"
+          if ($un.ExitCode -ne 0) { throw "the uninstaller exited $($un.ExitCode)" }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Hivemind-Setup
+          path: installer/build/Hivemind-Setup.exe
+          if-no-files-found: error
+          retention-days: 30

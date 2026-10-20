@@ -1,0 +1,933 @@
+{
+ "made": "",
+ "dataset": "tokens-typed/blue",
+ "classes": [
+  "background",
+  "black_blue_burst",
+  "black_red_burst",
+  "blue_boost",
+  "haste",
+  "honey",
+  "item_pineapple",
+  "item_treat",
+  "red_boost",
+  "white_black_flower",
+  "yellow_moon",
+  "other"
+ ],
+ "train_rows": {
+  "honey": 269,
+  "background": 958,
+  "white_black_flower": 14,
+  "item_pineapple": 10,
+  "red_boost": 15,
+  "black_red_burst": 21,
+  "blue_boost": 143,
+  "haste": 17,
+  "black_blue_burst": 137,
+  "pink_heart": 4,
+  "gold_leaf": 1,
+  "white_music": 1,
+  "white_marks": 2,
+  "green_eye": 1,
+  "item_blueberry": 2,
+  "item_brown_flower": 5,
+  "item_strawberry": 1,
+  "item_treat": 36,
+  "black_blue_bomb": 6,
+  "yellow_moon": 32
+ },
+ "crops": {
+  "train": 36919,
+  "val": 1578,
+  "test": 1409
+ },
+ "test_rows": {
+  "honey": 42,
+  "blue_boost": 30,
+  "background": 1278,
+  "white_black_flower": 1,
+  "haste": 4,
+  "item_pineapple": 4,
+  "black_red_burst": 3,
+  "red_boost": 7,
+  "black_blue_burst": 24,
+  "item_treat": 11,
+  "other": 1,
+  "yellow_moon": 4
+ },
+ "variants": {
+  "small": {
+   "epochs_kept": 19,
+   "train_seconds": 1735,
+   "tau": 0.0,
+   "params": 89964,
+   "standalone": {
+    "all": {
+     "rows": 309,
+     "per_class": {
+      "background": {
+       "n": 178,
+       "claimed": 179,
+       "precision": 0.955,
+       "recall": 0.961,
+       "f1": 0.958
+      },
+      "black_blue_burst": {
+       "n": 24,
+       "claimed": 24,
+       "precision": 0.917,
+       "recall": 0.917,
+       "f1": 0.917
+      },
+      "black_red_burst": {
+       "n": 3,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 0.667,
+       "f1": 0.8
+      },
+      "blue_boost": {
+       "n": 30,
+       "claimed": 31,
+       "precision": 0.935,
+       "recall": 0.967,
+       "f1": 0.951
+      },
+      "haste": {
+       "n": 4,
+       "claimed": 4,
+       "precision": 0.75,
+       "recall": 0.75,
+       "f1": 0.75
+      },
+      "honey": {
+       "n": 42,
+       "claimed": 42,
+       "precision": 0.905,
+       "recall": 0.905,
+       "f1": 0.905
+      },
+      "item_pineapple": {
+       "n": 4,
+       "claimed": 3,
+       "precision": 1.0,
+       "recall": 0.75,
+       "f1": 0.857
+      },
+      "item_treat": {
+       "n": 11,
+       "claimed": 10,
+       "precision": 0.9,
+       "recall": 0.818,
+       "f1": 0.857
+      },
+      "red_boost": {
+       "n": 7,
+       "claimed": 7,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "white_black_flower": {
+       "n": 1,
+       "claimed": 1,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "yellow_moon": {
+       "n": 4,
+       "claimed": 4,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      }
+     },
+     "macro_f1_typed": 0.904,
+     "coin_vs_background": {
+      "n": 131,
+      "claimed": 130,
+      "precision": 0.946,
+      "recall": 0.939,
+      "f1": 0.943
+     }
+    },
+    "hand": {
+     "rows": 244,
+     "per_class": {
+      "background": {
+       "n": 178,
+       "claimed": 176,
+       "precision": 0.972,
+       "recall": 0.961,
+       "f1": 0.966
+      },
+      "black_blue_burst": {
+       "n": 7,
+       "claimed": 8,
+       "precision": 0.875,
+       "recall": 1.0,
+       "f1": 0.933
+      },
+      "black_red_burst": {
+       "n": 3,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 0.667,
+       "f1": 0.8
+      },
+      "blue_boost": {
+       "n": 11,
+       "claimed": 13,
+       "precision": 0.846,
+       "recall": 1.0,
+       "f1": 0.917
+      },
+      "haste": {
+       "n": 2,
+       "claimed": 3,
+       "precision": 0.667,
+       "recall": 1.0,
+       "f1": 0.8
+      },
+      "honey": {
+       "n": 26,
+       "claimed": 26,
+       "precision": 0.885,
+       "recall": 0.885,
+       "f1": 0.885
+      },
+      "item_pineapple": {
+       "n": 4,
+       "claimed": 3,
+       "precision": 1.0,
+       "recall": 0.75,
+       "f1": 0.857
+      },
+      "item_treat": {
+       "n": 5,
+       "claimed": 4,
+       "precision": 1.0,
+       "recall": 0.8,
+       "f1": 0.889
+      },
+      "red_boost": {
+       "n": 7,
+       "claimed": 7,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "white_black_flower": {
+       "n": 1,
+       "claimed": 1,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "yellow_moon": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      }
+     },
+     "macro_f1_typed": 0.898,
+     "coin_vs_background": {
+      "n": 66,
+      "claimed": 68,
+      "precision": 0.897,
+      "recall": 0.924,
+      "f1": 0.91
+     }
+    },
+    "self": {
+     "rows": 243,
+     "per_class": {
+      "background": {
+       "n": 178,
+       "claimed": 174,
+       "precision": 0.983,
+       "recall": 0.961,
+       "f1": 0.972
+      },
+      "black_blue_burst": {
+       "n": 17,
+       "claimed": 17,
+       "precision": 0.882,
+       "recall": 0.882,
+       "f1": 0.882
+      },
+      "black_red_burst": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "blue_boost": {
+       "n": 19,
+       "claimed": 20,
+       "precision": 0.9,
+       "recall": 0.947,
+       "f1": 0.923
+      },
+      "haste": {
+       "n": 2,
+       "claimed": 2,
+       "precision": 0.5,
+       "recall": 0.5,
+       "f1": 0.5
+      },
+      "honey": {
+       "n": 16,
+       "claimed": 18,
+       "precision": 0.833,
+       "recall": 0.938,
+       "f1": 0.882
+      },
+      "item_pineapple": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "item_treat": {
+       "n": 6,
+       "claimed": 6,
+       "precision": 0.833,
+       "recall": 0.833,
+       "f1": 0.833
+      },
+      "red_boost": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "white_black_flower": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "yellow_moon": {
+       "n": 4,
+       "claimed": 4,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      }
+     },
+     "macro_f1_typed": 0.837,
+     "coin_vs_background": {
+      "n": 65,
+      "claimed": 69,
+      "precision": 0.899,
+      "recall": 0.954,
+      "f1": 0.925
+     }
+    },
+    "negatives": {
+     "rows": 1100,
+     "named_a_kind": 7
+    }
+   },
+   "behind_todays_coin_gate": {
+    "all": {
+     "rows": 309,
+     "per_class": {
+      "background": {
+       "n": 178,
+       "claimed": 190,
+       "precision": 0.932,
+       "recall": 0.994,
+       "f1": 0.962
+      },
+      "black_blue_burst": {
+       "n": 24,
+       "claimed": 21,
+       "precision": 0.952,
+       "recall": 0.833,
+       "f1": 0.889
+      },
+      "black_red_burst": {
+       "n": 3,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 0.667,
+       "f1": 0.8
+      },
+      "blue_boost": {
+       "n": 30,
+       "claimed": 24,
+       "precision": 1.0,
+       "recall": 0.8,
+       "f1": 0.889
+      },
+      "haste": {
+       "n": 4,
+       "claimed": 3,
+       "precision": 1.0,
+       "recall": 0.75,
+       "f1": 0.857
+      },
+      "honey": {
+       "n": 42,
+       "claimed": 39,
+       "precision": 0.949,
+       "recall": 0.881,
+       "f1": 0.914
+      },
+      "item_pineapple": {
+       "n": 4,
+       "claimed": 3,
+       "precision": 1.0,
+       "recall": 0.75,
+       "f1": 0.857
+      },
+      "item_treat": {
+       "n": 11,
+       "claimed": 10,
+       "precision": 0.9,
+       "recall": 0.818,
+       "f1": 0.857
+      },
+      "red_boost": {
+       "n": 7,
+       "claimed": 7,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "white_black_flower": {
+       "n": 1,
+       "claimed": 1,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "yellow_moon": {
+       "n": 4,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 0.5,
+       "f1": 0.667
+      }
+     },
+     "macro_f1_typed": 0.873,
+     "coin_vs_background": {
+      "n": 131,
+      "claimed": 119,
+      "precision": 0.992,
+      "recall": 0.901,
+      "f1": 0.944
+     }
+    },
+    "hand": {
+     "rows": 244,
+     "per_class": {
+      "background": {
+       "n": 178,
+       "claimed": 177,
+       "precision": 1.0,
+       "recall": 0.994,
+       "f1": 0.997
+      },
+      "black_blue_burst": {
+       "n": 7,
+       "claimed": 7,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "black_red_burst": {
+       "n": 3,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 0.667,
+       "f1": 0.8
+      },
+      "blue_boost": {
+       "n": 11,
+       "claimed": 11,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "haste": {
+       "n": 2,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "honey": {
+       "n": 26,
+       "claimed": 24,
+       "precision": 0.958,
+       "recall": 0.885,
+       "f1": 0.92
+      },
+      "item_pineapple": {
+       "n": 4,
+       "claimed": 3,
+       "precision": 1.0,
+       "recall": 0.75,
+       "f1": 0.857
+      },
+      "item_treat": {
+       "n": 5,
+       "claimed": 4,
+       "precision": 1.0,
+       "recall": 0.8,
+       "f1": 0.889
+      },
+      "red_boost": {
+       "n": 7,
+       "claimed": 7,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "white_black_flower": {
+       "n": 1,
+       "claimed": 1,
+       "precision": 1.0,
+       "recall": 1.0,
+       "f1": 1.0
+      },
+      "yellow_moon": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      }
+     },
+     "macro_f1_typed": 0.941,
+     "coin_vs_background": {
+      "n": 66,
+      "claimed": 67,
+      "precision": 0.985,
+      "recall": 1.0,
+      "f1": 0.992
+     }
+    },
+    "self": {
+     "rows": 243,
+     "per_class": {
+      "background": {
+       "n": 178,
+       "claimed": 190,
+       "precision": 0.932,
+       "recall": 0.994,
+       "f1": 0.962
+      },
+      "black_blue_burst": {
+       "n": 17,
+       "claimed": 14,
+       "precision": 0.929,
+       "recall": 0.765,
+       "f1": 0.839
+      },
+      "black_red_burst": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "blue_boost": {
+       "n": 19,
+       "claimed": 13,
+       "precision": 1.0,
+       "recall": 0.684,
+       "f1": 0.813
+      },
+      "haste": {
+       "n": 2,
+       "claimed": 1,
+       "precision": 1.0,
+       "recall": 0.5,
+       "f1": 0.667
+      },
+      "honey": {
+       "n": 16,
+       "claimed": 15,
+       "precision": 0.933,
+       "recall": 0.875,
+       "f1": 0.903
+      },
+      "item_pineapple": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "item_treat": {
+       "n": 6,
+       "claimed": 6,
+       "precision": 0.833,
+       "recall": 0.833,
+       "f1": 0.833
+      },
+      "red_boost": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "white_black_flower": {
+       "n": 0,
+       "claimed": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "f1": 0.0
+      },
+      "yellow_moon": {
+       "n": 4,
+       "claimed": 2,
+       "precision": 1.0,
+       "recall": 0.5,
+       "f1": 0.667
+      }
+     },
+     "macro_f1_typed": 0.787,
+     "coin_vs_background": {
+      "n": 65,
+      "claimed": 53,
+      "precision": 0.981,
+      "recall": 0.8,
+      "f1": 0.881
+     }
+    },
+    "negatives": {
+     "rows": 1100,
+     "named_a_kind": 2
+    }
+   },
+   "latency_ms_10_crops": [
+    7.245,
+    8.281
+   ],
+   "latency_ms_1_crop": [
+    0.795,
+    1.468
+   ],
+   "latency_ms_40_crops": [
+    28.572,
+    30.391
+   ],
+   "confusion": {
+    "honey->background": 4,
+    "item_pineapple->background": 1,
+    "background->black_blue_burst": 2,
+    "background->unknown": 1,
+    "item_treat->honey": 2,
+    "background->haste": 1,
+    "background->honey": 3,
+    "background->blue_boost": 4,
+    "black_red_burst->background": 1,
+    "haste->item_treat": 1,
+    "blue_boost->black_blue_burst": 1,
+    "other->unknown": 1,
+    "black_blue_burst->background": 2,
+    "background->black_red_burst": 1,
+    "background->yellow_moon": 1,
+    "background->white_black_flower": 1
+   }
+  }
+ },
+ "today": {
+  "test": {
+   "all": {
+    "rows": 309,
+    "per_class": {
+     "background": {
+      "n": 178,
+      "claimed": 190,
+      "precision": 0.932,
+      "recall": 0.994,
+      "f1": 0.962
+     },
+     "black_blue_burst": {
+      "n": 24,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "black_red_burst": {
+      "n": 3,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "blue_boost": {
+      "n": 30,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "haste": {
+      "n": 4,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "honey": {
+      "n": 42,
+      "claimed": 42,
+      "precision": 0.952,
+      "recall": 0.952,
+      "f1": 0.952
+     },
+     "item_pineapple": {
+      "n": 4,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "item_treat": {
+      "n": 11,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "red_boost": {
+      "n": 7,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "white_black_flower": {
+      "n": 1,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "yellow_moon": {
+      "n": 4,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     }
+    },
+    "macro_f1_typed": 0.095,
+    "coin_vs_background": {
+     "n": 131,
+     "claimed": 119,
+     "precision": 0.992,
+     "recall": 0.901,
+     "f1": 0.944
+    }
+   },
+   "hand": {
+    "rows": 244,
+    "per_class": {
+     "background": {
+      "n": 178,
+      "claimed": 177,
+      "precision": 1.0,
+      "recall": 0.994,
+      "f1": 0.997
+     },
+     "black_blue_burst": {
+      "n": 7,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "black_red_burst": {
+      "n": 3,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "blue_boost": {
+      "n": 11,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "haste": {
+      "n": 2,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "honey": {
+      "n": 26,
+      "claimed": 26,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+     },
+     "item_pineapple": {
+      "n": 4,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "item_treat": {
+      "n": 5,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "red_boost": {
+      "n": 7,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "white_black_flower": {
+      "n": 1,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "yellow_moon": {
+      "n": 0,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     }
+    },
+    "macro_f1_typed": 0.111,
+    "coin_vs_background": {
+     "n": 66,
+     "claimed": 67,
+     "precision": 0.985,
+     "recall": 1.0,
+     "f1": 0.992
+    }
+   },
+   "self": {
+    "rows": 243,
+    "per_class": {
+     "background": {
+      "n": 178,
+      "claimed": 190,
+      "precision": 0.932,
+      "recall": 0.994,
+      "f1": 0.962
+     },
+     "black_blue_burst": {
+      "n": 17,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "black_red_burst": {
+      "n": 0,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "blue_boost": {
+      "n": 19,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "haste": {
+      "n": 2,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "honey": {
+      "n": 16,
+      "claimed": 16,
+      "precision": 0.875,
+      "recall": 0.875,
+      "f1": 0.875
+     },
+     "item_pineapple": {
+      "n": 0,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "item_treat": {
+      "n": 6,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "red_boost": {
+      "n": 0,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "white_black_flower": {
+      "n": 0,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "yellow_moon": {
+      "n": 4,
+      "claimed": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     }
+    },
+    "macro_f1_typed": 0.146,
+    "coin_vs_background": {
+     "n": 65,
+     "claimed": 53,
+     "precision": 0.981,
+     "recall": 0.8,
+     "f1": 0.881
+    }
+   },
+   "negatives": {
+    "rows": 1100,
+    "named_a_kind": 205
+   }
+  },
+  "val_macro_f1": 0.034,
+  "latency_ms_10_crops": [
+   8.474,
+   10.633
+  ]
+ },
+ "negatives": "sprinkler (--negatives)"
+}

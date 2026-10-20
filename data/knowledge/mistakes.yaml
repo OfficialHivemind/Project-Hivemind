@@ -1,0 +1,82 @@
+# Things that cannot be undone. The bot must never do these on its own.
+#
+# THE OWNER'S WARNING, and it is the right thing to be afraid of: choices such
+# as the hive's bee combination must not be messed up, because a mistake there
+# wastes a lot of time and resources.
+#
+# Most mistakes in this game are cheap -- a bad field costs a few minutes. A
+# few are permanent, and those are the ones worth building a wall around. This
+# file is that wall. Anything listed here is IRREVERSIBLE or EXPENSIVE ENOUGH
+# TO BE TREATED AS IRREVERSIBLE, and the rule for every one of them is the
+# same: the bot does not do it. It may recommend it; a person decides.
+#
+# This is the "irreversibility firewall" from the original design, written as
+# data so it can be checked rather than remembered.
+#
+checked: 2026-09-20
+
+never_without_a_person:
+
+  - action: use Royal Jelly on a bee that is not Basic
+    why: >
+      Jelly is a REROLL with fixed odds -- ~70% Rare, 27% Epic, 3% Legendary --
+      and the odds IGNORE what the bee already was. Using one on an Epic or
+      Legendary is, on average, destroying it. This is the single most
+      expensive mistake available in the game.
+    rule: Jelly goes on Basic bees. Nothing else. Ever.
+    source: wiki, Royal Jelly
+
+  - action: use Royal Jelly while any hive slot is empty
+    why: >
+      An empty slot contributes nothing at all. Filling it with a cheap egg
+      beats improving a bee that is already working.
+    rule: Fill every slot before rerolling anything.
+
+  - action: buy a tool that delays a bigger purchase
+    why: >
+      The Spark Staff costs 60,000,000 and the community consensus is that it
+      is a trap: always worse than the Golden Rake in single-flower fields, and
+      the honey spent directly delays the Porcelain Dipper. A tool bought at
+      the wrong time is months of farming lost.
+    rule: >
+      Never buy a tool whose payback is longer than the next hive slot. For
+      an early blue hive the answer is the Bubble Wand at 3,500,000 -- cheap,
+      colour-matched, and it does not delay anything.
+
+  - action: spend the first Spirit Petal
+    why: Community guidance is that the first one buys the Petal Belt, not the
+      Petal Wand. A Spirit Petal is rare enough that the wrong choice hurts.
+    rule: Petal Belt first.
+
+  - action: reroll an amulet
+    why: >
+      Pop Star is described as the only viable blue passive. Rerolling away
+      from a good passive cannot be taken back.
+    rule: A person decides what to keep.
+
+  - action: convert pollen at the wrong moment
+    why: not irreversible, but included because the loss is real and measured
+    rule: >
+      MEASURED 2026-09-20 on the test account: the bot carried a nearly full
+      bag (gathered by hand, not by the bot) into the Pine Tree Forest, and a
+      mantis killed it; every grain of pollen was gone. Bank a loaded backpack before entering a
+      guarded field. brain/decide.Planner enforces this.
+
+# Mistakes that merely waste time, listed separately so the wall above stays
+# short enough to mean something.
+expensive_but_recoverable:
+  - farming a field far from the hive without counting the walk
+  - buying capacity before actually capping the bag
+  - chasing red-field content with a blue hive
+  - fighting any mob the bot cannot reliably survive
+  - harvesting every planter at 100%, which permanently degrades the best
+    fields toward the 48-hour cap
+
+# What the bot IS allowed to decide by itself, stated positively so the
+# firewall does not quietly become "do nothing".
+safe_to_decide_alone:
+  - which reachable field to gather in
+  - when to convert
+  - when to walk home
+  - when to stop because the world is gone or a mob is present
+  - which pattern to walk

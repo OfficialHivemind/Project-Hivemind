@@ -1,0 +1,746 @@
+# AMULETS: what every amulet can roll, and how good a roll is (ROADMAP K9).
+#
+# Read by brain/amulets.py (load, roll_quality, compare). Researched
+# 2026-11-02 through the wiki's api.php (the pages below, revision ids kept).
+#
+# MEASURED: nothing. No frame under var/ has been read for amulet STATS yet:
+# vision/amulet.py only finds the "Keep Old" / "Replace" buttons (measured
+# 2026-09-28) and never reads the table between them. Every value here is the
+# wiki's DATAMINED table, [assumed] until a frame of the table shows it.
+#
+# HOW THE `amulets:` BLOCK WAS MADE. Module:Amulet Stats/data is the game's own
+# amulet table copied into Lua ("taken directly from the game, with minor
+# modifications"). It was run through lua5.4, dumped to JSON and written out
+# one stat per line; nothing was typed in by hand. `stat` is the wiki's display
+# name for the stat (Module:AmuletStatParser), the name the Keep/Replace table
+# is EXPECTED to show -- unconfirmed until a frame is read.
+#
+# FIELDS (wiki Amulet#Generation):
+#   pick N, pool [...]  -- N stats are drawn from the pool; pick_paid is the
+#                          count when the paid option is taken (Supreme Star).
+#   chance              -- on a stat: after being picked it stays with this
+#                          probability, so an amulet can have fewer stats;
+#                          on a pool: the pool is used at all with this chance.
+#   range [min, max]    -- the stat's strength; the amulet's QUALITY biases the
+#                          roll towards max, it never guarantees it.
+#   bias [q, d]         -- biasQuality, biasDirect (both 1 when absent):
+#                          bias = min + (max-min) * d * quality / max(1, q*(1-quality)).
+#                          A big q (Moon's Instant Conversion: 10000) keeps the
+#                          roll near min until quality is almost full.
+#   step                -- the roll is rounded to this.
+#   linear_to_quality   -- Moon capacity: 25000 + 225000*min(1, quality/0.24875).
+#   op add / mul        -- "+0.3 Blue Pollen" adds 30%; "x1.15 Convert Rate" multiplies.
+#   quality.unit/max    -- what raises the quality and where it tops out; a
+#                          tier's range is where that tier is given (null = no top).
+#
+# WHICH ROLLS ARE BETTER (brain/amulets.py). A stat's roll is better the closer
+# it sits to its max; a stat of another hive colour (Red/White Pollen in a
+# blue hive) counts for nothing. That weighting is a strategy choice, not a
+# game fact. Across tiers the wiki says "Higher tier amulets grant more and
+# better buffs" (Shell, Stick Bug, Cog pages).
+#
+# ROADMAP K9 also names "Antlion": no such amulet exists (wiki api.php: page
+# "Antlion Amulet" missing); the Ant Challenge's is the Ant Amulet.
+sources:
+  - id: w_amulet
+    title: 'BSS Wiki: Amulet (rev 448314, 2026-07-12): generation, Keep Old / Replace'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Amulet
+  - id: w_amulet_data
+    title: 'BSS Wiki: Module:Amulet Stats/data (rev 446735, 2026-04-02): the datamined stat table'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Module:Amulet_Stats/data
+  - id: w_amulet_names
+    title: 'BSS Wiki: Module:AmuletStatParser (rev 445233, 2026-03-10): stat display names'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Module:AmuletStatParser
+  - id: w_star
+    title: 'BSS Wiki: Star Amulet (rev 448826, 2026-09-03)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Star_Amulet
+  - id: w_moon
+    title: 'BSS Wiki: Moon Amulet (rev 448726, 2026-08-26)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Moon_Amulet
+  - id: w_king_beetle
+    title: 'BSS Wiki: King Beetle Amulet (rev 445120, 2026-03-07)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/King_Beetle_Amulet
+  - id: w_ant
+    title: 'BSS Wiki: Ant Amulet (rev 448574, 2026-07-28)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Ant_Amulet
+  - id: w_shell
+    title: 'BSS Wiki: Shell Amulet (rev 448575, 2026-07-28)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Shell_Amulet
+  - id: w_stick_bug
+    title: 'BSS Wiki: Stick Bug Amulet (rev 448576, 2026-07-28)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Stick_Bug_Amulet
+  - id: w_cog
+    title: 'BSS Wiki: Cog Amulet (rev 449497, 2026-09-13)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Cog_Amulet
+checked: 2026-11-02
+
+# Where each amulet comes from and what raises its quality. [assumed] all.
+groups:
+  star:
+    from: 'Star Hall generators, bought with honey; tiers gated by gifted bee types DISCOVERED (5/10/20/30/40) at 25M/50M/250M/1B/10B honey (gear_prices.yaml has the first three)'
+    quality: 'linear in discovered gifted bee types, full at 45 (Supreme: 50, not reachable with 46 bee types)'
+    passives: 'Diamond: 1/100 chance of Guiding Star or Star Shower. Supreme: one of 6 passives (1/6 each), 1/50 chance of a second; 500B honey buys a guaranteed second (pick_paid)'
+    source: [w_star, w_amulet_data]
+  moon:
+    from: '100 Moon Charms at the Moon Amulet Generator'
+    quality: 'linear in Moon Amulets generated, full at 40; capacity +25,000 per amulet (the 7th adds none)'
+    source: [w_moon]
+  king_beetle:
+    from: 'King Beetle drop, 1/7 chance'
+    quality: 'linear in King Beetle defeats, full at 100'
+    source: [w_king_beetle]
+  ant:
+    from: 'Ant Challenge, every run: points 0-24 Bronze, 25-49 Silver, 50-99 Gold, 100-149 Diamond, 150+ Supreme'
+    quality: 'linear in points, full at 400 (a former staff member, unconfirmed on the page)'
+    source: [w_ant]
+  shell:
+    from: 'Stump Snail drop; tiers unlock at 1 (Bronze, Silver), 5 (Gold), 7 (Diamond), 15 (Supreme) defeats (the page itself asks "is this table accurate?")'
+    quality: 'linear in Stump Snail kills up to an UNKNOWN number'
+    source: [w_shell]
+  stick_bug:
+    from: 'Stick Bug Challenge: score AND his level, 1M+lvl5 Bronze, 8M+lvl8 Silver, 20M+lvl11 Gold, 50M+lvl13 Diamond (stickbug.yaml agrees)'
+    quality: 'linear in score, full at 200M'
+    source: [w_stick_bug]
+  cog:
+    from: 'Robo Bear Challenge: round 5 Bronze, 10 Silver, 15 Gold, 20 Diamond, 25 Supreme'
+    quality: 'linear in cogs collected in the challenge, full at 1000'
+    source: [w_cog]
+
+amulets:
+  bronze_star:
+    name: Bronze Star Amulet
+    group: star
+    tier: bronze
+    quality: {unit: "gifted bee types", range: [5, 45], max: 45}
+    mods:
+      - {stat: "Capacity", type: ContainerSpaceMultiplier, op: mul, range: [1.25, 1.25]}
+      - {pick: 2, pool: [
+          {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.05, 1.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.05, 0.15]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Bee Ability Rate", type: BeeAbilityRate, op: add, range: [0.01, 0.05]},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.05]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Instant Conversion", type: PollenConversion, op: add, range: [0.03, 0.1]}
+        ]}
+  silver_star:
+    name: Silver Star Amulet
+    group: star
+    tier: silver
+    quality: {unit: "gifted bee types", range: [10, 45], max: 45}
+    mods:
+      - {stat: "Capacity", type: ContainerSpaceMultiplier, op: mul, range: [1.5, 1.5]}
+      - {pick: 3, pool: [
+          {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.05, 1.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.05, 0.15]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Bee Ability Rate", type: BeeAbilityRate, op: add, range: [0.01, 0.05]},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.05]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Instant Conversion", type: PollenConversion, op: add, range: [0.03, 0.1]}
+        ]}
+  gold_star:
+    name: Gold Star Amulet
+    group: star
+    tier: gold
+    quality: {unit: "gifted bee types", range: [20, 45], max: 45}
+    mods:
+      - {stat: "Capacity", type: ContainerSpaceMultiplier, op: mul, range: [1.75, 1.75]}
+      - {pick: 4, pool: [
+          {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.05, 1.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.05, 0.15]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Bee Ability Rate", type: BeeAbilityRate, op: add, range: [0.01, 0.05]},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.05]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Instant Conversion", type: PollenConversion, op: add, range: [0.03, 0.1]}
+        ]}
+  diamond_star:
+    name: Diamond Star Amulet
+    group: star
+    tier: diamond
+    quality: {unit: "gifted bee types", range: [30, 45], max: 45}
+    mods:
+      - {stat: "Capacity", type: ContainerSpaceMultiplier, op: mul, range: [2, 2]}
+      - {pick: 5, pool: [
+          {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.05, 1.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.05, 0.15]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Bee Ability Rate", type: BeeAbilityRate, op: add, range: [0.01, 0.05]},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.05]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.15, 0.5]},
+          {stat: "Instant Conversion", type: PollenConversion, op: add, range: [0.03, 0.1]}
+        ]}
+      - {pick: 1, chance: 0.01, pool: [
+          {stat: "Guiding Star", type: PlayerAbility},
+          {stat: "Star Shower", type: PlayerAbility}
+        ]}
+  supreme_star:
+    name: Supreme Star Amulet
+    group: star
+    tier: supreme
+    quality: {unit: "gifted bee types", range: [40, 50], max: 50}
+    mods:
+      - {stat: "Capacity", type: ContainerSpaceMultiplier, op: mul, range: [2.5, 2.5]}
+      - {pick: 5, pool: [
+          {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.05, 1.25]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.05, 0.2]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.7]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.7]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.7]},
+          {stat: "Bee Ability Rate", type: BeeAbilityRate, op: add, range: [0.01, 0.07]},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.07]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.15, 0.7]},
+          {stat: "Instant Conversion", type: PollenConversion, op: add, range: [0.03, 0.12]}
+        ]}
+      - {pick: 1, pick_paid: 2, pool: [
+          {stat: "Guiding Star", type: PlayerAbility},
+          {stat: "Pop Star", type: PlayerAbility},
+          {stat: "Star Shower", type: PlayerAbility},
+          {stat: "Gummy Star", type: PlayerAbility},
+          {stat: "Scorching Star", type: PlayerAbility},
+          {stat: "Star Saw", type: PlayerAbility}
+        ]}
+  moon:
+    name: Moon Amulet
+    group: moon
+    quality: {unit: "amulets", max: 40}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [25000, 250000], step: 25000, linear_to_quality: 0.24875}
+      - {stat: "Ticket Chance", type: TicketChance, op: add, range: [0.01, 0.05], bias: [20, 1], chance: 0.01}
+      - {stat: "Movement Collection", type: MovementCollection, op: add, range: [1, 3], step: 1, bias: [20, 1], chance: 0.02}
+      - {pick: 1, pool: [
+          {stat: "Bond From Treats", type: TreatBondMultiplier, op: add, range: [0.03, 0.1], bias: [5, 1]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.2, 0.5]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.01, 0.05], bias: [10, 1]},
+          {stat: "Honey Per Pollen", type: PollenValue, op: add, range: [0.02, 0.08], bias: [10, 1]},
+          {stat: "Instant Conversion", type: PollenConversion, op: add, range: [0.01, 0.05], bias: [10000, 1]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.05, 0.12], bias: [5, 1]},
+          {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.1, 0.2], bias: [10, 1]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.1, 0.25], bias: [10, 1]},
+          {stat: "Pineapple Patch Pollen", type: PollenBonus, op: add, range: [0.5, 1.5]}
+        ]}
+  king_beetle:
+    name: King Beetle Amulet
+    group: king_beetle
+    quality: {unit: "King Beetle kills", max: 100}
+    mods:
+      - {stat: "Convert Rate", type: BaseProductionRate, op: add, range: [0.25, 1]}
+      - {pick: 1, pool: [
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [0, 1], step: 1, bias: [1.5, 1]},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [0, 1], step: 1, bias: [1.5, 1]},
+          {stat: "Bee Attack", type: BeeAttack, op: add, range: [0, 1], step: 1, bias: [3, 1]}
+        ]}
+      - {pick: 2, pool: [
+          {stat: "Mushroom Field Pollen", type: PollenBonus, op: add, range: [0.2, 1]},
+          {stat: "Blue Flower Field Pollen", type: PollenBonus, op: add, range: [0.2, 1]},
+          {stat: "Clover Field Pollen", type: PollenBonus, op: add, range: [0.2, 1]},
+          {stat: "Strawberry Field Pollen", type: PollenBonus, op: add, range: [0.2, 1]},
+          {stat: "Bamboo Field Pollen", type: PollenBonus, op: add, range: [0.2, 1]}
+        ]}
+  bronze_ant:
+    name: Bronze Ant Amulet
+    group: ant
+    tier: bronze
+    quality: {unit: "Ant Challenge points", range: [0, 24], max: 400}
+    mods:
+      - {stat: "Convert Rate", type: BaseProductionRate, op: add, range: [0.15, 0.35]}
+      - {pick: 2, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.01, 0.05]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.01, 0.05]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.01, 0.05]}
+        ]}
+  silver_ant:
+    name: Silver Ant Amulet
+    group: ant
+    tier: silver
+    quality: {unit: "Ant Challenge points", range: [25, 49], max: 400}
+    mods:
+      - {stat: "Convert Rate", type: BaseProductionRate, op: add, range: [0.4, 0.6]}
+      - {pick: 1, pool: [
+          {stat: "Player Movespeed", type: PlayerMovespeed, op: add, range: [1, 1], step: 1},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.01]},
+          {stat: "Critical Power", type: CriticalPower, op: add, range: [0.05, 0.1], bias: [3, 1]}
+        ]}
+      - {pick: 2, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]}
+        ]}
+  gold_ant:
+    name: Gold Ant Amulet
+    group: ant
+    tier: gold
+    quality: {unit: "Ant Challenge points", range: [50, 99], max: 400}
+    mods:
+      - {stat: "Convert Rate", type: BaseProductionRate, op: add, range: [0.6, 0.8]}
+      - {stat: "Bee Attack", type: BeeAttack, op: add, range: [0, 1], step: 1, bias: [20, 1], chance: 0.05}
+      - {pick: 1, pool: [
+          {stat: "Player Movespeed", type: PlayerMovespeed, op: add, range: [1, 2], step: 1},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.02], bias: [3, 1]},
+          {stat: "Critical Power", type: CriticalPower, op: add, range: [0.1, 0.25], bias: [3, 1]}
+        ]}
+      - {pick: 2, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]}
+        ]}
+  diamond_ant:
+    name: Diamond Ant Amulet
+    group: ant
+    tier: diamond
+    quality: {unit: "Ant Challenge points", range: [100, 149], max: 400}
+    mods:
+      - {stat: "Convert Rate", type: BaseProductionRate, op: add, range: [0.8, 0.9]}
+      - {pick: 2, pool: [
+          {stat: "Player Movespeed", type: PlayerMovespeed, op: add, range: [2, 2], step: 1},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.01, 0.02], bias: [3, 1]},
+          {stat: "Critical Power", type: CriticalPower, op: add, range: [0.25, 0.4], bias: [3, 1]}
+        ]}
+      - {pick: 2, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]}
+        ]}
+  supreme_ant:
+    name: Supreme Ant Amulet
+    group: ant
+    tier: supreme
+    quality: {unit: "Ant Challenge points", range: [150, null], max: 400}
+    mods:
+      - {stat: "Convert Rate", type: BaseProductionRate, op: add, range: [0.9, 1.1]}
+      - {pick: 3, pool: [
+          {stat: "Player Movespeed", type: PlayerMovespeed, op: add, range: [2, 3], step: 1, bias: [20, 1]},
+          {stat: "Critical Chance", type: CriticalChance, op: add, range: [0.02, 0.03], bias: [10, 1]},
+          {stat: "Critical Power", type: CriticalPower, op: add, range: [0.35, 0.5], bias: [3, 1]},
+          {stat: "Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, bias: [20, 1]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.01, 0.05], bias: [10, 1]}
+        ]}
+      - {pick: 2, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.2, 0.3]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.2, 0.3]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.2, 0.3]}
+        ]}
+  bronze_shell:
+    name: Bronze Shell Amulet
+    group: shell
+    tier: bronze
+    quality: {unit: "Stump Snail kills", max: null}
+    mods:
+      - {stat: "Goo", type: GooAmount, op: add, range: [0.01, 0.02]}
+      - {pick: 1, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.1, 0.15]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.01, 0.05]},
+          {stat: "Convert Amount", type: BaseConversionRate, op: add, range: [2, 6], step: 1},
+          {stat: "Defense", type: DamageReduction, op: add, range: [0.02, 0.03]},
+          {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.01, 0.03]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.01, 0.01]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.08, 0.14]},
+          {stat: "Goo Conversion", type: GooConversion, op: add, range: [0.02, 0.03]}
+        ]}
+      - {stat: "Stump Field Pollen", type: PollenBonus, op: add, range: [0.1, 0.25]}
+      - {pick: 1, pool: [
+          {stat: "Cactus Field Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Pineapple Patch Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Pumpkin Patch Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Dandelion Field Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Clover Field Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Spider Field Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Sunflower Field Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]}
+        ]}
+  silver_shell:
+    name: Silver Shell Amulet
+    group: shell
+    tier: silver
+    quality: {unit: "Stump Snail kills", max: null}
+    mods:
+      - {stat: "Goo", type: GooAmount, op: add, range: [0.02, 0.04]}
+      - {pick: 2, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.15, 0.25]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.03, 0.08]},
+          {stat: "Convert Amount", type: BaseConversionRate, op: add, range: [6, 10], step: 1},
+          {stat: "Defense", type: DamageReduction, op: add, range: [0.03, 0.04]},
+          {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.03, 0.06]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.01, 0.02]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Goo Conversion", type: GooConversion, op: add, range: [0.03, 0.04]}
+        ]}
+      - {stat: "Stump Field Pollen", type: PollenBonus, op: add, range: [0.26, 0.35]}
+      - {pick: 1, pool: [
+          {stat: "Cactus Field Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]},
+          {stat: "Pineapple Patch Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]},
+          {stat: "Pumpkin Patch Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]},
+          {stat: "Dandelion Field Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]},
+          {stat: "Clover Field Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]},
+          {stat: "Spider Field Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]},
+          {stat: "Sunflower Field Pollen", type: PollenBonus, op: add, range: [0.08, 0.15]}
+        ]}
+  gold_shell:
+    name: Gold Shell Amulet
+    group: shell
+    tier: gold
+    quality: {unit: "Stump Snail kills", max: null}
+    mods:
+      - {stat: "Goo", type: GooAmount, op: add, range: [0.05, 0.08]}
+      - {pick: 2, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.25, 0.35]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.08, 0.12]},
+          {stat: "Convert Amount", type: BaseConversionRate, op: add, range: [12, 15], step: 1},
+          {stat: "Defense", type: DamageReduction, op: add, range: [0.04, 0.05]},
+          {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.06, 0.1]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.02, 0.03]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.21, 0.25]},
+          {stat: "Goo Conversion", type: GooConversion, op: add, range: [0.04, 0.06]}
+        ]}
+      - {stat: "Stump Field Pollen", type: PollenBonus, op: add, range: [0.36, 0.45]}
+      - {pick: 2, pool: [
+          {stat: "Cactus Field Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Pineapple Patch Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Pumpkin Patch Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Dandelion Field Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Clover Field Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Spider Field Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Sunflower Field Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]}
+        ]}
+  diamond_shell:
+    name: Diamond Shell Amulet
+    group: shell
+    tier: diamond
+    quality: {unit: "Stump Snail kills", max: null}
+    mods:
+      - {stat: "Goo", type: GooAmount, op: add, range: [0.08, 0.1]}
+      - {pick: 2, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.35, 0.4]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.12, 0.15]},
+          {stat: "Convert Amount", type: BaseConversionRate, op: add, range: [15, 20], step: 1},
+          {stat: "Defense", type: DamageReduction, op: add, range: [0.05, 0.05]},
+          {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.1, 0.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.03, 0.04]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Goo Conversion", type: GooConversion, op: add, range: [0.06, 0.08]}
+        ]}
+      - {stat: "Stump Field Pollen", type: PollenBonus, op: add, range: [0.46, 0.55], bias: [5, 1]}
+      - {pick: 2, pool: [
+          {stat: "Cactus Field Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Pineapple Patch Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Pumpkin Patch Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Dandelion Field Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Clover Field Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Spider Field Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Sunflower Field Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]}
+        ]}
+  supreme_shell:
+    name: Supreme Shell Amulet
+    group: shell
+    tier: supreme
+    quality: {unit: "Stump Snail kills", max: null}
+    mods:
+      - {stat: "Goo", type: GooAmount, op: add, range: [0.11, 0.15]}
+      - {pick: 2, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.41, 0.5]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.16, 0.2]},
+          {stat: "Convert Amount", type: BaseConversionRate, op: add, range: [21, 25], step: 1},
+          {stat: "Defense", type: DamageReduction, op: add, range: [0.05, 0.05]},
+          {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.16, 0.2]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.04, 0.05]},
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.32, 0.4]},
+          {stat: "Goo Conversion", type: GooConversion, op: add, range: [0.08, 0.1]}
+        ]}
+      - {stat: "Stump Field Pollen", type: PollenBonus, op: add, range: [0.56, 0.65], bias: [5, 1]}
+      - {pick: 3, pool: [
+          {stat: "Cactus Field Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Pineapple Patch Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Pumpkin Patch Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Dandelion Field Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Clover Field Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Spider Field Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]},
+          {stat: "Sunflower Field Pollen", type: PollenBonus, op: add, range: [0.26, 0.3]}
+        ]}
+  bronze_stick_bug:
+    name: Bronze Stick Bug Amulet
+    group: stick_bug
+    tier: bronze
+    quality: {unit: "million score", range: [1, 8], max: 200}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [25000, 100000], step: 25000}
+      - {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.05, 1.1]}
+      - {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.01, 0.04], chance: 0.01}
+      - {pick: 1, pool: [
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.02},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.02}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.01, 0.03]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.2, 0.4]},
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.03, 0.05]},
+          {stat: "Blue Bomb Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Red Bomb Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Buzz Bomb Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Bomb Pollen", type: PollenBonus, op: add, range: [0.05, 0.08]}
+        ]}
+  silver_stick_bug:
+    name: Silver Stick Bug Amulet
+    group: stick_bug
+    tier: silver
+    quality: {unit: "million score", range: [8, 20], max: 200}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [100000, 150000], step: 25000}
+      - {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.1, 1.15]}
+      - {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.05, 0.1], chance: 0.01}
+      - {pick: 1, pool: [
+          {stat: "Monster Respawn Time", type: MonsterCooldownReduction, op: add, range: [0.01, 0.03], chance: 0.333333},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.02, 0.03], chance: 0.333333}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.1},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.1}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.03, 0.05]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.41, 0.6]},
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.05, 0.07]},
+          {stat: "Blue Bomb Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Red Bomb Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Buzz Bomb Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Bomb Pollen", type: PollenBonus, op: add, range: [0.08, 0.12]}
+        ]}
+  gold_stick_bug:
+    name: Gold Stick Bug Amulet
+    group: stick_bug
+    tier: gold
+    quality: {unit: "million score", range: [20, 50], max: 200}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [150000, 200000], step: 25000}
+      - {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.15, 1.2]}
+      - {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.1, 0.15], chance: 0.01}
+      - {pick: 1, pool: [
+          {stat: "Monster Respawn Time", type: MonsterCooldownReduction, op: add, range: [0.03, 0.04]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.04, 0.06]},
+          {stat: "Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.25}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.333333},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 0.333333},
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [1, 2], step: 1, chance: 0.1},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [1, 2], step: 1, chance: 0.1}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.05, 0.08]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.61, 0.8]},
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.07, 0.09]},
+          {stat: "Blue Bomb Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Red Bomb Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Buzz Bomb Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Bomb Pollen", type: PollenBonus, op: add, range: [0.12, 0.15]}
+        ]}
+  diamond_stick_bug:
+    name: Diamond Stick Bug Amulet
+    group: stick_bug
+    tier: diamond
+    quality: {unit: "million score", range: [50, null], max: 200}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [200000, 300000], step: 25000, bias: [3, 1]}
+      - {stat: "Convert Rate", type: BaseProductionRate, op: mul, range: [1.2, 1.25]}
+      - {stat: "Pollen From Tools", type: CollectorPollenMultiplier, op: add, range: [0.15, 0.2], chance: 0.01}
+      - {pick: 1, pool: [
+          {stat: "Monster Respawn Time", type: MonsterCooldownReduction, op: add, range: [0.05, 0.1], bias: [5, 1]},
+          {stat: "Bond From Battle", type: BattleBondMultiplier, op: add, range: [0.08, 0.15]},
+          {stat: "Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 1},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [1, 1], step: 1, chance: 1},
+          {stat: "Red Bee Attack", type: BeeAttack, op: add, range: [2, 2], step: 1, chance: 1},
+          {stat: "Blue Bee Attack", type: BeeAttack, op: add, range: [2, 2], step: 1, chance: 1}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.08, 0.1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.81, 1]},
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.09, 0.1]},
+          {stat: "Blue Bomb Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Red Bomb Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Buzz Bomb Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Bomb Pollen", type: PollenBonus, op: add, range: [0.15, 0.15]}
+        ]}
+  bronze_cog:
+    name: Bronze Cog Amulet
+    group: cog
+    tier: bronze
+    quality: {unit: "cogs", range: [0, 200], max: 1000}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [22500, 27500], step: 500}
+      - {pick: 1, pool: [
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.03, 0.06], bias: [3, 1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.05, 0.1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Bubble Pollen", type: PollenBonus, op: add, range: [0.04, 0.08]},
+          {stat: "Flame Pollen", type: PollenBonus, op: add, range: [0.04, 0.08]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.04, 0.08]},
+          {stat: "Event Bee Pollen", type: PollenBonus, op: add, range: [0.03, 0.05]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Instant White Conversion", type: PollenConversion, op: add, range: [0.01, 0.02]},
+          {stat: "Instant Red Conversion", type: PollenConversion, op: add, range: [0.01, 0.02]},
+          {stat: "Instant Blue Conversion", type: PollenConversion, op: add, range: [0.01, 0.02]}
+        ]}
+  silver_cog:
+    name: Silver Cog Amulet
+    group: cog
+    tier: silver
+    quality: {unit: "cogs", range: [200, 400], max: 1000}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [45000, 55000], step: 500}
+      - {pick: 1, pool: [
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.05, 0.08], bias: [3, 1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.01, 0.02]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Bubble Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Flame Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Event Bee Ability Pollen", type: PollenBonus, op: add, range: [0.06, 0.1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Instant White Conversion", type: PollenConversion, op: add, range: [0.02, 0.03]},
+          {stat: "Instant Red Conversion", type: PollenConversion, op: add, range: [0.02, 0.03]},
+          {stat: "Instant Blue Conversion", type: PollenConversion, op: add, range: [0.02, 0.03]}
+        ]}
+  gold_cog:
+    name: Gold Cog Amulet
+    group: cog
+    tier: gold
+    quality: {unit: "cogs", range: [400, 600], max: 1000}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [90000, 110000], step: 1000}
+      - {pick: 1, pool: [
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.08, 0.1], bias: [3, 1]},
+          {stat: "Red/Colorless/Blue Bee Attack", type: BeeAttack, op: add, range: [1, 1], one_colour_of_these: true}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.02, 0.03]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Bubble Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Flame Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Mark Ability Pollen", type: PollenBonus, op: add, range: [0.08, 0.1]},
+          {stat: "Event Bee Ability Pollen", type: PollenBonus, op: add, range: [0.08, 0.1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Instant White Conversion", type: PollenConversion, op: add, range: [0.03, 0.04]},
+          {stat: "Instant Red Conversion", type: PollenConversion, op: add, range: [0.03, 0.04]},
+          {stat: "Instant Blue Conversion", type: PollenConversion, op: add, range: [0.03, 0.04]}
+        ]}
+  diamond_cog:
+    name: Diamond Cog Amulet
+    group: cog
+    tier: diamond
+    quality: {unit: "cogs", range: [600, 800], max: 1000}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [125000, 175000], step: 2500}
+      - {pick: 1, pool: [
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.09, 0.12], bias: [3, 1]},
+          {stat: "Red/Colorless/Blue Bee Attack", type: BeeAttack, op: add, range: [1, 1], one_colour_of_these: true}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.03, 0.05]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Bubble Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Flame Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.2, 0.25]},
+          {stat: "Mark Ability Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]},
+          {stat: "Event Bee Ability Pollen", type: PollenBonus, op: add, range: [0.1, 0.15]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Super-Crit Power", type: SuperCritPower, op: add, range: [0.1, 0.15]},
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.25, 0.5]},
+          {stat: "Nectar", type: NectarMultiplier, op: add, range: [0.05, 0.05]},
+          {stat: "Ability Token Lifespan", type: AbilityTokenLifespan, op: add, range: [0.05, 0.05]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Instant White Conversion", type: PollenConversion, op: add, range: [0.04, 0.05]},
+          {stat: "Instant Red Conversion", type: PollenConversion, op: add, range: [0.04, 0.05]},
+          {stat: "Instant Blue Conversion", type: PollenConversion, op: add, range: [0.04, 0.05]}
+        ]}
+  supreme_cog:
+    name: Supreme Cog Amulet
+    group: cog
+    tier: supreme
+    quality: {unit: "cogs", range: [800, 1000], max: 1000}
+    mods:
+      - {stat: "Capacity", type: ContainerSpace, op: add, range: [200000, 250000], step: 5000}
+      - {pick: 1, pool: [
+          {stat: "Bee Attack", type: BeeAttackMultiplier, op: add, range: [0.1, 0.15], bias: [3, 1]},
+          {stat: "Red/Colorless/Blue Bee Attack", type: BeeAttack, op: add, range: [1, 2], step: 1, one_colour_of_these: true}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "White Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Red Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Blue Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Pollen", type: PollenBonus, op: add, range: [0.06, 0.1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Bubble Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Flame Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Bee Gather Pollen", type: PollenBonus, op: add, range: [0.25, 0.3]},
+          {stat: "Mark Ability Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]},
+          {stat: "Event Bee Ability Pollen", type: PollenBonus, op: add, range: [0.15, 0.2]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Super-Crit Power", type: SuperCritPower, op: add, range: [0.15, 0.25]},
+          {stat: "Honey From Tokens", type: HoneyFromTokens, op: add, range: [0.5, 0.75]},
+          {stat: "Nectar", type: NectarMultiplier, op: add, range: [0.05, 0.05]},
+          {stat: "Ability Token Lifespan", type: AbilityTokenLifespan, op: add, range: [0.05, 0.1]}
+        ]}
+      - {pick: 1, pool: [
+          {stat: "Instant White Conversion", type: PollenConversion, op: add, range: [0.04, 0.05]},
+          {stat: "Instant Red Conversion", type: PollenConversion, op: add, range: [0.04, 0.05]},
+          {stat: "Instant Blue Conversion", type: PollenConversion, op: add, range: [0.04, 0.05]}
+        ]}

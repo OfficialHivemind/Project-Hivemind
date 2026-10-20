@@ -1,0 +1,36 @@
+# THE MOUNTAIN TOP SHOP'S HIVE SLOTS: the honey for the slot that brings the
+# hive to `bees` bees. A hive starts with 25 slots and buys 25 more, one at a
+# time, at these prices -- the wiki's table, copied, not its fitted equation.
+#
+# The blue guide's Stage 1 ends at 48 bees and Stage 2 at 50 (blue_hive_plan
+# .yaml, `serves: [basic_egg, hive_slot]`); brain/hivejudge prices the next one.
+# A slot holds nothing until an egg is hatched in it (the Basic Egg's own price
+# rises with every one bought, data/knowledge research: 1,000 to 10,000,000).
+source: https://bee-swarm-simulator.fandom.com/wiki/Hive_Slot (read through api.php 2026-10-01)
+checked: 2026-10-01
+honey_for_bees:
+  26: 3000000
+  27: 7750000
+  28: 14562500
+  29: 24057292
+  30: 37085938
+  31: 54774609
+  32: 78597363
+  33: 110474899
+  34: 152902986
+  35: 209117953
+  36: 283309237
+  37: 380891931
+  38: 508855908
+  39: 676212647
+  40: 894566712
+  41: 1327768458
+  42: 2375844017
+  43: 4554611273
+  44: 9296140310
+  45: 20132877003
+  46: 46154052716
+  47: 111775127496
+  48: 285456003884
+  49: 767503162196
+  50: 2169203229760

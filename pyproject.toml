@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hivemind"
+version = "0.1.0"
+description = "Autonomous Bee Swarm Simulator player for Linux/Wayland"
+requires-python = ">=3.12"
+# Runtime deps come from the SYSTEM (Arch extra), not pip: pyside6, python-pywayland,
+# python-xkbcommon, python-opencv, python-numpy, python-evdev, layer-shell-qt.
+# The venv is created with --system-site-packages so these resolve without building
+# native wheels against Python 3.14, which is where this would otherwise fall apart.
+# Windows (RL6 phase 3, platform/win): psutil for processes and memory,
+# windows-capture for WGC frames (dxcam is an optional fallback). Linux unchanged.
+dependencies = ["PyYAML", "msgspec", "platformdirs",
+                "psutil; sys_platform == 'win32'",
+                "windows-capture; sys_platform == 'win32'"]
+
+[project.scripts]
+hivemind = "hivemind.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src"]
