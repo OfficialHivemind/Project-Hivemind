@@ -1,0 +1,74 @@
+# Things that decay, and how long they last.
+#
+# VERIFICATION. Every duration here is marked. `verified: false` means the number
+# came from research rather than from measurement on this account, and the
+# Sentinel treats the two differently:
+#
+#   verified: true    may drive an automated irreversible action
+#   verified: false   is SHOWN to you, with the uncertainty stated, but never
+#                     used to justify the bot spending or consuming anything
+#
+# Warning someone about a possible loss costs nothing if the timing is off by an
+# hour. Consuming a resource on a guessed deadline does not have that property.
+#
+# `check_every_s` is how often the bot should re-observe the thing to keep its
+# belief fresh; `lead_s` is how long before the deadline it should start acting.
+
+schema: 1
+
+expiries:
+  - id: beequip_inbox
+    what: Beequip inbox
+    detail: items in the inbox are destroyed when it lapses
+    duration_s: 172800          # 48h
+    verified: false
+    severity: critical
+    lead_s: 7200
+    check_every_s: 3600
+    note: >
+      Believed to be the single largest silent loss in the game. Even at the
+      unverified timing it is worth surfacing, because the game gives no warning
+      at all.
+
+  - id: nectar_vial
+    what: Nectar condense window
+    detail: past this point nectar can no longer condense into a Vial
+    duration_s: 43200           # 12h
+    verified: false
+    severity: warn
+    lead_s: 1800
+    check_every_s: 1800
+    note: >
+      Buffs are believed to cap at 24h while the Vial condense happens at 12h,
+      making everything above 12h wasted. Needs measuring before the bot
+      condenses anything on its own. N4 (2026-10-19): the wiki reads otherwise
+      -- the Nectar Condenser TAKES 12 h of a nectar for a 4 h Vial, and the
+      bar is full at 24 h (data/knowledge/economy.yaml nectar_condenser); this
+      entry stays unverified, and the condenser is out of reach (35 bees).
+
+  - id: wealth_clock
+    what: Wealth Clock
+    detail: a full cycle is lost if it is not collected
+    duration_s: 3600
+    verified: false
+    severity: warn
+    lead_s: 300
+    check_every_s: 600
+
+  - id: field_booster
+    what: Field booster
+    detail: the boost lapses and the field returns to normal
+    duration_s: 1800
+    verified: false
+    severity: info
+    lead_s: 300
+    check_every_s: 600
+
+  - id: sticker_stack
+    what: Sticker stack bonus
+    detail: stacked sticker bonuses reset
+    duration_s: 86400
+    verified: false
+    severity: info
+    lead_s: 3600
+    check_every_s: 3600

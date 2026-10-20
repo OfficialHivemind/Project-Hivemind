@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>hivemind-ui-preview</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <name>Hivemind UI Preview</name>
+  <summary>A look at Hivemind's app with made-up demo data</summary>
+  <description><p>The Hivemind window replaying a recorded demo. It plays nothing and never starts the bot.</p></description>
+  <launchable type="desktop-id">hivemind-ui-preview.desktop</launchable>
+</component>

@@ -1,0 +1,77 @@
+# Tickets: the currency that actually gates hive quality.
+#
+# WHY THEY MATTER MORE THAN HONEY AT THIS STAGE. A Royal Jelly costs 6 tickets
+# at the dispenser against 250,000-1,000,000 honey at the shop. Jelly is how a
+# hive gets better bees, so ticket income -- not honey income -- is usually the
+# real bottleneck on hive quality.
+#
+# THE FINDING THAT MATTERS FOR THIS BOT: the WEALTH CLOCK gives tickets every
+# hour, escalating to five, and the bot ALREADY HAS A RECORDED ROUTE TO IT
+# (`from_hive_to_wealth_clock`). It is the single highest-value thing the bot
+# can reach today that it is not doing.
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Ticket
+checked: 2026-09-20
+
+wealth_clock:
+  gives: tickets, every hour after interacting with it
+  schedule: [1, 2, 3, 4, 5]
+  then: 5 per hour from the fifth onwards
+  route_exists: true          # from_hive_to_wealth_clock
+  why_it_is_the_best_reachable_action: >
+    Five tickets an hour is a Royal Jelly (6 tickets) roughly every 72 minutes,
+    for a short walk on a timer, with no mob and nothing to lose. Nothing else
+    the bot can currently reach pays that well for the risk.
+
+badges:
+  tickets_by_tier: {cadet: 5, hotshot: 10, ace: 15, master: 25, grandmaster: 40}
+  total_available: 2375
+  note: 2,335 excluding the currently impossible Sticker Stack Grandmaster badge.
+
+ticket_shop:
+  where: outside the Mountain Top Shop
+  buys: tickets for honey
+  price_behaviour: rises with every ticket bought
+  exact_curve: >
+    the nth ticket bought costs 100,000 + 1,000 * n^1.2 honey (wiki
+    Ticket_Shop, datamined March 2026; research pass 2, brain-research-2.md
+    section 2). Replaces the pre-2018 "5,000 dearer each" sheet, which
+    undercounted badly. The account's own n is not read yet -- read it in
+    game. 400 tickets (a Diamond Mask egg) from n = 0 cost about 282M honey;
+    brain/value prices a ticket at its n = 0 ceiling, 100,000.
+  price_formula: "100000 + 1000 * n ** 1.2"
+
+codes:
+  # Five tickets each. Codes expire, so these may no longer work -- listed as
+  # worth trying once, not as a plan.
+  five_tickets_each: [38217, Bopmaster, Crawlers, Roof, Connoisseur]
+  other: {Wax: "5 tickets plus other items"}
+  caution: Codes are patched and retired; try them, do not depend on them.
+
+reliable_drops:
+  guaranteed_from_mobs: [tunnel_bear, stump_snail, king_beetle]
+  ticket_planter: always 10 or more when harvested at full growth
+  honeystorm: guaranteed to spawn ticket tokens
+  commando_chick: 1 per capture, and 100 on the 25th
+  snowbear: tickets equal to its level
+  sprouts: rare sprouts and above guarantee tickets, more the rarer they are
+  puffshroom: the rarer the puffshroom the more it gives
+  flowers: about 1 in 1000 per flower, rising with Loot Luck and Ticket Chance
+
+one_time_token_locations:
+  # ALL COLLECTED on the owner's account (account.yaml `secret_items`,
+  # 2026-10-14): a record of the game, never a place to walk to.
+  # Fixed tickets hidden around the map, collectable once per player. Most need
+  # parkour, a glider or a parachute, which this bot cannot do -- recorded as
+  # known-unreachable rather than as a plan.
+  - {where: on top of the biggest pineapple in the Pineapple Patch, tickets: 3}
+  - {where: the back of the cave the spider comes from, tickets: 1}
+  - {where: back of Red HQ near the ceiling, needs: haste and a glide}
+  - {where: next to the Glider inside the Mountain Top Shop}
+  - {where: the Cloud Obby above Pine Tree and Pumpkin, tickets: 5, needs: a glide}
+  - {where: a ledge between the Lion and Brave Bee Gates, tickets: 5,
+     needs: the slingshot and a parachute}
+
+not_yet_known:
+  ticket_shop_prices: the full list of what tickets buy and for how many
+  wealth_clock_other_rewards: whether it gives anything besides tickets

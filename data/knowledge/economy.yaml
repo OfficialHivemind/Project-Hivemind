@@ -1,0 +1,181 @@
+# The economy that out-earns walking around: planters, nectar and field health.
+#
+# WHY THIS IS ITS OWN FILE. `world.yaml` is places, `progression.yaml` is what
+# to aim at, and this is the machinery in between -- the systems that multiply
+# what a trip is worth. Keeping them apart means a field's facts do not get
+# tangled with a planter's.
+#
+# WHY IT MATTERS MORE THAN PATTERN TUNING. Planter honey plus nectar out-earns
+# manual farming well before the point this account is at, and a bot that
+# ignores planters plateaus no matter how good its walking gets. It is also
+# where the only real deadline in the game lives: FIELD DEGRADATION CAPS AT 48
+# HOURS, and harvesting always costs at least an hour of it. Harvest greedily
+# and you permanently poison your best fields.
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Planter
+checked: 2026-09-20
+caution: >
+  Bee Swarm Simulator is patched often and exact figures move. Mechanics here
+  are stable; any number should be re-checked before it is trusted, and
+  anything not written down is left as unknown rather than guessed.
+
+planters:
+  limits:
+    active_at_once: 3
+    one_per_field: true
+    one_of_each_type: true
+    total_types: 14
+    note: >
+      Grows only while the game is actually running, unless an Offline Voucher
+      is held, which keeps it growing for up to 24 hours after logging out.
+
+  growth_boosts:
+    glitter: "25% faster until harvest, applied to the field"
+    clouds: "8% faster per active cloud, 20% maximum, lasts while the clouds do"
+    field_affinity: "e.g. the Red Clay Planter grows 25% faster in red fields"
+    bees_sipping: >
+      Bees standing in the field sip the planter: they convert pollen from the
+      bag, grant nectar, and add growth. Growth added depends on bee energy;
+      nectar depends on the bee's collection amount and the planter type.
+
+  harvest:
+    drops: [nectar, pollen, items]
+    nectar: guaranteed on harvest
+    pollen: scales with growth, and excess over capacity converts instantly
+    items: only drop above a certain growth percentage
+    smoking: >
+      At 95% growth the planter rolls whether it "smokes". A smoking planter
+      releases a Puffshroom on harvest. The Ticket Planter and Sticker Planter
+      always smoke.
+
+  # THE DEADLINE NOBODY MODELS. This is the single most valuable fact here.
+  degradation:
+    cap_hours: 48
+    always_costs_hours: 1
+    rule: >
+      Harvesting degrades the field it was planted in. Degradation slows the
+      natural growth of anything planted there afterwards, scales with how
+      grown the planter was, and always costs at least one hour. A field can
+      hold at most 48 hours of degradation.
+    why_it_matters: >
+      Always harvesting at 100% permanently poisons the fields you use most.
+      The correct harvest time is a trade between the drop and the hours of
+      degradation it costs -- which is a real optimisation and one no macro
+      appears to do.
+
+# Which nectar a field gives, and what that nectar buffs. THIS IS HOW A HIVE
+# COLOUR CHOOSES A PLANTER FIELD, which is a different question from where it
+# gathers.
+nectar:
+  comforting:
+    buffs: ["x1.2-x2 colourless bee convert rate", "x1.1-x1.5 BLUE POLLEN",
+            "x1.1-x2 convert rate at hive"]
+    fields: [dandelion, bamboo, pine_tree]
+  motivating:
+    buffs: ["x1.1-x1.5 convert rate", "x1.1-x1.5 BLUE POLLEN",
+            "+1% to +5% bee ability rate"]
+    fields: [mushroom, spider, stump, rose]
+  satisfying:
+    buffs: ["x1.2-x2 red convert rate", "x1.2-x2 white pollen",
+            "x1.05-x1.5 honey at hive"]
+    fields: [sunflower, pineapple, pumpkin]
+  refreshing:
+    buffs: ["x1.2-x2 BLUE CONVERT RATE", "x1.1-x1.5 red pollen",
+            "+5% to +20% unique instant conversion"]
+    fields: [blue_flower, strawberry, coconut]
+  invigorating:
+    buffs: ["x1.1-x1.5 convert rate", "x1.1-x1.5 red pollen",
+            "x1.02-x1.10 bee attack"]
+    fields: [clover, cactus, mountain_top, pepper]
+  all_nectars_also: "x1.01-x1.05 honey per pollen"
+  # N4 (2026-10-19). A buff's strength scales with the hours left on it, and
+  # the bar is full at 24 h (Natro ba_GetNectarPercent: 100% = 24 h; vision/
+  # nectar reads it). Gathering alone gives no nectar: a harvested planter
+  # does, more for the bees that sipped it (planters.growth_boosts above).
+  # robloxden's guide lists different fields for Motivating/Satisfying/
+  # Invigorating; the lists above are the wiki's and act/planter.NECTAR's.
+  bar_full_hours: 24
+
+# N4 (2026-10-19). NOT MEASURED ON THIS ACCOUNT: no vial has been held, and
+# the condenser has never been visited.
+nectar_vials:
+  source: "wiki Nectar_Condenser (via search, the page itself 402s to fetch); robloxden nectar guide"
+  confidence: "[assumed]"
+  items: [comforting_vial, invigorating_vial, motivating_vial, refreshing_vial, satisfying_vial]
+  gives_hours: 4            # "a vial that holds 4 hours of nectar", used at any time
+  carry_cap_each: 10        # robloxden: "up to 10 vials of each nectar type"
+  used_by_goals: "a Comforting Vial is a Diamond Mask material (goals.yaml)"
+  bot: >
+    brain/nectarplan.vial_to_use names the spare vial it would use while that
+    nectar is under its minimum -- LOOK-ONLY (VIAL_LIVE False) until a vial's
+    inventory row and its "Use ...?" question have been captured.
+
+nectar_condenser:
+  source: "wiki Nectar_Condenser (via search); robloxden: 'In the 35 Bee Zone'"
+  confidence: "[assumed]"
+  where: "past the Windy Bee Gate, near the Wind Shrine"
+  bees_required: 35         # this hive: 34 (account.yaml) -- out of reach
+  takes_hours: 12           # of ONE nectar; more than 12 h held is not taken
+  gives: "one Vial of that nectar (4 h)"
+  sticker_chance: "1/25, a sticker of the nectar condensed"
+  cost: unknown             # neither source names one
+  worth_it: >
+    12 h in, 4 h out: two thirds of the nectar is lost, so condensing pays only
+    for nectar that would otherwise be wasted (a bar about to pass 24 h) or to
+    bank a nectar for later. NOT the "12 h cut-off" data/economy/expiries.yaml
+    once assumed: 12 h is what the condenser TAKES.
+  bot: "no route, no prompt read, nothing built (economy.nectar_vials stays NOT_WIRED)"
+
+# What a blue hive should do with the above, stated plainly so the bot does not
+# have to re-derive it every time.
+for_a_blue_hive:
+  best_nectars: [comforting, motivating, refreshing]
+  why: >
+    Comforting and Motivating both raise BLUE POLLEN; Refreshing raises BLUE
+    CONVERT RATE. Satisfying and Invigorating are red/white and do nothing for
+    a blue build beyond the small honey-per-pollen bonus every nectar gives.
+  planter_fields_reachable_today: [pine_tree]
+  note: >
+    IMPORTANT AND NOT OBVIOUS. Of the two blue fields the bot can currently
+    reach, PINE TREE gives Comforting (blue pollen) and PINEAPPLE gives
+    Satisfying (red/white). So where to GATHER and where to PLANT are not the
+    same question: Pineapple has more flowers, but a planter belongs in Pine
+    Tree for a blue hive.
+
+# --------------------------------------------------------- sprinklers -----
+# The owner asked for "the best sprinkler eventually". Sprinklers regenerate
+# flowers, so they raise what a field pays rather than what a trip collects.
+#
+# BOUGHT AT THE BADGE BEARER'S GUILD, which needs 15 badges of any kind to
+# enter -- and each tier needs TEN BADGES OF A GIVEN TIER, not just honey. So
+# this is a badge problem as much as a honey problem.
+sprinklers:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Sprinklers
+  where: Badge Bearer's Guild (needs 15 badges of any kind to enter)
+  placement_rule: >
+    Your own sprinklers cannot be placed within 8 flowers of each other, but
+    may sit beside another player's. Placing more than your limit removes the
+    oldest. A placed sprinkler stays until you move it, die, or leave.
+  tiers:
+    basic:              {count: 1, radius: 7,  power: 7,  rate_s: 5,   setup_s: 6, badges: "10 Cadet",       honey: 1111111}
+    silver_soakers:     {count: 2, radius: 7,  power: 7,  rate_s: 4.5, setup_s: 5, badges: "10 Hotshot",     honey: 22222222}
+    golden_gushers:     {count: 3, radius: 8,  power: 8,  rate_s: 4.5, setup_s: 5, badges: "10 Ace",         honey: 333333333}
+    diamond_drenchers:  {count: 4, radius: 8,  power: 9,  rate_s: 4,   setup_s: 4, badges: "10 Master",      honey: 4444444444}
+    supreme_saturator:  {count: 1, radius: 16, power: 10, rate_s: 1,   setup_s: 3, badges: "10 Grandmaster", honey: 55555555555}
+  note_on_the_best_one: >
+    The Supreme Saturator places only ONE, not five -- but its radius is 16
+    against 8, and it fires every second against four. It is a different shape
+    of tool, not simply a bigger one.
+  for_this_account: >
+    The owner already holds a Sprinkler Builder. His badges read four Hotshot
+    (Honey, Quest, Battle, Playtime) and two Cadet (Ability, Goo), so SILVER
+    SOAKERS is gated on reaching TEN Hotshot badges, not on the 22,222,222
+    honey. Badges are the binding constraint, and they are also worth 10
+    tickets each at that tier -- see tickets.yaml.
+
+not_yet_known:
+  planter_costs: where each planter comes from and what it costs
+  grow_times: the natural growth time of each planter type
+  item_drop_table: which items drop from which planter in which field
+  chains: the chain bonuses from growing planters in particular fields in order
+  offline_voucher: how the voucher is obtained

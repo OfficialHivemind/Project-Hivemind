@@ -1,0 +1,1718 @@
+{
+ "made": "2026-10-22 03:28:14",
+ "var": "~/Hivemind/var",
+ "runs": 1170,
+ "nights": [
+  "09-21",
+  "09-22",
+  "09-23",
+  "09-24",
+  "09-25",
+  "09-26",
+  "09-27",
+  "09-28",
+  "09-29",
+  "09-30",
+  "10-01",
+  "10-02",
+  "10-03",
+  "10-04",
+  "10-05",
+  "10-06",
+  "10-07",
+  "10-08",
+  "10-09",
+  "10-10",
+  "10-11",
+  "10-12",
+  "10-13",
+  "10-14",
+  "10-15",
+  "10-16",
+  "10-17",
+  "10-18",
+  "10-19",
+  "10-20",
+  "10-21"
+ ],
+ "frames": 12284,
+ "live_frames": 10347,
+ "classes": [
+  "bamboo",
+  "black_bear",
+  "blue_flower",
+  "cactus",
+  "clover",
+  "dandelion",
+  "hive",
+  "honey_dispenser",
+  "mountain_top",
+  "mushroom",
+  "pepper",
+  "pine_tree",
+  "pineapple",
+  "pumpkin",
+  "red_cannon",
+  "rose",
+  "shop_counter",
+  "spider",
+  "strawberry",
+  "stump",
+  "sunflower",
+  "ticket_shop"
+ ],
+ "visits": {
+  "bamboo": 170,
+  "black_bear": 30,
+  "blue_flower": 222,
+  "cactus": 61,
+  "clover": 66,
+  "dandelion": 209,
+  "hive": 756,
+  "honey_dispenser": 29,
+  "mountain_top": 83,
+  "mushroom": 102,
+  "pepper": 7,
+  "pine_tree": 303,
+  "pineapple": 50,
+  "pumpkin": 78,
+  "red_cannon": 486,
+  "rose": 43,
+  "shop_counter": 111,
+  "spider": 156,
+  "strawberry": 73,
+  "stump": 12,
+  "sunflower": 44,
+  "ticket_shop": 14
+ },
+ "descriptor": {
+  "size": [
+   480,
+   270
+  ],
+  "grid": [
+   4,
+   3
+  ],
+  "bins": [
+   18,
+   3
+  ],
+  "dim": 648
+ },
+ "svm": {
+  "C": 10.0,
+  "gamma": 1.0,
+  "kind": "one-vs-rest RBF"
+ },
+ "held_out": {
+  "top1": 0.9135,
+  "n": 12284,
+  "per_night": {
+   "09-21": {
+    "n": 5,
+    "top1": 0.0
+   },
+   "09-22": {
+    "n": 16,
+    "top1": 0.4375
+   },
+   "09-23": {
+    "n": 2,
+    "top1": 1.0
+   },
+   "09-24": {
+    "n": 7,
+    "top1": 0.7143
+   },
+   "09-25": {
+    "n": 2,
+    "top1": 0.5
+   },
+   "09-26": {
+    "n": 24,
+    "top1": 0.5
+   },
+   "09-27": {
+    "n": 32,
+    "top1": 0.9375
+   },
+   "09-28": {
+    "n": 3,
+    "top1": 1.0
+   },
+   "09-29": {
+    "n": 13,
+    "top1": 0.9231
+   },
+   "09-30": {
+    "n": 1,
+    "top1": 1.0
+   },
+   "10-01": {
+    "n": 17,
+    "top1": 1.0
+   },
+   "10-02": {
+    "n": 32,
+    "top1": 0.875
+   },
+   "10-03": {
+    "n": 20,
+    "top1": 0.95
+   },
+   "10-04": {
+    "n": 21,
+    "top1": 1.0
+   },
+   "10-05": {
+    "n": 232,
+    "top1": 0.7974
+   },
+   "10-06": {
+    "n": 285,
+    "top1": 0.9614
+   },
+   "10-07": {
+    "n": 346,
+    "top1": 0.9335
+   },
+   "10-08": {
+    "n": 836,
+    "top1": 0.8182
+   },
+   "10-09": {
+    "n": 341,
+    "top1": 0.9619
+   },
+   "10-10": {
+    "n": 571,
+    "top1": 0.9912
+   },
+   "10-11": {
+    "n": 702,
+    "top1": 0.9003
+   },
+   "10-12": {
+    "n": 172,
+    "top1": 0.8779
+   },
+   "10-13": {
+    "n": 903,
+    "top1": 0.9502
+   },
+   "10-14": {
+    "n": 619,
+    "top1": 0.9402
+   },
+   "10-15": {
+    "n": 764,
+    "top1": 0.8639
+   },
+   "10-16": {
+    "n": 636,
+    "top1": 0.945
+   },
+   "10-17": {
+    "n": 392,
+    "top1": 0.9719
+   },
+   "10-18": {
+    "n": 876,
+    "top1": 0.9486
+   },
+   "10-19": {
+    "n": 1001,
+    "top1": 0.963
+   },
+   "10-20": {
+    "n": 1901,
+    "top1": 0.9521
+   },
+   "10-21": {
+    "n": 1512,
+    "top1": 0.8161
+   }
+  },
+  "coverage": {
+   "precision_at_50pct": 0.9937,
+   "precision_at_75pct": 0.9861,
+   "precision_at_90pct": 0.9607,
+   "precision_at_100pct": 0.9135
+  },
+  "per_class": {
+   "bamboo": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9314,
+    "precision": 0.9081
+   },
+   "black_bear": {
+    "frames": 57,
+    "held_out": 57,
+    "nights": [
+     "09-22",
+     "09-26",
+     "10-01",
+     "10-03",
+     "10-04",
+     "10-05",
+     "10-06",
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-21"
+    ],
+    "recall": 0.9649,
+    "precision": 0.8594
+   },
+   "blue_flower": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9486,
+    "precision": 0.9582
+   },
+   "cactus": {
+    "frames": 687,
+    "held_out": 687,
+    "nights": [
+     "09-24",
+     "09-27",
+     "09-29",
+     "10-01",
+     "10-02",
+     "10-03",
+     "10-04",
+     "10-05",
+     "10-06",
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20"
+    ],
+    "recall": 0.9068,
+    "precision": 0.8617
+   },
+   "clover": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-06",
+     "10-07",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9671,
+    "precision": 0.9685
+   },
+   "dandelion": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.8243,
+    "precision": 0.829
+   },
+   "hive": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9971,
+    "precision": 0.9971
+   },
+   "honey_dispenser": {
+    "frames": 57,
+    "held_out": 57,
+    "nights": [
+     "09-22",
+     "09-23",
+     "09-27",
+     "10-01",
+     "10-04",
+     "10-06",
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-14",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 1.0,
+    "precision": 1.0
+   },
+   "mountain_top": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-13",
+     "10-19",
+     "10-20"
+    ],
+    "recall": 0.9743,
+    "precision": 0.987
+   },
+   "mushroom": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.8686,
+    "precision": 0.8205
+   },
+   "pepper": {
+    "frames": 315,
+    "held_out": 315,
+    "nights": [
+     "10-05",
+     "10-21"
+    ],
+    "recall": 0.7905,
+    "precision": 0.9765
+   },
+   "pine_tree": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.7657,
+    "precision": 0.9354
+   },
+   "pineapple": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-13",
+     "10-15",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.97,
+    "precision": 0.9289
+   },
+   "pumpkin": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9329,
+    "precision": 0.8536
+   },
+   "red_cannon": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9986,
+    "precision": 0.9831
+   },
+   "rose": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20"
+    ],
+    "recall": 0.9857,
+    "precision": 0.957
+   },
+   "shop_counter": {
+    "frames": 397,
+    "held_out": 397,
+    "nights": [
+     "09-25",
+     "09-26",
+     "09-27",
+     "09-28",
+     "09-29",
+     "09-30",
+     "10-01",
+     "10-02",
+     "10-03",
+     "10-04",
+     "10-05",
+     "10-06",
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.796,
+    "precision": 0.8472
+   },
+   "spider": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "recall": 0.9186,
+    "precision": 0.8808
+   },
+   "strawberry": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-07",
+     "10-08",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-20"
+    ],
+    "recall": 0.9343,
+    "precision": 0.9046
+   },
+   "stump": {
+    "frames": 255,
+    "held_out": 255,
+    "nights": [
+     "10-05",
+     "10-07",
+     "10-08",
+     "10-09"
+    ],
+    "recall": 0.7294,
+    "precision": 0.9442
+   },
+   "sunflower": {
+    "frames": 700,
+    "held_out": 700,
+    "nights": [
+     "10-10",
+     "10-11",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20"
+    ],
+    "recall": 0.8914,
+    "precision": 0.8643
+   },
+   "ticket_shop": {
+    "frames": 16,
+    "held_out": 16,
+    "nights": [
+     "09-21",
+     "09-22",
+     "09-24",
+     "09-25"
+    ],
+    "recall": 0.0,
+    "precision": 0.0
+   }
+  },
+  "confusion": {
+   "bamboo": {
+    "bamboo": 652,
+    "spider": 14,
+    "strawberry": 6,
+    "blue_flower": 6
+   },
+   "black_bear": {
+    "black_bear": 55,
+    "shop_counter": 2
+   },
+   "blue_flower": {
+    "blue_flower": 664,
+    "dandelion": 11,
+    "bamboo": 5,
+    "spider": 4
+   },
+   "cactus": {
+    "cactus": 623,
+    "pumpkin": 40,
+    "pine_tree": 9,
+    "sunflower": 4
+   },
+   "clover": {
+    "clover": 677,
+    "cactus": 8,
+    "spider": 3,
+    "dandelion": 3
+   },
+   "dandelion": {
+    "dandelion": 577,
+    "mushroom": 78,
+    "sunflower": 11,
+    "shop_counter": 10
+   },
+   "hive": {
+    "hive": 698,
+    "pine_tree": 1,
+    "mushroom": 1
+   },
+   "honey_dispenser": {
+    "honey_dispenser": 57
+   },
+   "mountain_top": {
+    "mountain_top": 682,
+    "cactus": 4,
+    "pineapple": 3,
+    "shop_counter": 3
+   },
+   "mushroom": {
+    "mushroom": 608,
+    "dandelion": 59,
+    "sunflower": 23,
+    "strawberry": 2
+   },
+   "pepper": {
+    "pepper": 249,
+    "strawberry": 37,
+    "mushroom": 10,
+    "pineapple": 7
+   },
+   "pine_tree": {
+    "pine_tree": 536,
+    "cactus": 42,
+    "pumpkin": 34,
+    "bamboo": 28
+   },
+   "pineapple": {
+    "pineapple": 679,
+    "stump": 5,
+    "mountain_top": 4,
+    "pine_tree": 2
+   },
+   "pumpkin": {
+    "pumpkin": 653,
+    "cactus": 30,
+    "pine_tree": 11,
+    "dandelion": 3
+   },
+   "red_cannon": {
+    "red_cannon": 699,
+    "strawberry": 1
+   },
+   "rose": {
+    "rose": 690,
+    "sunflower": 3,
+    "mushroom": 2,
+    "clover": 1
+   },
+   "shop_counter": {
+    "shop_counter": 316,
+    "pumpkin": 29,
+    "sunflower": 18,
+    "red_cannon": 11
+   },
+   "spider": {
+    "spider": 643,
+    "bamboo": 23,
+    "strawberry": 15,
+    "blue_flower": 4
+   },
+   "strawberry": {
+    "strawberry": 654,
+    "spider": 18,
+    "rose": 9,
+    "mushroom": 7
+   },
+   "stump": {
+    "stump": 186,
+    "pineapple": 27,
+    "spider": 25,
+    "shop_counter": 6
+   },
+   "sunflower": {
+    "sunflower": 624,
+    "dandelion": 27,
+    "mushroom": 22,
+    "black_bear": 9
+   },
+   "ticket_shop": {
+    "shop_counter": 13,
+    "sunflower": 3
+   }
+  }
+ },
+ "trust": {
+  "bamboo": [
+   [
+    null,
+    1.3796825408935547,
+    0.7657,
+    239
+   ],
+   [
+    1.3796825408935547,
+    2.240790367126465,
+    0.9665,
+    239
+   ],
+   [
+    2.240790367126465,
+    null,
+    0.9917,
+    240
+   ]
+  ],
+  "black_bear": [
+   [
+    null,
+    1.4216463565826416,
+    0.619,
+    21
+   ],
+   [
+    1.4216463565826416,
+    1.9579827785491943,
+    0.9524,
+    21
+   ],
+   [
+    1.9579827785491943,
+    null,
+    1.0,
+    22
+   ]
+  ],
+  "blue_flower": [
+   [
+    null,
+    1.6451353232065837,
+    0.8874,
+    231
+   ],
+   [
+    1.6451353232065837,
+    2.3691653410593667,
+    0.987,
+    231
+   ],
+   [
+    2.3691653410593667,
+    null,
+    1.0,
+    231
+   ]
+  ],
+  "cactus": [
+   [
+    null,
+    1.3444857199986775,
+    0.6141,
+    241
+   ],
+   [
+    1.3444857199986775,
+    2.268746852874756,
+    0.971,
+    241
+   ],
+   [
+    2.268746852874756,
+    null,
+    1.0,
+    241
+   ]
+  ],
+  "clover": [
+   [
+    null,
+    2.0137577851613364,
+    0.9056,
+    233
+   ],
+   [
+    2.0137577851613364,
+    2.5691331227620444,
+    1.0,
+    233
+   ],
+   [
+    2.5691331227620444,
+    null,
+    1.0,
+    233
+   ]
+  ],
+  "dandelion": [
+   [
+    null,
+    1.26354185740153,
+    0.5905,
+    232
+   ],
+   [
+    1.26354185740153,
+    2.1082820097605386,
+    0.9397,
+    232
+   ],
+   [
+    2.1082820097605386,
+    null,
+    0.9569,
+    232
+   ]
+  ],
+  "hive": [
+   [
+    null,
+    2.3710289001464844,
+    0.9914,
+    233
+   ],
+   [
+    2.3710289001464844,
+    2.5655322074890137,
+    1.0,
+    233
+   ],
+   [
+    2.5655322074890137,
+    null,
+    1.0,
+    234
+   ]
+  ],
+  "honey_dispenser": [
+   [
+    null,
+    null,
+    1.0,
+    57
+   ]
+  ],
+  "mountain_top": [
+   [
+    null,
+    1.9690574407577515,
+    0.9609,
+    230
+   ],
+   [
+    1.9690574407577515,
+    2.601263999938965,
+    1.0,
+    230
+   ],
+   [
+    2.601263999938965,
+    null,
+    1.0,
+    231
+   ]
+  ],
+  "mushroom": [
+   [
+    null,
+    1.1877491474151611,
+    0.5668,
+    247
+   ],
+   [
+    1.1877491474151611,
+    2.1067444483439126,
+    0.9352,
+    247
+   ],
+   [
+    2.1067444483439126,
+    null,
+    0.9595,
+    247
+   ]
+  ],
+  "pepper": [
+   [
+    null,
+    1.5347779591878254,
+    0.9294,
+    85
+   ],
+   [
+    1.5347779591878254,
+    2.0504188537597656,
+    1.0,
+    85
+   ],
+   [
+    2.0504188537597656,
+    null,
+    1.0,
+    85
+   ]
+  ],
+  "pine_tree": [
+   [
+    null,
+    0.645313560962677,
+    0.8743,
+    191
+   ],
+   [
+    0.645313560962677,
+    1.3837865193684893,
+    0.9476,
+    191
+   ],
+   [
+    1.3837865193684893,
+    null,
+    0.9843,
+    191
+   ]
+  ],
+  "pineapple": [
+   [
+    null,
+    2.0031216144561768,
+    0.7869,
+    244
+   ],
+   [
+    2.0031216144561768,
+    2.696928024291992,
+    1.0,
+    243
+   ],
+   [
+    2.696928024291992,
+    null,
+    1.0,
+    244
+   ]
+  ],
+  "pumpkin": [
+   [
+    null,
+    1.5260361433029175,
+    0.6078,
+    255
+   ],
+   [
+    1.5260361433029175,
+    2.379187266031901,
+    0.9608,
+    255
+   ],
+   [
+    2.379187266031901,
+    null,
+    0.9922,
+    255
+   ]
+  ],
+  "red_cannon": [
+   [
+    null,
+    2.2048277060190835,
+    0.9494,
+    237
+   ],
+   [
+    2.2048277060190835,
+    2.383836110432943,
+    1.0,
+    237
+   ],
+   [
+    2.383836110432943,
+    null,
+    1.0,
+    237
+   ]
+  ],
+  "rose": [
+   [
+    null,
+    1.9946198463439941,
+    0.8708,
+    240
+   ],
+   [
+    1.9946198463439941,
+    2.9211783409118652,
+    1.0,
+    240
+   ],
+   [
+    2.9211783409118652,
+    null,
+    1.0,
+    241
+   ]
+  ],
+  "shop_counter": [
+   [
+    null,
+    1.061617136001587,
+    0.6048,
+    124
+   ],
+   [
+    1.061617136001587,
+    1.7695012092590332,
+    0.9435,
+    124
+   ],
+   [
+    1.7695012092590332,
+    null,
+    0.992,
+    125
+   ]
+  ],
+  "spider": [
+   [
+    null,
+    1.4645960330963135,
+    0.6584,
+    243
+   ],
+   [
+    1.4645960330963135,
+    2.4437732696533203,
+    0.9835,
+    243
+   ],
+   [
+    2.4437732696533203,
+    null,
+    1.0,
+    244
+   ]
+  ],
+  "strawberry": [
+   [
+    null,
+    1.5934183994928997,
+    0.7261,
+    241
+   ],
+   [
+    1.5934183994928997,
+    2.464796384175618,
+    0.9876,
+    241
+   ],
+   [
+    2.464796384175618,
+    null,
+    1.0,
+    241
+   ]
+  ],
+  "stump": [
+   [
+    null,
+    1.218848466873169,
+    0.8788,
+    66
+   ],
+   [
+    1.218848466873169,
+    1.8918982744216917,
+    0.9538,
+    65
+   ],
+   [
+    1.8918982744216917,
+    null,
+    1.0,
+    66
+   ]
+  ],
+  "sunflower": [
+   [
+    null,
+    0.9905971288681029,
+    0.6598,
+    241
+   ],
+   [
+    0.9905971288681029,
+    1.9935523668924966,
+    0.9417,
+    240
+   ],
+   [
+    1.9935523668924966,
+    null,
+    0.9917,
+    241
+   ]
+  ]
+ },
+ "arrival": {
+  "walks": 3183,
+  "informative": 3129,
+  "wrong_landings": 495,
+  "right_landings": 2634,
+  "feed_two_passes": {
+   "wrong_caught": 164,
+   "right_flagged": 16
+  },
+  "feed_one_pass": {
+   "wrong_caught": 78,
+   "right_flagged": 5
+  },
+  "look_0.00": {
+   "look_doubts_wrong": 368,
+   "look_doubts_right": 1594,
+   "and_one_pass_wrong_caught": 75,
+   "and_one_pass_right_flagged": 5
+  },
+  "look_0.80": {
+   "look_doubts_wrong": 123,
+   "look_doubts_right": 352,
+   "and_one_pass_wrong_caught": 41,
+   "and_one_pass_right_flagged": 5
+  },
+  "look_0.90": {
+   "look_doubts_wrong": 95,
+   "look_doubts_right": 275,
+   "and_one_pass_wrong_caught": 37,
+   "and_one_pass_right_flagged": 5
+  },
+  "look_0.95": {
+   "look_doubts_wrong": 48,
+   "look_doubts_right": 157,
+   "and_one_pass_wrong_caught": 22,
+   "and_one_pass_right_flagged": 5
+  },
+  "look_0.98": {
+   "look_doubts_wrong": 22,
+   "look_doubts_right": 7,
+   "and_one_pass_wrong_caught": 14,
+   "and_one_pass_right_flagged": 3
+  },
+  "top1": 0.3685,
+  "top1_sure_0.80": {
+   "n": 1480,
+   "right": 948
+  },
+  "top1_sure_0.90": {
+   "n": 1224,
+   "right": 823
+  },
+  "top1_sure_0.95": {
+   "n": 967,
+   "right": 714
+  },
+  "sight": null,
+  "two_pass_precision": 0.9111,
+  "early_rule": null,
+  "by_route": {
+   "from_hive_to_pine_tree_with_red_cannon": {
+    "right_landings": 3,
+    "confirmed": 0,
+    "wrong_landings": 0,
+    "doubted": 0
+   },
+   "natro_out_bamboo": {
+    "right_landings": 252,
+    "confirmed": 204,
+    "wrong_landings": 24,
+    "doubted": 22
+   },
+   "natro_out_bamboo_via_red_cannon": {
+    "right_landings": 151,
+    "confirmed": 0,
+    "wrong_landings": 19,
+    "doubted": 19
+   },
+   "natro_out_black_bear": {
+    "right_landings": 0,
+    "confirmed": 0,
+    "wrong_landings": 8,
+    "doubted": 2
+   },
+   "natro_out_blue_flower": {
+    "right_landings": 68,
+    "confirmed": 68,
+    "wrong_landings": 15,
+    "doubted": 1
+   },
+   "natro_out_blue_flower_via_red_cannon": {
+    "right_landings": 104,
+    "confirmed": 7,
+    "wrong_landings": 5,
+    "doubted": 5
+   },
+   "natro_out_cactus": {
+    "right_landings": 0,
+    "confirmed": 0,
+    "wrong_landings": 2,
+    "doubted": 2
+   },
+   "natro_out_cactus_via_red_cannon": {
+    "right_landings": 34,
+    "confirmed": 34,
+    "wrong_landings": 1,
+    "doubted": 1
+   },
+   "natro_out_clover": {
+    "right_landings": 9,
+    "confirmed": 9,
+    "wrong_landings": 3,
+    "doubted": 2
+   },
+   "natro_out_clover_via_red_cannon": {
+    "right_landings": 47,
+    "confirmed": 44,
+    "wrong_landings": 6,
+    "doubted": 0
+   },
+   "natro_out_dandelion": {
+    "right_landings": 32,
+    "confirmed": 32,
+    "wrong_landings": 7,
+    "doubted": 0
+   },
+   "natro_out_honey_dispenser": {
+    "right_landings": 0,
+    "confirmed": 0,
+    "wrong_landings": 34,
+    "doubted": 20
+   },
+   "natro_out_mountain_top": {
+    "right_landings": 28,
+    "confirmed": 27,
+    "wrong_landings": 11,
+    "doubted": 11
+   },
+   "natro_out_mountain_top_via_red_cannon": {
+    "right_landings": 138,
+    "confirmed": 132,
+    "wrong_landings": 5,
+    "doubted": 3
+   },
+   "natro_out_mushroom": {
+    "right_landings": 56,
+    "confirmed": 54,
+    "wrong_landings": 10,
+    "doubted": 2
+   },
+   "natro_out_pepper": {
+    "right_landings": 17,
+    "confirmed": 14,
+    "wrong_landings": 1,
+    "doubted": 1
+   },
+   "natro_out_pine_tree": {
+    "right_landings": 126,
+    "confirmed": 1,
+    "wrong_landings": 65,
+    "doubted": 65
+   },
+   "natro_out_pine_tree_via_red_cannon": {
+    "right_landings": 1119,
+    "confirmed": 32,
+    "wrong_landings": 78,
+    "doubted": 73
+   },
+   "natro_out_pineapple": {
+    "right_landings": 2,
+    "confirmed": 2,
+    "wrong_landings": 1,
+    "doubted": 1
+   },
+   "natro_out_pineapple_via_red_cannon": {
+    "right_landings": 126,
+    "confirmed": 124,
+    "wrong_landings": 8,
+    "doubted": 0
+   },
+   "natro_out_pumpkin": {
+    "right_landings": 3,
+    "confirmed": 2,
+    "wrong_landings": 5,
+    "doubted": 3
+   },
+   "natro_out_pumpkin_via_red_cannon": {
+    "right_landings": 37,
+    "confirmed": 0,
+    "wrong_landings": 31,
+    "doubted": 31
+   },
+   "natro_out_rose_field": {
+    "right_landings": 40,
+    "confirmed": 40,
+    "wrong_landings": 9,
+    "doubted": 4
+   },
+   "natro_out_rose_field_via_red_cannon": {
+    "right_landings": 93,
+    "confirmed": 88,
+    "wrong_landings": 32,
+    "doubted": 2
+   },
+   "natro_out_spider": {
+    "right_landings": 17,
+    "confirmed": 16,
+    "wrong_landings": 11,
+    "doubted": 8
+   },
+   "natro_out_spider_via_red_cannon": {
+    "right_landings": 59,
+    "confirmed": 46,
+    "wrong_landings": 31,
+    "doubted": 27
+   },
+   "natro_out_strawberry": {
+    "right_landings": 46,
+    "confirmed": 46,
+    "wrong_landings": 9,
+    "doubted": 6
+   },
+   "natro_out_strawberry_via_red_cannon": {
+    "right_landings": 4,
+    "confirmed": 0,
+    "wrong_landings": 59,
+    "doubted": 56
+   },
+   "natro_out_stump": {
+    "right_landings": 4,
+    "confirmed": 0,
+    "wrong_landings": 1,
+    "doubted": 0
+   },
+   "natro_out_stump_via_red_cannon": {
+    "right_landings": 1,
+    "confirmed": 0,
+    "wrong_landings": 3,
+    "doubted": 1
+   },
+   "natro_out_sunflower": {
+    "right_landings": 18,
+    "confirmed": 18,
+    "wrong_landings": 1,
+    "doubted": 0
+   }
+  }
+ },
+ "edge": {
+  "refused_share": 0.0187,
+  "auc_in_vs_off": 0.9348,
+  "in_field_median": 0.325,
+  "in_field_p10": 0.075,
+  "off_field_p90": 0.075,
+  "n_in": 1908,
+  "n_off": 296,
+  "split_half": [
+   {
+    "tuned_on": [
+     "09-21",
+     "09-22",
+     "09-23"
+    ],
+    "threshold": 0.105,
+    "tested_on": [
+     "09-24",
+     "09-25",
+     "09-26"
+    ],
+    "in_kept": 0.8376,
+    "off_flagged": 0.986
+   },
+   {
+    "tuned_on": [
+     "09-24",
+     "09-25",
+     "09-26"
+    ],
+    "threshold": 0.08,
+    "tested_on": [
+     "09-21",
+     "09-22",
+     "09-23"
+    ],
+    "in_kept": 0.8696,
+    "off_flagged": 0.8889
+   }
+  ],
+  "threshold": 0.08,
+  "back_at": 0.105,
+  "by_place": {
+   "blue_flower": {
+    "n": 416,
+    "p25": 0.1,
+    "median": 0.2,
+    "under_threshold": 0.2019
+   },
+   "dandelion": {
+    "n": 422,
+    "p25": 0.175,
+    "median": 0.275,
+    "under_threshold": 0.1137
+   },
+   "mushroom": {
+    "n": 304,
+    "p25": 0.15,
+    "median": 0.25,
+    "under_threshold": 0.1546
+   },
+   "pine_tree": {
+    "n": 32,
+    "p25": 0.25,
+    "median": 0.4375,
+    "under_threshold": 0.1875
+   },
+   "spider": {
+    "n": 211,
+    "p25": 0.3,
+    "median": 0.475,
+    "under_threshold": 0.0758
+   },
+   "strawberry": {
+    "n": 472,
+    "p25": 0.3,
+    "median": 0.5,
+    "under_threshold": 0.0699
+   },
+   "sunflower": {
+    "n": 51,
+    "p25": 0.0125,
+    "median": 0.25,
+    "under_threshold": 0.3137
+   }
+  }
+ },
+ "learning": {
+  "frames": 0,
+  "frozen_at_start_of_night": 0.0,
+  "learning_through_the_night": 0.0
+ },
+ "speed": {
+  "look_ms_median": 6.99,
+  "look_ms_p95": 8.27,
+  "train_seconds": 62.31,
+  "train_rows": 12284
+ },
+ "seconds": 2024.5,
+ "edge_remeasured": {
+  "refused_share": 0.0165,
+  "auc_in_vs_off": 0.9268,
+  "in_field_median": 0.4,
+  "in_field_p10": 0.0,
+  "off_field_p90": 0.025,
+  "n_in": 1430,
+  "n_off": 475,
+  "split_half": [
+   {
+    "tuned_on": [
+     "09-21",
+     "09-22",
+     "09-23",
+     "09-24",
+     "09-25",
+     "09-26",
+     "09-27",
+     "09-28",
+     "09-29",
+     "09-30",
+     "10-01",
+     "10-02",
+     "10-03",
+     "10-04",
+     "10-05"
+    ],
+    "threshold": 0.08,
+    "tested_on": [
+     "10-06",
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "in_kept": 0.8258,
+    "off_flagged": 0.9819
+   },
+   {
+    "tuned_on": [
+     "10-06",
+     "10-07",
+     "10-08",
+     "10-09",
+     "10-10",
+     "10-11",
+     "10-12",
+     "10-13",
+     "10-14",
+     "10-15",
+     "10-16",
+     "10-17",
+     "10-18",
+     "10-19",
+     "10-20",
+     "10-21"
+    ],
+    "threshold": 0.08,
+    "tested_on": [
+     "09-21",
+     "09-22",
+     "09-23",
+     "09-24",
+     "09-25",
+     "09-26",
+     "09-27",
+     "09-28",
+     "09-29",
+     "09-30",
+     "10-01",
+     "10-02",
+     "10-03",
+     "10-04",
+     "10-05"
+    ],
+    "in_kept": 0.8049,
+    "off_flagged": 0.75
+   }
+  ],
+  "threshold": 0.08,
+  "back_at": 0.08,
+  "by_place": {
+   "bamboo": {
+    "n": 103,
+    "p25": 0.3,
+    "median": 0.5,
+    "under_threshold": 0.1262
+   },
+   "blue_flower": {
+    "n": 105,
+    "p25": 0.15,
+    "median": 0.45,
+    "under_threshold": 0.2476
+   },
+   "cactus": {
+    "n": 85,
+    "p25": 0.175,
+    "median": 0.375,
+    "under_threshold": 0.1294
+   },
+   "clover": {
+    "n": 125,
+    "p25": 0.15,
+    "median": 0.3,
+    "under_threshold": 0.232
+   },
+   "dandelion": {
+    "n": 135,
+    "p25": 0.0,
+    "median": 0.175,
+    "under_threshold": 0.4148
+   },
+   "mountain_top": {
+    "n": 66,
+    "p25": 0.2562,
+    "median": 0.475,
+    "under_threshold": 0.2273
+   },
+   "mushroom": {
+    "n": 92,
+    "p25": 0.175,
+    "median": 0.3,
+    "under_threshold": 0.087
+   },
+   "pepper": {
+    "n": 57,
+    "p25": 0.175,
+    "median": 0.5,
+    "under_threshold": 0.2281
+   },
+   "pine_tree": {
+    "n": 76,
+    "p25": 0.275,
+    "median": 0.4625,
+    "under_threshold": 0.1842
+   },
+   "pineapple": {
+    "n": 119,
+    "p25": 0.3,
+    "median": 0.45,
+    "under_threshold": 0.0588
+   },
+   "pumpkin": {
+    "n": 61,
+    "p25": 0.325,
+    "median": 0.525,
+    "under_threshold": 0.0984
+   },
+   "rose": {
+    "n": 132,
+    "p25": 0.225,
+    "median": 0.4,
+    "under_threshold": 0.0833
+   },
+   "spider": {
+    "n": 70,
+    "p25": 0.1375,
+    "median": 0.4625,
+    "under_threshold": 0.2
+   },
+   "strawberry": {
+    "n": 110,
+    "p25": 0.225,
+    "median": 0.5,
+    "under_threshold": 0.1091
+   },
+   "stump": {
+    "n": 31,
+    "p25": 0.1125,
+    "median": 0.25,
+    "under_threshold": 0.1613
+   },
+   "sunflower": {
+    "n": 63,
+    "p25": 0.2,
+    "median": 0.325,
+    "under_threshold": 0.1587
+   }
+  }
+ },
+ "edge_note": "edge is the 2026-09-26 block the walk-back runs on (back_at 0.105); edge_remeasured is 2026-10-22's (back_at 0.08), kept look-only: moving the walk-back's stop needs its frames checked first",
+ "learning_note": "section 4 skipped (--no-learning): one training per attempt, 62 s each at 12,284 rows"
+}

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Hivemind UI Preview
+Comment=A look at Hivemind's app with made-up demo data (it plays nothing)
+Exec=hivemind-ui-preview
+Icon=hivemind-ui-preview
+Categories=Game;
+Terminal=false

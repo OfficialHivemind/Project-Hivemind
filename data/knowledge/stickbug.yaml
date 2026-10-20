@@ -1,0 +1,86 @@
+# X5 THE STICK BUG CHALLENGE -- what is known, sourced (2026-10-19).
+#
+# MEASURED: nothing. No run log (var/night, 1,247 files), jsonl, json or frame
+# under ~/Hivemind/var mentions a Stick Bug (grep -i "stick ?_?bug", and no
+# file name with stickbug in it). Every value below is the wiki's or a guide's
+# and is [assumed] until read in game. The plan: docs/pending/stickbug-x5.md.
+sources:
+  - id: w_stick_bug
+    title: 'BSS Wiki: Stick Bug (rev 445590, 2026-03-19; read via api.php 2026-10-19)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Stick_Bug
+  - id: w_stick_challenge
+    title: 'BSS Wiki: Stick Bug Challenge (rev 448447, 2026-07-12; read via api.php 2026-10-19)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Stick_Bug_Challenge
+  - id: w_stick_amulet
+    title: 'BSS Wiki: Stick Bug Amulet (rev 448576, 2026-07-28; read via api.php 2026-10-19)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Stick_Bug_Amulet
+  - id: w_stick_nymph
+    title: 'BSS Wiki: Stick Nymph (rev 442268, 2026-01-07; read via api.php 2026-10-19)'
+    url: https://bee-swarm-simulator.fandom.com/wiki/Stick_Nymph
+  - id: blue_hive_guide
+    title: 'data/knowledge/guides/blue_hive_guide.md (Stick Bug Amulet stat range, line ~728)'
+  - id: natro
+    title: 'Natro natro_macro.ahk 5372-5376 (2026-09-25 copy): the amulet only as -Monster Respawn'
+  - id: fuzzy
+    title: 'Fuzzy-Macro modules/macro.py 2068, 9050: stick_bug_amulet % taken off mob respawns'
+
+npc:
+  # [assumed] all
+  where: 'on top of the tallest mushroom in the Mushroom Field, next to the Top Stick Bug Fighters board'
+  reach: 'Red/Yellow/Blue Cannon with a Parachute or Glider, or Beekeeper''s Boots jumping from the second mushroom (the one with the Royal Jelly)'
+  needs: 'a Translator given to him once; without it he speaks bug noises and offers Give Translator / Leave'
+  options: ['Cancel', 'Start the challenge [Free Entry]', 'Pay 50 Tickets to start the challenge']
+  free_hides_paid: 'the 50-ticket option is not offered while the free start is due'
+  translator_order: 'Bucko > Stick Bug > Riley (progression/blue.yaml 333, 780; red.yaml 526 disagrees: Riley first)'
+  account: 'NOT KNOWN whether this account gave Stick Bug a Translator (inventory.json 2026-10-19 holds 1 ticket, 150 stingers, 11 coconuts, 23 oil)'
+  source: [w_stick_bug, w_stick_challenge]
+
+challenge:
+  # [assumed] all
+  free_every_h: 36
+  ticket_price: 50
+  minutes: 10
+  server_wide: true
+  other_starts: ['Spirit Bear quest "Dancing With Stick Bug"', 'Onett (global)', 'Beesmas: present or his quest']
+  chat_on_start: '⚠️ {Username} has started the Stick Bug Challenge! ⚠️'
+  chat_on_move: '⚠️ Stick Bug''s headed to the {Field Name}! ⚠️'
+  chat_on_totem: '⚠️ Stick Bug has built a Defense Totem in the {Field Name}! ⚠️'
+  chat_trapped: 'You''ve been trapped in twigs! Collect pollen to remove them.'
+  hud: 'a brown window at the side: time left, his level, his field, your points'
+  start_field: sunflower
+  fields: [sunflower, clover, strawberry, bamboo, pineapple, cactus, pumpkin, mountain_top]
+  next_field:
+    sunflower: [clover, strawberry]
+    clover: [sunflower, bamboo]
+    strawberry: [sunflower, bamboo, cactus, pumpkin]
+    bamboo: [clover, pineapple]
+    pineapple: [bamboo, mountain_top]
+    cactus: [strawberry, pumpkin, mountain_top]
+    pumpkin: [strawberry, cactus, mountain_top]
+    mountain_top: [sunflower, clover, bamboo, strawberry, pineapple, cactus, pumpkin]
+  phases:
+    level_up: 'his health to 0: a circle of reward tokens where he stood, he moves field and gains a level (more HP, speed, nymphs)'
+    sequence: [splinter_trap, spinners, flailing_sticks, stick_nymphs, stick_totem, flailing_sticks, hide, stick_flail]
+    flailing_sticks: 'red circle ~6 flowers around him, then one hit'
+    spinners: '3-4 red circles ~3 flowers near the field corners, then rotating blades'
+    stick_nymphs: 'a horde inside a ~6-flower red circle; they chase the nearest player; 5 tokens each'
+    hide: 'he goes flat in the flowers and cannot be hit; collect pollen on his shadow to bring him back'
+    splinter_trap: 'on whoever hit him this level: -25% speed and jump, 3 damage/s, removed by collecting pollen'
+    defense_totem: 'level 6+: +25% defence each (up to 3, 75%) in a nearby field (Mushroom, Dandelion, Blue Flower, Spider, Stump, Pine Tree, Rose); collect pollen there to break it; it drops rewards'
+  points: 'damage x level squared'
+  health: {1: 1250, 2: 4250, 3: 11750, 4: 24500, 5: 41750, 6: 66500, 7: 97250, 8: 136250, 9: 182750, 10: 237500, 11: 301250, 12: 374000, 13: 457250}
+  total_points_to_finish: {4: 516000, 5: 1559750, 8: 17439000, 11: 92443000, 13: 223574250}
+  rewards: 'Honey, Treat, Royal Jelly, Gumdrops, Magic Bean, Enzymes, Oil, Star Jelly (score 10M+); rare Smiley Sticker, Kazoo, Thumbtack, Camo Bandana; rarer Autumn Sunhat, Stick Cub, Pink Shades, Offline Voucher'
+  tips: 'no Mondo Chick up at the start; high ground (the Pumpkin Patch ramp) keeps nymphs off; sprinklers in his field for the hide phase; stingers x1.5 attack 30 s'
+  source: [w_stick_challenge, w_stick_nymph]
+
+amulets:
+  # [assumed] tiers: score AND his level both needed
+  bronze: {score: 1000000, level: 5}
+  silver: {score: 8000000, level: 8}
+  gold: {score: 20000000, level: 11}
+  diamond: {score: 50000000, level: 13}
+  quality: 'rises linearly with score up to 200M'
+  stat_range: 'up to +300k Capacity, x1.25 Convert Rate, +30% Blue Pollen, -15% Monster Respawn, +2 Blue Bee Attack, +30% Blue Bomb Pollen'
+  disagree: 'Monster Respawn: blue_hive_guide up to -15%; Natro''s help text up to -10%'
+  source: [w_stick_amulet, blue_hive_guide, natro, fuzzy]

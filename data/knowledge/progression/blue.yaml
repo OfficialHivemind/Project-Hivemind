@@ -1,0 +1,1459 @@
+# NORMALISED 2026-10-14 from ~/.cache/hivemind-work/research/progression_blue.yaml
+# for brain/progression: ids as in goals.yaml (hive_slot<=N, silver_star_amulet,
+# science_translator_1), a short `label` and a gear `slot` per goal, costs as
+# numbers (an unknown cost is left out, never 0). Sources kept as researched.
+#
+# Bee Swarm Simulator -- BLUE HIVE progression, fresh account to endgame.
+# Research of 2026-10-14 for Hivemind's planner. Research only: nothing in ~/Hivemind changed.
+#
+# HOW TO READ
+#   * Every fact carries `source:` ids from `sources` below. Wiki pages were read
+#     through api.php (action=parse, prop=wikitext) on 2026-10-14; the wiki's newest
+#     listed update is 2026-06-08 (Beesmas 2025 removed), so prices are current as
+#     far as the wiki knows. Read the price on the shop screen before buying.
+#   * "GUESS:" marks our inference; "DISAGREE:" marks sources that conflict.
+#   * Goal ids reuse data/knowledge/goals.yaml where they exist (porcelain_dipper,
+#     porcelain_port_o_hive, honey_mask, bubble_mask, honeycomb_belt, cobalt_guard,
+#     crimson_guard, diamond_mask). `hive_slot_to_N` = goals.yaml `hive_slot<=N`.
+#   * Hive slot prices are the wiki's table (data/knowledge/hive_slots.yaml).
+#   * Stage boundaries are ours, built from the guides: the AG guide's own stages 1-4
+#     all start AFTER a Supreme Star Amulet (SSA); the pre-SSA part comes from
+#     itemlevel/meta-bee/another macro's docs and the wiki.
+#
+# A TYPICAL ACCOUNT AT THE END OF `mid`: blue, about 40 bees, no SSA yet. The binding gates ahead are
+#    (1) 40 GIFTED TYPES for the SSA, (2) Science Bear's translator for Bucko quests,
+#    (3) badges (Spirit Bear needs 15 Ace then 10 Master for the first Spirit Petal).
+
+hive: blue
+updated: 2026-10-14
+sources:
+- id: w_tools
+  title: 'Wiki: Tools / Noob Shop / Pro Shop'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Tools
+- id: w_noob_pro
+  title: 'Wiki: Noob Shop + Pro Shop item tables'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pro_Shop
+- id: w_blue_hq
+  title: 'Wiki: Blue HQ (shop, Blue Field Booster, Bucko NPC)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Blue_HQ
+- id: w_mts
+  title: 'Wiki: Mountain Top Shop'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Mountain_Top_Shop
+- id: w_guild
+  title: 'Wiki: Badge Bearer''s Guild (sprinklers + Ace Shop)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Badge_Bearer%27s_Guild
+- id: w_items
+  title: 'Wiki item pages: Bubble Wand, Porcelain Port-O-Hive, Bubble Mask, Diamond Mask, Hiking Boots, Propeller
+    Hat, Glider, Parachute'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Diamond_Mask
+- id: w_endgear
+  title: 'Wiki item pages: Petal Wand, Petal Belt, Petal Shop, Tide Popper, Coconut Canister, Coconut Clogs, Coconut
+    Belt, Gummy Mask, Gummy Boots'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Petal_Shop
+- id: w_planters
+  title: 'Wiki: Planter + planter pages (Blue Clay, Candy, Tacky, Hydroponic, Heat-Treated, Petal, Planter Of Plenty,
+    Ticket)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Planter
+- id: w_nectar
+  title: 'Wiki: Nectar + Template:NectarTypes'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Nectar
+- id: w_slots
+  title: 'Wiki: Hive Slot (price table)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Hive_Slot
+- id: w_gates
+  title: 'Wiki: Windy Bee Gate, Bear Gate (30), Lion Bee Gate; world.yaml gate list'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Windy_Bee_Gate
+- id: w_fields
+  title: 'Wiki field pages: Blue Flower, Bamboo, Pine Tree Forest, Stump, Pepper Patch, Coconut, Mountain Top'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pine_Tree_Forest
+- id: w_amulets
+  title: 'Wiki: Amulet, Star Amulet (+Supreme), Star Hall, Moon/Shell/Ant/Cog/Stick Bug/King Beetle Amulet'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Star_Amulet
+- id: w_badges
+  title: 'Wiki: Badges'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Badges
+- id: w_jelly
+  title: 'Wiki: Royal Jelly / Star Jelly (odds, sources), Royal Jelly Shop'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly
+- id: w_eggs
+  title: 'Wiki: Egg (all egg types, odds, Ticket Tent prices), Star Treat, Gifted Bees, Mutation'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Egg
+- id: w_bees
+  title: 'Wiki bee pages: Bubble, Bucko, Diamond, Tadpole, Buoyant, Frosty, Cobalt, Windy, Vicious, Bear, Baby,
+    Tabby, Photon, Music, Fuzzy, Cool, Bumble, Ninja'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Buoyant_Bee
+- id: w_q_black
+  title: 'Wiki: Black Bear (quest chains, eggs)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear
+- id: w_q_other
+  title: 'Wiki: Mother, Brown, Panda, Polar, Dapper, Onett, Honey Bee (NPC) pages'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear
+- id: w_q_science
+  title: 'Wiki: Science Bear + Translator'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Science_Bear
+- id: w_q_spirit
+  title: 'Wiki: Spirit Bear (30 quests, Spirit Petals) + Wind Shrine'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Spirit_Bear
+- id: w_q_bucko
+  title: 'Wiki: Gifted Bucko Bee (infinite quests, milestones) / Gifted Riley Bee'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Bucko_Bee
+- id: w_mobs
+  title: 'Wiki mob pages: King Beetle, Tunnel Bear, Commando Chick, Coconut Crab, Stump Snail, Rogue Vicious Bee,
+    Mondo Chick, Wild Windy Bee'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Commando_Chick
+- id: w_misc
+  title: 'Wiki: Balloon (blessing), Beequips, Sticker / Sticker Stack, Hive Hub, Ticket Shop, Updates'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Updates
+- id: ag_guide
+  title: The Definitive Blue Hive Guide, AG gaming, updated 2026-06-06 (Google Doc; saved verbatim at data/knowledge/guides/blue_hive_guide.md)
+  url: https://docs.google.com/document/d/1i9rz9mGYeVQQD7j2PaBB5p2gZPp_PX1HP-0GltTlWgA
+- id: metabee_alt
+  title: 'Meta Bee: How to progress your BSS alt account (gear order)'
+  url: https://meta-bee.com/how-to-progress-your-bss-alt-account/
+- id: metabee_blue
+  title: 'Meta Bee: Ultimate Blue Hive Meta (comps, beequips, SSA passives)'
+  url: https://meta-bee.com/ultimate-blue-hive-meta/
+- id: metabee_macro
+  title: 'Meta Bee: Ultimate Guide to Blue Hive Macro Settings (2024-10-24, upd. 2025-03-22)'
+  url: https://meta-bee.com/the-ultimate-guide-to-blue-hive-macro-settings/
+- id: itemlevel_order
+  title: 'itemlevel.net: Best item order in BSS (2025-12-14)'
+  url: https://itemlevel.net/best-item-order-in-roblox-bee-swarm-simulator/
+- id: itemlevel_early
+  title: 'itemlevel.net: Early Blue Hive Meta 2026 (2026-01-06)'
+  url: https://itemlevel.net/roblox-bee-swarm-simulator-early-blue-hive-meta-2026/
+- id: macro_docs_prog
+  title: 'Another macro''s docs: Bee Swarm progression and macro setup'
+  url: ''
+- id: bot_research_1006
+  title: 'Hivemind research 2026-10-06: blue progression from 39 bees (docs/pending/blue_progression_research.md)'
+  url: file://~/.cache/hivemind-work/wt-integ/docs/pending/blue_progression_research.md
+- id: bot_gear_1013
+  title: 'Hivemind research 2026-10-13: blue gear order by payback'
+  url: file://~/.cache/hivemind-work/research-gear-order-2026-10-13.md
+- id: yt_titles
+  title: 'YouTube guide titles found, NOT watched (unverified): ''The BEST Early Blue Guide in *2026*!'' youtube.com/watch?v=K80Rm3kryqo;
+    ''The Definitive Blue Hive Guide'' youtube.com/watch?v=SRSPiaFsY1M; ''UPDATED *BLUE HIVE* GUIDE For 2025!''
+    youtube.com/watch?v=LStWzD3Bl_g; ''Complete Progression Guide'' youtube.com/watch?v=LsuM5kq_xb4'
+  url: https://www.youtube.com/watch?v=K80Rm3kryqo
+stages:
+- id: early
+  name: Early -- fresh account to 25 bees (starter zone up to the Honey Bee Gate)
+  enter_when:
+    bees: 1
+    honey: 0
+  goals:
+  - id: basic_eggs_to_25
+    label: 25 bees
+    kind: bee
+    name: Fill the 25 free slots with Basic Eggs
+    cost:
+      honey: 0
+    requires: []
+    why: Bee count opens every gate (5/10/15/25/30/35); Basic Egg starts at 1,000 honey and rises per purchase to
+      a 10M cap; 0.4% gifted per hatch.
+    priority: 1
+    source:
+    - w_eggs
+    - w_gates
+  - id: black_bear_egg_chains
+    label: Black Bear's egg quests
+    kind: quest
+    name: Black Bear chains to Silver (6), Gold (9), Diamond (20) Egg
+    cost: {}
+    requires: []
+    why: Pure pollen quests that pay eggs = bees; the cheapest bees in the game.
+    priority: 1
+    source:
+    - w_q_black
+  - id: tool_ladder_early
+    label: Noob/Pro Shop tools
+    kind: gear
+    slot: tool
+    name: 'Tool ladder: Rake 800 > Clippers 2,200 > Magnet 5,500 > Vacuum 14,000 > (Pro Shop) Super-Scooper 40k
+      > Pulsar 125k > Electro-Magnet 300k > Scissors 850k'
+    cost:
+      honey: 1337500
+    requires:
+    - Pro Shop items after the 10-bee Brave Bee Gate (itemlevel; GUESS for exact gate)
+    why: Tool pollen is most of early income; Clippers/Scissors also cut the Commando Chick vines.
+    priority: 2
+    source:
+    - w_tools
+    - w_noob_pro
+    - itemlevel_order
+  - id: bag_ladder_early
+    label: Noob/Pro Shop bags
+    kind: gear
+    slot: bag
+    name: 'Bag ladder: Jar 650 > Backpack 5,500 > Canister 22k > Mega-Jug 50k > Compressor 160k > Elite Barrel 650k
+      > Port-O-Hive 1.25M'
+    cost:
+      honey: 2138150
+    requires: []
+    why: Capacity sets trip length; buy the next bag as soon as the bag fills faster than the walk.
+    priority: 2
+    source:
+    - w_noob_pro
+  - id: basic_boots
+    label: Basic Boots
+    kind: gear
+    slot: boots
+    name: Basic Boots
+    cost:
+      honey: 4400
+      items:
+        sunflower_seed: 3
+        blueberry: 3
+    requires: []
+    why: Early movespeed; itemlevel says prioritise for movement.
+    priority: 3
+    source:
+    - w_noob_pro
+    - itemlevel_order
+  - id: bubble_wand
+    label: Bubble Wand
+    kind: gear
+    slot: tool
+    name: Bubble Wand (Blue HQ)
+    cost:
+      honey: 3500000
+    requires:
+    - 4 blue bee types discovered (Blue HQ door)
+    why: 'First blue tool: 6 pollen x 16 patches / 0.8 s, x2 on blue = ~240/s blue. Best blue tool until the Porcelain
+      Dipper.'
+    priority: 2
+    source:
+    - w_blue_hq
+    - w_items
+    - itemlevel_order
+  - id: blue_port_o_hive
+    label: Blue Port-O-Hive
+    kind: gear
+    slot: bag
+    name: Blue Port-O-Hive (Blue HQ)
+    cost:
+      honey: 12500000
+      items:
+        blue_extract: 2
+        soft_wax: 2
+    requires:
+    - 4 blue bee types discovered
+    why: '+400k capacity, +10% blue pollen, +10% instant blue conversion: the blue bag until Porcelain.'
+    priority: 2
+    source:
+    - w_blue_hq
+  - id: parachute
+    label: Parachute
+    kind: gear
+    slot: glider
+    name: Parachute (Pro Shop)
+    cost:
+      honey: 500000
+    requires: []
+    why: 'Needed for many RJ/ticket tokens and shortcuts; itemlevel says skip it for the Glider later. DISAGREE:
+      cheap enough to just buy.'
+    priority: 4
+    source:
+    - w_items
+    - itemlevel_order
+  - id: blue_guard
+    label: Elite Blue Guard
+    kind: gear
+    slot: right_guard
+    name: Blue Guard then Elite Blue Guard (Blue HQ, right shoulder)
+    cost:
+      honey: 6000000
+      items:
+        blueberry: 100
+        royal_jelly: 6
+        moon_charm: 18
+        blue_extract: 3
+    requires:
+    - 4 blue bee types
+    why: '+25k/+75k capacity, +15%/+25% blue pollen. DISAGREE: itemlevel says skip guards early as not cost-effective.'
+    priority: 4
+    source:
+    - w_blue_hq
+    - itemlevel_order
+  - id: silver_soakers
+    label: Silver Soakers
+    kind: gear
+    slot: sprinkler
+    name: Basic Sprinkler (10 Cadet badges) then Silver Soakers (10 Hotshot badges)
+    cost:
+      honey: 23333333
+    requires:
+    - 15 badges to enter the Guild
+    - 10 Cadet / 10 Hotshot badges
+    why: Sprinklers regrow flowers in the gather field; Silver Soakers = 2 sprinklers.
+    priority: 3
+    source:
+    - w_guild
+  fields:
+  - field: sunflower
+    why: Starter field next to the hive, no mobs; first quests (70% white).
+    source:
+    - w_q_black
+  - field: blue_flower
+    why: First blue field, 0 bees, 731 flowers 70% blue / 30% white, one lvl-1 Rhino Beetle; Blue HQ is behind it;
+      King Beetle's Lair entrance is in its wall.
+    source:
+    - w_fields
+  - field: bamboo
+    why: 5 bees; 75% blue, mostly double flowers (better than Blue Flower's singles); two Rhino Beetles.
+    source:
+    - w_fields
+  - field: stump
+    why: 10 bees; 85% blue, all triple flowers -- but while the Stump Snail lives your bees attack it instead of
+      gathering, so early it is a snail fight, not a farm.
+    source:
+    - w_fields
+    - w_mobs
+  quests:
+  - giver: black_bear
+    chain: Silver Egg (6) > Gold Egg (9) > Diamond Egg (20) > Star Jelly (20) > Mythic Egg (Myth In The Making,
+      ~75th) > repeatables 1/hour
+    why: All pollen; eggs, RJ, tickets; Treats from the Star Jelly chain feed Mother Bear and the Honey Mask.
+    source:
+    - w_q_black
+    - w_eggs
+  - giver: mother_bear
+    chain: 13 levelling/treat quests; quest 10 'Seven To Seven' gives a Star Egg; finishing all gives a Star Treat
+    why: Star Egg + Star Treat = two guaranteed gifted bees.
+    source:
+    - w_q_other
+    - w_eggs
+  - giver: science_bear
+    chain: 31 quests gated by bee TYPES discovered (5..35); Translators at 21, 26, 31
+    why: Translators unlock Bucko (blue extract every quest), Stick Bug, Riley. Mandatory chain per the wiki.
+    source:
+    - w_q_science
+  - giver: panda_bear
+    chain: mob-kill quests; 'Colossal Combat' (15) Diamond Egg; 'Royal Rumble' (20) Star Egg; finishing all gives
+      a Star Treat
+    why: Bees kill these mobs while gathering anyway.
+    source:
+    - w_q_other
+    - w_eggs
+  - giver: brown_bear
+    chain: 'infinite pollen quests; milestones: 50 Gold Egg, 75 Diamond Egg, 90 Star Jelly, 100/200/400 Mythic Egg,
+      750 Star Treat'
+    why: Steady eggs and materials for work the farm does anyway.
+    source:
+    - w_q_other
+    - w_eggs
+  - giver: honey_bee
+    chain: 'Honey Hunt: 500 x n honey tokens; Star Jelly every 10 quests up to 100'
+    why: Free Star Jellies = gifted bees.
+    source:
+    - w_jelly
+    - w_q_other
+  bees:
+  - bee: any_blue_rare_epic
+    why: Discovering blue TYPES opens the Blue HQ (4 types) and Science Bear's gates; keep Bubble/Bucko/Bumble/Cool,
+      roll red ones later.
+    gifted_priority: 2
+    source:
+    - w_blue_hq
+    - w_q_science
+  - bee: bubble
+    why: Epic blue; Blue Bomb + gathering bubbles; gifted x1.25 bubble pollen. The early-blue placeholder for Tadpoles/Buoyants.
+    gifted_priority: 2
+    source:
+    - w_bees
+    - ag_guide
+  - bee: bucko
+    why: Epic blue; Blue Boost (x1.2 blue pollen, 10 stacks); gifted +20% blue field capacity.
+    gifted_priority: 2
+    source:
+    - w_bees
+  tips:
+  - 'Join the free Bee Swarm Simulator Club group: unlocks the Honey/Treat/Strawberry/Blueberry dispensers and is
+    required for Science Bear''s ''The Power of Information'' (account.yaml; wiki Science Bear).'
+  - Use Royal Jelly on BASIC bees only until rares are gone; RJ odds are ~70% rare, 27% epic, 3% legendary, 1/250
+    gifted, 1/25,000 mythic -- it never rolls an event bee.
+  - Wealth Clock hourly (1,2,3,4,5 tickets in an unbroken session) is the main free ticket source.
+  - 'Kill King Beetle daily from ~15 bees: 2,500 HP, first kill 100 treats + RJ, 1/7 King Beetle Amulet.'
+- id: mid
+  name: 'Mid -- 25 to ~40 bees, pre-SSA: Mountain Top Shop gear, translators, gifting toward 40 gifted types'
+  enter_when:
+    bees: 25
+    honey: 20000000
+  goals:
+  - id: glider
+    label: Glider
+    kind: gear
+    slot: glider
+    name: Glider (Mountain Top Shop)
+    cost:
+      honey: 5000000
+    requires:
+    - 25 bees (Lion Bee Gate)
+    why: Essential for movement/macroing; the only way to some tokens incl. the free Diamond Egg token under the
+      Bear Gate platform.
+    priority: 1
+    source:
+    - w_mts
+    - w_items
+    - itemlevel_order
+  - id: beekeepers_boots
+    label: Beekeeper's Boots
+    kind: gear
+    slot: boots
+    name: Beekeeper's Boots
+    cost:
+      honey: 15000000
+      items:
+        oil: 5
+        blue_extract: 3
+        red_extract: 3
+    requires:
+    - 25 bees
+    why: +27% bee gather pollen, +8 movespeed, +20 jump. Strictly better than Hiking Boots for honey.
+    priority: 1
+    source:
+    - w_mts
+    - bot_gear_1013
+  - id: mondo_belt_bag
+    label: Mondo Belt Bag
+    kind: gear
+    slot: belt
+    name: Mondo Belt Bag
+    cost:
+      honey: 12400000
+      items:
+        pineapple: 150
+        sunflower_seed: 150
+        stinger: 10
+        soft_wax: 1
+    requires:
+    - 25 bees
+    why: +100k capacity, +50 convert amount; the belt until the Honeycomb Belt.
+    priority: 2
+    source:
+    - w_mts
+    - itemlevel_order
+  - id: bucko_guard
+    label: Bucko Guard
+    kind: gear
+    slot: right_guard
+    name: Bucko Guard (Blue HQ, right shoulder)
+    cost:
+      honey: 30000000
+      items:
+        blue_extract: 10
+        blueberry: 100
+        glue: 5
+        moon_charm: 75
+    requires:
+    - 4 blue types
+    why: +150k capacity, +35% blue pollen, +2 blue attack; Meta Bee's first alt purchase.
+    priority: 2
+    source:
+    - w_blue_hq
+    - metabee_alt
+  - id: hive_slot<=33
+    label: Hive slots to 33
+    kind: hive_slot
+    name: Hive slots 26-33
+    cost:
+      honey: 330302601
+    requires:
+    - 25 bees
+    why: 'itemlevel: buy slots until 33 bees, then gear; wiki table 3,000,000 (26th) ... 110,474,899 (33rd).'
+    priority: 1
+    source:
+    - w_slots
+    - itemlevel_order
+  - id: porcelain_dipper
+    label: Porcelain Dipper
+    kind: gear
+    slot: tool
+    name: Porcelain Dipper
+    cost:
+      honey: 150000000
+    requires:
+    - 25 bees
+    why: 'Skip the Spark Staff and buy this: 210/s on blue, 315/s on white, light pillar every 10th swing.'
+    priority: 1
+    source:
+    - w_mts
+    - itemlevel_order
+    - metabee_alt
+  - id: hive_slot<=35
+    label: Hive slots to 35
+    kind: hive_slot
+    name: Hive slots 34-35
+    cost:
+      honey: 362020939
+    requires:
+    - 25 bees
+    why: '35 bees opens the Windy Bee Gate: Spirit Bear, Petal Shop, Coconut Field/Crab, Wind Shrine.'
+    priority: 1
+    source:
+    - w_slots
+    - w_gates
+  - id: porcelain_port_o_hive
+    label: Porcelain Port-O-Hive
+    kind: gear
+    slot: bag
+    name: Porcelain Port-O-Hive
+    cost:
+      honey: 250000000
+      items:
+        glitter: 3
+        soft_wax: 3
+        moon_charm: 10
+    requires:
+    - 25 bees
+    why: 600k capacity, +250% convert rate, x1.25 convert at hive. Lost its +10% blue in 2024-05-23 but capacity
+      wins.
+    priority: 1
+    source:
+    - w_items
+    - itemlevel_order
+  - id: bubble_mask
+    label: Bubble Mask
+    kind: gear
+    slot: hat
+    name: Bubble Mask
+    cost:
+      honey: 100000000
+      items:
+        blueberry: 500
+        blue_extract: 50
+        oil: 25
+        glitter: 15
+    requires:
+    - 4 blue types
+    why: x1.5 blue pollen, x1.5 capacity, x1.25 blue field capacity; owning it gives the Diamond Mask its Bubble
+      Bombs. The first mask for blue.
+    priority: 1
+    source:
+    - w_items
+    - itemlevel_order
+    - metabee_alt
+  - id: silver_star_amulet
+    label: Silver Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Bronze (5 gifted types, 25M) / Silver (10 types, 50M) Star Amulet
+    cost:
+      honey: 50000000
+    requires:
+    - 10 gifted bee TYPES discovered (Silver)
+    why: Cheapest big capacity in the game; re-roll for blue pollen/convert rate. Owner already holds a Silver.
+    priority: 1
+    source:
+    - w_amulets
+    - bot_gear_1013
+  - id: gold_star_amulet
+    label: Gold Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Gold Star Amulet
+    cost:
+      honey: 250000000
+    requires:
+    - 20 gifted types discovered
+    why: Next amulet tier once 20 gifted types are discovered.
+    priority: 2
+    source:
+    - w_amulets
+  - id: diamond_star_amulet
+    label: Diamond Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Diamond Star Amulet
+    cost:
+      honey: 1000000000
+    requires:
+    - 30 gifted types discovered
+    why: Can roll Guiding Star / Star Shower passive (1/100). Bridge to the SSA.
+    priority: 3
+    source:
+    - w_amulets
+  - id: moon_amulet
+    label: Moon Amulet
+    kind: amulet
+    name: Moon Amulet (Moon Amulet Generator)
+    cost:
+      items:
+        moon_charm: 100
+    requires: []
+    why: +25k capacity per generation, maxing at 250k after ~10 (quality maxes at 40); also lets you stand on moon
+      platforms at night (Diamond room). Moon Charms are a free night drop.
+    priority: 3
+    source:
+    - w_amulets
+  - id: king_beetle_amulet
+    label: King Beetle Amulet
+    kind: amulet
+    name: King Beetle Amulet (1/7 per daily King Beetle kill)
+    cost: {}
+    requires:
+    - King Beetle kill
+    why: Can roll Bamboo/Pine field boosts; quality maxes at 100 kills. Keep the best roll.
+    priority: 4
+    source:
+    - w_amulets
+    - w_mobs
+  - id: golden_gushers
+    label: Golden Gushers
+    kind: gear
+    slot: sprinkler
+    name: Golden Gushers (3 sprinklers)
+    cost:
+      honey: 333333333
+    requires:
+    - 10 Ace badges
+    why: Field-badge pollen in Pine/Bamboo/Blue Flower earns the Ace badges that gate it.
+    priority: 3
+    source:
+    - w_guild
+    - bot_research_1006
+  - id: science_translator_1
+    label: Science Bear's first Translator
+    kind: quest
+    name: Science Bear to quest 21 'Limits of Language' (first Translator)
+    cost: {}
+    requires:
+    - 25 bee types
+    - 10 Hotshot badges
+    - Blender crafts (quests 19-21 need 10, 14, 50)
+    why: 'Translator #1 -> Gifted Bucko Bee: Blue Extract every quest, Star Jelly at 25, Gifted Gold Egg at 50,
+      Gifted Diamond Egg at 100.'
+    priority: 1
+    source:
+    - w_q_science
+    - w_q_bucko
+    - itemlevel_order
+  - id: dapper_bear_quests
+    label: Dapper Bear's quests
+    kind: quest
+    name: Dapper Bear (needs Propeller Hat + Hiking Boots worn to enter)
+    cost:
+      honey: 4700000
+      items:
+        gumdrops: 25
+        pineapple: 100
+        moon_charm: 5
+        blueberry: 50
+        strawberry: 50
+    requires:
+    - Propeller Hat
+    - Hiking Boots
+    why: Beequip Cases (more beequip slots), Ticket Planters, Diamond Egg at 10, Mythic Egg at 15. Owner already
+      owns both items.
+    priority: 2
+    source:
+    - w_items
+    - w_q_other
+  - id: blue_clay_planter
+    label: Blue Clay Planter
+    kind: planter
+    name: Blue Clay Planter
+    cost:
+      honey: 10000000
+      items:
+        magic_bean: 5
+        blue_extract: 15
+        soft_wax: 20
+    requires: []
+    why: +20% Refreshing and Comforting nectar, +50% blue pollen on harvest, extra Blue Extract. Owner has one.
+    priority: 2
+    source:
+    - w_blue_hq
+    - w_planters
+  - id: candy_planter
+    label: Candy Planter
+    kind: planter
+    name: Candy Planter (Dapper Bear's Shop)
+    cost:
+      honey: 5000000
+      items:
+        magic_bean: 5
+        gumdrops: 30
+        jelly_beans: 3
+        soft_wax: 5
+    requires:
+    - Dapper shop entry
+    why: x1.2 Motivating nectar (blue pollen + convert rate + ability rate); 3x in Stump = 10 Glue (1-week cooldown).
+    priority: 3
+    source:
+    - w_planters
+    - w_nectar
+  - id: tacky_planter
+    label: Tacky Planter
+    kind: planter
+    name: Tacky Planter
+    cost:
+      honey: 50000000
+      items:
+        magic_bean: 10
+        purple_potion: 1
+        hard_wax: 5
+        soft_wax: 20
+    requires:
+    - Dapper shop entry
+    why: x1.25 Comforting/Satisfying; drops Field/Smooth Dice; Mountain Top harvest = 1-2 Loaded Dice monthly.
+    priority: 4
+    source:
+    - w_planters
+    - w_nectar
+  - id: honey_mask
+    label: Honey Mask
+    kind: gear
+    slot: hat
+    name: Honey Mask (Ace Shop)
+    cost:
+      honey: 100000000
+      items:
+        treats: 9999
+        oil: 50
+        enzymes: 25
+        gold_egg: 5
+    requires:
+    - 1 Ace badge
+    why: Optional for blue (itemlevel); its Coin Scatter is only inherited by the Gummy Mask (white). Owner already
+      has it -- do not buy again.
+    priority: 5
+    source:
+    - w_guild
+    - itemlevel_order
+  fields:
+  - field: pine_tree
+    why: '15 bees; 713 flowers, 85% blue, 50% triple -- the blue main field from here to endgame (AG, Meta Bee,
+      a popular macro''s docs all say Pine). Two Mantises + Werewolf: a death empties the bag.'
+    source:
+    - w_fields
+    - ag_guide
+    - metabee_macro
+    - macro_docs_prog
+  - field: bamboo
+    why: Second blue field; Blue Field Booster x1; Bucko quests ask for Bamboo pollen.
+    source:
+    - w_fields
+    - w_q_bucko
+  - field: blue_flower
+    why: Blue Field Booster gives it x3 (+300%) when it lands here; good boosted target.
+    source:
+    - w_blue_hq
+    - w_fields
+  - field: stump
+    why: Gather only while the Stump Snail is dead (then it also enters the Blue Field Booster pool).
+    source:
+    - w_fields
+    - ag_guide
+  - field: pepper
+    why: 'NOT for blue: 85% red, 0% blue (Spirit Bear/Black Bear quests only).'
+    source:
+    - w_fields
+  - field: coconut
+    why: 'NOT for blue: 85% white; visit only to kill the Coconut Crab / for quests.'
+    source:
+    - w_fields
+  - field: mountain_top
+    why: 1/3 red 1/3 blue; Mondo Chick each hour; not a blue main.
+    source:
+    - w_fields
+    - w_mobs
+  quests:
+  - giver: polar_bear
+    chain: 20 random repeatable quests forever; +5% max bee energy per quest (Polar Power), 10 treats, occasional
+      Oil/Enzymes/Glitter
+    why: 'AG: ''START MACROING POLAR NOW''; minimum 1,500 (another macro: 500 min, 1,500+ aim). Every quest also counts
+      to Quest badges (Grandmaster = 5,000 quests = x2.25 capacity).'
+    source:
+    - w_q_other
+    - ag_guide
+    - macro_docs_prog
+    - w_badges
+  - giver: science_bear
+    chain: 'finish to 21 (Translator #1); then 26 (Translator #2 + Star Jelly; needs a Carpenter Bee), 31 (Translator
+      #3)'
+    why: 'Translator order: Bucko first, then Stick Bug, then Riley (itemlevel).'
+    source:
+    - w_q_science
+    - itemlevel_order
+  - giver: dapper_bear
+    chain: '16 nectar quests: beequip case slots, Ticket Planters, vials, Diamond Egg (10), Mythic Egg (15)'
+    why: Beequip slots + the Comforting Vial the Diamond Mask needs (quest 6).
+    source:
+    - w_q_other
+  - giver: spirit_bear
+    chain: 35 bees; 30 quests; quest 5 needs 15 Ace badges, quest 10 needs 10 Master badges -> 1st Spirit Petal;
+      petals at 10, 20, 30
+    why: Petals = Windy Bee (Wind Shrine), Petal Wand, Petal Belt. Big RJ/Glitter/Star Jelly rewards too.
+    source:
+    - w_q_spirit
+  - giver: onett
+    chain: 30 bees (Bear Gate); 5 very hard quests -> Star Treat
+    why: One guaranteed gifted bee of your choice (incl. event bees). Late in this stage.
+    source:
+    - w_q_other
+    - w_eggs
+  bees:
+  - bee: diamond
+    why: 'Legendary blue; Shimmering Honey +50% honey at hive per Diamond; gifted x1.2 convert rate. AG: ''always
+      push to add as many Diamonds as possible''; early comp 5 Diamonds.'
+    gifted_priority: 2
+    source:
+    - w_bees
+    - ag_guide
+  - bee: bubble
+    why: AG Stage-1 comp is 13-14 Bubbles + 5 Diamonds while mythics are out of reach.
+    gifted_priority: 2
+    source:
+    - ag_guide
+  - bee: tabby
+    why: 'Event bee, 500 tickets; gifted +50% crit power; itemlevel''s #1 event bee to gift.'
+    gifted_priority: 2
+    source:
+    - w_bees
+    - itemlevel_order
+  - bee: photon
+    why: 'Event bee, 500 tickets; gifted +5% instant conversion; itemlevel''s #2 event bee.'
+    gifted_priority: 3
+    source:
+    - w_bees
+    - itemlevel_order
+  - bee: vicious
+    why: '250 Stingers at the Vicious Bee Egg Claim; gifted -15% mob respawn (more Polar quests, King/Tunnel/Snail
+      sooner). AG: run until 500 Polar.'
+    gifted_priority: 3
+    source:
+    - w_bees
+    - ag_guide
+  - bee: windy
+    why: 'Only via Spirit Petal + Cloud Vials at the Wind Shrine; AG: always run until Tide/Hydro or fully gifted.'
+    gifted_priority: 3
+    source:
+    - w_bees
+    - ag_guide
+  - bee: cobalt
+    why: Event, 250 tickets; gifted +15% instant blue conversion -- worth it as a GIFTED TYPE for the SSA count,
+      but AG never runs it in a comp.
+    gifted_priority: 4
+    source:
+    - w_bees
+    - ag_guide
+  - bee: frosty
+    why: Epic blue; gifted x1.25 blue bomb pollen. Gift it for the type count; AG never runs it.
+    gifted_priority: 4
+    source:
+    - w_bees
+    - ag_guide
+    - itemlevel_early
+  tips:
+  - 'THE MID-GAME GATE IS 40 GIFTED TYPES (SSA). Discovered gifted types count even after the bee is rolled away.
+    Sources: Star Jelly (random gifted), Star Eggs (a gifted type NOT already in your hive), Star Treats (1,000
+    tickets, any bee incl. event), gifted eggs from Bucko 50/100, Tunnel Bear''s first kill, Black Bear ''Getting
+    Stumped'', Brown 440; 1/250 per RJ or egg.'
+  - 'Save Star Eggs: they never give a gifted mythic until every non-event gifted type is in the hive, so hatch
+    them late for a guaranteed gifted mythic (itemlevel).'
+  - 'Do not RJ or egg over a gifted or mutated bee: it almost certainly loses the gifted status/mutation.'
+  - 'Blue Field Booster (Blue HQ upstairs) every 45 min: Blue Flower x3, Pine/Bamboo x1, Stump x1 only if the snail
+    is dead.'
+  - 'Nectar priority for blue: Comforting (Pine/Bamboo/Dandelion: blue pollen + convert at hive) and Motivating
+    (Stump/Spider/Mushroom/Rose: blue pollen, convert rate, ability rate), then Refreshing (Blue Flower/Strawberry/Coconut:
+    blue convert rate). 3 planters max; Natro default harvest ~2 h.'
+  - 'Royal Jelly Shop: 250k +10k per jelly bought, capped at 1M each; every Blender material is 10 RJ + 50 fruit,
+    so RJ is the real price of Ace/Blue HQ gear.'
+  - Collect the one-time Diamond Egg token under the Onett platform past the Bear Gate (glide; touching the floor
+    kills you -- empty the bag first).
+- id: late
+  name: Late -- SSA (Pop Star) through 50 bees and gifting (AG stages 1-2, levels up to 18)
+  enter_when:
+    bees: 40
+    honey: 2000000000
+    gear:
+    - porcelain_dipper
+    - porcelain_port_o_hive
+    - bubble_mask
+  goals:
+  - id: honeycomb_belt
+    label: Honeycomb Belt
+    kind: gear
+    slot: belt
+    name: Honeycomb Belt (Ace Shop)
+    cost:
+      honey: 75000000
+      items:
+        enzymes: 50
+        glue: 50
+        oil: 25
+    requires:
+    - 1 Ace badge
+    why: '+150k and +25% capacity, +75 convert amount; best payback per honey of the Ace gear for this bot. DISAGREE:
+      itemlevel skips it, 2022 guide buys it ~40 bees.'
+    priority: 1
+    source:
+    - w_guild
+    - bot_gear_1013
+    - bot_research_1006
+  - id: cobalt_guard
+    label: Cobalt Guard
+    kind: gear
+    slot: right_guard
+    name: Cobalt Guard (Ace Shop, right shoulder -- replaces Bucko Guard)
+    cost:
+      honey: 200000000
+      items:
+        blue_extract: 100
+        stinger: 100
+        enzymes: 50
+        glitter: 25
+    requires:
+    - 1 Ace badge
+    why: +250k capacity, +50% blue pollen, +3 blue attack, Haste Pulser.
+    priority: 1
+    source:
+    - w_guild
+    - metabee_alt
+    - itemlevel_order
+  - id: hive_slot<=42
+    label: Hive slots to 42
+    kind: hive_slot
+    name: Hive slots 40-42 (894,566,712 / 1,327,768,458 / 2,375,844,017)
+    cost:
+      honey: 4598179187
+    requires:
+    - 25 bees
+    why: All guides put 40-42 before the Diamond Mask; but per honey the Belt/Cobalt pay back 4-10x faster (bot
+      payback study).
+    priority: 2
+    source:
+    - w_slots
+    - metabee_alt
+    - bot_gear_1013
+  - id: supreme_star_amulet
+    label: Supreme Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Supreme Star Amulet with Pop Star
+    cost:
+      honey: 10000000000
+    requires:
+    - 40 gifted types discovered
+    why: 'AG Stage 1 starts here: ''Get any SSA with Popstar''; then 2/5 > 4/5 Popstar with blue pollen + convert
+      rate. Passive is 1/6 per roll, double passive 1/50 (or pay 500B to guarantee two).'
+    priority: 1
+    source:
+    - w_amulets
+    - ag_guide
+    - metabee_blue
+  - id: diamond_mask
+    label: Diamond Mask
+    kind: gear
+    slot: hat
+    name: Diamond Mask
+    cost:
+      honey: 5000000000
+      items:
+        blue_extract: 250
+        oil: 150
+        glitter: 100
+        diamond_egg: 5
+        comforting_vial: 1
+    requires:
+    - own the Bubble Mask (for Bubble Bombs)
+    - reach the Diamond room (Cloud obby / moon platforms at night)
+    why: x3 capacity, x1.5 blue pollen, +25% pollen, Diamond Drain (+10% per blue bee, +50% per gifted blue type).
+      Never hatch the 5 Diamond Eggs.
+    priority: 1
+    source:
+    - w_items
+    - metabee_alt
+    - itemlevel_order
+  - id: crimson_guard
+    label: Crimson Guard
+    kind: gear
+    slot: left_guard
+    name: Crimson Guard (left shoulder, replaces Riley Guard)
+    cost:
+      honey: 200000000
+      items:
+        red_extract: 100
+        stinger: 100
+        oil: 50
+        glitter: 25
+    requires:
+    - 1 Ace badge
+    why: For blue mostly +250k capacity; Meta Bee marks it optional/high-level path.
+    priority: 3
+    source:
+    - w_guild
+    - metabee_alt
+  - id: petal_wand
+    label: Petal Wand
+    kind: gear
+    slot: tool
+    name: Petal Wand (Petal Shop)
+    cost:
+      honey: 1500000000
+      items:
+        spirit_petal: 1
+        star_jelly: 10
+        glitter: 25
+        enzymes: 75
+    requires:
+    - 35 bees
+    - Spirit Bear quest 10 (10 Master badges)
+    why: '634 pollen/s all colours + shurikens that instantly convert. AG: buy before transitioning (white border).
+      DISAGREE: itemlevel says Petal Belt first.'
+    priority: 2
+    source:
+    - w_endgear
+    - ag_guide
+    - itemlevel_order
+  - id: petal_belt
+    label: Petal Belt
+    kind: gear
+    slot: belt
+    name: Petal Belt (Petal Shop; replaces Honeycomb Belt)
+    cost:
+      honey: 15000000000
+      items:
+        spirit_petal: 1
+        star_jelly: 25
+        glitter: 50
+        glue: 100
+    requires:
+    - 35 bees
+    - a 2nd/3rd Spirit Petal (quests 20/30)
+    why: +250k and +50% capacity, +100 convert amount, Petal Storm.
+    priority: 2
+    source:
+    - w_endgear
+    - itemlevel_order
+  - id: hive_slot<=45
+    label: Hive slots to 45
+    kind: hive_slot
+    name: Hive slots 43-45 (4.55B / 9.30B / 20.13B)
+    cost:
+      honey: 33983628586
+    requires: []
+    why: Meta Bee puts 45 before Canister and Diamond Mask; bot payback study says after Belt/Cobalt/Diamond Mask.
+    priority: 3
+    source:
+    - w_slots
+    - metabee_alt
+    - bot_gear_1013
+  - id: coconut_canister
+    label: Coconut Canister
+    kind: gear
+    slot: bag
+    name: Coconut Canister (Coconut Cave)
+    cost:
+      honey: 25000000000
+      items:
+        coconut: 250
+        tropical_drink: 150
+        red_extract: 150
+        blue_extract: 150
+        refreshing_vial: 2
+    requires:
+    - 35 bees
+    - defeat the Coconut Crab (opens the Cave)
+    why: 1,000,000 capacity, +400% convert rate, x1.5 convert at hive; biggest bag.
+    priority: 2
+    source:
+    - w_endgear
+    - metabee_alt
+  - id: diamond_drenchers
+    label: Diamond Drenchers
+    kind: gear
+    slot: sprinkler
+    name: Diamond Drenchers (4 sprinklers)
+    cost:
+      honey: 4444444444
+    requires:
+    - 10 Master badges
+    why: Sprinkler step after Golden Gushers.
+    priority: 3
+    source:
+    - w_guild
+  - id: bucko_quests_150
+    label: 150 Bucko Bee quests
+    kind: quest
+    name: Gifted Bucko Bee to 150 quests
+    cost: {}
+    requires:
+    - Translator
+    why: Blue Extract every quest; milestones Star Jelly 25, Gifted Gold Egg 50, Gifted Diamond Egg 100, 10 Glitter
+      + Hydroponic Planter access at 150.
+    priority: 2
+    source:
+    - w_q_bucko
+    - macro_docs_prog
+  - id: hive_slot<=50
+    label: Hive slots to 50
+    kind: hive_slot
+    name: Hive slots 46-50 (46.2B / 111.8B / 285.5B / 767.5B / 2.17T)
+    cost:
+      honey: 3380091576052
+    requires: []
+    why: AG Stage 2 asks for 48 then 50 bees, and 'don't level above 15 before 50 bees'.
+    priority: 3
+    source:
+    - w_slots
+    - ag_guide
+  - id: coconut_clogs
+    label: Coconut Clogs
+    kind: gear
+    slot: boots
+    name: Coconut Clogs (Coconut Cave; replaces Beekeeper's Boots)
+    cost:
+      honey: 10000000000
+      items:
+        coconut: 150
+        tropical_drink: 50
+        glue: 100
+        oil: 100
+        refreshing_vial: 1
+    requires:
+    - Coconut Crab defeated
+    why: +15% pollen, +25% honey from tokens, Coconut Haste; last on Meta Bee's alt order.
+    priority: 4
+    source:
+    - w_endgear
+    - metabee_alt
+  fields:
+  - field: pine_tree
+    why: Main field; AG/Natro pattern 'Kettle' (Skillet/Plate if laggy); Pinecone beequips +15-19% Pine capacity.
+    source:
+    - ag_guide
+    - metabee_macro
+  - field: bamboo
+    why: Bucko quest field; Blue Flower/Bamboo patterns in AG are for Tad-synced alts.
+    source:
+    - w_q_bucko
+    - ag_guide
+  - field: blue_flower
+    why: Only as a boosted field; 'Bluf comps' need Glitter Extend and are endgame-only.
+    source:
+    - ag_guide
+  quests:
+  - giver: polar_bear
+    chain: keep going to Quest Grandmaster (5,000 quests total)
+    why: 'AG: don''t stop until Grandmaster (x2.25 capacity); 1,500 Polar Power minimum.'
+    source:
+    - ag_guide
+    - w_badges
+  - giver: gifted_bucko_bee
+    chain: to 150 (Hydroponic) and 250 (Tide Popper)
+    why: 'Another macro/AG: turn Bucko on when grinding for Hydro/Tide.'
+    source:
+    - w_q_bucko
+    - macro_docs_prog
+    - ag_guide
+  - giver: spirit_bear
+    chain: quests 11-30, 2nd and 3rd Spirit Petal
+    why: Petal Belt + Windy Bee; quests 26-29 need 1-4 Grandmaster badges.
+    source:
+    - w_q_spirit
+  - giver: black_bear
+    chain: repeatables, max 1/hour
+    why: RJ, extracts, occasional Star Jelly.
+    source:
+    - w_q_black
+  bees:
+  - bee: tadpole
+    why: Mythic blue; frogs, Baby Love when gifted; AG baseline 7 Tadpoles (up to 12 if underfilling). Gift 6 first
+      to drop the 4 Babies.
+    gifted_priority: 1
+    source:
+    - w_bees
+    - ag_guide
+  - bee: buoyant
+    why: Mythic blue; gifted x1.2 capacity; AG baseline 16 Buoyants. Gift 1 Buoyant first, then all of them.
+    gifted_priority: 1
+    source:
+    - w_bees
+    - ag_guide
+  - bee: diamond
+    why: Stage 1-2 comps run 2-5 Diamonds, rising to 8-13 later.
+    gifted_priority: 2
+    source:
+    - ag_guide
+  - bee: fuzzy
+    why: '1-2 for pollination if you have no alts; gift 1 early (AG gifting order #2).'
+    gifted_priority: 2
+    source:
+    - ag_guide
+  - bee: baby
+    why: Run 4 until 6 Tadpoles are gifted (Baby Love x2 pollen).
+    gifted_priority: 3
+    source:
+    - ag_guide
+  - bee: bear
+    why: ~1.5-2x honey via bear morphs; Robux voucher, trade, or a very rare Tunnel Bear drop -- AG says not optional,
+      but it is not obtainable without Robux/trading for this bot.
+    gifted_priority: 3
+    source:
+    - w_bees
+    - ag_guide
+  tips:
+  - Mythics come from Mythic Eggs (2,500 tickets; Black Bear ~75th, Brown 100/200/400, Commando 50th capture, Dapper
+    15) or 5% of Diamond Eggs -- NOT realistically from Royal Jelly (1/25,000).
+  - 'AG gifting order: 1 Buoyant, 1 Fuzzy, 1 Tadpole, 6 Tadpoles, 8 Tadpoles + 10 Buoyants, 14 Buoyants, rest of
+    Tadpoles, rest of Buoyants; via Ticket Shop Star Treats + Wealth Clock + Blueberries.'
+  - 'AG levelling order: Diamonds, Digital, Bear, Musics + Bubble, Tadpoles, Buoyants, Focus/Haste producers.'
+  - 'Beequips that matter for blue (AG): 2 Pinecones, Camphor Lip Balm, 2 Elf Caps, Candy Ring, Snow Tiara, Reindeer
+    Antler; then Rose Headband, Toy Drum, Autumn Sunhat, Bead Lizard. Many are Beesmas/trade items.'
+  - 'Balloon Blessing: fully converting the hive balloon stacks up to x100 (x4 capacity, x2.5 honey at hive); AG:
+    never let the macro set your blessing.'
+- id: endgame
+  name: Endgame -- level 18-22, fully gifted, Diamond comps, planters/tools of trillions
+  enter_when:
+    bees: 50
+    gear:
+    - diamond_mask
+    - supreme_star_amulet
+    - petal_wand
+  goals:
+  - id: hydroponic_planter
+    label: Hydroponic Planter
+    kind: planter
+    name: Hydroponic Planter (Blue HQ)
+    cost:
+      honey: 750000000000
+      items:
+        magic_bean: 75
+        blue_extract: 750
+        soft_wax: 500
+        caustic_wax: 25
+        turpentine: 1
+    requires:
+    - 150 Gifted Bucko Bee quests
+    why: 'x1.4 Comforting/Refreshing; Bluf>Bamboo>Pine>Stump chain = +100 Blue Extract monthly. itemlevel: Hydroponic
+      first if you do not macro.'
+    priority: 1
+    source:
+    - w_blue_hq
+    - w_planters
+    - itemlevel_order
+  - id: tide_popper
+    label: Tide Popper
+    kind: gear
+    slot: tool
+    name: Tide Popper (Blue HQ)
+    cost:
+      honey: 2500000000000
+      items:
+        blue_extract: 1500
+        stinger: 150
+        tropical_drink: 150
+        swirled_wax: 75
+        super_smoothie: 50
+        comforting_vial: 3
+    requires:
+    - 250 Gifted Bucko Bee quests
+    why: 'The blue endgame tool; Tide Blessing from waves hitting balloons. AG: get Tide before Petal if you macro
+      16-22 h/day.'
+    priority: 1
+    source:
+    - w_endgear
+    - ag_guide
+    - itemlevel_order
+  - id: petal_planter
+    label: Petal Planter
+    kind: planter
+    name: Petal Planter (Petal Shop)
+    cost:
+      honey: 5000000000000
+      items:
+        magic_bean: 100
+        glitter: 100
+        soft_wax: 250
+        swirled_wax: 50
+        super_smoothie: 25
+    requires:
+    - 35 bees
+    why: x1.5 Comforting/Satisfying, dice + glitter drops.
+    priority: 2
+    source:
+    - w_planters
+    - itemlevel_order
+  - id: supreme_saturator
+    label: Supreme Saturator
+    kind: gear
+    slot: sprinkler
+    name: Supreme Saturator
+    cost:
+      honey: 55555555555
+    requires:
+    - 10 Grandmaster badges
+    why: Needed by top Pine patterns (Tideshift); itemlevel says early blue does not need it.
+    priority: 2
+    source:
+    - w_guild
+    - metabee_macro
+    - itemlevel_early
+  - id: gummy_boots
+    label: Gummy Boots
+    kind: gear
+    slot: boots
+    name: Gummy Boots
+    cost:
+      honey: 100000000000
+      items:
+        glue: 500
+        glitter: 250
+        red_extract: 250
+        blue_extract: 250
+        motivating_vial: 1
+        satisfying_vial: 1
+    requires: []
+    why: 'itemlevel''s #3 blue endgame item (after Tide/Hydro and Petal Planter).'
+    priority: 3
+    source:
+    - w_endgear
+    - itemlevel_order
+  - id: ssa_double_passive
+    label: Double-passive SSA
+    kind: amulet
+    slot: star_amulet
+    name: Supreme Star Amulet with two passives (Pop Star + Star Shower or Guiding Star)
+    cost:
+      honey: 500000000000
+    requires:
+    - 500B honey held to guarantee, or 1/50 per 10B roll
+    why: 'AG/Meta Bee: Pop Shower > Pop Guiding > solo Pop; 3/5 DP with blue pollen + convert rate.'
+    priority: 2
+    source:
+    - w_amulets
+    - ag_guide
+    - metabee_blue
+  - id: planter_of_plenty
+    label: The Planter Of Plenty
+    kind: planter
+    name: The Planter Of Plenty
+    cost:
+      honey: 100000000000000
+      items:
+        magic_bean: 500
+        super_smoothie: 100
+        swirled_wax: 100
+        caustic_wax: 100
+        turpentine: 25
+    requires: []
+    why: 'AG red border: ''Hydro and Heat can be skipped for PoP directly'' (GUESS: PoP = Planter Of Plenty, consistent
+      with the planter context).'
+    priority: 4
+    source:
+    - w_planters
+    - ag_guide
+  - id: heat_treated_planter
+    label: Heat-Treated Planter
+    kind: planter
+    name: Heat-Treated Planter (Red HQ)
+    cost:
+      honey: 750000000000
+      items:
+        magic_bean: 75
+        red_extract: 750
+        hard_wax: 150
+        swirled_wax: 25
+        turpentine: 1
+    requires:
+    - Riley quests (count not checked)
+    why: x1.4 Motivating (blue pollen) + Invigorating; AG lists it with Hydro as an endgame planter.
+    priority: 4
+    source:
+    - w_planters
+    - ag_guide
+    - itemlevel_order
+  fields:
+  - field: pine_tree
+    why: Main for the general comp; patterns Kettle / Tideshift / Pineshift-Redux.
+    source:
+    - ag_guide
+    - metabee_macro
+  - field: blue_flower
+    why: Bluf comp only with Glitter Extend (AG).
+    source:
+    - ag_guide
+  - field: bamboo
+    why: With Tad alts; Guiding alts want Pine, Bluf, Bamboo as your three LEAST-gathered fields.
+    source:
+    - ag_guide
+  quests:
+  - giver: polar_bear
+    chain: until Quest Grandmaster
+    why: Capacity x2.25.
+    source:
+    - ag_guide
+  - giver: science_bear
+    chain: Drive quests (White Drive, Glitched Drive)
+    why: 'AG Stage 4: daily Glitched Drive progression on Digital bee.'
+    source:
+    - w_q_science
+    - ag_guide
+  bees:
+  - bee: diamond
+    why: 'Stage 3-4: 8-13 Diamonds, mutated for 25%+ convert amount with RJ/Bitterberries.'
+    gifted_priority: 1
+    source:
+    - ag_guide
+  - bee: buoyant
+    why: 16 (up to 18) in the endgame comp.
+    gifted_priority: 1
+    source:
+    - ag_guide
+  - bee: tadpole
+    why: 6-9; more needed without Tad alts.
+    gifted_priority: 1
+    source:
+    - ag_guide
+    - metabee_blue
+  tips:
+  - 'Mutations: Bitterberry 1/1,000, RJ/Star Jelly 1/5,000 (1/100 when radioactive), Atomic Treat guaranteed; mutate
+    Musics, Bear, Bubble, Diamonds (AG Stage 3).'
+  - Blessing boosting to 80-100x and alt accounts (Tad/Guiding) are what separate endgame hourlies (AG Stage 3-4,
+    another macro's stages 4-5). Alts are parked for this account (Sober cannot run two copies).
+  - Sticker Stack only at endgame with 200+ stickers (AG); 25 tickets per activation otherwise.
+mistakes:
+- 'Buying the Spark Staff: community skips it straight from the Golden Rake to the Porcelain Dipper (progression.yaml
+  quotes).'
+- 'Hatching Diamond Eggs: the Diamond Mask needs 5; buying them costs 400 tickets each.'
+- 'Using Royal Jelly hoping for mythics: 1/25,000 per jelly; Mythic Eggs (2,500 tickets) or Diamond Eggs (5% mythic)
+  are the route.'
+- 'Using an RJ or egg on a gifted or mutated bee: it almost always loses gifted/mutation.'
+- 'Wearing Hiking Boots instead of Beekeeper''s Boots while farming: Hiking gives no gather pollen; Beekeeper''s
+  gives +27% (keep Hiking only to enter Dapper Bear''s shop).'
+- Buying hive slots 43-45 (4.5-20B each, ~+1-2.5% each) before the Honeycomb Belt, Cobalt Guard and Diamond Mask
+  (bot payback study).
+- 'Running Mondo Chick kills in the macro: costs a gather each hour (AG: always off).'
+- 'Not doing Polar Bear early: Polar Power and Quest badges are permanent capacity/energy; AG: ''start macroing
+  polar now''.'
+- 'Gathering in Pepper/Coconut/Mountain Top as a blue hive: 0%/4%/33% blue.'
+- 'Gathering in Stump while the Stump Snail lives: bees fight it instead of gathering.'
+- 'Letting the bag die in Pine Tree: Mantises + Werewolf; a death drops the whole bag (fields.yaml).'
+- 'Spending Star Eggs early: they skip gifted mythics until every other non-event gifted type is in the hive --
+  hatch late (itemlevel).'
+- 'Running Shy/Lion/Frosty/Cobalt in a post-SSA comp: ''A Diamond will always provide more honey for that slot''
+  (AG). Pre-SSA they are still worth gifting for the type count.'
+- 'Trusting AI-written ''wiki'' sites (bee-swarm-simulator.wiki, ggwtb.com, bluehiveguide.com, ofzenandcomputing,
+  rosenberryrooms): they invent mechanics (e.g. a ''Supreme Sprout'' that gives the SSA).'
+open_questions:
+- Exact number of gifted types this account has discovered (Silver Star means >=10; earlier read listed 6 gifted
+  bees in hive). This is the SSA gate and the biggest unknown.
+- 'Cheapest ticket path to 40 gifted types for this account: Star Treats on event bees (egg 250-500 + treat 1,000
+  tickets each) vs Star Jellies vs gifted eggs. Not modelled.'
+- Whether the Pro Shop needs 10 bees (itemlevel says so) -- the wiki pages read did not state a gate.
+- Riley quest count needed for the Heat-Treated Planter (Bucko's is 150 for Hydroponic) -- not read.
+- The AG Tool Progression diagram is an image; 'PoP' = Planter Of Plenty and 'Hydro'/'Heat' = Hydroponic/Heat-Treated
+  Planters is our reading, not stated in text.
+- 'Bubble Wand vs Porcelain Dipper on Pine Tree (85% blue): wand ~222/s vs dipper ~226/s plus pillar, by the wiki''s
+  base rates (our arithmetic) -- near-equal; community says Dipper.'
+- Meta Bee's 'Ultimate Blue Hive Meta' says 'updated Beesmas 2026' (in the future as of 2026-10-14) -- its date
+  is unreliable.
+- Meta Bee macro guide says Quest Grandmaster gives 2.5x capacity; the wiki Badges page says x2.25 (wiki used).
+- Owner's current badge tiers (Ace/Master counts) for Golden Gushers, Diamond Drenchers and Spirit Bear quests 5
+  and 10 -- badge menu read only for Honey/Goo.
+- Natro Macro's own docs were not read directly; Natro settings here come via the AG guide (which documents Natro
+  settings) and Meta Bee.
+- YouTube guides (yt_titles) were found by title only, not watched.

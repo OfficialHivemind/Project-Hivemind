@@ -1,0 +1,223 @@
+# WHAT EACH PIECE OF GEAR COSTS IN HONEY, so a fall in the balance can be
+# matched against it (brain/owned, DESIGN 8ea).
+#
+# WHY THIS FILE EXISTS. The owner: "make it so it checks what i already have
+# cus i got porcelain dipper and some stuff so it would be saving for nothing".
+# Honey only goes DOWN when something is bought -- MEASURED over the saved
+# record (var/trips.jsonl and var/night/run-*.log, 598 dated readings, 20 Sep
+# 23:08 to 26 Sep 15:14, read by brain/owned.history): across 258 of the
+# bot's own restarts the balance fell once, by 401, and every fall bigger
+# than 16,526 (brain/owned.MATCH_TOLERANCE) sits in a stretch where the bot
+# was stopped for 31 minutes or more -- seven of them, 55,857,445 ->
+# 21,283,009 on 24 Sep among them. So a fall is a purchase, and its size
+# says what.
+#
+# WHAT IS IN IT. Gear that is bought ONCE with honey: the accessories (bags,
+# hats, guards, belts, boots), the gliders and the Guild's sprinklers. Two
+# other files already price the rest and are read alongside this one, never
+# copied into it:
+#   * the six gear goals   -> data/knowledge/goals.yaml
+#   * the twenty tools     -> data/knowledge/progression.yaml `tools.known`
+#
+# WHAT IS NOT, ON PURPOSE. Anything bought by the handful: treats (100 honey
+# plus 100 per treat -- Treat_Shop), royal jelly (250,000 plus 10,000 per
+# jelly -- items.yaml), tickets and eggs. A fall they explain matches nothing
+# here and is ASKED about, which is the right outcome for a thing the bot
+# cannot price.
+#
+# WHAT IS IN IT BUT NEVER INFERRED (`infer: false`, the last section): the
+# hive-slot ladder and the Star Amulets. They are not gear the plan saves
+# for, so owning one changes nothing -- but their prices COLLIDE with gear it
+# does: the Gold Star Amulet's 250,000,000 is exactly the Porcelain
+# Port-O-Hive's, and left out, a Gold Star Amulet bought would have been an
+# exact single match for his first goal, inferred owned and dropped from the
+# plan (third review, 2026-09-26). In the table they make that fall a TIE,
+# asked about by name; brain/owned never marks one owned, and a fall that is
+# exactly one of them alone is kept as evidence, not asked about.
+#
+# RULES, the same as goals.yaml's: every price is quoted from the wiki page
+# named with it, at the revision the research read (2026-09-24/25, kept in
+# ~/.cache/hivemind-work/salvage/items_research.json, "Ladder" findings).
+# `capacity` is the item's own figure: `add` studs of capacity to the static
+# sum, `times` a multiplier on the whole (wiki Capacity: "+N adds to the
+# bag's base, xN multiplies it"). A bag's `add` REPLACES the old bag's.
+checked: 2026-09-26
+source: bee-swarm-simulator.fandom.com item pages and the Items table, via the research above
+
+gear:
+  # ---- bags (wiki Bags, rev 2026-07-12) ----------------------------------
+  pouch:            {label: Pouch, slot: bag, honey: 0, shop: noob_shop, capacity: {add: 200}}
+  jar:              {label: Jar, slot: bag, honey: 650, capacity: {add: 750}}
+  backpack:         {label: Backpack, slot: bag, honey: 5500, capacity: {add: 3500}}
+  canister:         {label: Canister, slot: bag, honey: 22000, capacity: {add: 10000}}
+  mega_jug:         {label: Mega-Jug, slot: bag, honey: 50000, shop: pro_shop, capacity: {add: 25000}}
+  compressor:       {label: Compressor, slot: bag, honey: 160000, capacity: {add: 50000}}
+  elite_barrel:     {label: Elite Barrel, slot: bag, honey: 650000, capacity: {add: 125000}}
+  port_o_hive:      {label: Port-O-Hive, slot: bag, honey: 1250000, capacity: {add: 250000}}
+  blue_port_o_hive:
+    label: Blue Port-O-Hive
+    slot: bag
+    honey: 12500000
+    materials: {blue_extract: 2, soft_wax: 2}
+    shop: blue_hq
+    capacity: {add: 400000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Blue_Port-O-Hive (rev 2026-07-12)
+  red_port_o_hive:
+    label: Red Port-O-Hive
+    slot: bag
+    honey: 12500000
+    materials: {red_extract: 2, soft_wax: 2}
+    shop: red_hq
+    capacity: {add: 400000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Red_Port-O-Hive (rev 2026-07-12)
+  coconut_canister:
+    label: Coconut Canister
+    slot: bag
+    honey: 25000000000
+    shop: coconut_cave
+    capacity: {add: 1000000, times: 1.25}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Coconut_Canister (rev 2026-07-12)
+
+  # ---- hats (wiki Items, Hats/Masks tab) ----------------------------------
+  helmet:           {label: Helmet, slot: hat, honey: 30000, shop: noob_shop}
+  propeller_hat:    {label: Propeller Hat, slot: hat, honey: 2500000, shop: pro_shop}
+  beekeepers_mask:
+    label: Beekeeper's Mask
+    slot: hat
+    honey: 20000000
+    materials: {enzymes: 5, glue: 3, glitter: 1}
+    shop: mountain_top_shop
+    source: https://bee-swarm-simulator.fandom.com/wiki/Beekeeper%27s_Mask (rev 2025-12-30)
+  bubble_mask:
+    label: Bubble Mask
+    slot: hat
+    honey: 100000000
+    materials: {blueberries: 500, blue_extract: 50, oil: 25, glitter: 15}
+    shop: blue_hq
+    capacity: {times: 1.5}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Bubble_Mask (stats changed 2024-05-25)
+  fire_mask:
+    label: Fire Mask
+    slot: hat
+    honey: 100000000
+    materials: {strawberries: 500, red_extract: 50, enzymes: 25, glue: 15}
+    shop: red_hq
+    capacity: {times: 1.5}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Fire_Mask
+  gummy_mask:       {label: Gummy Mask, slot: hat, honey: 5000000000, shop: gummy_bears_lair}
+  diamond_mask:     {label: Diamond Mask, slot: hat, honey: 5000000000, shop: cloud_obby}
+  demon_mask:       {label: Demon Mask, slot: hat, honey: 5000000000, shop: lava_obby}
+
+  # ---- right shoulder (wiki Items, Guards tab) ----------------------------
+  brave_guard:      {label: Brave Guard, slot: right shoulder, honey: 300000, shop: pro_shop, capacity: {add: 15000}}
+  hasty_guard:      {label: Hasty Guard, slot: right shoulder, honey: 300000, shop: pro_shop, capacity: {add: 15000}}
+  blue_guard:       {label: Blue Guard, slot: right shoulder, honey: 1000000, capacity: {add: 25000}}
+  elite_blue_guard:
+    label: Elite Blue Guard
+    slot: right shoulder
+    honey: 5000000
+    materials: {blue_extract: 3, blueberries: 50, royal_jelly: 5, moon_charm: 15}
+    capacity: {add: 75000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Elite_Blue_Guard
+  bucko_guard:
+    label: Bucko Guard
+    slot: right shoulder
+    honey: 30000000
+    materials: {blue_extract: 10, blueberries: 100, glue: 5, moon_charm: 75}
+    capacity: {add: 150000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Bucko_Guard
+
+  # ---- left shoulder ------------------------------------------------------
+  bomber_guard:     {label: Bomber Guard, slot: left shoulder, honey: 300000, shop: pro_shop, capacity: {add: 15000}}
+  looker_guard:     {label: Looker Guard, slot: left shoulder, honey: 300000, shop: pro_shop, capacity: {add: 15000}}
+  red_guard:        {label: Red Guard, slot: left shoulder, honey: 750000, capacity: {add: 25000}}
+  elite_red_guard:
+    label: Elite Red Guard
+    slot: left shoulder
+    honey: 5000000
+    materials: {red_extract: 3, strawberries: 50, royal_jelly: 5, stinger: 5}
+    capacity: {add: 75000}
+  riley_guard:
+    label: Riley Guard
+    slot: left shoulder
+    honey: 30000000
+    materials: {red_extract: 10, strawberries: 100, glue: 5, stinger: 25}
+    capacity: {add: 150000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Riley_Guard
+
+  # ---- belts (wiki Items, Belts tab) --------------------------------------
+  belt_pocket:      {label: Belt Pocket, slot: belt, honey: 14000, shop: noob_shop, capacity: {add: 5000}}
+  belt_bag:         {label: Belt Bag, slot: belt, honey: 440000, shop: pro_shop, capacity: {add: 25000}}
+  mondo_belt_bag:
+    label: Mondo Belt Bag
+    slot: belt
+    honey: 12400000
+    materials: {soft_wax: 1, pineapples: 150, sunflower_seeds: 150, stinger: 10}
+    shop: mountain_top_shop
+    capacity: {add: 100000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Mondo_Belt_Bag (rev 2026-07-12)
+  petal_belt:       {label: Petal Belt, slot: belt, honey: 15000000000, shop: petal_shop}
+  coconut_belt:     {label: Coconut Belt, slot: belt, honey: 7500000000000, shop: coconut_cave}
+
+  # ---- boots (wiki Items, Boots tab) --------------------------------------
+  basic_boots:      {label: Basic Boots, slot: boots, honey: 4400}
+  # CORRECTED 2026-10-14 (data/knowledge/progression/blue.yaml, wiki Mountain
+  # Top Shop): Hiking Boots give no gather pollen -- keep them only to enter
+  # Dapper Bear's shop -- and Beekeeper's Boots give +27% bee gather pollen.
+  hiking_boots:     {label: Hiking Boots, slot: boots, honey: 2200000, shop: pro_shop,
+                     what: "movespeed and jump; no gather pollen; worn to enter Dapper Bear's shop"}
+  beekeepers_boots:
+    label: Beekeeper's Boots
+    slot: boots
+    what: +27% bee gather pollen, +8 movespeed, +20 jump
+    honey: 15000000
+    materials: {oil: 5, red_extract: 3, blue_extract: 3}
+    shop: mountain_top_shop
+    source: https://bee-swarm-simulator.fandom.com/wiki/Beekeeper%27s_Boots
+  coconut_clogs:    {label: Coconut Clogs, slot: boots, honey: 10000000000, shop: coconut_cave}
+  gummy_boots:      {label: Gummy Boots, slot: boots, honey: 100000000000, shop: gummy_bears_lair}
+
+  # ---- gliders (wiki Parachute, Glider) -----------------------------------
+  parachute:        {label: Parachute, slot: glider, honey: 500000, shop: pro_shop}
+  glider:           {label: Glider, slot: glider, honey: 5000000, shop: mountain_top_shop}
+
+  # ---- sprinklers (wiki Badge_Bearer's_Guild, Sprinkler Shop tab) ---------
+  silver_soakers:
+    label: Silver Soakers
+    slot: sprinkler
+    honey: 22222222
+    shop: badge_bearers_guild
+    gate: 10 Hotshot badges
+  golden_gushers:
+    label: Golden Gushers
+    slot: sprinkler
+    honey: 333333333
+    shop: badge_bearers_guild
+    gate: 10 Ace badges
+  # the pro tester's round-2 gear order (goals.yaml suggested_orders) names
+  # it; wiki The_Supreme_Saturator rev 441788 (api.php, read 2026-10-20):
+  # "55,555,555,555 Honey", "10 Grandmaster Badges"
+  supreme_saturator:
+    label: The Supreme Saturator
+    slot: sprinkler
+    honey: 55555555555
+    shop: badge_bearers_guild
+    gate: 10 Grandmaster badges
+
+  # ---- NEVER INFERRED: tie-makers only (see WHAT IS IN IT BUT NEVER
+  # INFERRED above). Quoted from the research's "Ladder: gliders, hive slots,
+  # star amulets" finding (salvage items_research.json; wiki Hive_Slot rev
+  # 2026-09-07, wiki Star_Amulet). The hive slots are the Nth slot bought, a
+  # price that climbs with each; he had 26 bees (account.yaml), so one slot
+  # was bought before the record began and the next costs 7,750,000.
+  hive_slot_1:      {label: 1st hive slot, slot: hive, honey: 3000000, shop: mountain_top_shop, infer: false}
+  hive_slot_2:      {label: 2nd hive slot, slot: hive, honey: 7750000, shop: mountain_top_shop, infer: false}
+  hive_slot_3:      {label: 3rd hive slot, slot: hive, honey: 14562500, shop: mountain_top_shop, infer: false}
+  hive_slot_4:      {label: 4th hive slot, slot: hive, honey: 24057292, shop: mountain_top_shop, infer: false}
+  hive_slot_5:      {label: 5th hive slot, slot: hive, honey: 37085938, shop: mountain_top_shop, infer: false}
+  hive_slot_6:      {label: 6th hive slot, slot: hive, honey: 54774609, shop: mountain_top_shop, infer: false}
+  hive_slot_7:      {label: 7th hive slot, slot: hive, honey: 78597363, shop: mountain_top_shop, infer: false}
+  hive_slot_8:      {label: 8th hive slot, slot: hive, honey: 110474899, shop: mountain_top_shop, infer: false}
+  bronze_star_amulet: {label: Bronze Star Amulet, slot: amulet, honey: 25000000, shop: star_hall, gate: 5 gifted bee types, infer: false}
+  silver_star_amulet: {label: Silver Star Amulet, slot: amulet, honey: 50000000, shop: star_hall, gate: 10 gifted bee types, infer: false}
+  gold_star_amulet:   {label: Gold Star Amulet, slot: amulet, honey: 250000000, shop: star_hall, gate: 20 gifted bee types, infer: false}

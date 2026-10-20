@@ -1,0 +1,658 @@
+# The field mobs worth killing on purpose, and how Natro Macro kills them.
+#
+# THE OWNER, 2026-09-25: "go kill enemies". Until now the bot only ever ran
+# from them (brain/threat) and let the bees fight whatever came near while it
+# gathered (DESIGN 8ce). This is what act/bugrun reads to do it deliberately.
+#
+# TWO SOURCES, NEVER MIXED UP:
+#   * `mobs:` are facts about the GAME, from each mob's own wiki page, read
+#     through the MediaWiki API on 2026-09-25 (the page HTML answers 402):
+#     https://bee-swarm-simulator.fandom.com/api.php?action=parse&page=<Mob>&prop=wikitext
+#     (Ladybug, Rhino_Beetle, Spider, Mantis, Scorpion, Werewolf, Mob).
+#   * `fields:` are Natro Macro's own fight in each field, transcribed from
+#     nm_Bugrun at the pinned commit 094f9c7b,
+#     submacros/natro_macro.ahk:13899-15160 (GPLv3; running and deriving from
+#     it privately carries no obligation). Line numbers are cited per entry.
+#
+# UNITS. Natro walks in TILES and a tile is 4 studs (lib/Walk.ahk: "4 studs in
+# a tile", the same rule scripts/transpile_natro.py uses). Its `nm_Move(ms *
+# MoveSpeedFactor)` holds with `MoveSpeedFactor := round(18/MoveSpeedNum, 2)`
+# (natro_macro.ahk:13930) cover ms/1000 x 18 studs at any movespeed, so
+# nm_Move(1000*MSF) is 18 studs = 4.5 tiles and nm_Move(1500*MSF) is 27 studs =
+# 6.75 tiles. Keys are the bot's: w forward, a left, s back, d right.
+#
+# WHAT IS DELIBERATELY NOT TAKEN FROM NATRO (act/bugrun says why at length):
+#   * `RotUp 4` / `RotDown 4` (PageUp/PageDown) around each fight -- DESIGN
+#     8ap measured the tilt changing nothing and warned that a death mid-way
+#     leaves the camera tilted for the next claim sweep.
+#   * `ZoomOut` on every look -- Natro plays at full zoom-out; this bot's
+#     hive-wall counts, respawn view templates and token sizes were all
+#     measured at its own zoom, and a zoom-out would outlive the fight.
+#   * The chained walks between fields (spider -> strawberry -> mushroom,
+#     clover -> blue flower, bamboo -> pineapple, pumpkin -> pine -> rose).
+#     They start from wherever the previous fight left the character, which
+#     is never measured; every run here starts from the pad after a convert.
+#
+# THESE BEES KILL ALL SIX. The bot has never sought a fight, and the quest
+# menu's fight steps rose anyway while it gathered where the mobs live (DESIGN
+# 8ce): "Defeat 16 Ladybugs. Complete!" (var/night/run-127.log:15), "Defeat 16
+# Rhino Beetles. Complete!" (run-011.log:63), Spiders 0/10 (run-362) to 9/10
+# (run-388.log:37), Mantises 0/10 (run-362) to 8/10 (run-368.log:37),
+# Scorpions 0/15 (run-011) to 14/15 (run-337.log:39), Werewolves 0/5
+# (run-362) to 4/5 (run-373.log:37). Every field below asks for 15 bees at
+# most (world.yaml `bees_required`) and the account has 26 (account.yaml).
+#
+# AND THE FEED SAYS SO, KILL BY KILL. MEASURED 2026-09-26 over every cached
+# reward-feed read (var/vlm_cache, 17,519 feed texts from 2026-09-21 to
+# 2026-09-26, the read time being the file's mtime; scratchpad
+# bugrun/kill_gaps.py): "Defeated <Name>!" lines for 398 ladybug, 223 rhino
+# beetle, 63 mantis, 42 spider, 10 werewolf and 9 scorpion kills, all while
+# gathering. DESIGN 8ce's "the bees cannot kill ... the Werewolf" is
+# refuted: 09-22 07:51 "Defeated Werewolf! (+25 Battle Points)" then "+10
+# Tickets (from Werewolf) +50 Treats (from Werewolf) +9,384 Honey (from
+# Werewolf)".
+#
+# THE RESPAWN TIMES AGREE WITH THE WIKI ON THIS ACCOUNT: the shortest gaps
+# between two kills of one kind in one field, which is respawn plus the time
+# the bees took, were 305-309 s (rhino beetle, Pineapple), 308-310 s
+# (ladybug, Mushroom; rhino beetle, Blue Flower), 1,211-1,227 s (mantis,
+# Pineapple) and 1,815-1,833 s (spider, Spider Field). So no respawn-rate
+# bonus shortens them (wiki Monster_Respawn_Rate), and Natro's figures,
+# which add a margin to the wiki's, are kept.
+#
+# THE MOB TABLE (ROADMAP K7, 2026-10-19; brain/mobtable reads it). Every mob
+# the bot can meet carries, besides what is above: `kind`, `danger` (0 none,
+# 1 low, 2 medium, 3 high), `night` (day / night / both), `drops` and a `src:`
+# map that tags EVERY value: "measured: ..." (this bot's own logs, with the
+# counts) or "[assumed: wiki ...]" / "[assumed: Natro ...]". The six bug-run
+# mobs stay in `mobs:` (act/bugrun's book, which must not grow); the rest are
+# in `other_mobs:` and in `rogue_vicious_bee:`, so no run_farm feed reader
+# books a kill it did not book before.
+#   respawn: the gap between two feed-named kills of one kind in one field,
+#     counting only gaps of 0.9-1.5x the wiki's timer (one cycle after a kill).
+#   drops: `per_kill` = share of kills with that item read in the feed within
+#     -5..+20 s (act/bugrun.measured_loot's window), `mean` = amount per kill.
+#     Only what REACHED the account: tokens left lying are not counted.
+#   also_seen: feed-named kills in a field the wiki does not list (>= 10).
+#     Why is unproven -- night spawns [assumed], a mob chasing over a border,
+#     or a stale "(from <field>)" credit; brain/mobtable counts them only
+#     when asked about the night.
+source: wiki (MediaWiki API, 2026-09-25) and NatroMacro 094f9c7b nm_Bugrun
+checked: 2026-09-26
+
+mobs:
+  ladybug:
+    name: Ladybug
+    # Wiki: "It takes 5 minutes for a ladybug to respawn after being defeated
+    # (4 minutes 15 seconds with a Gifted Vicious Bee)", and Trivia: "ladybugs
+    # do not always respawn immediately after their timer runs out. (Usually
+    # a 10-20 second delay)". Natro waits 330 s (natro_macro.ahk:14047), which
+    # is the 5 minutes plus that delay; the bot uses Natro's number.
+    respawn_seconds: 330
+    battle_points: 1          # wiki infobox `points = 1`
+    honey: 75                 # wiki: "about 75 Honey ... spread across 4 honey tokens"
+    ticket_chance: 0.02       # wiki Possible Drops: "Ticket (2% Chance ...)"
+    damage: 15                # wiki infobox `damage = 15`
+    fields:                   # wiki Locations table: count, level, HP
+      mushroom: {count: 1, levels: [1], hp: [12]}
+      clover: {count: 1, levels: [2], hp: [20]}
+      strawberry: {count: 2, levels: [3, 2], hp: [28, 20]}
+    kind: field_mob
+    danger: 1
+    night: both
+    also_seen: {pine_tree: 334, dandelion: 73, spider: 42, pumpkin: 28, cactus: 16}
+    measured:
+      respawn: {field: mushroom, gaps: 83, min_s: 308, median_s: 313}   # clover 23 gaps 307/314
+      kills: 1214
+      ticket_kills: 0       # kills with a ticket line in -5..+20 s (brain/mobtable.ticket_rate)
+    drops:      # per kill, measured
+      bond: {per_kill: 0.92, mean: 347}
+      honey: {per_kill: 0.42, mean: 179}
+      strawberry: {per_kill: 0.18}
+      treats: {per_kill: 0.03}
+      gumdrop: {per_kill: 0.02}
+      ticket: {per_kill: 0.0}    # wiki 2%: none read in 1,214 kills
+    src:
+      fields: "[assumed: wiki Ladybug Locations, 2026-09-25]"
+      respawn_seconds: "[assumed: Natro 330 s = wiki 5 min + delay]; measured 308-313 s (83 gaps, Mushroom)"
+      hp: "[assumed: wiki Locations table]"
+      drops: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+      danger: "[assumed: wiki damage 15]; measured: Mushroom 0.31 deaths/h, Clover 0.17 (var/field_notes.json)"
+      night: "[assumed: wiki, no time limit on its page]"
+      also_seen: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+
+  rhino_beetle:
+    name: Rhino Beetle
+    # Wiki: "It takes 5 minutes for a rhino beetle to respawn". Natro 330 s
+    # (natro_macro.ahk:14366).
+    respawn_seconds: 330
+    battle_points: 1
+    honey: 75
+    ticket_chance: 0.02       # wiki: "Ticket (2% chance)"
+    damage: 18
+    fields:
+      blue_flower: {count: 1, levels: [1], hp: [10]}
+      clover: {count: 1, levels: [2], hp: [16]}
+      bamboo: {count: 2, levels: [2, 3], hp: [16, 22]}
+      pineapple: {count: 1, levels: [5], hp: [34]}
+    kind: field_mob
+    danger: 2
+    night: both
+    also_seen: {dandelion: 145, spider: 35, mountain_top: 10}
+    measured:
+      respawn: {field: blue_flower, gaps: 74, min_s: 310, median_s: 314}   # clover 35 gaps 310/311
+      kills: 1952
+      ticket_kills: 0       # kills with a ticket line in -5..+20 s (brain/mobtable.ticket_rate)
+    drops:
+      bond: {per_kill: 0.91, mean: 1048}
+      honey: {per_kill: 0.53, mean: 327}
+      blueberry: {per_kill: 0.19}
+      gumdrop: {per_kill: 0.05}
+      treats: {per_kill: 0.05}
+      micro-converter: {per_kill: 0.008}
+      ticket: {per_kill: 0.0}    # wiki 2%: none read in 1,952 kills
+    src:
+      fields: "[assumed: wiki Rhino_Beetle Locations, 2026-09-25]"
+      respawn_seconds: "[assumed: Natro 330 s = wiki 5 min + delay]; measured 310-314 s (74 gaps, Blue Flower)"
+      hp: "[assumed: wiki Locations table]"
+      drops: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+      danger: "measured: Blue Flower 1.20 deaths/h (29 in 24.1 h, var/field_notes.json), 3 deaths over 55k pollen with a Rhino kill <60 s before; wiki damage 18 alone would say 1"
+      night: "[assumed: wiki, no time limit on its page]"
+      also_seen: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+
+  spider:
+    name: Spider
+    # Wiki: "It takes 30 minutes for the spider to respawn". Natro 1830 s
+    # (natro_macro.ahk:13931).
+    respawn_seconds: 1830
+    battle_points: 10
+    honey: 1000               # wiki: "1000 Honey spread across as 5 Honey tokens"
+    ticket_chance: 0.25       # wiki: "Ticket (25% chance ...)"
+    damage: 20
+    fields:
+      spider: {count: 1, levels: [4], hp: [100]}
+    kind: field_mob
+    danger: 2
+    night: both
+    also_seen: {dandelion: 14}
+    measured:
+      respawn: {field: spider, gaps: 9, min_s: 1862, median_s: 2053}
+      kills: 283
+      ticket_kills: 8       # kills with a ticket line in -5..+20 s (brain/mobtable.ticket_rate)
+    drops:
+      bond: {per_kill: 0.95, mean: 2119}
+      honey: {per_kill: 0.25, mean: 416}
+      pineapple: {per_kill: 0.07}
+      treats: {per_kill: 0.06}
+      ticket: {per_kill: 0.028}   # wiki 25%
+      gumdrop: {per_kill: 0.03}
+      field dice: {per_kill: 0.014}
+      royal jelly: {per_kill: 0.007}
+    src:
+      fields: "[assumed: wiki Spider Locations, 2026-09-25]"
+      respawn_seconds: "[assumed: Natro 1830 s = wiki 30 min + margin]; measured min 1862 s (9 gaps, Spider)"
+      hp: "[assumed: wiki Locations table]"
+      drops: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+      danger: "[assumed: wiki damage 20]; measured: Spider 0.61 deaths/h (5 in 8.2 h); 2 night walk deaths to Spiders (docs/pending/deaths-2026-10-19.md cause 11)"
+      night: "[assumed: wiki, no time limit on its page]"
+      also_seen: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+
+  mantis:
+    name: Mantis
+    # Wiki: "It takes 20 minutes for a Mantis to respawn". Natro 1230 s
+    # (natro_macro.ahk:14578, 14875).
+    respawn_seconds: 1230
+    battle_points: 5
+    honey: 250
+    ticket_chance: 0.20       # wiki: "Ticket (20% chance)"
+    damage: 20
+    fields:
+      pineapple: {count: 1, levels: [4], hp: [115]}
+      pine_tree: {count: 2, levels: [5, 6], hp: [140, 165]}
+    kind: field_mob
+    danger: 2
+    night: both
+    measured:
+      respawn: {field: pineapple, gaps: 8, min_s: 1217, median_s: 1245}   # pine tree (2 mantises) 71 gaps 1147/1241
+      kills: 527
+      ticket_kills: 4       # kills with a ticket line in -5..+20 s (brain/mobtable.ticket_rate)
+    drops:
+      bond: {per_kill: 0.88, mean: 1972}
+      honey: {per_kill: 0.70, mean: 2988}
+      blueberry: {per_kill: 0.38}
+      pineapple: {per_kill: 0.29}
+      gumdrop: {per_kill: 0.08}
+      treats: {per_kill: 0.03}
+      ticket: {per_kill: 0.008}   # wiki 20%
+      micro-converter: {per_kill: 0.008}
+      royal jelly: {per_kill: 0.006}
+    src:
+      fields: "[assumed: wiki Mantis Locations, 2026-09-25]"
+      respawn_seconds: "[assumed: Natro 1230 s = wiki 20 min + margin]; measured 1217-1245 s (8 gaps, Pineapple)"
+      hp: "[assumed: wiki Locations table]"
+      drops: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+      danger: "[assumed: wiki damage 20]; measured: Pine Tree 0.31 deaths/h (34 in 110 h), 4 deaths over 55k pollen with a Mantis kill <60 s before"
+      night: "[assumed: wiki, no time limit on its page]"
+
+  scorpion:
+    name: Scorpion
+    # Wiki: "It takes 20 minutes for a scorpion to respawn". Natro 1230 s
+    # (natro_macro.ahk:14996).
+    respawn_seconds: 1230
+    battle_points: 5
+    honey: 1000               # wiki infobox `honey = ~1000`
+    ticket_chance: 0.133      # wiki: "Ticket (2/15 chance)"
+    damage: 25
+    fields:
+      rose: {count: 2, levels: [5, 6], hp: [170, 200]}
+    kind: field_mob
+    danger: 2
+    night: both
+    measured:
+      respawn: {field: rose, gaps: 12, min_s: 1238, median_s: 1245}
+      kills: 155
+      ticket_kills: 2       # kills with a ticket line in -5..+20 s (brain/mobtable.ticket_rate)
+    drops:
+      bond: {per_kill: 0.78, mean: 2014}
+      honey: {per_kill: 0.52, mean: 2656}
+      strawberry: {per_kill: 0.27}
+      gumdrop: {per_kill: 0.10}
+      treats: {per_kill: 0.04}
+      ticket: {per_kill: 0.013}   # wiki 13.3%
+    src:
+      fields: "[assumed: wiki Scorpion Locations, 2026-09-25]"
+      respawn_seconds: "[assumed: Natro 1230 s = wiki 20 min + margin]; measured 1238-1245 s (12 gaps, Rose)"
+      hp: "[assumed: wiki Locations table]"
+      drops: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+      danger: "[assumed: wiki damage 25]; measured: Rose 0.68 deaths/h (9 in 13.2 h)"
+      night: "[assumed: wiki, no time limit on its page]"
+
+  werewolf:
+    name: Werewolf
+    # Wiki: "It takes 1 hour for the werewolf to respawn". Natro 3630 s
+    # (natro_macro.ahk:14722). It "defends three fields instead of one: the
+    # Cactus Field, Pine Tree Forest, and the Pumpkin Patch. It spawns at the
+    # entrance of the Werewolf's Cave, in between the Cactus Field and the
+    # Pumpkin Patch." Natro fights it in the Pumpkin Patch.
+    respawn_seconds: 3630
+    # The wiki's infobox says 25 and its Drops section says "50 Battle
+    # Points"; the smaller is used, so the ranking never overrates it.
+    battle_points: 25
+    honey: 5000               # infobox `honey = 5,000` (Drops says 50000)
+    ticket_chance: 0.50       # wiki: "Ticket (... 50% chance)"
+    damage: 35
+    fields:
+      pumpkin: {count: 1, levels: [7], hp: [250]}
+    # The same Werewolf defends the other two (wiki, above), so a kill the
+    # feed reports there starts the Pumpkin Patch's timer. MEASURED: 4 of
+    # the 10 werewolf kills came while the feed named Pine Tree Forest and 1
+    # the Cactus Field (kill_gaps.py).
+    also_defends: [cactus, pine_tree]
+    kind: field_mob
+    danger: 3
+    night: both
+    measured:
+      respawn: {field: pine_tree, gaps: 26, min_s: 3639, median_s: 3734}   # booked from Pine Tree; pumpkin 1 gap 3694
+      kills: 171
+      ticket_kills: 54       # kills with a ticket line in -5..+20 s (brain/mobtable.ticket_rate)
+    drops:
+      bond: {per_kill: 0.97, mean: 3592}
+      honey: {per_kill: 0.77, mean: 22219}
+      sunflower seed: {per_kill: 0.33, mean: 24}
+      ticket: {per_kill: 0.32, mean: 3.1}   # wiki 50%; the mean holds one "+410 Tickets" misread, 0.73 without it
+      treats: {per_kill: 0.12}
+      royal jelly: {per_kill: 0.03}
+      glue: {per_kill: 0.012}
+    src:
+      fields: "[assumed: wiki Werewolf, defends three fields]; measured: 70 of 86 field-named kills in Pine Tree"
+      respawn_seconds: "[assumed: Natro 3630 s = wiki 1 h + margin]; measured 3639-3734 s (26 gaps, Pine Tree)"
+      hp: "[assumed: wiki Locations table]"
+      drops: "measured: var/mob_kills.jsonl + var/mob_drops.jsonl, 3-19 Oct 2026 (4,301 kills, 12,158 drop lines; scratchpad k7.py, docs/pending/mobs-k7.md)"
+      danger: "[assumed: wiki damage 35, the highest field mob]; measured: Pumpkin 0.95 deaths/h, Cactus 1.20"
+      night: "[assumed: wiki, no time limit on its page]"
+
+# NATRO'S FIGHT, FIELD BY FIELD.
+#
+# `books`     which mobs a fight here counts as dealt with when the bars are
+#             gone -- Natro's own bookkeeping (the LastBugrun* lines cited).
+#             A reward-feed "Defeated <Name>!" line books that mob by name.
+# `arrive`    done once on arrival, before looking (turn = camera taps, left
+#             negative; pause_s; walk = [keys, tiles]).
+# `fight_turn` camera taps at the start of the fight that Natro does NOT undo
+#             before its loot walk (Rose); the bot undoes it after the loot.
+# `look`      Natro's `loop 20 { nm_HealthDetection() ... Sleep 150 }`: how
+#             many looks for a first bar, and how far apart.
+# `wait`      Natro's `loop N { loop M { look; ...; Sleep S } }`: `rounds` N,
+#             `looks` M, `every_s` S, `turn_at` the absent look at which it
+#             turns the camera two taps left (`RotLeft 2`, undone after), and
+#             `round_pause_s` any extra sleep per round. A round with `dodge`
+#             first holds one move of `dodge.tiles` in the next key of
+#             `dodge.keys`.
+# `loot`      the walk Natro makes over the drops afterwards (tool held):
+#             [keys, tiles], or {repeat: N, legs: [...]} for its loops.
+#             `loot_after_dodge` prefixes the two legs Natro chooses from the
+#             last round's index mod 4 (`Mod(i, 4)`).
+fields:
+  spider:
+    source: natro_macro.ahk:13931-14019
+    books: [spider]
+    # TWO CIRCLES OF THE LOOK AROUND, not Natro's one. MEASURED over 15 runs
+    # (var/bugrun.json, 2026-09-27): 4 found the Spider, its first bar at 4.9,
+    # 8.5, 4.9 and 8.9 s into a look that ends at ~10 s -- two in its last
+    # 1.5 s -- and 11 found nothing, some an hour or more after its 30 min
+    # respawn. A second circle costs ~6 s a visit.
+    look: {tries: 20, every_s: 0.15, sweeps: 2}            # 13947-13955
+    wait: {rounds: 30, looks: 20, every_s: 0.10, turn_at: 10}   # 13965-13985
+    loot:                                                  # 14010-14017
+      - [d, 3]
+      - {repeat: 3, legs: [[w, 9], [a, 1.5], [s, 9], [a, 1.5]]}
+      - [s, 6]
+
+  strawberry:
+    source: natro_macro.ahk:14047-14146
+    books: [ladybug]
+    arrive: [{pause_s: 1.0}]                               # 14063
+    look: {tries: 20, every_s: 0.15}                       # 14068-14076
+    wait: {rounds: 10, looks: 10, every_s: 0.10, turn_at: 5}    # 14086-14106
+    loot:                                                  # 14129-14137
+      - [s, 2]
+      - [ds, 8]
+      - {repeat: 2, legs: [[w, 14], [a, 1.5], [s, 14], [a, 1.5]]}
+      - [w, 14]
+
+  mushroom:
+    source: natro_macro.ahk:14166-14248
+    books: [ladybug]
+    arrive: [{turn: -2}]                                   # 14175
+    look: {tries: 20, every_s: 0.15}                       # 14179-14187
+    wait: {rounds: 10, looks: 20, every_s: 0.10, turn_at: 10}   # 14197-14216
+    loot:                                                  # 14239-14246
+      - [ds, 5]
+      - [d, 2]
+      - {repeat: 4, legs: [[w, 9], [a, 1.5], [s, 9], [a, 1.5]]}   # nm_loot(9, 4, "left")
+
+  clover:
+    source: natro_macro.ahk:14255-14361
+    # Natro books only LastBugrunLadybugs here (14326) and fights its rhino
+    # beetles at Blue Flower next (14366-14378). The wiki puts one of each in
+    # this field, and a fight here ends only when every bar is gone, so both
+    # are booked -- the reward feed's "Defeated <Name>!" line says which died.
+    books: [ladybug, rhino_beetle]
+    look: {tries: 20, every_s: 0.15}                       # 14283-14291
+    wait: {rounds: 10, looks: 10, every_s: 0.25}           # 14300-14313, no turn
+    loot:                                                  # 14340-14352
+      - [d, 4]
+      - [w, 8]
+      - [a, 1.5]
+      - [s, 8]
+      - [a, 1.5]
+      - [w, 8]
+      - [a, 1.5]
+      - [s, 16]
+      - {repeat: 2, legs: [[a, 1.5], [w, 8], [a, 1.5], [s, 8]]}
+
+  blue_flower:
+    source: natro_macro.ahk:14366-14473
+    books: [rhino_beetle]                                  # 14449
+    look: {tries: 20, every_s: 0.15}                       # 14398-14406
+    wait: {rounds: 12, looks: 20, every_s: 0.10, turn_at: 10}   # 14416-14435
+    loot:                                                  # 14464-14471
+      - [s, 2]
+      - [ds, 5]
+      - {repeat: 3, legs: [[w, 8], [a, 1.5], [s, 8], [a, 1.5]]}   # nm_loot(8, 3, "left")
+
+  bamboo:
+    source: natro_macro.ahk:14474-14566
+    books: [rhino_beetle]                                  # 14541
+    look: {tries: 20, every_s: 0.15}                       # 14490-14498
+    wait: {rounds: 15, looks: 20, every_s: 0.10, turn_at: 10}   # 14508-14527
+    loot:                                                  # 14556-14564
+      - [s, 9]
+      - [d, 1.5]
+      - {repeat: 2, legs: [[w, 18], [a, 1.5], [s, 18], [a, 1.5]]}
+      - [w, 18]
+
+  pineapple:
+    source: natro_macro.ahk:14578-14714
+    books: [mantis, rhino_beetle]                          # 14694-14698
+    look: {tries: 20, every_s: 0.15}                       # 14641-14649
+    wait: {rounds: 20, looks: 20, every_s: 0.10, turn_at: 10, round_pause_s: 0.25}   # 14660-14683
+    loot:                                                  # 14711-14712
+      - [sd, 4.5]                                          # nm_Move(1000*MSF, Back, Right)
+      - {repeat: 5, legs: [[w, 13.5], [a, 1.5], [s, 13.5], [a, 1.5]]}   # nm_loot(13.5, 5, "left")
+
+  pumpkin:
+    source: natro_macro.ahk:14722-14865
+    books: [werewolf]                                      # 14839
+    look: {tries: 20, every_s: 0.15}                       # 14739-14747
+    # Each round first moves 1500*MSF (27 studs) in turn Fwd, Left, Back,
+    # Right (`mod(A_Index,4)` = 1, 2, 3, 0), then looks up to 5 times 250 ms
+    # apart (14756-14830).
+    wait: {rounds: 25, looks: 5, every_s: 0.25}
+    dodge: {tiles: 6.75, keys: [w, a, s, d]}
+    loot_after_dodge:                                      # 14852-14853
+      1: [[s, 4.5], [a, 4.5]]
+      2: [[s, 4.5], [d, 4.5]]
+      3: [[w, 4.5], [d, 4.5]]
+      0: [[w, 4.5], [a, 4.5]]
+    loot:                                                  # 14854-14862
+      - [s, 4]
+      - [sa, 6]
+      - {repeat: 4, legs: [[w, 14], [d, 1.5], [s, 14], [d, 1.5]]}
+      - [w, 14]
+
+  pine_tree:
+    source: natro_macro.ahk:14875-14985
+    books: [mantis]                                        # 14953
+    look: {tries: 20, every_s: 0.20}                       # 14903-14911
+    wait: {rounds: 20, looks: 10, every_s: 0.10, turn_at: 5}    # 14921-14940
+    loot:                                                  # 14967-14982
+      - [s, 10]
+      - [a, 1.5]
+      - {repeat: 3, legs: [[w, 10], [a, 1.5], [s, 10], [a, 1.5]]}
+      - [w, 20]
+      - [d, 1.5]
+      - [s, 10]
+      - {repeat: 3, legs: [[d, 1.5], [w, 10], [d, 1.5], [s, 10]]}
+
+  rose:
+    source: natro_macro.ahk:14996-15162
+    books: [scorpion]                                      # 15135
+    arrive: [{walk: [s, 4.5]}, {walk: [d, 6.75]}]          # 15029-15030
+    fight_turn: -4                                         # 15048 (RotLeft 4, not undone)
+    look: {tries: 20, every_s: 0.15}                       # 15034-15042
+    # Rounds move Back, Right, Fwd, Left (15052-15125), 5 looks 250 ms apart.
+    wait: {rounds: 17, looks: 5, every_s: 0.25}
+    dodge: {tiles: 6.75, keys: [s, d, w, a]}
+    loot_after_dodge:                                      # 15149-15150
+      1: [[w, 4.5], [d, 4.5]]
+      2: [[w, 4.5], [a, 4.5]]
+      3: [[s, 4.5], [a, 4.5]]
+      0: [[s, 4.5], [d, 4.5]]
+    loot:                                                  # 15151-15160
+      - [w, 2]
+      - [wa, 10]
+      - {repeat: 4, legs: [[s, 16], [d, 1.5], [w, 16], [d, 1.5]]}
+      - [s, 16]
+      - [wa, 6]
+
+# THE OTHER MOBS THE BOT CAN MEET (ROADMAP K7). Bosses with their own act/
+# module, the hourly Mondo Chick and the Magic Bean's Sprout. Kept OUT of
+# `mobs:` (act/bugrun's book). `fields` here are where the mob stands: a
+# field slug when it holds a field (brain/mobtable answers for it), else its
+# own place (lair, cave, hideout), which no field lookup ever matches.
+# `respawn_seconds: null` = no timer (src says why).
+other_mobs:
+  mondo_chick:
+    name: Mondo Chick
+    kind: boss
+    fields: [mountain_top]
+    level: null
+    hp: 300000
+    respawn_seconds: 3600
+    danger: 3
+    night: both
+    drops: {}
+    src:
+      fields: "[assumed: wiki Mondo_Chick]; data/world/timers.yaml guards mountain_top"
+      respawn_seconds: "[assumed: wiki, every full hour, gone 15 min later]; measured: panel 'Time: 12:05' at 14:02:55 (timers.yaml)"
+      level: "unknown: no level read off its bar yet"
+      hp: "[assumed: wiki 300,000]; measured: 'HP: 242,439' 173 s after a spawn = 300,000 - 333/s (timers.yaml, 2026-09-27)"
+      drops: "measured: none -- no '(from Mondo Chick)' line in any run log or var/mob_drops.jsonl (act/mondo)"
+      danger: "measured: 2 deaths on the field 2026-09-27 14:09/14:11; Mountain Top 0.82 deaths/h (10 in 12.2 h)"
+      night: "[assumed: wiki, on the hour day or night]"
+  coconut_crab:
+    name: Coconut Crab
+    kind: boss
+    fields: [coconut]
+    level: null
+    hp: 250000
+    respawn_seconds: 129600
+    danger: 3
+    night: both
+    drops: {}
+    src:
+      fields: "[assumed: wiki Coconut_Crab]; measured: in the frame on landing (act/crab)"
+      respawn_seconds: "[assumed: Natro LastCocoCrab 1.5 days, act/crab COOLDOWN_S]; data/world/timers.yaml says 21600 -- see docs/pending/mobs-k7.md"
+      level: "unknown"
+      hp: "measured: 'HP: 250,000' on var/crab 20261012-115104 looks 03-06"
+      drops: "unknown: never beaten (var/crab.json 13 absent, 5 walk, 2 died)"
+      danger: "measured: 4 deaths 4-8 s after landing (act/crab), 2 'died' in var/crab.json"
+      night: "[assumed: wiki, no time limit]"
+  king_beetle:
+    name: King Beetle
+    kind: boss
+    fields: [king_beetles_lair]
+    level: null
+    hp: 2500
+    respawn_seconds: 86400
+    danger: 2
+    night: both
+    drops: {}
+    src:
+      fields: "[assumed: wiki King_Beetle's_Lair, under the Blue Flower Field]"
+      respawn_seconds: "[assumed: Natro LastKingBeetle 24 h, natro_macro.ahk:15324; wiki]"
+      level: "unknown"
+      hp: "[assumed: wiki 2,500, docs/pending/brain-research-4.md]"
+      drops: "unknown: never met (var/beetle.json 19 absent, 1 walk)"
+      danger: "[assumed: a boss in a closed lair; never met]"
+      night: "[assumed: wiki, no time limit]"
+  tunnel_bear:
+    name: Tunnel Bear
+    kind: boss
+    fields: [tunnel]
+    level: null
+    hp: 10000
+    respawn_seconds: 172800
+    danger: 3
+    night: both
+    drops: {}
+    src:
+      fields: "[assumed: wiki Tunnel_Bear, the tunnel behind the Brave Bee Gate]"
+      respawn_seconds: "[assumed: Natro LastTunnelBear 48 h, natro_macro.ahk:15175; wiki]"
+      level: "unknown"
+      hp: "[assumed: wiki 10,000 (act/tunnelbear)]"
+      drops: "unknown: never beaten"
+      danger: "measured: 7 of 17 tries died (var/tunnelbear.json), 0 kills"
+      night: "[assumed: wiki, no time limit]"
+  stump_snail:
+    name: Stump Snail
+    kind: boss
+    fields: [stump]
+    level: 6
+    hp: 30000000
+    respawn_seconds: 345600
+    danger: 1
+    night: both
+    drops: {honey: 30000000, glue: "1-100", star jelly: "1-10", shell amulet: 1}
+    src:
+      fields: "[assumed: wiki Stump_Snail, circles the Stump Field]; measured: its bar on the four Stump trips of 2026-10-06"
+      respawn_seconds: "[assumed: Natro 96 h, natro_macro.ahk:15483; wiki]"
+      level: "measured: 'Stump Snail (Lvl 6) (HP Saves)' (act/stumpsnail)"
+      hp: "[assumed: wiki 30,000,000]; measured 29,879,792 at the first look (act/stumpsnail)"
+      drops: "[assumed: wiki Stump_Snail, certain drops only]"
+      danger: "[assumed: wiki 'no direct threat', 30 damage on contact]; measured: Stump 1 death in 1.5 h"
+      night: "[assumed: wiki, no time limit]"
+  commando_chick:
+    name: Commando Chick
+    kind: boss
+    fields: [commando_hideout]
+    level: 3
+    hp: 150
+    respawn_seconds: 1800
+    danger: 2
+    night: both
+    drops: {}
+    src:
+      fields: "[assumed: wiki Commando_Chick's_Hideout rev 449613]"
+      respawn_seconds: "[assumed: wiki 30 min; Natro LastCommando natro_macro.ahk:15643]"
+      level: "[assumed: wiki, level 3 at the first capture, rising each capture]"
+      hp: "[assumed: wiki 150 HP at level 3, under 300,000 for 36 captures; HP saved when it flees]"
+      drops: "[assumed: wiki milestones only (Glue at 5, Gold Egg at 10, ...)]; no drop line logged"
+      danger: "measured: 5 of 20 tries died (var/commando.json), most in the obby (deaths audit cause 10)"
+      night: "[assumed: wiki, no time limit]"
+  sprout:
+    name: Sprout
+    kind: other
+    fields: []
+    level: null
+    hp: null
+    respawn_seconds: null
+    danger: 0
+    night: both
+    drops: {honey: 267, blueberry: 126, treats: 128, sunflower seed: 36, moon charm: 26, strawberry: 28, pineapple: 18, gumdrop: 8, royal jelly: 3, ticket: 3}
+    src:
+      fields: "[assumed: wiki Sprout, grows where a Magic Bean is planted or at random]"
+      respawn_seconds: "none: no timer, it grows from a bean"
+      level: "none"
+      hp: "unknown: its HP depends on the sprout's rarity [assumed: wiki]"
+      drops: "measured: drop LINES per item over var/mob_drops.jsonl (663 lines); per kill unknown, the feed logs no sprout kill"
+      danger: "[assumed: wiki, it does not attack]"
+      night: "[assumed: wiki, no time limit]"
+
+# THE ROGUE VICIOUS BEE (act/vicious; ROADMAP Q3, 2026-10-19). Kept OUT of
+# `mobs:` on purpose: act/bugrun's book reads `mobs:`, and this is no bug-run
+# mob -- night only, no respawn timer, found by stepping on its spike.
+# [ASSUMED, NOT MEASURED HERE] The levels are the wiki's Rogue_Vicious_Bee
+# "Locations" table as act/vicious transcribed it on 2026-10-12 (the wiki API
+# answered 402 on 2026-10-19, so not re-read); the bee gates are Natro's
+# VBData (natro_macro.ahk:18282-18330, in act/vicious.FIELDS). Not one has
+# been seen by this bot: 20 night hunts of Clover and Spider, 13-19 Oct
+# (var/vicious.json), all "absent".
+rogue_vicious_bee:
+  source: wiki Rogue_Vicious_Bee (Locations, HP, Drops; read 2026-10-12)
+  confidence: assumed
+  # router node -> [lowest, highest] level it spawns at there. A field not
+  # listed is unknown and is skipped.
+  levels:
+    clover: [1, 3]
+    spider: [2, 4]
+    cactus: [4, 7]
+    rose_field: [5, 7]
+    mountain_top: [6, 8]
+    pepper: [9, 12]
+  hp: {1: 1000, 4: 10000, 12: 68000}       # wiki, the three points act/vicious cites
+  stingers: 1 at levels 1-3, 2 at 4-6; +5 for the day's first kill (22 h cooldown)
+  # THE GATE: the highest level this hive is taken to beat; a field whose
+  # top level is above it is skipped, and no value means skip everything.
+  # ponytail: a calibration knob, not a measurement -- level 4 is the wiki's
+  # 10,000 HP, the Tunnel Bear's, which this hive lost to on 2026-10-12, so
+  # this keeps Clover and Spider (combat.vicious's own help text). Raise it
+  # once kills are on record (var/vicious.json `tries`); drop it to 3 if a
+  # Spider-field Vicious Bee ever kills the character.
+  beatable_max_level: 4
+  # THE MOB TABLE's keys (ROADMAP K7); `levels` above stays act/vicious's.
+  name: Vicious Bee
+  kind: night_boss
+  fields: [clover, spider, cactus, rose, mountain_top, pepper]
+  respawn_seconds: null
+  danger: 3
+  night: night
+  drops: {stinger: "1-2 (+5 the day's first kill)"}
+  src:
+    fields: "[assumed: wiki Rogue_Vicious_Bee Locations, read 2026-10-12]"
+    respawn_seconds: "none: it appears at a spike; the daily-bonus cooldown is 22 h (brain/calendar)"
+    hp: "[assumed: wiki `hp` above]"
+    drops: "[assumed: wiki `stingers` above]"
+    danger: "[assumed: wiki, levels up to 12 and 68,000 HP]; never met (var/vicious.json 19 absent, 1 walk)"
+    night: "[assumed: wiki 'spawns at night more often'; act/vicious hunts it at night]"

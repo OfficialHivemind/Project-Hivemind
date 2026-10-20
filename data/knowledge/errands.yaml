@@ -1,0 +1,195 @@
+# Places worth walking to, and how the bot knows it is actually there.
+#
+# WHY `expect` MATTERS MORE THAN THE ROUTE. Every entry here already has a
+# recorded route in data/world/paths.yaml -- getting there was never the hard
+# part. The hard part is the keypress: `e` converts pollen at a hive, opens
+# shops and starts NPC conversations, and this project has already opened a
+# Polar Bear quest dialogue by pressing it where it believed the hive was.
+#
+# So `expect` is the words the game's own top-centre panel must contain before
+# anything is pressed. An entry whose `expect` is empty is NEVER pressed --
+# `act/errands.Errand.matches` returns False on an empty list on purpose -- and
+# visiting it becomes reconnaissance: the bot walks there, writes down what the
+# panel actually says, and a human fills this in from that.
+#
+# NOTHING HERE IS GUESSED. Every `expect` below is empty because no frame of
+# any of these panels has been captured yet. Filling them in from what a wiki
+# says the prompt "should" be is exactly the mistake this file exists to avoid.
+source: routes from data/world/paths.yaml; panel text not yet observed
+checked: 2026-09-26
+
+# Which GUI switch would turn each errand on, once a route lands close enough
+# for the game to offer a prompt. Kept here rather than in code on purpose:
+# `tests/unit/test_settings.py` scans the source for setting names to decide
+# whether a switch is live, and naming them in a module made it believe these
+# were working when they are not. See act/errands.for_groups.
+groups:
+  wealth clock:
+    - wealth_clock
+  field boosters:
+    - blue_field_booster
+    - red_field_booster
+    - white_field_booster
+  dispensers:
+    - blueberry_dispenser
+    - strawberry_dispenser
+    - treat_dispenser
+    - honey_dispenser
+    - coconut_dispenser
+    - glue_dispenser
+    - ant_pass
+
+errands:
+  # EVERY COOLDOWN BELOW IS CITED. A place's own countdown, read off its
+  # panel, still beats this file whenever one has been read after the last
+  # press (scripts/run_farm.py::_next_usable); `every_hours` is the period
+  # after a press whose timer was read back, and after one whose timer was
+  # NOT the place is looked at again after min(every_hours, 1 h), where the
+  # arrival read settles whether the press took (DESIGN 8dq). Corrected
+  # 2026-09-25: the treat and honey dispensers were at 4 h against the
+  # wiki's and Natro's 1 h, and the glue dispenser at 4 h against 22 h.
+  #
+  # `bees_required` is a gate this account's bee count is checked against
+  # before the place is walked to at all: the larger of hive.bees in
+  # data/knowledge/account.yaml (the owner's screenshot) and what gathering
+  # has proved (brain/decide.Planner.bees_at_least). `blocked` is anything
+  # else known to keep the account out, in words; the startup table prints
+  # it. Whether E may be pressed at a place is NOT in this file:
+  # act/errands.FREE_TO_USE is the list, in code, so a data edit cannot widen
+  # what is pressed.
+  wealth_clock:
+    gives: tickets (1, 2, 3, 4, then 5 a use) and x1.01 honey per pollen, stacking to x1.05
+    expect: []          # the recon fills var/place_panels.json, not this file
+    every_hours: 1.0    # wiki Wealth_Clock "every hour of playtime"; Natro nm_Clock >3600 (natro_macro.ahk:11720)
+    note: >
+      The hour is counted from the join, and a rejoin restarts it (MEASURED,
+      DESIGN 8dd). Needs 5 bee types discovered (wiki); the account has 28.
+
+  blue_field_booster:
+    gives: a field boost for 15 minutes to one blue field, picked at random
+    expect: []
+    every_hours: 0.75   # wiki Blue_Field_Booster "cooldown=45 minutes"; Natro BoosterCooldown >2700 (natro_macro.ahk:13597)
+    # wiki Blue_Field_Booster, "Boosts" (rev 2026-05-31); the same four in
+    # Natro's blueBoosterFields (natro_macro.ahk:13601). The Stump Field only
+    # while the Stump Snail is on its respawn cooldown, which this bot cannot
+    # see, so it stays in the pool and lowers the odds rather than raising them.
+    boosts: {blue_flower: 3.0, bamboo: 1.0, pine_tree: 1.0, stump: 1.0}
+    note: >
+      Second floor of the Blue HQ, next to Gifted Bucko Bee. Needs 5 blue bee
+      types discovered (wiki). Reached by natro_out_blue_field_booster, which
+      is Natro's gtb-blue ("gtb" is "go to (field) booster", natro_macro.ahk:310).
+
+  red_field_booster:
+    gives: a field boost for 15 minutes to one red field, picked at random
+    expect: []
+    every_hours: 0.75   # wiki Red_Field_Booster "a cooldown of 45 minutes"; Natro >2700 (natro_macro.ahk:13597)
+    # wiki Red_Field_Booster, "Boosts" (rev 2025-08-13); Natro redBoosterFields (13601).
+    boosts: {mushroom: 3.0, strawberry: 1.0, rose: 1.0, pepper: 1.0}
+    boost_needs_bees: {pepper: 35}    # wiki: "(only if player has 35+ Bees)"
+    note: >
+      Inside the Red HQ. Needs 5 red bee types discovered (wiki). The wiki
+      warns that opening the Red HQ shop straight after the booster traps the
+      shop open; nothing here presses "Open Shop" (NEVER_PRESS).
+
+  white_field_booster:
+    gives: a field boost for 15 minutes to one colourless or mixed field, picked at random
+    expect: []
+    every_hours: 0.75   # wiki Field_Booster "The cooldown is 45 minutes"; Natro >2700 (natro_macro.ahk:13597)
+    bees_required: 25   # "beyond the Lion Bee Gate" (wiki Field_Booster), "the 25 Bee Gate" (wiki Lion_Bee_Gate)
+    # wiki Field_Booster, "Boosts" (rev 2026-07-12); Natro mountainBoosterfields (13601).
+    boosts: {sunflower: 3.0, dandelion: 3.0, spider: 2.0, clover: 2.0,
+             pineapple: 2.0, pumpkin: 2.0, cactus: 1.0}
+    note: >
+      The wiki's "Field Booster", Natro's "Mountain Top Booster", between the
+      Mountain Top Shop and the Ticket Shop. Needs 20 bee types discovered.
+
+  blueberry_dispenser:
+    gives: 1 blueberry per blue bee, honey, x10 blue boost tokens
+    expect: []
+    every_hours: 4.0    # wiki Blueberry_Dispenser "cooldown=4 hours"; Natro >14400 (12208); MEASURED "(3:59:59)" after the press, 2026-09-24 02:06:51 (run-346) and 06:09:45 (run-356)
+
+  strawberry_dispenser:
+    gives: 1 strawberry per red bee, honey, x10 red boost tokens
+    expect: []
+    every_hours: 4.0    # wiki Strawberry_Dispenser "cooldown=4 hours"; Natro >14400 (12236)
+    bees_required: 26   # not a gate: the route is Natro's `HiveBees > 25` branch (paths/gtc-strawberrydis.ahk:1; scripts/transpile_natro.BRANCH)
+
+  royal_jelly_dispenser:
+    gives: 1 royal jelly FOR 6 TICKETS -- never pressed unattended
+    expect: []
+    every_hours: 0.0
+    caution: >
+      This is the TICKET dispenser by the Clover Field: its panel reads "Spend
+      6 Tickets to Use the Royal Jelly Dispenser" (var/vlm_cache/69/
+      69a74e3b...d281.txt), 3 s cooldown (wiki Royal_Jelly_Dispenser). It is
+      not in act/errands.FREE_TO_USE and "spend"/"ticket" are in NEVER_PRESS.
+      The FREE one (22 h, one jelly per gifted bee) is in the Star Hall on the
+      Noob Shop roof (wiki Free_Royal_Jelly_Dispenser) and has no route:
+      Natro reaches it by cannon and glider only (natro_macro.ahk:12342,
+      paths/gtc-royaljellydis.ahk).
+
+  treat_dispenser:
+    gives: treats (floor(bees^2.5/100 + 0.5), 34 at 26 bees), honey, 1 pineapple, x5 haste
+    every_hours: 1.0    # wiki Treat_Dispenser "cooldown=1 hour" (rev 2026-02-26); Natro nm_TreatDis >3600 (12180); MEASURED "(59:59)" after the press, 2026-09-24 04:03:34 (run-351) and 2026-09-25 03:04:22 (run-385)
+    expect: []
+    note: >
+      Was 4.0, copied from the other dispensers. What it cost, MEASURED: the
+      use at 2026-09-24 22:23:51 (run-364) read no timer back, so the 4 h
+      decided, and the next visit was 02:32:14 -- three hourly payouts lost.
+  coconut_dispenser:
+    gives: coconuts by coconut badge tier, and a Coconut Field boost
+    every_hours: 4.0    # wiki Coconut_Dispenser "cooldown=4 hours"; Natro >14400 (12264)
+    bees_required: 35   # in the Coconut Cave, inside "the 35 Bee Gate" (wiki Windy_Bee_Gate)
+    expect: []
+    note: >
+      Also needs the Coconut Crab defeated (wiki). MEASURED: 37 recons of
+      natro_out_coconut_dispenser across the saved run logs (26 sessions,
+      attempts 351-406), none read a panel, about 86 s each -- it headed the
+      recon queue and was walked to first every session. The route frames
+      (var/routes/attempt-*/*-natro_out_coconut_dispenser-*) pass the "35"
+      sign at step 21, see no hive wall at steps 24-30, and by step 37 the
+      hive row fills the view: sent back to spawn, every time (DESIGN 8dr).
+      The account has 26 bees.
+  glue_dispenser:
+    gives: glue (2 at Goo Hotshot, up to 5), and the Unlimited Gumdrops buff
+    every_hours: 22.0   # wiki Glue_Dispenser "cooldown=22 hours"; Natro nm_GlueDis >79200 (12292)
+    expect: []
+    blocked: >
+      needs a gumdrop used at the Gummy Bee Egg Claim on the way in, which the
+      transpiled route does not do (the Goo Hotshot badge it also needs is
+      passed: the badge menu read "Goo Badge - Ace, 152,571,602 / 500,000,000
+      Goo" on 2026-10-14 05:36 -- account.yaml)
+    note: >
+      Gummy Bear's Lair "can only be accessed by having a Goo Hotshot Badge or
+      above", entered by touching the Gummy Bee model "and use a gumdrop"
+      (wiki Gummy_Bear's_Lair, rev 2026-07-12). Natro drags a gumdrop out of
+      the inventory on the way (nm_GlueDis, natro_macro.ahk:12300-12316); the
+      transpiler emits the path's walks only. Take `blocked` out once both
+      are true, and the recon reads it.
+  honey_dispenser:
+    gives: honey (floor(bees^1.7 + 0.5) x 100, 25,400 at 26 bees), x5 haste
+    every_hours: 1.0    # wiki Honey_Dispenser "cooldown=1 hour" (rev 2026-07-12); Natro nm_HoneyDis >3600 (12152)
+    expect: []
+  ant_pass:
+    gives: 1 ant pass (the entry to the Ant Challenge, played for quests that want ants -- combat.ant_challenge)
+    every_hours: 2.0    # wiki Free_Ant_Pass_Dispenser "cooldown=2 hours"; Natro nm_Ant >7200 (11962)
+    bees_required: 20   # "past the Ant Gate" (wiki Free_Ant_Pass_Dispenser), "the 20 Bee Gate" (wiki Ant_Gate)
+    expect: []
+    # its panel once 10 passes are held -- read 2026-09-27 16:15:39 and
+    # 2026-09-28 13:22:29 (attempt 520): arrived, nothing to give
+    full: ["you already have 10 or more ant passes"]
+    note: >
+      The FREE dispenser. Its ticket twin stands to its right and sells the
+      same pass for 10 tickets (wiki Ant_Pass_Dispenser); "spend" and "ticket"
+      are in NEVER_PRESS, so its panel is never pressed at. Neither gives
+      anything once 10 passes are held.
+
+  # READ ONLY, and behind a gate. Here only for the gate, so a recon is not
+  # spent on it the day the owner turns `economy.wind_shrine` on: it stands
+  # "beyond the Windy Bee Gate" (wiki Wind_Shrine, rev 2026-09-07), "the 35
+  # Bee Gate" (wiki Windy_Bee_Gate). An offering is a donation, so it is not
+  # in act/errands.FREE_TO_USE and nothing is ever pressed there.
+  wind_shrine:
+    gives: field winds and honey for an offering -- never pressed unattended
+    expect: []
+    bees_required: 35

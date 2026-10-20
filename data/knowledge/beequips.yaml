@@ -1,0 +1,236 @@
+# BEEQUIPS: what the bot knows about them (ROADMAP K8; owner 2026-10-15:
+# "teach ai bequips remember that"). Base for H4 (equip / wax / swap).
+#
+# Read by brain/beequips.py (load, best_for). Researched 2026-10-15. The
+# fandom wiki answers HTTP 402, so facts come from search-result summaries of
+# the wiki pages and from the guides below. Confidence per entry:
+#   ag_guide   = quoted from data/knowledge/guides/blue_hive_guide.md (AG, 2026-06-06)
+#   summary    = third-party summary (techwiser / bee-swarm-simulator.wiki); the
+#                stat ranges there are partly garbled -> treat as UNVERIFIED
+#   unverified = remembered or inferred, not read anywhere today
+# Nothing here has been read off the bot's own screen yet: every stat, level
+# and recipe is a wiki/guide value, [assumed] until a frame shows it (H4).
+sources:
+  ag_guide: data/knowledge/guides/blue_hive_guide.md  (section 2.1 Beequips, 5.1 placement)
+  techwiser: https://techwiser.com/all-bee-swarm-simulator-beequips/
+  bsswiki_mirror: https://www.bee-swarm-simulator.wiki/items/bee-swarm-simulator-beequips
+  metabee_wax: https://meta-bee.com/beequips-waxing-mutations/
+  wiki_waxes: https://bee-swarm-simulator.fandom.com/wiki/Waxes  (search snippets only, 402)
+  wiki_swirled: https://bee-swarm-simulator.fandom.com/wiki/Swirled_Wax  (search snippets only)
+  wiki_turpentine: https://bee-swarm-simulator.fandom.com/wiki/Turpentine  (search snippets only)
+  wiki_dapper_shop: https://bee-swarm-simulator.fandom.com/wiki/Dapper_Bear's_Shop  (search snippets only)
+checked: 2026-10-15
+
+# --------------------------------------------------------------- screens ---
+# What the bot has PICTURED of beequips (ROADMAP H4, looked 2026-10-19).
+screens:
+  bee_card: "The card a click on a cell's face brings (run_farm's jelly errand, act/beecard): name '(Lvl N)', rarity bar, Bond/Energy/Gathers/Converts/Speed/Attack. 220 such frames (var/shoplook/*jelly-check*, *jelly-view*, *card-*) show NO beequip on or beside the card -- either none is equipped or the game shows it elsewhere. Unknown which."
+  case_button: "Inventory menu, top right: a green 'Beequip Case' button beside 'Sticker Book' (var/inventory/20261019-203201/page-00.png). The inventory read lists it as 'Beequip Case: 1'. Never clicked."
+  case: "NEVER PICTURED: the Beequip Case window (names, stars, waxes per item)."
+  storage: "The building's prompt 'E Open Beequip Storage' is read (act/homing ROW_LANDMARK_WORDS); its window never opened."
+  inbox: "NEVER PICTURED."
+  waxes_held: "Read by the inventory read: Soft/Hard/Swirled Wax rows (account.yaml beequips.waxes)."
+
+# ------------------------------------------------------------- mechanics ---
+mechanics:
+  storage:
+    case: "Beequip Case: 5 slots at start, up to 15. Dapper Bear quests add slots (10th slot at Dapper quest 10); slots 14-15 need Bee Bear's 2020 Beesmas quest. Only beequips IN THE CASE can be equipped. AG: most players have 13."
+    storage: "Beequip Storage building (row by the hive pads / near Dandelion; prompt 'Open Beequip Storage', seen live 2026-09-22): 10 slots default, up to 100 for 123,500 tickets total (summary)."
+    inbox: "Inbox holds the 25 most recent new beequips; each is DELETED after 48h unless moved to case/storage (data/economy/expiries.yaml beequip_inbox, verified: false)."
+    confidence: summary
+  equip_rules: "Each beequip has a minimum bee level, often a bee colour or a list of allowed bee types / rarities / gifted-only, and a per-hive equip limit (1-3 of the same beequip). One beequip per bee."
+  potential: "0-5 stars, fixed per item. Higher potential = better base stat rolls (weighted) and better wax outcomes. 'Weight' in the community spreadsheet is not 'chance' (AG). Exact effect on waxing: unverified."
+  stats_value: "AG values beequips by sign value (trading); stats range 0 to ~50 'val' each. Green [HB]/hive-wide stats are multiplicative."
+  waxes:
+    limit: "Up to 5 waxes per beequip; Turpentine resets so more can be applied."
+    soft:      {power: 1, success: 1.00, on_fail: "-", recipe: "Blender: 5 Honeysuckle, 1 Oil, 1 Enzymes, 10 Royal Jelly", confidence: summary}
+    hard:      {power: 2, success: 0.60, on_fail: "wax used up, slot spent, no gain", recipe: "Blender: 3 Soft Wax, 3 Enzymes, 33 Bitterberry, 33 Royal Jelly", confidence: summary}
+    caustic:   {power: 4, success: 0.25, on_fail: "DESTROYS THE BEEQUIP", recipe: "Blender: 5 Hard Wax, 5 Enzymes, 25 Neonberry, 5,252 Royal Jelly; also Mythic/Legendary Puffshroom drop, level-17 Snowbear, Tropical Gift Box, long planters", note: "On success also unlocks the {CAUSTIC} stat (e.g. Lip Balm Gold Bubble Pollen, Bead Lizard Token Link)", confidence: summary}
+    swirled:   {power: 0, success: 1.00, effect: "Rerolls all base stats (re-applies earlier successful wax bonuses)", recipe: "Blender: 3 Hard Wax, 9 Soft Wax, 6 Purple Potion, 3,333 Royal Jelly; Crafty Gift Box 11th; Beesmas bundles", confidence: summary}
+    turpentine: {effect: "Removes ALL waxes (stats back to original), frees the 5 slots", cap: "25 held max", note: "Meta Bee: only worth it with a Planter of Plenty (Turpentine source); recipe not read", confidence: summary}
+    strategy: "Meta Bee: conservative 5 Soft; balanced 3 Hard then 2 Soft; aggressive 1 Caustic first then 2 Hard + 2 Soft. Never more than one Caustic on a beequip. H4 RULE: the bot never applies Caustic without the owner's OK (destroys the item 75% of the time)."
+  dapper_shop: "Dapper Bear's Shop (behind the Brave Bee Gate; Propeller Hat + Hiking Boots, which the owner has) sells planters and 6 beequips; beequips 3-6 unlock with Dapper Bear quest counts. Which 6, and prices: UNVERIFIED (not read)."
+
+# ------------------------------------------------------------- beequips ----
+# lvl = min bee level; colour = required bee colour (any/red/blue);
+# bees = allowed bee types (key = bee_types.yaml key), or a rule; beesmas =
+# only from Beesmas events/trades (not buyable off-season).
+# stats: AG ranges where it lists them (ag_guide), else the summary's headline
+# stat (summary, UNVERIFIED).
+beequips:
+  pinecone:
+    lvl: 9
+    bees: [bumble, stubborn, bucko, frosty, carpenter, bear]
+    beesmas: true
+    obtain: "Beesmas: Werewolf, Stick Bug, Festive Nymph, bundle"
+    stats: ["15-19% Pine Tree Capacity", "8-11% Pine Tree Pollen", "1-2% Bee Ability Rate"]
+    confidence: ag_guide
+  camphor_lip_balm:
+    lvl: 12
+    bees: [cool, stubborn, commander, bubble, crimson]
+    beesmas: false
+    obtain: "Dapper Bear's Shop, Ant Challenge, Red Clay / Heat-Treated / Plenty planters"
+    stats: ["13-20% Bubble Pollen", "1-6% Gold Bubble Pollen {CAUSTIC}"]
+    confidence: ag_guide
+  elf_cap:
+    lvl: 3
+    bees: any
+    beesmas: true
+    obtain: "Beesmas: Ruby Gift Box, Ladybug, stockings"
+    stats: ["1-6% Honey at Hive", "20-30% Convert Rate at Hive", "2-7% Convert Rate at Hive [HB]"]
+    confidence: ag_guide
+  candy_ring:
+    lvl: 14
+    bees: [stubborn, bumble, honey, diamond, festive, gummy]
+    beesmas: false
+    obtain: "Shop, Ant Challenge, Robo Bear Challenge, planters"
+    stats: ["5-10% Honey at Hive", "40-50% Convert Rate"]
+    confidence: ag_guide
+  snow_tiara:
+    lvl: 12
+    bees: [cool, stubborn, shocked, frosty, diamond, windy]
+    gifted: true
+    beesmas: true
+    obtain: "Beesmas: Snow Queen Bundle, spiders, Snowbear level 20"
+    stats: ["5-7% Blue Field Capacity", "4-5% White Field Capacity", "25-30% Convert Rate"]
+    confidence: ag_guide
+  reindeer_antlers:
+    lvl: 8
+    bees: [puppy]
+    beesmas: true
+    obtain: "Beesmas: Reindeer Bundle (250 Gingerbread)"
+    stats: ["+Focus ability", "+Reindeer Fetch (guaranteed): 1.1x capacity", "1-4% Capacity [HB]"]
+    confidence: ag_guide
+  rose_headband:
+    lvl: 13
+    bees: [basic, rascal, riley, diamond, windy, vicious]
+    beesmas: false
+    obtain: "Shop, Red Clay Planter"
+    stats: ["60-80% Convert Rate (ignore +Capacity)"]
+    confidence: ag_guide
+  toy_drum:
+    lvl: 7
+    bees: [brave, demo, bucko, riley]
+    beesmas: true
+    obtain: "Beesmas stockings"
+    stats: ["+Haste ability (guaranteed)", "1-5% Bee Ability Pollen"]
+    confidence: ag_guide
+  autumn_sunhat:
+    lvl: 16
+    bees: [hasty, bumble, looker, exhausted, diamond, puppy]
+    beesmas: false
+    obtain: "Shop, Stick Bug Challenge, planters"
+    stats: ["10-14% White Field Capacity", "15-20% Convert Rate", "10-15% Bee Ability Rate"]
+    confidence: ag_guide
+  bead_lizard:
+    lvl: 9
+    bees: "common or rare bees"
+    beesmas: false
+    obtain: "Shop, planters"
+    stats: ["+Token Link {CAUSTIC}", "1-3% Bubble Pollen [HB]", "10-15% Gather Bubble Chance"]
+    confidence: ag_guide
+  paperclip:
+    lvl: 7
+    bees: "rare or epic bees"
+    beesmas: false
+    obtain: "Petal Planter, Shop, Blue Clay Planter"
+    stats: ["+Token Link", "1-3% Ability Token Lifespan", "1-6% Bee Ability Rate (summary)"]
+    confidence: ag_guide
+  beret:
+    lvl: 11
+    colour: blue
+    bees: "blue bees (AG: any rare)"
+    beesmas: false
+    obtain: "Blue Clay Planter, Planter of Plenty, Shop"
+    stats: ["1-4% Blue Field Capacity", "1-2% Capacity", "10-15% Convert Rate"]
+    confidence: ag_guide
+  whistle:
+    lvl: 8
+    bees: [brave, commander, rascal, demo, cool, rage]
+    beesmas: false
+    obtain: "Dapper Bear's Shop (AG: 'free'), planters, Robo Bear Challenge"
+    stats: ["+Haste ability", "movespeed"]
+    confidence: ag_guide
+  festive_wreath:
+    lvl: 10
+    colour: red
+    bees: [festive]
+    beesmas: true
+    obtain: "Beesmas: Festive Gift Box"
+    stats: ["chance of 1-3% Honey at Hive (AG: worth it only at ~3%)"]
+    confidence: ag_guide
+  beesmas_tree_hat:
+    lvl: 10
+    bees: "any bee with a mutation"
+    beesmas: true
+    obtain: "Beesmas: Radioactive Bundle, Tunnel Bear, stockings"
+    stats: ["4-7% Convert Rate at Hive", "10-20% Convert Rate"]
+    confidence: ag_guide
+  pink_shades:
+    lvl: 10
+    bees: [basic, rad, bomber, demo, honey, shy]
+    gifted: true
+    beesmas: true
+    obtain: "Challenges, planters, Honey Bee Beesmas"
+    stats: ["+Focus ability", "Super-Crit chance/power (AG: ignore)"]
+    confidence: ag_guide
+  thimble:      {lvl: 3, bees: any, obtain: "Dapper Bear's Shop, planters", stats: ["+Convert Amount", "[HB] +Convert Rate"], confidence: summary}
+  sweatband:    {lvl: 5, bees: any, obtain: "Shop, planters, Robo Bear", stats: ["+Bee Energy", "+Gather Amount (white guides: 26%+ White Gather)", "[HB] +Pollen"], confidence: summary}
+  bandage:      {lvl: 3, bees: any, obtain: "Shop, Ant Challenge", stats: ["+Gather Amount", "+Energy", "+Bee Attack"], confidence: summary}
+  thumbtack:    {lvl: 6, colour: red, bees: "red bees", obtain: "Red Clay Planter, Shop, Stick Bug Challenge", stats: ["+Critical Power", "[HB] +Red Attack"], confidence: summary}
+  camo_bandana: {lvl: 8, bees: "bees with a bomb ability", obtain: "Shop, Stick Bug Challenge", stats: ["+Gather", "+Buzz Bomb Pollen"], confidence: summary}
+  bottle_cap:   {lvl: 4, bees: "common or rare bees", obtain: "Shop, planters, Ant Challenge", stats: ["+Convert Amount", "+Critical Power"], confidence: summary}
+  kazoo:        {lvl: 9, bees: [brave, bumble, bubble, riley, shocked, buoyant], obtain: "Shop, Stick Bug Challenge, Petal Planter", stats: ["+Convert"], confidence: summary}
+  smiley_sticker: {lvl: 7, gifted: true, bees: "gifted bees", obtain: "Planters, Shop, Stick Bug Challenge", stats: ["+Honey Mark ability", "+Energy", "+Bomb Pollen"], confidence: summary}
+  charm_bracelet: {lvl: 12, bees: "legendary bees", obtain: "Petal Planter, Shop", stats: ["+Convert", "[HB] +Loot Luck"], confidence: summary}
+  bang_snap:    {lvl: 10, bees: "common, rare or epic bees", obtain: "Pesticide Planter, Shop, Robo Bear", stats: ["+Bomb Pollen"], confidence: summary}
+  lei:          {lvl: 14, bees: [basic, looker, stubborn, hasty, exhausted], obtain: "Petal Planter", stats: ["+Gather"], confidence: summary}
+  demon_talisman: {lvl: 13, colour: red, bees: [demon], obtain: "Shop, Heat-Treated Planter, Robo Bear", stats: ["+Bee Attack", "+Gather"], confidence: summary}
+  pink_eraser:  {lvl: 12, bees: "bees with a Convert Amount mutation", obtain: "Shop, Robo Bear", stats: ["+Convert"], confidence: summary}
+  single_mitten: {lvl: 6, bees: "rare, epic or legendary bees", beesmas: true, obtain: "Rhino Beetle, stockings", stats: ["+Gather", "+Bomb Pollen"], confidence: summary}
+  warm_scarf:   {lvl: 5, bees: [basic, rad, exhausted, frosty, shy], beesmas: true, obtain: "stockings, Scorpion", stats: ["+Convert"], confidence: summary}
+  peppermint_antennas: {lvl: 7, bees: any, beesmas: true, obtain: "Gift Box, beetles, stockings", stats: ["+Convert", "+Gather", "[HB] +Bee Ability Rate"], confidence: summary}
+  beesmas_top:  {lvl: 4, bees: "common or rare bees", beesmas: true, obtain: "Gift Boxes, stockings, Mantis", stats: ["+Critical Chance", "+Bee Attack"], confidence: summary}
+  icicles:      {lvl: 10, colour: blue, bees: "blue bees with a bomb ability", beesmas: true, obtain: "Rogue Vicious Bee, Gift Box, Snowbear level 15", stats: ["+Bee Attack"], confidence: summary}
+  bubble_light: {lvl: 8, bees: "bees with an Energy mutation", beesmas: true, obtain: "Gift Box, spiders/Rhino Beetles, stockings", stats: ["+Convert"], confidence: summary}
+  snowglobe:    {lvl: 7, bees: [basic, bumble, cool, bucko, frosty, windy], beesmas: true, obtain: "Mondo Chick, Super Snowman Bundle", stats: ["+Bomb Pollen"], confidence: summary}
+  toy_horn:     {lvl: 9, bees: [brave, rage, lion, cobalt, crimson], beesmas: true, obtain: "stockings, Onett's Lid Art", stats: ["+Convert"], confidence: summary}
+  paper_angel:  {lvl: 8, bees: [bomber, rascal, shy, photon], beesmas: true, obtain: "Festive Nymph, stockings, Lid Art, challenges", stats: ["+White Gather"], confidence: summary}
+  lump_of_coal: {lvl: 13, bees: any, beesmas: true, obtain: "Naughty List, stockings", stats: ["-Energy", "[HB] +Bomb Pollen"], confidence: summary}
+  poinsettia:   {lvl: 6, bees: "bees with a Boost ability", beesmas: true, obtain: "bundle, Ant Challenge", stats: ["+Red Gather"], confidence: summary}
+  electric_candle: {lvl: 6, colour: red, bees: "red bees", beesmas: true, obtain: "Brown Bear's stockings", stats: ["+Red Gather", "+Flame Pollen"], confidence: summary}
+
+# ------------------------------------------------------------- rankings ----
+# Per hive colour, best first. `wearers` = which bee wears it (not `on`: YAML reads that key as True) (bee_types keys);
+# several = spread across those bees. Blue order = AG 'mandatory' then
+# 'recommended' then 'optional', and on Diamonds by AG's CA% placement
+# (Rose Headband >> Candy Ring > Snow Tiara > Elf Caps = Tree Hats > Sunhat;
+# the best CA% item goes on the most-mutated Diamond nearest the balloon).
+# AG's "Run on:" bee icons did not survive the save; `wearers` is the item's
+# allowed list cut to the bees a blue hive runs (inferred, marked).
+rankings:
+  blue:
+    - {beequip: pinecone, count: 2, wearers: [bear, bucko, bumble], why: "Most important blue beequip: +15-19% Pine capacity, main field Pine Tree. BAR roll -> Bear (AG). Beesmas/trade only."}
+    - {beequip: camphor_lip_balm, wearers: [bubble, cool], why: "Most impactful fill beequip: 13-20% Bubble Pollen (+Gold Bubble with Caustic). Buyable; first target for this account."}
+    - {beequip: candy_ring, wearers: [diamond], why: "Largest Honey-at-Hive source (5-10%) + 40-50% CA; Diamond #2 by CA%. Buyable/challenge drop."}
+    - {beequip: rose_headband, wearers: [diamond], why: "Highest CA% of any beequip (60-80%), 'a condensed Diamond'; goes on the best Diamond. Buyable / Red Clay Planter."}
+    - {beequip: elf_cap, count: 2, wearers: [diamond], why: "HaH + Convert-at-Hive; do not run without HaH (AG). Beesmas only."}
+    - {beequip: snow_tiara, wearers: [diamond], why: "Blue + White field capacity and CA; GIFTED Diamond. Beesmas only."}
+    - {beequip: reindeer_antlers, wearers: [puppy], why: "Focus + Reindeer Fetch (1.1x cap) lets you drop a Focus producer; without it only run Puppy past lvl 16. Beesmas only."}
+    - {beequip: toy_drum, wearers: [bucko], why: "Guaranteed Haste + Bee Ability Pollen. Beesmas only."}
+    - {beequip: autumn_sunhat, wearers: [diamond], why: "White field cap + CA + 10-15% BAR; needs lvl 16."}
+    - {beequip: bead_lizard, wearers: [stubborn, cool], why: "Token Link (Caustic) + Bubble Pollen + Gather Bubble Chance; common/rare bee (AG: Stubborn when Pink Shades takes its spot)."}
+    - {beequip: beret, count: 2, wearers: [cool, bumble], why: "Cheap cap: BFC + Cap + CA; only beats Tree Hats at ~1-2% Cap + ~3% BFC."}
+    - {beequip: beesmas_tree_hat, count: 3, wearers: [diamond], why: "Cheap CRaH + CA placeholder until Wreath/Berets. Needs a mutated bee."}
+    - {beequip: whistle, wearers: [cool], why: "Free Haste placeholder from Dapper Bear's Shop when a slot is empty."}
+    - {beequip: festive_wreath, wearers: [festive], why: "Only with ~3% HaH roll; expensive."}
+    - {beequip: pink_shades, wearers: [basic], why: "Focus source to drop Looker for a Diamond; gifted only."}
+  red:
+    - {beequip: camphor_lip_balm, wearers: [stubborn, cool, commander, bubble, crimson], why: "Metabee SSSSS+: Pepper pollen multiplier (progression/red.yaml)."}
+    - {beequip: smiley_sticker, count: 2, wearers: [stubborn], why: "Honey Mark source in red comps; gifted bee."}
+    - {beequip: rose_headband, wearers: [rascal, riley, vicious], why: "Big Convert Rate on red bees (unverified for red comps)."}
+  white:
+    - {beequip: smiley_sticker, count: 2, wearers: [honey, stubborn], why: "More Honey Marks = more Triangulate pollen (white guide)."}
+    - {beequip: toy_drum, count: 2, wearers: [demo, brave], why: "Haste + BAP."}
+    - {beequip: sweatband, wearers: [digital], why: "+White Gather; buffs Smiley tokens."}
+    - {beequip: whistle, why: "Rest of the 13-15 slot white loadout (with Toy Horn, Paper Angel, Kazoo, 2 Paperclips, Pink Shades)."}

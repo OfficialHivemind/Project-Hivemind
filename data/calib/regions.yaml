@@ -1,0 +1,22 @@
+# Named screen regions, measured from a real 1920x1080 Sober capture on
+# 2026-09-19 (see docs/DESIGN.md 8a). NOT scaled from another resolution --
+# BeeTuxMacro's habit of linearly stretching coordinates from 1366x768 is why
+# it breaks on anything that is not 16:9.
+#
+# Format: [x, y, width, height]
+resolution: [1920, 1080]
+
+regions:
+  # "Honey 10,216,184" - white digits on a dark pill
+  honey: [660, 22, 294, 36]
+
+  # "Pollen 445,372/660,000" - gives exact backpack fill as BOTH a number and a
+  # green bar whose length is the fill fraction. BeeTuxMacro could only detect a
+  # single red "backpack full" pixel; this is a real percentage.
+  pollen: [958, 22, 300, 36]
+
+  # Whole top strip, for cheap "has the HUD appeared yet" checks
+  hud_strip: [0, 0, 1920, 90]
+
+  # Hotbar - tool/sprinkler slot selection lives here
+  hotbar: [700, 985, 520, 80]

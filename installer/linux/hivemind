@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# Hivemind's launcher on Linux (RL1). The same script for the tarball install
+# (install.sh puts it in ~/.local/bin) and the Nix flake (flake.nix runs it
+# with HIVEMIND_SOURCE and HIVEMIND_PYTHON set). Never runs anything as root.
+#
+#   hivemind              the window (shows the first-run check until it passes)
+#   hivemind doctor       every requirement, with the fix for this distro
+#   hivemind demo         the window with recorded demo data, no game
+#   hivemind uninstall [--purge]
+set -euo pipefail
+
+APP="${HIVEMIND_HOME:-$HOME/.local/share/hivemind/app}"
+CONFIG="$HOME/.config/hivemind"
+
+if [ "${1:-}" = uninstall ]; then   # works whatever state the install is in
+    rm -f "$HOME/.local/bin/hivemind" \
+          "$HOME/.local/share/applications/hivemind.desktop" \
+          "$HOME/.local/share/icons/hicolor/512x512/apps/hivemind.png"
+    if [ "${2:-}" = "--purge" ]; then
+        rm -rf "$APP" "$CONFIG"
+        echo "Hivemind removed, with its settings and everything it learned."
+    else
+        [ -d "$APP" ] && find "$APP" -mindepth 1 -maxdepth 1 ! -name var -exec rm -rf {} +
+        echo "Hivemind removed. Kept your settings ($CONFIG) and what it learned ($APP/var)."
+        echo "To remove those too:  rm -rf $APP $CONFIG"
+    fi
+    [ -n "${HIVEMIND_SOURCE:-}" ] && echo "Nix: also run  nix profile remove hivemind"
+    exit 0
+fi
+
+# THE BOT WRITES BESIDE ITS CODE (var/, learned data), so it runs from a
+# writable copy. From Nix the code is in the read-only store: copy it over
+# when the store path changes. Nothing is deleted, so var/ and anything the
+# bot wrote under data/ survive an upgrade.
+# ponytail: files removed upstream stay behind in the copy; wipe src/ first if that ever bites.
+if [ -n "${HIVEMIND_SOURCE:-}" ] && [ "$(cat "$APP/.source" 2>/dev/null)" != "$HIVEMIND_SOURCE" ]; then
+    mkdir -p "$APP"
+    cp -rT --no-preserve=mode,ownership "$HIVEMIND_SOURCE" "$APP"
+    chmod +x "$APP"/scripts/*.sh "$APP"/installer/linux/hivemind
+    echo "$HIVEMIND_SOURCE" > "$APP/.source"
+fi
+# scripts/overnight.sh runs $ROOT/.venv/bin/python; from Nix that is the flake's
+if [ -n "${HIVEMIND_PYTHON:-}" ]; then
+    mkdir -p "$APP/.venv/bin"
+    ln -sfn "$HIVEMIND_PYTHON" "$APP/.venv/bin/python"
+fi
+PY="$APP/.venv/bin/python"
+if [ ! -x "$PY" ]; then
+    echo "Hivemind is not installed in $APP (run install.sh, or nix run)." >&2
+    exit 1
+fi
+
+# The game is started as `org.vinegarhq.Sober` (platform/session), which lives
+# in flatpak's exports/bin. Not every distro puts that on PATH (NixOS does not).
+export PATH="$PATH:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin"
+export PYTHONPATH="$APP/src${PYTHONPATH:+:$PYTHONPATH}"
+
+# SAFE FIRST RUN: one field, every optional errand off (data/presets). Written
+# only when there are no settings yet; Linux joins your own server through
+# the Servers drawer, so the Windows preset's share-link join is swapped back.
+if [ ! -e "$CONFIG/settings.yaml" ]; then
+    mkdir -p "$CONFIG/presets"
+    sed 's/^server.join: .*/server.join: my private server/' \
+        "$APP/data/presets/safe-first-run.yaml" > "$CONFIG/settings.yaml"
+    cp "$CONFIG/settings.yaml" "$CONFIG/presets/Safe first run.yaml"
+fi
+
+cd "$APP"
+case "${1:-}" in
+    doctor) exec "$PY" -m hivemind.cli.main doctor ;;
+    demo)   exec "$PY" -m hivemind.gui --demo --loop ;;
+    "") exec "$PY" -m hivemind.gui --first-run-check ;;
+    *)  exec "$PY" -m hivemind.gui "$@" ;;
+esac

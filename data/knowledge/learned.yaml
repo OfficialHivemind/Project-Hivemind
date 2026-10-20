@@ -1,0 +1,106 @@
+learned:
+- fact: The top-centre panel reads "Claim Hive" when standing on a free hive pad.
+  evidence: Read live by the vision model, then pressing E changed it.
+  when: 2026-09-20
+  confidence: measured
+- fact: An owned hive shows "Make Honey" on the top-centre panel; stepping off removes it.
+  evidence: Six reads over fifteen seconds, all identical; absent when stepped off; back on
+    return.
+  when: 2026-09-20
+  confidence: measured
+- fact: Swinging the collecting tool roughly triples the pollen rate.
+  evidence: 780 pollen/sec from bees alone against 2,193/sec with the tool, same field, two
+    minutes.
+  when: 2026-09-20
+  confidence: measured
+- fact: Dying empties the entire backpack and returns the player to the hive.
+  evidence: Owner, watching a live run; a session holding 637,130 pollen started the next
+    run at 0.
+  when: 2026-09-20
+  confidence: measured
+- fact: The red cannon is boarded by pressing E at it; the flight takes about 8 seconds.
+  evidence: The route step that works; panel reads "Fire the Red Cannon" when in range.
+  when: 2026-09-20
+  confidence: measured
+- fact: The shop counter is beside the cannon and its panel reads "Open Shop".
+  evidence: Read live; the bot repeatedly mistook this spot for its destination.
+  when: 2026-09-20
+  confidence: measured
+- fact: A prompt reading "Use the Honey Dispenser" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-20'
+  confidence: measured
+- fact: A prompt reading "Talk to Black Bear" appears on the top-centre panel somewhere in
+    the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-21'
+  confidence: measured
+- fact: A prompt reading "Fire the Red Cannon" appears on the top-centre panel somewhere in
+    the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-21'
+  confidence: measured
+- fact: A prompt reading "Open Beequip Storage" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-22'
+  confidence: measured
+- fact: A prompt reading "Noob Bear Open Shop" appears on the top-centre panel somewhere in
+    the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-22'
+  confidence: measured
+- fact: A prompt reading "Enter the Portal" appears on the top-centre panel somewhere in the
+    world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-22'
+  confidence: measured
+- fact: A prompt reading "E Talk to Mother Bear" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-22'
+  confidence: measured
+- fact: A prompt reading "Use the Blueberry Dispenser" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-23'
+  confidence: measured
+- fact: A prompt reading "Talk to Polar Bear" appears on the top-centre panel somewhere in
+    the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-23'
+  confidence: measured
+- fact: A prompt reading "Talk to Science Bear" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-23'
+  confidence: measured
+- fact: A prompt reading "Talk to Gifted Bucko Bee" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-23'
+  confidence: measured
+- fact: A prompt reading "Talk to Brown Bear" appears on the top-centre panel somewhere in
+    the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-23'
+  confidence: measured
+- fact: A prompt reading "Use the Treat Dispenser" appears on the top-centre panel somewhere
+    in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-24'
+  confidence: measured
+- fact: A prompt reading "Talk to Honey Bee" appears on the top-centre panel somewhere in
+    the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-24'
+  confidence: measured
+- fact: A prompt reading "E Make Honey" appears on the top-centre panel somewhere in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-25'
+  confidence: measured
+- fact: A prompt reading "MakeHoney" appears on the top-centre panel somewhere in the world.
+  evidence: read off a live frame by the vision model
+  when: '2026-09-25'
+  confidence: measured

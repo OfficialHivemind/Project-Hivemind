@@ -1,0 +1,1659 @@
+# NORMALISED 2026-10-14 from ~/.cache/hivemind-work/research/progression_red.yaml
+# for brain/progression: ids as in goals.yaml (hive_slot<=N, silver_star_amulet,
+# science_translator_1), a short `label` and a gear `slot` per goal, costs as
+# numbers (an unknown cost is left out, never 0). Sources kept as researched.
+#
+# RED HIVE PROGRESSION, fresh account to endgame, for Hivemind to plan with.
+# Research only (2026-10-14). ~/Hivemind was only read (docs/pending), never changed.
+#
+# CONVENTIONS
+#   * Every goal names its source ids (see `sources`). A line marked GUESS is
+#     ours, not a source's. A line marked DISAGREE lists both sides.
+#   * Prices are the wiki's (bee-swarm-simulator.fandom.com via api.php, read
+#     2026-10-14). The wiki can lag the game: read the shop screen before buying.
+#   * ids reuse goals.yaml / gear_prices.yaml / progression.yaml where they exist
+#     (crimson_guard, honey_mask, porcelain_dipper, porcelain_port_o_hive,
+#     honeycomb_belt, red_port_o_hive, fire_mask, demon_mask, riley_guard,
+#     elite_red_guard, red_guard, beekeepers_mask, beekeepers_boots,
+#     mondo_belt_bag, glider, coconut_canister, coconut_clogs, gummy_boots,
+#     petal_belt, coconut_belt, golden_gushers, silver_soakers, *_star_amulet,
+#     scythe, golden_rake, petal_wand, dark_scythe). Hive slots use goals.yaml's
+#     "hive_slot<=N" form (brain/goals with_next_slot). Material names follow
+#     goals.yaml `materials` (singular snake_case).
+#   * priority: 1 = do first / matters most, 5 = optional.
+#
+# THE ONE THING EVERY SOURCE AGREES ON: a true red hive (Precise + Spicy +
+# Vector, Scorching Star, Dark Scythe) is an ENDGAME build. Before ~45 bees and
+# a Supreme Star Amulet, "red" means a red-leaning mixed hive farming red fields
+# with red gear; most guides would even say go blue first (itemlevel_order:
+# "You should always go Blue first"; disc_early_2025; bswiki_red). The stages
+# below follow that: early/mid buy the cheap red items and do Riley's quests,
+# late banks for the switch, endgame is the real red hive.
+
+hive: red
+updated: 2026-10-14
+sources:
+- id: wiki_red_hq
+  title: 'BSS wiki: Red HQ (store tables, entry needs 4 red types)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Red_HQ
+- id: wiki_scythe
+  title: 'BSS wiki: Scythe'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Scythe
+- id: wiki_dark_scythe
+  title: 'BSS wiki: Dark Scythe'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Dark_Scythe
+- id: wiki_red_port
+  title: 'BSS wiki: Red Port-O-Hive'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Red_Port-O-Hive
+- id: wiki_red_guards
+  title: 'BSS wiki: Riley Guard / Elite Red Guard'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Riley_Guard
+- id: wiki_fire_mask
+  title: 'BSS wiki: Fire Mask'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Fire_Mask
+- id: wiki_demon_mask
+  title: 'BSS wiki: Demon Mask (Lava Obby)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Demon_Mask
+- id: wiki_crimson_guard
+  title: 'BSS wiki: Crimson Guard'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Crimson_Guard
+- id: wiki_honey_mask
+  title: 'BSS wiki: Honey Mask'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Honey_Mask
+- id: wiki_mountain_top
+  title: 'BSS wiki: Mountain Top Shop (Beekeeper''s Mask/Boots, Mondo Belt Bag, Glider, Porcelain items)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Mountain_Top_Shop
+- id: wiki_hive_slot
+  title: 'BSS wiki: Hive Slot (price table)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Hive_Slot
+- id: wiki_gifted_riley
+  title: 'BSS wiki: Gifted Riley Bee (quests, milestone rewards)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Riley_Bee
+- id: wiki_quests
+  title: 'BSS wiki: Quests (all givers; Science Bear translator quests 5/10/15)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Quests
+- id: wiki_flames
+  title: 'BSS wiki: Flames (Flame Heat, Dark Flames, flame stats)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Flame
+- id: wiki_precise
+  title: 'BSS wiki: Precise Bee (Target Practice, Precise Mark)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Precise_Bee
+- id: wiki_spicy
+  title: 'BSS wiki: Spicy Bee (Inferno, Flame Fuel)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Spicy_Bee
+- id: wiki_vector
+  title: 'BSS wiki: Vector Bee (Pollen Mark+, Triangulate, Mark Surge)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Vector_Bee
+- id: wiki_bees
+  title: 'BSS wiki: individual bee pages (colour, rarity, gifted hive bonus, abilities)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Bees
+- id: wiki_passives
+  title: 'BSS wiki: Passive Abilities (Scorching Star, Star Saw, Star Shower, Guiding Star)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Passive_Abilities
+- id: wiki_star_amulet
+  title: 'BSS wiki: Star Amulet (tiers, gifted-type gates, prices)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Star_Amulet
+- id: wiki_amulets
+  title: 'BSS wiki: Stick Bug / Ant / King Beetle / Cog / Moon / Shell Amulet pages'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Amulets
+- id: wiki_fields
+  title: 'BSS wiki: Mushroom Field, Strawberry Field, Rose Field, Pepper Patch'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pepper_Patch
+- id: wiki_planters
+  title: 'BSS wiki: Red Clay / Heat-Treated / Petal Planter / Planter of Plenty'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Planters
+- id: wiki_invig_vial
+  title: 'BSS wiki: Invigorating Vial (Dapper Bear quests 9 and 12)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Invigorating_Vial
+- id: wiki_stinger
+  title: 'BSS wiki: Stinger (Rogue Vicious, Stinger Shop 10 tickets)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Stinger
+- id: wiki_red_extract
+  title: 'BSS wiki: Red Extract (Blender 50 Strawberry + 10 RJ)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Red_Extract
+- id: wiki_red_booster
+  title: 'BSS wiki: Red Field Booster (5 red types, 45 min)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Red_Field_Booster
+- id: wiki_rj_shop
+  title: 'BSS wiki: Royal Jelly Shop'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly_Shop
+- id: wiki_endgame_gear
+  title: 'BSS wiki: Petal Wand, Petal Belt, Coconut Canister/Clogs/Belt, Gummy Boots'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Petal_Belt
+- id: wiki_sprinklers
+  title: 'BSS wiki: Diamond Drenchers / The Supreme Saturator'
+  url: https://bee-swarm-simulator.fandom.com/wiki/The_Supreme_Saturator
+- id: wiki_beequips
+  title: 'BSS wiki: Beequips + Toy Drum, Camphor Lip Balm, Smiley Sticker, Electric Candle, Pink Shades, Rose Headband'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Beequips
+- id: metabee_red
+  title: 'Meta Bee: The Ultimate Red Hive Guide 2026: Flame Pollen & Blooms Meta (updated ''Beesmas P2 2026'')'
+  url: https://meta-bee.com/red-hive-guide/
+- id: noks_doc
+  title: RED HIVE GUIDE by Noks (Google Doc, undated)
+  url: https://docs.google.com/document/d/1m3Xr27eoDyjeWxYfSBj9QsZfcMqz2ZLcWyStdKju8KU
+- id: xzxc_blog
+  title: 'BSS wiki user blog XzXc4444: Red Hive Guide'
+  url: https://bee-swarm-simulator.fandom.com/wiki/User_blog:XzXc4444/Red_Hive_Guide_Bee_Swarm_Simulator
+- id: fanon_red
+  title: 'BSS fanon wiki: Hive:Red Hive (community article, flagged Outdated)'
+  url: https://bee-swarm-simulator-fanon.fandom.com/wiki/Hive:Red_Hive
+- id: disc_best_build_2024
+  title: 'BSS wiki discussion: Current Best Red Hive Build (2024-06-15)'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000771510
+- id: disc_early_2025
+  title: 'BSS wiki discussion: Red Hive Early Game (2025-07-23)'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000793312
+- id: disc_progression_2022
+  title: 'BSS wiki discussion: Progression Guide + Hive guide (UPDATE) Long version (2022-01-10)'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000682164
+- id: itemlevel_order
+  title: 'Item Level Gaming: Best Item Order in Roblox Bee Swarm Simulator (updated 2025-12-14)'
+  url: https://itemlevel.net/best-item-order-in-roblox-bee-swarm-simulator/
+- id: itemlevel_mid
+  title: 'Item Level Gaming: Ultimate Mid Game Guide (2023-07-04)'
+  url: https://itemlevel.net/bee-swarm-simulator-ultimate-mid-game-guide/
+- id: ofzen_red
+  title: 'Of Zen and Computing: Bee Swarm Simulator Red Hive Guide (2026-02-03)'
+  url: https://www.ofzenandcomputing.com/bee-swarm-simulator-red-hive-guide/
+- id: ffbooyah_red
+  title: 'FFBooyah: Bee Swarm Simulator Red Hive Guide 2026 (2026-01-11)'
+  url: https://ffbooyah.com/2026/01/11/bee-swarm-simulator-red-hive-guide-2026-best-hive-composition-boosting-strategy-amulets-tips/
+- id: bswiki_red
+  title: 'bee-swarm-simulator.wiki: Red Hive Best 2026 Setup (2026-06-24) -- LOW TRUST, reads AI-written, puts the
+    Demon Mask in the wrong shop'
+  url: https://www.bee-swarm-simulator.wiki/hives/bee-swarm-simulator-red-hive
+- id: macro_docs_red_ai
+  title: 'Another macro''s docs: How AI Gather decides (Red hive strategies), last updated 2026-09-28'
+  url: ''
+- id: macro_docs_tuning
+  title: 'Another macro''s docs: Tuning settings reference + Rule conditions reference (flame heat thresholds, Flame
+    Stack Sum)'
+  url: ''
+- id: macro_docs_pro
+  title: 'Another macro''s paid-tier page: Red AI (precise marks, flame conversion, duped tokens)'
+  url: ''
+- id: natro_src
+  title: 'Natro Macro source (natro_macro.ahk: nectar fields, per-field planter tables)'
+  url: https://github.com/NatroTeam/NatroMacro
+- id: yt_definitive_2026
+  title: 'YouTube: The Definitive Red Hive Guide (2026-09-27)'
+  url: https://www.youtube.com/watch?v=WNbniLV98OE
+- id: yt_ultimate_2026
+  title: 'YouTube: The ULTIMATE Red Hive Guide 2026 (2026-01-19)'
+  url: https://www.youtube.com/watch?v=-V6J7BPGb7A
+- id: yt_boost_red
+  title: 'YouTube: How To Boost As Red Hive In Bee Swarm Simulator (Part 1)'
+  url: https://www.youtube.com/watch?v=SVyeTk8WEh4
+stages:
+- id: early
+  name: 'Fresh account to 25 bees: starter gear, find 4 red bee types, open the Red HQ'
+  enter_when:
+    bees: 0
+    honey: 0
+    gear: []
+  goals:
+  - id: noob_shop_basics
+    label: Noob Shop basics
+    kind: gear
+    name: 'Noob Shop ladder: Backpack + Clippers first, then Basic Boots, then best tool/bag in the shop (Vacuum
+      14k, Canister 22k)'
+    cost:
+      honey: 14000
+      tickets: 0
+    requires: []
+    why: Bag and tool are the whole early economy; boots speed every quest walk.
+    priority: 1
+    source:
+    - itemlevel_order
+  - id: pro_shop_ladder
+    label: Pro Shop ladder
+    kind: gear
+    name: 'Pro Shop ladder (10 bees): up to Scissors 850k / Port-O-Hive 1.25M, Belt Bag, Hiking Boots; skip the
+      Parachute'
+    cost:
+      honey: 1250000
+      tickets: 0
+    requires:
+    - bees>=10
+    why: Next tool/bag tier; itemlevel says skip the parachute.
+    priority: 1
+    source:
+    - itemlevel_order
+  - id: discover_4_red_types
+    label: Discover 4 red bee types
+    kind: bee
+    name: Discover 4 red bee types (Rad, Rascal, Riley, Rage, Fire, Demon, Shy, Precise, Spicy, Crimson, Festive)
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: 'Red HQ door needs 4 red types; its Red Field Booster needs 5. GUESS: use eggs/RJ until they land; nothing
+      guarantees a colour.'
+    priority: 1
+    source:
+    - wiki_red_hq
+    - wiki_red_booster
+  - id: scythe
+    label: Scythe
+    kind: gear
+    slot: tool
+    name: Scythe (Red HQ)
+    cost:
+      honey: 3500000
+      tickets: 0
+    requires:
+    - discover_4_red_types
+    why: x2 on red flowers, every 20th swing spawns a flame (Flame Heat); also needed for quests.
+    priority: 2
+    source:
+    - wiki_scythe
+    - itemlevel_order
+  - id: red_port_o_hive
+    label: Red Port-O-Hive
+    kind: gear
+    slot: bag
+    name: Red Port-O-Hive (Red HQ)
+    cost:
+      honey: 12500000
+      tickets: 0
+      items:
+        red_extract: 2
+        soft_wax: 2
+    requires:
+    - discover_4_red_types
+    why: +400k capacity, +150% convert rate, +10% instant red conversion, +10% red pollen.
+    priority: 1
+    source:
+    - wiki_red_port
+    - wiki_red_hq
+  - id: red_guard
+    label: Red Guard
+    kind: gear
+    slot: left_guard
+    name: Red Guard (left shoulder) -- or go straight to Elite Red Guard
+    cost:
+      honey: 750000
+      tickets: 0
+      items:
+        strawberry: 50
+        royal_jelly: 1
+        stinger: 1
+    requires:
+    - discover_4_red_types
+    why: +25k capacity, +10% red pollen, +1 red bee attack; cheap stepping stone.
+    priority: 4
+    source:
+    - wiki_red_hq
+  - id: elite_red_guard
+    label: Elite Red Guard
+    kind: gear
+    slot: left_guard
+    name: Elite Red Guard (left shoulder)
+    cost:
+      honey: 5000000
+      tickets: 0
+      items:
+        red_extract: 3
+        strawberry: 50
+        royal_jelly: 5
+        stinger: 5
+    requires:
+    - discover_4_red_types
+    why: +75k capacity, +25% red pollen, +5% crit chance; itemlevel says skip guards this early -- buy only if honey
+      is idle.
+    priority: 4
+    source:
+    - wiki_red_hq
+    - itemlevel_order
+  - id: science_translator_1
+    label: Science Bear's first Translator
+    kind: quest
+    name: 'Science Bear: Initial 16 quests, then Translator quest 5 ''Limits of Language'' (1st Translator)'
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: The translator is the key to Gifted Riley Bee, the red questline that pays a Red Extract every quest.
+    priority: 1
+    source:
+    - wiki_quests
+  - id: badges_15
+    label: Earn 15 badges
+    kind: badge
+    name: Earn 15 badges (Badge Bearer's Guild; sprinkler shop)
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: Opens the Guild's Sprinkler Shop and, with 1 Ace badge, the Ace Shop (Crimson Guard later).
+    priority: 3
+    source:
+    - itemlevel_order
+  fields:
+  - field: mushroom
+    why: Starting red field, no gate; only a level 1 ladybug; drops strawberries (1 in 12) and treats; Riley 'Mushrooms'/'Picnic'
+      quests use it.
+    source:
+    - wiki_fields
+    - wiki_gifted_riley
+  - field: strawberry
+    why: 5-bee red field, 572 flowers red+white; strawberries and red extract tokens; ladybugs only (lvl 2-3). Strawberries
+      feed red bees and make Red Extract.
+    source:
+    - wiki_fields
+    - wiki_red_extract
+  - field: sunflower
+    why: No mobs, next to the hive -- the safe early field (fields.yaml); white, so Scythe gets no bonus there.
+    source:
+    - wiki_fields
+  quests:
+  - giver: black_bear
+    chain: Silver Egg (6) -> Gold Egg (9) -> Diamond Egg (20) -> Star Jelly (20) -> Mythic Egg (20), then repeatables
+    why: Pollen-only quests; eggs = bees = gates.
+    source:
+    - wiki_quests
+    - itemlevel_order
+  - giver: mother_bear
+    chain: Mother Bear chain (bee levels, treats)
+    why: Levels and eggs; her Star Treat later gifts Tabby.
+    source:
+    - wiki_quests
+    - disc_progression_2022
+  - giver: brown_bear
+    chain: Infinite repeatable
+    why: Every quest pays a ticket + royal jelly + honey.
+    source:
+    - wiki_quests
+  - giver: science_bear
+    chain: 'Initial (16) then Translator list (15): translators at #5, #10, #15'
+    why: Translators unlock the quest bees; Riley's is the red one.
+    source:
+    - wiki_quests
+  - giver: polar_bear
+    chain: Random pollen/mob quests
+    why: Main early bear per the 2022 guide.
+    source:
+    - disc_progression_2022
+  bees:
+  - bee: rad
+    why: 'Red rare, Red Boost tokens; gifted x1.1 red pollen (the 2024 thread: made a multiplier, now run in red
+      hives).'
+    gifted_priority: 3
+    source:
+    - wiki_bees
+    - disc_best_build_2024
+  - bee: riley
+    why: Red epic, Red Boost; gifted +20% red field capacity ('a must have' for red's weak capacity).
+    gifted_priority: 2
+    source:
+    - wiki_bees
+    - disc_best_build_2024
+  - bee: rage
+    why: Red epic, Rage + Token Link; gifted +10% bee attack.
+    gifted_priority: 3
+    source:
+    - wiki_bees
+    - fanon_red
+  - bee: rascal
+    why: Red rare, Red Bomb; gifted x1.25 red bomb pollen. Counts toward the 4 red types.
+    gifted_priority: 4
+    source:
+    - wiki_bees
+  - bee: baby
+    why: 'Baby Love; 2022 guide: 1-2 in every hive; gifted +25% loot luck.'
+    gifted_priority: 3
+    source:
+    - disc_progression_2022
+    - wiki_bees
+  tips:
+  - Red HQ needs 4 discovered red types, the Red Field Booster 5, Gifted Riley Bee 15 bees + 4 red types + a Translator
+    (wiki_red_hq, wiki_gifted_riley).
+  - Do Black/Mother/Polar/Science Bear quests in the background; save Diamond Eggs and gifted eggs, never hatch
+    them into the hive (disc_progression_2022).
+  - 'Keep fruit (strawberries, pineapples, sunflower seeds) for the Blender rather than feeding everything (itemlevel_mid):
+    50 Strawberry + 10 RJ = 1 Red Extract (wiki_red_extract).'
+- id: mid
+  name: '25-40 bees: Mountain Top gear, Riley quests running, red gear tier 2'
+  enter_when:
+    bees: 25
+    honey: 0
+    gear:
+    - scythe
+    - red_port_o_hive
+  goals:
+  - id: beekeepers_boots
+    label: Beekeeper's Boots
+    kind: gear
+    slot: boots
+    name: Beekeeper's Boots (Mountain Top Shop)
+    cost:
+      honey: 15000000
+      tickets: 0
+      items:
+        oil: 5
+        red_extract: 3
+        blue_extract: 3
+    requires:
+    - bees>=25
+    why: +25% bee gather pollen (shop table says 27%); itemlevel's first Mountain Top buy.
+    priority: 1
+    source:
+    - wiki_mountain_top
+    - itemlevel_order
+  - id: beekeepers_mask
+    label: Beekeeper's Mask
+    kind: gear
+    slot: hat
+    name: Beekeeper's Mask (Mountain Top Shop)
+    cost:
+      honey: 20000000
+      tickets: 0
+      items:
+        enzymes: 5
+        glue: 3
+        glitter: 1
+    requires:
+    - bees>=25
+    why: +20% pollen, +20% bee gather pollen, +10% ability rate; bridge hat until Fire/Honey Mask.
+    priority: 2
+    source:
+    - wiki_mountain_top
+    - itemlevel_order
+  - id: mondo_belt_bag
+    label: Mondo Belt Bag
+    kind: gear
+    slot: belt
+    name: Mondo Belt Bag (Mountain Top Shop)
+    cost:
+      honey: 12400000
+      tickets: 0
+      items:
+        pineapple: 150
+        sunflower_seed: 150
+        stinger: 10
+        soft_wax: 1
+    requires:
+    - bees>=25
+    why: +100k capacity, +50 convert amount, +75% loot luck.
+    priority: 2
+    source:
+    - wiki_mountain_top
+    - itemlevel_order
+  - id: glider
+    label: Glider
+    kind: gear
+    slot: glider
+    name: Glider (Mountain Top Shop)
+    cost:
+      honey: 5000000
+      tickets: 0
+    requires:
+    - bees>=25
+    why: Movement; itemlevel calls it essential for macroing.
+    priority: 2
+    source:
+    - wiki_mountain_top
+    - itemlevel_order
+  - id: hive_slot<=35
+    label: Hive slots to 35
+    kind: hive_slot
+    name: 'Hive slots to 35 bees (slots 26-35: 3M ... 209M, 692M total)'
+    cost:
+      honey: 692323540
+      tickets: 0
+    requires:
+    - bees>=25
+    why: '35 bees opens the Pepper Patch, the best red field; 2022 guide: get to 35 right after Mountain Top gear.'
+    priority: 1
+    source:
+    - wiki_hive_slot
+    - disc_progression_2022
+    - wiki_fields
+  - id: riley_translator
+    label: Riley Bee's Translator
+    kind: quest
+    name: Give the 1st Translator to Gifted Riley Bee and start its infinite quests
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - science_translator_1
+    - bees>=15
+    - discover_4_red_types
+    why: '1 Red Extract + honey every quest; stingers at quests 3/9/75/125...; Gifted Gold Egg at 50, Gifted Diamond
+      Egg at 100; 150 unlocks Heat-Treated Planter, 250 the Dark Scythe. DISAGREE: itemlevel_order gives translators
+      Bucko > Stick Bug > Riley (blue-first); disc_progression_2022 says give the first to Riley.'
+    priority: 1
+    source:
+    - wiki_gifted_riley
+    - disc_progression_2022
+    - itemlevel_order
+  - id: riley_guard
+    label: Riley Guard
+    kind: gear
+    slot: left_guard
+    name: Riley Guard (Red HQ, left shoulder)
+    cost:
+      honey: 30000000
+      tickets: 0
+      items:
+        red_extract: 10
+        strawberry: 100
+        glue: 5
+        stinger: 25
+    requires:
+    - discover_4_red_types
+    why: +150k capacity, +35% red pollen, +8% crit, +2 red bee attack; one source says craft it first for Tunnel
+      Bear/King Beetle farming.
+    priority: 1
+    source:
+    - wiki_red_guards
+    - disc_progression_2022
+  - id: porcelain_dipper
+    label: Porcelain Dipper
+    kind: gear
+    slot: tool
+    name: Porcelain Dipper (Mountain Top Shop)
+    cost:
+      honey: 150000000
+      tickets: 0
+    requires:
+    - bees>=25
+    why: '315/s white, 210/s red; in the Pepper Patch (85% red) about equal to the Scythe (GUESS by arithmetic:
+      ~226 vs ~220/s) but much better on white -- buy for the mixed phase, keep the Scythe for flames.'
+    priority: 3
+    source:
+    - wiki_mountain_top
+    - itemlevel_order
+  - id: porcelain_port_o_hive
+    label: Porcelain Port-O-Hive
+    kind: gear
+    slot: bag
+    name: Porcelain Port-O-Hive (Mountain Top Shop)
+    cost:
+      honey: 250000000
+      tickets: 0
+      items:
+        glitter: 3
+        soft_wax: 3
+        moon_charm: 10
+    requires:
+    - bees>=25
+    why: +600k capacity (+500k in the old shop table), +250% convert rate; replaces the Red Port-O-Hive.
+    priority: 2
+    source:
+    - wiki_mountain_top
+    - itemlevel_order
+  - id: red_clay_planter
+    label: Red Clay Planter
+    kind: planter
+    name: Red Clay Planter
+    cost:
+      honey: 10000000
+      tickets: 0
+      items:
+        magic_bean: 5
+        red_extract: 15
+        soft_wax: 20
+    requires: []
+    why: '+25% growth in red fields, +20% Invigorating; itemlevel: first planter to craft. Clover->Spider->Cactus
+      chain = 10 stingers (2-week cooldown).'
+    priority: 2
+    source:
+    - wiki_planters
+    - itemlevel_order
+    - wiki_stinger
+  - id: bronze_star_amulet
+    label: Bronze Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Bronze Star Amulet (5 gifted types)
+    cost:
+      honey: 25000000
+      tickets: 0
+    requires:
+    - gifted_types>=5
+    why: Cheapest capacity in the game; tiers go Silver 10 types/50M, Gold 20/250M.
+    priority: 1
+    source:
+    - wiki_star_amulet
+  - id: silver_star_amulet
+    label: Silver Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Silver Star Amulet (10 gifted types)
+    cost:
+      honey: 50000000
+      tickets: 0
+    requires:
+    - gifted_types>=10
+    why: Next star tier; quality rises with gifted types discovered.
+    priority: 2
+    source:
+    - wiki_star_amulet
+  - id: silver_soakers
+    label: Silver Soakers
+    kind: gear
+    slot: sprinkler
+    name: Silver Soakers sprinkler (10 Hotshot badges)
+    cost:
+      honey: 22222222
+      tickets: 0
+    requires:
+    - hotshot_badges>=10
+    why: Sprinklers upgrade passively per the 2022 guide; red field badges count.
+    priority: 3
+    source:
+    - disc_progression_2022
+  - id: tabby_bee
+    label: Tabby Bee egg
+    kind: bee
+    name: Tabby Bee egg (Ticket Tent), then gift it first
+    cost:
+      honey: 0
+      tickets: 500
+    requires: []
+    why: Every guide's first event bee (Tabby Love scales forever); gifted +50% crit power.
+    priority: 1
+    source:
+    - itemlevel_order
+    - disc_progression_2022
+    - wiki_bees
+  fields:
+  - field: rose
+    why: 15-bee red field, 620 flowers; liked by Rad/Rascal/Rage/Riley/Precise/Crimson; BUT two scorpions (lvl 5-6)
+      and rogue Vicious -- deaths empty the bag for a bot that cannot fight.
+    source:
+    - wiki_fields
+  - field: strawberry
+    why: Safer red field (ladybugs only); strawberries for Riley Guard / Fire Mask / Red Extract.
+    source:
+    - wiki_fields
+  - field: pepper
+    why: 'From 35 bees: no mobs at all, 85% red, triple flowers only, Invigorating nectar, Spicy''s favourite; endgame''s
+      best field.'
+    source:
+    - wiki_fields
+    - metabee_red
+  - field: mountain_top
+    why: Mixed field, 25 bees; Precise likes it; Invigorating nectar (Natro).
+    source:
+    - wiki_bees
+    - natro_src
+  quests:
+  - giver: gifted_riley_bee
+    chain: Infinite red quests (Abilities, Booster, Clean-up, Extraction, Goo, Medley, Mushrooms, Petals, Picnic,
+      Pollen...)
+    why: Red Extract every quest; milestones to 250 gate Heat-Treated Planter and Dark Scythe.
+    source:
+    - wiki_gifted_riley
+  - giver: spirit_bear
+    chain: Spirit Bear questline (required for progression)
+    why: Spirit Petals -> Petal Wand / Petal Belt; don't donate the first petal.
+    source:
+    - wiki_quests
+    - disc_progression_2022
+  - giver: panda_bear
+    chain: Mob / Ant Challenge quests
+    why: Star Treat for gifting; Ant Challenge gives Ant Amulets.
+    source:
+    - wiki_quests
+    - disc_progression_2022
+  - giver: onett
+    chain: Star Journey quests
+    why: Star Treat for a gifted bee.
+    source:
+    - wiki_quests
+    - disc_progression_2022
+  - giver: dapper_bear
+    chain: Planter quests
+    why: Quests 9 and 12 each give an Invigorating Vial (Demon Mask needs 1, Dark Scythe 3).
+    source:
+    - wiki_invig_vial
+  bees:
+  - bee: shy
+    why: Red legendary (Red Boost, Red Bomb, Nectar Lover); gifted +5% bee ability pollen.
+    gifted_priority: 3
+    source:
+    - wiki_bees
+    - disc_best_build_2024
+  - bee: carpenter
+    why: Honey Mark+ / Pollen Mark; 2022 guide 4-5 per hive, red endgame keeps 1-4; gifted x1.25 tool pollen.
+    gifted_priority: 3
+    source:
+    - disc_progression_2022
+    - disc_best_build_2024
+    - wiki_bees
+  - bee: tabby
+    why: 'First event bee to buy and gift (itemlevel event order: Tabby, Photon, Bear, Gummy, Cobalt, Festive, Vicious,
+      Puppy).'
+    gifted_priority: 1
+    source:
+    - itemlevel_order
+  - bee: crimson
+    why: Red event bee, 250 tickets; gifted +15% instant red conversion; Red Pulse. 2022 guide (blue-leaning) says
+      it need not be gifted; red builds all run it.
+    gifted_priority: 2
+    source:
+    - wiki_bees
+    - disc_best_build_2024
+    - disc_progression_2022
+  - bee: commander
+    why: Focus + Buzz Bomb; gifted +3% crit chance (feeds Precise super-crits later).
+    gifted_priority: 3
+    source:
+    - disc_best_build_2024
+    - wiki_bees
+  tips:
+  - 'Gifted Riley quests are capped only by play: each pays a Red Extract (x1.25 red pollen for 10 min when used,
+    or saved for crafts) -- keep one always active (wiki_gifted_riley).'
+  - Red Field Booster (Red HQ, 45 min cooldown) boosts one random red field; Pepper only if 35+ bees (wiki_red_booster).
+  - Every Blender material costs 10 RJ; RJ shop price is 250k + 10k per RJ bought, capped at 1M (wiki_rj_shop, wiki_red_extract).
+  - Spend roughly 1B honey on RJ for gifted types to reach Bronze-Silver star amulet (disc_progression_2022).
+- id: late
+  name: '40-45 bees: masks, Crimson Guard, petal gear, sprinklers, bank for the switch'
+  enter_when:
+    bees: 40
+    honey: 0
+    gear:
+    - riley_guard
+    - porcelain_port_o_hive
+    - mondo_belt_bag
+    - beekeepers_boots
+  goals:
+  - id: fire_mask
+    label: Fire Mask
+    kind: gear
+    slot: hat
+    name: Fire Mask (Red HQ)
+    cost:
+      honey: 100000000
+      tickets: 0
+      items:
+        strawberry: 500
+        red_extract: 50
+        enzymes: 25
+        glue: 15
+    requires:
+    - discover_4_red_types
+    why: x1.5 red pollen, x1.5 capacity, +15% instant red conversion, Ignite passive (every 15th red ability token
+      = flame spires); the Demon Mask only gets Ignite if this is owned.
+    priority: 1
+    source:
+    - wiki_fire_mask
+    - wiki_demon_mask
+  - id: honey_mask
+    label: Honey Mask
+    kind: gear
+    slot: hat
+    name: Honey Mask (Ace Shop)
+    cost:
+      honey: 100000000
+      tickets: 0
+      items:
+        treats: 9999
+        oil: 50
+        enzymes: 25
+        gold_egg: 5
+    requires:
+    - ace_badges>=1
+    why: 'DISAGREE: disc_progression_2022 buys it before any colour mask (''fire ... for snail/stick bug'' later);
+      GUESS for a committed red farmer: Fire Mask first, since it multiplies red x1.5 where this adds +25%.'
+    priority: 4
+    source:
+    - wiki_honey_mask
+    - disc_progression_2022
+    - itemlevel_order
+  - id: hive_slot<=40
+    label: Hive slots to 40
+    kind: hive_slot
+    name: 'Hive slots to 40 (slots 36-40: 283M ... 895M)'
+    cost:
+      honey: 2743836435
+      tickets: 0
+    requires:
+    - hive_slot<=35
+    why: 2022 guide's next milestone; level the hive to ~10 at 40 bees.
+    priority: 2
+    source:
+    - wiki_hive_slot
+    - disc_progression_2022
+  - id: crimson_guard
+    label: Crimson Guard
+    kind: gear
+    slot: left_guard
+    name: Crimson Guard (Ace Shop, left shoulder)
+    cost:
+      honey: 200000000
+      tickets: 0
+      items:
+        red_extract: 100
+        stinger: 100
+        oil: 50
+        glitter: 25
+    requires:
+    - ace_badges>=1
+    why: +250k capacity, +50% red pollen, +3 red bee attack, +10% crit, Focus Pulser (every 30th focus token pulses
+      through red bees). Replaces the Riley Guard.
+    priority: 1
+    source:
+    - wiki_crimson_guard
+    - bswiki_red
+  - id: honeycomb_belt
+    label: Honeycomb Belt
+    kind: gear
+    slot: belt
+    name: Honeycomb Belt (Ace Shop)
+    cost:
+      honey: 75000000
+      tickets: 0
+      items:
+        enzymes: 50
+        glue: 50
+        oil: 25
+    requires:
+    - ace_badges>=1
+    why: 'DISAGREE: disc_progression_2022 wants it by 40 bees; itemlevel_order says skip it. Replaced by the Petal
+      Belt anyway.'
+    priority: 4
+    source:
+    - disc_progression_2022
+    - itemlevel_order
+  - id: petal_wand
+    label: Petal Wand
+    kind: gear
+    slot: tool
+    name: Petal Wand (1st Spirit Petal)
+    cost:
+      honey: 1500000000
+      tickets: 0
+      items:
+        spirit_petal: 1
+        star_jelly: 10
+        glitter: 25
+        enzymes: 75
+    requires:
+    - spirit_petal>=1
+    why: 6 pollen x 37 patches, x2 all colours; every 3rd swing a shuriken makes bees convert instantly. Both 2022
+      guide and itemlevel use the 1st petal on gear, not Windy.
+    priority: 1
+    source:
+    - wiki_endgame_gear
+    - disc_progression_2022
+    - itemlevel_order
+  - id: petal_belt
+    label: Petal Belt
+    kind: gear
+    slot: belt
+    name: Petal Belt (2nd Spirit Petal)
+    cost:
+      honey: 15000000000
+      tickets: 0
+      items:
+        spirit_petal: 1
+        star_jelly: 25
+        glitter: 50
+        glue: 100
+    requires:
+    - petal_wand
+    why: '+250k and +50% capacity, +100 convert amount, Petal Storm. DISAGREE on order: itemlevel puts Belt first,
+      2022 guide Wand first.'
+    priority: 2
+    source:
+    - wiki_endgame_gear
+    - itemlevel_order
+    - disc_progression_2022
+  - id: gold_star_amulet
+    label: Gold Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Gold Star Amulet (20 gifted types)
+    cost:
+      honey: 250000000
+      tickets: 0
+    requires:
+    - gifted_types>=20
+    why: Star tier; Diamond needs 30 types/1B, Supreme 40 types/10B.
+    priority: 2
+    source:
+    - wiki_star_amulet
+  - id: diamond_star_amulet
+    label: Diamond Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Diamond Star Amulet (30 gifted types)
+    cost:
+      honey: 1000000000
+      tickets: 0
+    requires:
+    - gifted_types>=30
+    why: First star tier with a Star Passive (Star Shower / Guiding Star).
+    priority: 2
+    source:
+    - wiki_star_amulet
+    - wiki_passives
+  - id: golden_gushers
+    label: Golden Gushers
+    kind: gear
+    slot: sprinkler
+    name: Golden Gushers (10 Ace badges)
+    cost:
+      honey: 333333333
+      tickets: 0
+    requires:
+    - ace_badges>=10
+    why: Sprinkler tier; 2022 guide wants Golden Gushers by 40 bees.
+    priority: 2
+    source:
+    - disc_progression_2022
+  - id: diamond_drenchers
+    label: Diamond Drenchers
+    kind: gear
+    slot: sprinkler
+    name: Diamond Drenchers (10 Master badges)
+    cost:
+      honey: 4444444444
+      tickets: 0
+    requires:
+    - master_badges>=10
+    why: 4th sprinkler tier; red field Master badges (Mushroom/Strawberry/Rose/Pepper) count.
+    priority: 3
+    source:
+    - wiki_sprinklers
+    - disc_progression_2022
+  - id: hive_slot<=45
+    label: Hive slots to 45
+    kind: hive_slot
+    name: 'Hive slots to 45 (slots 41-45: 1.33B, 2.38B, 4.55B, 9.30B, 20.13B)'
+    cost:
+      honey: 37687241061
+      tickets: 0
+    requires:
+    - hive_slot<=40
+    why: 45 bees is the commonest stated gate for the real red switch.
+    priority: 2
+    source:
+    - wiki_hive_slot
+    - bswiki_red
+    - disc_progression_2022
+  - id: coconut_canister
+    label: Coconut Canister
+    kind: gear
+    slot: bag
+    name: Coconut Canister (Coconut Cave)
+    cost:
+      honey: 25000000000
+      tickets: 0
+      items:
+        tropical_drink: 150
+        coconut: 250
+        red_extract: 150
+        blue_extract: 150
+        refreshing_vial: 2
+    requires:
+    - coconut_cave_access (Coconut Crab)
+    why: '2022 guide: ''very important'', 2-8B to 5-13B boosts; never clogs before canister.'
+    priority: 2
+    source:
+    - wiki_endgame_gear
+    - disc_progression_2022
+  - id: coconut_clogs
+    label: Coconut Clogs
+    kind: gear
+    slot: boots
+    name: Coconut Clogs (Coconut Cave)
+    cost:
+      honey: 10000000000
+      tickets: 0
+      items:
+        coconut: 150
+        tropical_drink: 50
+        glue: 100
+        oil: 100
+        refreshing_vial: 1
+    requires:
+    - coconut_canister
+    why: +15% pollen, +2 bee attack, Coconut Haste; Noks lists Gummy Boots OR Clogs for the red endgame.
+    priority: 3
+    source:
+    - wiki_endgame_gear
+    - noks_doc
+    - disc_progression_2022
+  - id: demon_mask
+    label: Demon Mask
+    kind: gear
+    slot: hat
+    name: Demon Mask (Lava Obby, far back wall)
+    cost:
+      honey: 5000000000
+      tickets: 0
+      items:
+        stinger: 500
+        red_extract: 250
+        enzymes: 150
+        glue: 100
+        invigorating_vial: 1
+    requires:
+    - fire_mask
+    why: 'x1.5 red pollen, +25% pollen, x1.5 capacity, x1.5 red field capacity, x1.25 flame pollen, X-Flame (29
+      flames every 25th battle token, 20s cd), keeps Ignite if Fire Mask owned. DISAGREE on timing: itemlevel puts
+      it in red endgame (after Petal Planter); disc_progression_2022 buys it before SSA only if not close to SSA;
+      bswiki_red (low trust) wrongly places it in the Mountain Top Shop.'
+    priority: 1
+    source:
+    - wiki_demon_mask
+    - itemlevel_order
+    - disc_progression_2022
+    - noks_doc
+  - id: riley_quests_150
+    label: 150 Riley Bee quests
+    kind: quest
+    name: Complete 150 Gifted Riley Bee quests
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - riley_translator
+    why: 'Unlocks crafting the Heat-Treated Planter; on the way: Gifted Gold Egg (50), Gifted Diamond Egg (100),
+      500 strawberries (111), stingers.'
+    priority: 1
+    source:
+    - wiki_gifted_riley
+  - id: stinger_bank
+    label: Bank stingers
+    kind: gear
+    name: Bank stingers (target 1,000+ for the endgame; 600+ needed for Demon Mask + Dark Scythe crafts alone)
+    cost:
+      honey: 0
+      tickets: 0
+      items:
+        stinger: 1000
+    requires: []
+    why: 'Demon Mask 500 + Crimson 100 + Dark Scythe 150 (200 in the Red HQ table) + Star Saw burns 3 at a time.
+      Sources: Rogue Vicious (+5 daily bonus), Stinger Shop 10 tickets each, Riley milestones.'
+    priority: 2
+    source:
+    - noks_doc
+    - wiki_stinger
+    - wiki_dark_scythe
+    - wiki_red_hq
+  fields:
+  - field: pepper
+    why: 'Main field from here on: no mobs, 85% red triples; Spicy likes it; Invigorating nectar.'
+    source:
+    - wiki_fields
+    - metabee_red
+  - field: strawberry
+    why: Second choice; rage ladybugs and pink petals (metabee); fruit for crafts.
+    source:
+    - metabee_red
+    - wiki_fields
+  - field: rose
+    why: Third; holds 15 duped tokens vs 12 in Strawberry/Pepper but has scorpions.
+    source:
+    - metabee_red
+    - wiki_fields
+  - field: clover
+    why: Riley 'Extraction' quest (red pollen from Clover/Cactus/Pumpkin) and Petals quest; Invigorating nectar
+      field.
+    source:
+    - wiki_gifted_riley
+    - natro_src
+  quests:
+  - giver: gifted_riley_bee
+    chain: Push to 150 (Heat-Treated) then 250 (Dark Scythe)
+    why: The red endgame gate is a quest count, not honey.
+    source:
+    - wiki_gifted_riley
+  - giver: spirit_bear
+    chain: Petals 1 and 2
+    why: Petal Wand then Petal Belt; don't donate a petal for Windy early.
+    source:
+    - disc_progression_2022
+    - itemlevel_mid
+  - giver: dapper_bear
+    chain: Through quest 12
+    why: Two Invigorating Vials; Demon Mask needs 1.
+    source:
+    - wiki_invig_vial
+  - giver: science_bear
+    chain: 'Translators 2 and 3 (quests #10, #15)'
+    why: Remaining quest bees.
+    source:
+    - wiki_quests
+  - giver: honey_bee
+    chain: Repeatable honey-token quests
+    why: '2022 guide: save for later when gear makes the x2 conversion buff worth more.'
+    source:
+    - disc_progression_2022
+  bees:
+  - bee: spicy
+    why: 'Mythic red: Inferno (flame ring + 2 Fire Bees), Rage; GIFTED adds Flame Fuel (flames last 50% longer,
+      instant-convert 50k pollen + (10% + 5% per field boost stack) of hive convert amount); gifted bonus +25% flame
+      duration. Start collecting now.'
+    gifted_priority: 1
+    source:
+    - wiki_spicy
+    - metabee_red
+  - bee: precise
+    why: 'Mythic red: Target Practice (Precision stacks, Focus tokens, bag convert via Flame Heat); only GIFTED
+      Precise makes Precise Marks; gifted bonus +3% super-crit chance.'
+    gifted_priority: 1
+    source:
+    - wiki_precise
+    - metabee_red
+  - bee: vector
+    why: 'Colourless mythic: Pollen Mark+, Triangulate, gifted Mark Surge (Precise Marks surge as guaranteed crits);
+      gifted +15% mark duration.'
+    gifted_priority: 2
+    source:
+    - wiki_vector
+    - disc_best_build_2024
+  - bee: tadpole
+    why: Boost tokens feed Scorching Star (any boost token since the rework) + Baby Love + frogs; replaced Baby
+      Bees in red.
+    gifted_priority: 2
+    source:
+    - disc_best_build_2024
+    - metabee_red
+  - bee: photon
+    why: Gifted +5% instant conversion; 2nd event bee to gift.
+    gifted_priority: 2
+    source:
+    - itemlevel_order
+    - wiki_bees
+  tips:
+  - Never hatch Diamond Eggs or gifted eggs into the hive before you mean to; level order 40 bees lvl 10, 45 bees
+    lvl 11-12 (disc_progression_2022).
+  - Get Field Grandmasters (10 needed for The Supreme Saturator) and 30-34 gifted types around here (disc_progression_2022).
+  - 'Get a gifted Vicious early if you can: helps Tunnel Bear, King Beetle and Coconut Crab (itemlevel_order); Vicious
+    costs 250 stingers (wiki_stinger).'
+- id: endgame
+  name: '45-50 bees, SSA Scorching Star: the real red hive (Precise / Spicy / Vector), Dark Scythe, boosting'
+  enter_when:
+    bees: 45
+    honey: 20000000000000
+    gear:
+    - supreme_star_amulet
+    - demon_mask
+    - crimson_guard
+  goals:
+  - id: supreme_star_amulet
+    label: Supreme Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Supreme Star Amulet with Scorching Star (ideal double passive Scorching Star + Star Saw)
+    cost:
+      honey: 10000000000
+      tickets: 0
+    requires:
+    - gifted_types>=40
+    why: 'Scorching Star: every 30th boost token (1 min cd), x2-x5 red pollen and convert rate, +50% instant flame
+      conversion, converts the whole bag when it ends; x1.25 red field capacity. Star Saw: every 3 stingers. Double
+      passive 1/50 per roll or pay 500B to guarantee it.'
+    priority: 1
+    source:
+    - wiki_star_amulet
+    - wiki_passives
+    - xzxc_blog
+    - fanon_red
+    - metabee_red
+  - id: ssa_double_passive
+    label: Double-passive SSA
+    kind: amulet
+    slot: star_amulet
+    name: Re-roll SSA to Scorching Star + Star Saw with 5/5 red stats (red pollen, pollen, instant conversion, ability
+      rate, crit chance)
+    cost:
+      honey: 500000000000
+      tickets: 0
+    requires:
+    - supreme_star_amulet
+    why: 'Noks: 300-500T on average for a 5/5. XzXc4444: Scorching Star is the best single passive for red, Star
+      Saw alone is bad for normal grinding.'
+    priority: 2
+    source:
+    - noks_doc
+    - xzxc_blog
+    - wiki_star_amulet
+  - id: riley_quests_250
+    label: 250 Riley Bee quests
+    kind: quest
+    name: Complete 250 Gifted Riley Bee quests
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - riley_quests_150
+    why: Unlocks the Dark Scythe (and a Gifted Diamond Egg).
+    priority: 1
+    source:
+    - wiki_gifted_riley
+    - wiki_dark_scythe
+  - id: dark_scythe
+    label: Dark Scythe
+    kind: gear
+    slot: tool
+    name: Dark Scythe (Red HQ)
+    cost:
+      honey: 2500000000000
+      tickets: 0
+      items:
+        red_extract: 1500
+        stinger: 150
+        hard_wax: 100
+        caustic_wax: 50
+        super_smoothie: 50
+        invigorating_vial: 3
+    requires:
+    - riley_quests_250
+    why: '13 pollen x 35 patches / 0.5s (~910/s); hitting a flame turns it Dark: +10%..109% instant red ability
+      conversion, up to x6 super-crit power, 33% more Scorching Star growth. metabee: ''Get dark scythe first''.
+      DISAGREE: Red HQ table says 200 stingers.'
+    priority: 1
+    source:
+    - wiki_dark_scythe
+    - wiki_red_hq
+    - metabee_red
+    - noks_doc
+  - id: heat_treated_planter
+    label: Heat-Treated Planter
+    kind: planter
+    name: Heat-Treated Planter
+    cost:
+      honey: 750000000000
+      tickets: 0
+      items:
+        magic_bean: 75
+        red_extract: 750
+        hard_wax: 150
+        swirled_wax: 25
+        turpentine: 1
+    requires:
+    - riley_quests_150
+    why: Up to +50% growth in red fields, +40% Invigorating; Mushroom->Strawberry->Rose->Pepper chain = +100 Red
+      Extract; Natro ranks it best in Mushroom/Rose and 2nd in Pepper.
+    priority: 2
+    source:
+    - wiki_planters
+    - wiki_red_extract
+    - natro_src
+    - itemlevel_order
+  - id: petal_planter
+    label: Petal Planter
+    kind: planter
+    name: Petal Planter
+    cost:
+      honey: 5000000000000
+      tickets: 0
+      items:
+        magic_bean: 100
+        glitter: 100
+        soft_wax: 250
+        swirled_wax: 50
+        super_smoothie: 25
+    requires: []
+    why: itemlevel's red endgame list starts with it (Comforting/Satisfying nectar, white boost); can drop Smiley
+      Sticker beequips.
+    priority: 3
+    source:
+    - itemlevel_order
+    - wiki_planters
+    - wiki_beequips
+  - id: gummy_boots
+    label: Gummy Boots
+    kind: gear
+    slot: boots
+    name: Gummy Boots (Gummy Bear's Lair)
+    cost:
+      honey: 100000000000
+      tickets: 0
+      items:
+        glue: 500
+        glitter: 250
+        red_extract: 250
+        blue_extract: 250
+        motivating_vial: 1
+        satisfying_vial: 1
+    requires: []
+    why: '+20% pollen, +50% honey from tokens, +3 bee attack, +9 movespeed; Noks: Gummy Boots or Coconut Clogs.'
+    priority: 3
+    source:
+    - wiki_endgame_gear
+    - noks_doc
+    - itemlevel_order
+  - id: supreme_saturator
+    label: The Supreme Saturator
+    kind: gear
+    slot: sprinkler
+    name: The Supreme Saturator (10 Grandmaster badges)
+    cost:
+      honey: 55555555555
+      tickets: 0
+    requires:
+    - grandmaster_badges>=10
+    why: 'Best sprinkler; 2022 guide: get it before SSA, greatly increases boost and macro honey.'
+    priority: 2
+    source:
+    - wiki_sprinklers
+    - disc_progression_2022
+  - id: hive_slot<=50
+    label: Hive slots to 50
+    kind: hive_slot
+    name: Hive slots 46-50 (46.2B, 111.8B, 285.5B, 767.5B, 2.17T)
+    cost:
+      honey: 3380091576052
+      tickets: 0
+    requires:
+    - hive_slot<=45
+    why: Endgame comps are 50 bees; bswiki_red's checklist wants 45+.
+    priority: 3
+    source:
+    - wiki_hive_slot
+    - ffbooyah_red
+  - id: coconut_belt
+    label: Coconut Belt
+    kind: gear
+    slot: belt
+    name: Coconut Belt (Coconut Cave)
+    cost:
+      honey: 7500000000000
+      tickets: 0
+      items:
+        coconut: 500
+        tropical_drink: 1500
+        purple_potion: 200
+        hard_wax: 200
+        turpentine: 3
+        refreshing_vial: 3
+    requires:
+    - petal_belt
+    why: +350k / +75% capacity, Combo Coconuts; metabee's boost routine relies on coco combos (with helper alts).
+    priority: 4
+    source:
+    - wiki_endgame_gear
+    - metabee_red
+  - id: planter_of_plenty
+    label: The Planter of Plenty
+    kind: planter
+    name: The Planter of Plenty
+    cost:
+      honey: 100000000000000
+      tickets: 0
+      items:
+        magic_bean: 500
+        super_smoothie: 100
+        swirled_wax: 100
+        caustic_wax: 100
+        turpentine: 25
+    requires: []
+    why: Grows 50% faster in the Pepper Patch, +50% all nectar; Natro's best Pepper planter.
+    priority: 4
+    source:
+    - wiki_planters
+    - natro_src
+  - id: beequip_camphor_lip_balm
+    label: Camphor Lip Balm on a Stubborn
+    kind: beequip
+    name: Camphor Lip Balm on a Stubborn (or Cool/Commander/Bubble/Crimson) bee
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bee_level>=12
+    why: 'metabee ''SSSSS+'': Pepper pollen multiplier; buyable at Dapper Bear''s Beequip Shop or rare from Red
+      Clay / Heat-Treated / Plenty planters (price not read).'
+    priority: 2
+    source:
+    - metabee_red
+    - ofzen_red
+    - wiki_beequips
+  - id: beequip_smiley_sticker
+    label: Smiley Sticker x2
+    kind: beequip
+    name: Smiley Sticker x2 (gifted bees; Spicy or Precise)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bee_level>=7
+    why: Honey Mark source in red comps; Dapper Bear's Beequip Shop or rare Tacky/Petal Planter drop.
+    priority: 3
+    source:
+    - ofzen_red
+    - fanon_red
+    - wiki_beequips
+  - id: beequip_rose_headband
+    label: Rose Headband
+    kind: beequip
+    name: Rose Headband (Basic/Rascal/Riley...)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bee_level>=13
+    why: '''Tons of useful stats'' for red; Dapper Bear''s Beequip Shop or rare Red Clay drop.'
+    priority: 4
+    source:
+    - disc_best_build_2024
+    - ffbooyah_red
+    - wiki_beequips
+  - id: flame_stickers
+    label: Flame stickers
+    kind: sticker
+    name: 'Small Flame Bee / Dark Flame / Orange Swirled Marble stickers (+3% flame pollen each); Invigorating Nectar
+      Icon sticker (stack reward: 1 Invigorating Vial)'
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: Minor flame pollen; the nectar icon is one of three routes to the vials the Dark Scythe needs.
+    priority: 5
+    source:
+    - wiki_flames
+    - wiki_invig_vial
+  fields:
+  - field: pepper
+    why: '''PEPPER >>>> Strawberry > Rose'': small, few white flowers, Lip Balm synergy, no mobs. Best for boosts.'
+    source:
+    - metabee_red
+    - ofzen_red
+  - field: strawberry
+    why: Second; King Beetle amulet can carry Strawberry pollen.
+    source:
+    - metabee_red
+    - fanon_red
+  - field: rose
+    why: Third; 15 duped tokens (vs 12) but scorpions.
+    source:
+    - metabee_red
+  - field: mushroom
+    why: 'Suboptimal for boosting per ffbooyah; the Red Field Booster favours it (Red HQ text: ''Mushroom Field
+      (3x)'').'
+    source:
+    - ffbooyah_red
+    - wiki_red_hq
+  quests:
+  - giver: gifted_riley_bee
+    chain: Repeatables past 250 (Gifted Diamond Egg at 500/750/1000)
+    why: Red Extract supply for Heat-Treated (750) and Dark Scythe (1,500).
+    source:
+    - wiki_gifted_riley
+  - giver: brown_bear
+    chain: Infinite
+    why: Tickets + RJ for gifted rolls.
+    source:
+    - wiki_quests
+  bees:
+  - bee: precise
+    why: '11-12 in every 2024-26 comp (XzXc4444: 6). Mutation: +5 movespeed > attack (metabee) / crit chance, instant
+      conversion, movespeed (2024 thread).'
+    gifted_priority: 1
+    source:
+    - metabee_red
+    - fanon_red
+    - disc_best_build_2024
+    - xzxc_blog
+  - bee: spicy
+    why: '8-10 (XzXc4444: 16; Noks: size it to how big your Scorching Star gets). metabee gifting order: spicy >
+      precise > vecs.'
+    gifted_priority: 1
+    source:
+    - metabee_red
+    - fanon_red
+    - noks_doc
+    - xzxc_blog
+  - bee: vector
+    why: 'DISAGREE: 8-10 (fanon_red, disc_best_build_2024, ffbooyah_red; ofzen ''never fewer than 10'') vs 2 (metabee_red)
+      vs 3 (xzxc_blog).'
+    gifted_priority: 2
+    source:
+    - fanon_red
+    - metabee_red
+    - ofzen_red
+    - xzxc_blog
+  - bee: tadpole
+    why: '2-4: boost tokens grow Scorching Star; Baby Love; frogs.'
+    gifted_priority: 2
+    source:
+    - disc_best_build_2024
+    - fanon_red
+  - bee: digital
+    why: 'Gifted Digital with ~500 red drives (+white) is a stated prerequisite: Glitch, duplicated ability tokens,
+      Sweatband for red gather.'
+    gifted_priority: 1
+    source:
+    - metabee_red
+    - disc_early_2025
+    - fanon_red
+  - bee: crimson
+    why: Gifted +15% instant red conversion + Red Pulse; Toy Horn holder.
+    gifted_priority: 1
+    source:
+    - fanon_red
+    - bswiki_red
+  - bee: tabby
+    why: Gifted +50% crit power; Scratch.
+    gifted_priority: 1
+    source:
+    - fanon_red
+    - bswiki_red
+  - bee: riley
+    why: 1-2, Toy Drum holders; gifted +20% red field capacity.
+    gifted_priority: 2
+    source:
+    - metabee_red
+    - fanon_red
+  - bee: photon
+    why: Gifted +5% instant conversion; Paper Angel holder.
+    gifted_priority: 2
+    source:
+    - fanon_red
+    - metabee_red
+  - bee: bear
+    why: Bear Morph + gifted +10% pollen; Peppermint Antennas.
+    gifted_priority: 3
+    source:
+    - fanon_red
+    - disc_best_build_2024
+  - bee: carpenter
+    why: 1-3 for marks (1 if a Smiley Sticker gives Honey Mark).
+    gifted_priority: 3
+    source:
+    - fanon_red
+    - metabee_red
+  - bee: commander
+    why: Gifted +3% crit chance; Whistle.
+    gifted_priority: 3
+    source:
+    - fanon_red
+    - metabee_red
+  - bee: basic
+    why: Gifted x1.2 pollen; Pink Shades / Rose Headband holder.
+    gifted_priority: 3
+    source:
+    - fanon_red
+    - ffbooyah_red
+  - bee: rad
+    why: Gifted x1.1 red pollen.
+    gifted_priority: 3
+    source:
+    - fanon_red
+    - disc_best_build_2024
+  - bee: fire
+    why: 'DISAGREE: metabee ''simply not worth a slot''; xzxc_blog runs 1. Gifted x1.25 flame pollen.'
+    gifted_priority: 5
+    source:
+    - metabee_red
+    - xzxc_blog
+    - wiki_bees
+  - bee: demon
+    why: Do not run (disc_progression_2022 'do not have demon in your hive'); no endgame comp lists it.
+    gifted_priority: 5
+    source:
+    - disc_progression_2022
+    - fanon_red
+  - bee: fuzzy
+    why: 'DISAGREE: metabee ''will decrease your honeymaking'' (keep on an alt); xzxc_blog runs 1 gifted; fanon
+      optional 2.'
+    gifted_priority: 4
+    source:
+    - metabee_red
+    - xzxc_blog
+    - fanon_red
+  tips:
+  - 'Boost routine (fanon_red, ffbooyah_red, metabee_red): Glitter first; Purple Potion to the Wind Shrine for winds;
+    stack Precision to x10; Loaded Dice only once close to Scorching Star with 3 Precise Marks down; hold x10 red
+    boost; get Scorching Star to 6k+ fast; SPAM precise marks; don''t move too fast or bees stop spawning tokens.'
+  - 'Nectar priority for red boosts (metabee_red): Invigorating > Refreshing > Satisfying > Motivating > Comforting.
+    Natro fields: Invigorating = Pepper, Mountain Top, Clover, Cactus; Motivating = Mushroom, Rose, Stump, Spider;
+    Refreshing = Strawberry, Coconut, Blue Flower.'
+  - 'Mutations: Precise movespeed/attack/crit; Spicy attack (metabee) or convert amount (fanon); Vector movespeed
+    > ability rate; Digital gather amount %; everyone else +5 movespeed or ability rate (metabee_red, fanon_red,
+    disc_best_build_2024).'
+  - Convert mutations beat gather mutations because they help Flame Fuel convert more (noks_doc).
+  - Toy Drum and Electric Candle are Beesmas beequips now obtainable only by trading (wiki_beequips) -- a bot cannot
+    trade, so plan comps that work without them.
+  - 'Top boosting assumes 4-6 helper/alt accounts with Coconut Belts for coco combos (ofzen_red, metabee_red); this
+    account cannot run an alt beside the main (memory: alt parked), so expect solo numbers well below the guides''.'
+mistakes:
+- 'Switching to red too early: every source says build/profit blue (or mixed) first and switch at ~45 bees with
+  SSA Scorching Star, or later (itemlevel_order, disc_early_2025, bswiki_red, metabee_red ''NOT work out if you
+  aren''t level 20+'').'
+- 'Giving the first Translator to Stick Bug or Bucko when going red: the 2022 guide says Riley first (DISAGREE:
+  itemlevel orders Bucko > Stick Bug > Riley for a blue-first plan).'
+- Hatching Diamond Eggs / gifted eggs / star jelly into the hive before the masks and petals that need them (disc_progression_2022,
+  itemlevel_mid).
+- Donating the first or second Spirit Petal for Windy Bee (disc_progression_2022, itemlevel_mid).
+- Running Demon, Fire or (on main) Fuzzy bees in an endgame red comp (disc_progression_2022, metabee_red).
+- 'Turning flames into Dark Flames instantly -- metabee: don''t, so they last longer (note: the wiki says a Dark
+  Scythe hit resets lifespan; reconcile in testing).'
+- 'Moving too fast while boosting: bees stop spawning tokens (metabee_red, ofzen_red).'
+- 'Leaving Precise targets unactivated: each one left becomes a Red Boost token instead of a Focus token + shot;
+  activating only the FARTHEST target makes a Precise Mark (gifted Precise only) (wiki_precise).'
+- Another macro's Loot Mode on a red hive disables red gathering (macro_docs_red_ai) -- i.e. fruit/loot chasing and red flame/target
+  play don't mix.
+- 'Farming Rose with a bot that cannot fight: two scorpions + rogue Vicious; Pepper has no mobs (wiki_fields).'
+- 'Ignoring capacity: red bags are small compared to blue (bswiki_red ''Capacity Trap''); Riley gifted bonus, Buoyant,
+  Scorching Star and Demon Mask are the fixes.'
+open_questions:
+- 'Red Port-O-Hive capacity: item page +400,000 (+10% red bee convert rate) vs Red HQ store table +375,000 (+1 red
+  bee attack). Read the shop.'
+- 'Dark Scythe stingers: 150 (item page) vs 200 (Red HQ store table).'
+- 'Scythe base pollen: 7 (item page) vs 8 (Red HQ table); progression.yaml''s 119/238 per s vs item page 139 avg
+  / 208.5 red.'
+- 'Beekeeper''s Boots: +25% (item page) vs +27% (Mountain Top table) bee gather pollen.'
+- 'Red Field Booster: Red HQ text ''Mushroom Field (3x), Strawberry (1x), Rose (1x), Pepper (1x)'' -- weighting
+  of the random pick or boost size? Booster page lists ''Mushroom +300%''.'
+- 'Fire Mask vs Honey Mask first for a red-leaning mid hive: no 2024-26 source addresses it directly (our GUESS:
+  Fire Mask).'
+- 'Exact entry gate for the endgame switch: 20T honey (Noks) vs 1 quadrillion (itemlevel) vs level 20 + gifted Digital
+  (metabee).'
+- Vector count (2 vs 8-10) and Spicy count (8-16) in the endgame comp; depends on beequips and Scorching Star size
+  (noks_doc).
+- How Digital Bee and its red/white drives are obtained and levelled -- not researched here.
+- Dapper Bear Beequip Shop prices (Camphor Lip Balm, Smiley Sticker, Rose Headband) -- not read.
+- Precise Mark detection/positions on screen and Scorching Star / Flame Heat HUD readout -- needed before the bot
+  can play red mechanics (another macro needed vision models + its paid tier for marks/flame conversion).
+- YouTube guides (yt_*) were not watched; titles only.

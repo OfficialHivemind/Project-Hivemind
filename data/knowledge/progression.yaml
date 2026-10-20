@@ -1,0 +1,286 @@
+# What there is to work towards, and what each thing needs first.
+#
+# THE OWNER'S POINT, and it is the one that matters most in this project:
+# "i want it to decide how to get to places and train itself to go there and
+# know 'oh wait, i need to do this to get this' or 'oh wait i should do this
+# quest' or 'next item to buy is this' it should know all this it shouldn want
+# to progress it should want to get better".
+#
+# It could not want anything, because it knew of nothing to want. `world.yaml`
+# describes seventeen places to stand and nothing to aim at. This file is the
+# other half: the things worth having, what they cost, and what has to be true
+# first.
+#
+# RULES FOR THIS FILE
+#   * Every price and requirement is quoted from the wiki, with the page it
+#     came from. Nothing here is estimated.
+#   * A thing we do not know is written down as unknown, NOT left out and not
+#     guessed. `brain/progress.py` reports an unknown as a gap in its own
+#     reasoning rather than skipping the goal, because "I want this and cannot
+#     price it" is a useful thing for the bot to be able to say.
+#   * Costs are in honey unless stated.
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Tools
+checked: 2026-09-20
+
+# THE WIKI'S LIST ORDER IS NOT THE ORDER WORTH BUYING IN, and assuming it was
+# produced the first wrong answer this file ever gave. It told the owner to
+# save 60,000,000 honey for the Spark Staff because the Spark Staff is listed
+# after the Golden Rake. He corrected it: "spark staff is notoriously bad in
+# the game, do ur research look what players say". He is right, and the
+# community is not subtle about it -- see `skip` below.
+#
+# So a rung now carries what PLAYERS say as well as what the wiki lists, and
+# `brain/progress.py` walks past anything marked skip.
+
+# ---------------------------------------------------------------- tools ----
+# Twenty tools exist. The order below is the wiki's own ordering, which runs
+# roughly by power. The owner currently holds the Golden Rake, 14th of 20.
+tools:
+  order:
+    - scooper
+    - rake
+    - clippers
+    - magnet
+    - vacuum
+    - super_scooper
+    - pulsar
+    - electro_magnet
+    - scissors
+    - honey_dipper
+    - bubble_wand
+    - scythe
+    - sticker_seeker
+    - golden_rake
+    - spark_staff       # see skip: the community says walk past this one
+    - porcelain_dipper  # the real next rung from the Golden Rake
+    - petal_wand
+    - tide_popper
+    - dark_scythe
+    - gummyballer
+
+  # EVERY TOOL, with its rate and price, from the wiki's own Items table.
+  # `pollen_per_second` is the wiki's figure; where a tool is colour-specific
+  # the rate is split, because a single number would hide the whole point of
+  # a colour build.
+  known:
+    scooper:          {honey: 0,             shop: noob_shop,         pollen_per_second: 5}
+    rake:             {honey: 800,           shop: noob_shop,         pollen_per_second: 8}
+    clippers:         {honey: 2200,          shop: noob_shop,         pollen_per_second: 13.85}
+    magnet:           {honey: 5500,          shop: noob_shop,         pollen_per_second: 18}
+    vacuum:           {honey: 14000,         shop: noob_shop,         pollen_per_second: 32.5}
+    super_scooper:    {honey: 40000,         shop: pro_shop,          pollen_per_second: 40}
+    pulsar:           {honey: 125000,        shop: pro_shop,          pollen_per_second: 58}
+    electro_magnet:   {honey: 300000,        shop: pro_shop,          pollen_per_second: 72}
+    scissors:         {honey: 850000,        shop: pro_shop,          pollen_per_second: 120}
+    honey_dipper:     {honey: 1500000,       shop: pro_shop,          pollen_per_second: 108.89}
+    bubble_wand:
+      honey: 3500000
+      shop: blue_hq
+      pollen_per_second: 120          # white and red
+      pollen_per_second_blue: 240     # DOUBLE on blue flowers
+      blue_flower_share: 0.425        # MEASURED, see note
+      colour: blue
+      note: >
+        DO NOT BUY THIS. The owner caught it -- "isnt bubble wand worse than
+        golden rake" -- and he was right, exactly as he was right about the
+        Spark Staff.
+
+        The earlier entry here claimed 1.43x over the Golden Rake. That
+        compared the Bubble Wand's BLUE-ONLY 240/s against the Golden Rake's
+        167/s all-flower average, as though every flower in a "blue" field
+        were blue. None are. MEASURED over 420 real frames of the Pineapple
+        Patch the bot actually farms, the ground is 42.5% blue, 46.8% white
+        and 10.8% red -- so the Bubble Wand collects 240/s from two fifths of
+        the flowers and 120/s from the rest. That is 171/s against 167/s: a
+        1.02x gain, inside the error of the measurement it rests on, for
+        3,500,000 honey.
+
+        There was a second clue and it was in the data all along: this costs
+        3,500,000 and the Golden Rake costs 20,000,000. A tool six times
+        cheaper is not an upgrade on one six times dearer, and a headline
+        figure that says otherwise is conditional.
+    scythe:
+      honey: 3500000
+      shop: red_hq
+      pollen_per_second: 119          # white and blue
+      pollen_per_second_red: 238
+      colour: red
+    sticker_seeker:
+      honey: 7000000
+      shop: hub_field_shop
+      pollen_per_second: 130
+      also_costs: [1 Glue, 1 Oil, 5 Soft Waxes, 5 Neonberries, 10 Micro-Converters]
+    golden_rake:
+      honey: 20000000
+      shop: mountain_top_shop
+      pollen_per_second: 149.33
+      pollen_per_second_supercharged: 238.93
+      note: >
+        Every 5th scoop is supercharged, reaching further and collecting more,
+        so the effective average is about 167/s. THIS IS WHAT THE OWNER HOLDS.
+    spark_staff:
+      honey: 60000000
+      shop: mountain_top_shop
+      pollen_per_second: 345          # "at full potential" -- see skip below
+    porcelain_dipper:
+      honey: 150000000
+      shop: mountain_top_shop
+      # CORRECTED 2026-09-25 (DESIGN 8dp). This read 324 white / 216 red and
+      # blue, the Items table's figures. The Dipper's own page has said 315 /
+      # 210 since 2022-03-03 (rev 2026-07-12), and that is its infobox's own
+      # arithmetic: 3 pollen from 49 patches every 0.7 s is 210/s, and its
+      # x1.5 White Pollen makes 315 on white. The base is the red-and-blue
+      # figure, so `Ladder.rate_for` gives this blue hive 210 rather than the
+      # white rate the old `pollen_per_second: 324` handed every colour. That
+      # is a floor: `rate_for` blends a colour bonus only for the hive's own
+      # colour, so the white flowers' 315 is not mixed in for a blue hive
+      # (259/s at the ladder's measured 46.8% white share if it were).
+      pollen_per_second: 210          # red and blue flowers
+      pollen_per_second_white: 315    # white flowers, x1.5
+      colour: white
+      source: https://bee-swarm-simulator.fandom.com/wiki/Porcelain_Dipper (rev 2026-07-12)
+      note: >
+        Every 10th scoop summons a pillar of light that collects from 29
+        flowers, not counted in these rates. NOTE FOR A BLUE HIVE: this tool
+        is WHITE-favoured, 315 on white against 210 on blue and red. The
+        community's "skip to the Porcelain Dipper" advice is for a general
+        build; a committed blue hive gets less from it than the headline.
+        It is the owner's first gear goal all the same (goals.yaml).
+    petal_wand:
+      honey: 1500000000
+      shop: petal_shop
+      pollen_per_second: 528.57
+      also_costs: [1 Spirit Petal, 10 Star Jellies, 25 Glitter, 75 Enzymes]
+    tide_popper:      {honey: 2500000000000, shop: blue_hq,  colour: blue}
+    dark_scythe:      {honey: 2500000000000, shop: red_hq,   colour: red}
+    gummyballer:      {honey: 10000000000000, shop: gummy_bears_lair}
+
+  # Rungs to walk past, with the reason and who says so. A trap is worse than
+  # an unknown: an unknown makes the bot go and look, a trap makes it save for
+  # months towards something that makes it slower.
+  skip:
+    spark_staff:
+      reason: >
+        Community consensus is to skip it and save for the Porcelain Dipper
+        instead. It is always WORSE than the Golden Rake in single-flower
+        fields, only beats it in triple-flower fields above ~56% fill, and the
+        60,000,000 honey spent on it directly delays the Porcelain Dipper.
+      quotes:
+        - "Spark staff is trash and players should skip it and go for the porcelain dipper"
+        - "always skip the spark staff and go straight for the porcelain dipper from the golden rake"
+        - "Spark staff is always worse than golden rake in single flower fields"
+      dissent: >
+        A minority disagree and rate it highly in triple-flower fields. Recorded
+        because a one-sided fact is not a measured one.
+      source: bee-swarm-simulator.fandom.com forums, 2026-09-20
+
+  # Every tool is now priced. Kept as an empty list rather than deleted, so
+  # a tool added by a future update lands here instead of silently vanishing.
+  unpriced: []
+  _was_unpriced_until_2026_09_20:
+    - clippers
+    - super_scooper
+    - pulsar
+    - electro_magnet
+    - honey_dipper
+    - bubble_wand
+    - scythe
+    - sticker_seeker
+    - golden_rake
+    - petal_wand
+    - tide_popper
+    - dark_scythe
+    - gummyballer
+
+# ----------------------------------------------------------------- hive ----
+hive:
+  base_slots: 25
+  max_slots: 50
+  slots_bought_at: mountain_top_shop
+  slot_cost: unknown          # "quite high" per the wiki; no figure given
+  source: https://bee-swarm-simulator.fandom.com/wiki/Hive
+  note: >
+    Bee count is the main gate on the map -- world.yaml records the bee
+    requirement of every field -- so buying hive slots unlocks places as well
+    as power. The cost curve is not on the Hive page and must be read in game
+    at the Mountain Top Shop.
+
+# ----------------------------------------------------------------- bees ----
+# How the hive actually grows. This is the centre of progression: bee count
+# gates most of the map (see world.yaml `bees_required`) as well as raw power.
+bees:
+  source: https://bee-swarm-simulator.fandom.com/wiki/Egg
+  checked: 2026-09-20
+  basic_egg:
+    shop: basic_egg_shop
+    near: sunflower_field
+    honey_from: 1000
+    honey_cap: 10000000
+    scaling: >
+      The price of the NEXT Basic Egg rises every time one is bought, from a
+      base of 1,000 honey up to a cap of 10,000,000. The exact curve is not
+      given on the wiki and has to be read in game.
+    hatches:
+      basic: 0.87
+      rare: 0.10
+      epic: 0.025
+      legendary: 0.005
+      gifted: 0.004
+    note: >
+      Cannot be used on a Basic Bee. Since the 2019-09-28 update a vacant slot
+      is NOT required -- hatching on top of an existing bee replaces it and
+      keeps its level, which makes an egg a way to upgrade as well as to grow.
+  egg_types: [basic, silver, gifted_silver, gold, gifted_gold, diamond,
+              gifted_diamond, mythic, gifted_mythic, choose_a_mythic, star]
+  unknown:
+    - the exact price curve of successive Basic Eggs
+    - how silver, gold, diamond, mythic and star eggs are obtained without Robux
+    - whether the Basic Egg Shop is reachable by any recorded route
+
+# --------------------------------------------------------------- unknown ----
+# Written down so they are visible as holes rather than silently absent. Each
+# is a real part of progression that the bot currently cannot reason about.
+not_yet_known:
+  quests: the NPC quest chains, their requirements and rewards
+  items: royal jelly, treats, glue, glitter and what each is worth
+  machines: dispenser and booster cooldowns, the Wealth Clock
+  badges: what they gate
+
+# ------------------------------------------------------- what HE wants -----
+# Goals the owner has asked for directly. These are not derived from anything
+# and must not be reordered by the bot's own ranking -- they are what he said
+# he wants, and a bot that quietly dropped them for being inefficient would be
+# solving the wrong problem.
+wanted:
+  blue_hive:
+    what: >
+      A BLUE HIVE BUILD -- deliberately stacking blue bees and farming
+      blue-leaning fields so most collection ticks get the colour bonus. NOT
+      the cosmetic Basic Blue Hive Skin, which is what this entry said first
+      and was wrong about.
+    asked_on: 2026-09-20
+    quote: "also i want a blue hive"
+    kind: strategy
+    why_it_works: >
+      Every flower is red, blue or white, and a red or blue bee collecting from
+      a flower of its own colour gets +50% pollen from it. White bees get no
+      bonus and no penalty, so they are filler rather than waste. Committing to
+      one colour means every field choice and every bee slot pulls the same way.
+    do_this:
+      - Keep blue bees; keep white bees as filler; reroll red bees out last.
+      - Farm blue-leaning fields rather than whichever field is nearest.
+      - Prefer bees that buff the whole hive over bees that just collect, once
+        past roughly 20 bees.
+    blue_fields: [blue_flower, bamboo, pineapple, pine_tree, coconut, stump]
+    recommended_camp: [stump, pine_tree]
+    reachable_blue_fields_today: [pineapple, pine_tree]
+    caution: >
+      Flower layout is regenerated every time you join a server, so no fixed
+      per-field ratio is safe to hardcode. Treat "blue-leaning" as a category,
+      not a percentage. The one exact figure found was the Sunflower Field at
+      70% white / 15% red / 15% blue.
+    source: >
+      bee-swarm-simulator.fandom.com/wiki/Fields and community field
+      guidance, checked 2026-09-20. Numbers in this game are patched
+      often; re-check rather than trusting an old scrape.

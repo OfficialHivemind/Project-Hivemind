@@ -1,0 +1,114 @@
+# Bees, and specifically which ones serve a blue hive.
+#
+# THE OWNER'S GOAL: "also i want a blue hive". That is a build, not a colour
+# scheme -- a red or blue bee gets +50% pollen from a flower of its own colour,
+# so a hive committed to one colour wants every slot pulling the same way.
+#
+# WHY BLUE IS A GOOD CHOICE, and this is community judgement rather than a
+# measured fact: blue is widely held to be the best hive colour for macroing,
+# ahead of mixed, red and white -- easier to build, easier to maintain and less
+# punishing while an account is still developing.
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Category:Blue
+checked: 2026-09-20
+
+blue_bees:
+  # The wiki's own Blue category, which is the authoritative list.
+  all: [bubble, bucko, bumble, buoyant, cobalt, cool, diamond, frosty,
+        ninja, tadpole, vicious]
+  gifted_variants_noted: [gifted_bucko]
+  core_for_a_blue_hive: [buoyant, tadpole, diamond, bubble, music, stubborn,
+                         windy, exhausted, bear, vicious]
+  core_source: >
+    The Definitive Blue Hive Guide (updated 2026-06-06), which the owner
+    follows. It supersedes the community lists that were here before.
+
+  # ‼️ THE GUIDE SAYS NEVER TO RUN THESE, and two of them are in the wiki's
+  # own Blue category -- which is exactly why a category page is not a build.
+  never_run: [shy, lion, frosty, cobalt]
+  never_run_why: A Diamond will always provide more honey for that slot.
+
+  # And the correction that matters most: the bee that SCALES is the Diamond,
+  # which is not blue at all. Its Shimmering Honey passive gives +50% Honey at
+  # Hive when converting, and the guide's rule is to always push for more.
+  the_engine: diamond
+
+white_bees_are_filler: >
+  White (colourless) bees get no colour bonus anywhere and no penalty either,
+  so they are never dead weight in a blue hive. Red bees are the ones to reroll
+  out, and last -- see items.yaml, jelly is a reroll and only goes on Basics.
+
+blue_gear:
+  masks: [bubble_mask, diamond_mask]
+  hats: [beret]
+  guards: [blue_guard, bucko_guard, cobalt_guard, elite_blue_guard]
+  items: [blue_extract, icicles]
+  tools: [bubble_wand, tide_popper]
+  planters: [blue_clay_planter, hydroponic_planter]
+  places: [blue_hq, blue_teleporter, blue_port_o_hive, blueberry_dispenser,
+           blue_field_booster]
+
+blue_fields:
+  # From the same category. CACTUS was missing from world.yaml until this was
+  # read, which is exactly why the category page is worth consulting rather
+  # than inferring a field's colour from its name.
+  all: [bamboo, blue_flower, cactus, pine_tree, stump, blue_brick]
+  reachable_today: [pine_tree, pineapple]
+  note: >
+    `pineapple` is listed as blue by community field guidance but does NOT
+    appear in the wiki's Blue category. Treated as blue-leaning rather than
+    confirmed. `cactus` IS in the category, so world.yaml now records it as
+    blue -- but CHECKED AND IT IS NOT REACHABLE: the router has no route from
+    the hive to the Cactus Field. It is a blue field worth recording a route
+    to, not one the planner can use today.
+
+what_this_account_has:
+  seen_in_logs: [ninja, bubble, demon, rad, bad]
+  note: >
+    Read off the bot's own run logs, where bees are named when they run out of
+    energy ("ninja bee is out of energy"). NINJA and BUBBLE are both blue, so
+    a blue build is already partly in place. This is evidence, not an
+    inventory: the bot cannot read the hive yet.
+
+not_yet_known:
+  abilities: what each bee's ability does and how it scales
+  which_buff_the_hive: which bees buff other bees rather than just collecting
+  gifted_effects: what gifting changes
+  bee_costs: which eggs realistically produce which bees
+
+# ---------------------------------------------------------------- tabby bee --
+# Pasted by the owner from the wiki on 2026-09-21, because "players say the
+# tabby bee is one of the best bees". Recorded as REPORTED: the wiki's numbers,
+# not measured here. What makes it different from every other bee is that its
+# stats grow PERMANENTLY with tokens collected, which is why chasing has a kind
+# table (data/knowledge/tokens.yaml) with Tabby Love at priority 1.
+tabby_bee:
+  source: wiki text pasted by the owner, 2026-09-21
+  confidence: reported
+  colour: colorless
+  type: event
+  obtained: Tabby Bee Egg, Ticket Tent, 500 Tickets
+  gifting: no favourite treat; Star Treat, Gingerbread Bear or Aged Gingerbread Bear only
+  likes: [spider, clover]
+  dislikes: [cactus]
+  base_stats:
+    pollen: 10 per 4 s
+    honey: 160 per 3 s
+    passives: "+40% Energy, +15% Movespeed, +25% Convert Speed, +3 Attack, up to +1680 Convert Amount, up to +100 Gather Amount"
+  gifted_hive_bonus: "+50% Critical Power"
+  abilities:
+    scratch: "7 (+1/lvl) pollen from 3 lines of 4 flowers; always critical if gifted"
+    tabby_love: >
+      Permanently +1% Gather Amount, Convert Amount and Scratch pollen per token
+      collected, stacking to 1,000. At max stacks: Tabby Blessing, +1% Critical
+      Chance and +25% Critical Power for 20 s (+2 s per level); Tabby Blessing+
+      if gifted adds +1% Super-Crit Chance.
+  at_1000_tabby_love:
+    pollen: 110 per 4 s
+    honey: 1760 per 3 s
+    scratch: 88 pollen per line, 1,056 per use
+  owned_by_this_account: unknown
+  note: >
+    account.yaml recorded 422 Tickets on 2026-09-20 against a 500-Ticket price.
+    Whether the owner has since bought one is not known to the bot; nothing
+    reads the hive's bee list yet.

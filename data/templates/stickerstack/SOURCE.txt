@@ -1,0 +1,7 @@
+Natro Macro's own bitmaps for the Sticker Stack's menu (nm_image_assets/stickerstack/bitmaps.ahk,
+and "yes" from nm_image_assets/general/bitmaps.ahk), decoded from their base64 PNGs 2026-10-07.
+nm_StickerStack (natro_macro.ahk 13272-13400) searches the menu (centre-275, 0.4*height, 550x220):
+stickernormal / stickernormalalt (a sticker to stack, left half), stickerhive / stickercub /
+stickervoucher (skins, vouchers), stickerstackdigits_* (the boost time, font Inconsolata Bold
+#F0F7FB on #2257A8), then "yes" on the confirmation. Natro's scale; not yet checked on this
+account's frames.

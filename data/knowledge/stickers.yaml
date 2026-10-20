@@ -1,0 +1,300 @@
+# STICKERS: which ones the Sticker Stack may take, and which are kept for rarity.
+#
+# The owner, 2026-10-07: "teach it sticker stack and what stickers not to use
+# due to rarity". Stacking a sticker type for the first time gives its Stack
+# Reward and CONSUMES the sticker; each type stacks once. Its Stack Boost is
+# NOT permanent: every boost stacked applies only while the Stack buff runs,
+# 15 min + 10 s per sticker ever stacked (up to 1 h). What is permanent is the
+# Sticker Stack badge (25/50/100/250 stacked: +5/10/15/20% bee pollen). 25
+# tickets start the buff without a sticker -- NEVER paid: at this count that
+# is ~87 tickets an hour of buff (brain-research-2.md section 3).
+#
+# SOURCE: the wiki's own data, Module:Sticker_Index/Sticker (read through the
+# API 2026-10-07, 260 stickers): each sticker's obtainment methods, Stack Boost
+# (`boost`) and Stack Reward (`reward`).
+#
+# RARITY is the sticker's EASIEST source, on the wiki's own words where a
+# method has one (Uncommon .. Unfathomably Rare, "Nearly Impossible"), else:
+#   odds "1 in N"   N <= 10 -> 1, <= 100 -> 2, <= 1,000 -> 3, <= 10,000 -> 4,
+#                   <= 100,000 -> 5, <= 1,000,000 -> 6, more -> 7
+#   1 a hidden sticker (daily) or the printer with a Basic Egg
+#   2 the printer with a Silver/Gold Egg; a seeker, puffshroom, planter or
+#     sprout; field leaves; fireflies
+#   3 anything else unrated
+#   4 an achievement (once per player), Star Jelly, an event gift box, the
+#     printer with Diamond/Mythic/Star/Gifted eggs only
+#   5 a seasonal event or catalogue;  6 retired, or a leaderboard prize;
+#   8 given out by staff or creators
+#
+#   0 common  1 uncommon  2 rare  3 very rare  4 extremely rare
+#   5 exceptionally rare  6 unbelievably rare  7 unfathomably rare
+#   8 nearly impossible
+#
+# KEEP AT `keep_from` AND ABOVE: never stacked, never discarded. The wiki's
+# rare firefly stickers fall where it puts them -- Waxing Crescent Moon (rare)
+# may be stacked; Glowing Smile and the Star Signs (extremely rare), Cyan Star
+# and Shining Star are kept.
+
+keep_from: 4
+
+stickers:
+  "Baseball Swing": {rarity: 1, from: "Using the Sticker-Seeker on fields in the starter zone (Unco", boost: "+2% Pollen From Tools", reward: "5 Jelly Beans"}
+  "Bear Bee Offer": {rarity: 1, from: "1 in 3", boost: "+2% Event Bee Pollen", reward: "10 Tickets"}
+  "Blue Square": {rarity: 1, from: "a hidden sticker (daily)", boost: "+2% Critical Power", reward: "5 Tickets"}
+  "Built Ship": {rarity: 1, from: "a hidden sticker (daily)", boost: "+2% Blue Field Capacity", reward: "3 Tickets"}
+  "Classic Killroy": {rarity: 1, from: "a hidden sticker (daily)", boost: "+1% White Pollen", reward: "5 Tickets"}
+  "Coiled Snake": {rarity: 1, from: "Sticker Sprout (Uncommon)", boost: "+1 Epic Bee Attack", reward: "3 Stingers"}
+  "Colorful Buttons": {rarity: 1, from: "Hidden Sticker (Uncommon)", boost: "+10% Convert Rate", reward: "5 Jelly Beans"}
+  "Cop And Robber": {rarity: 1, from: "a hidden sticker (daily)", boost: "+0.5 Blue Bee Attack", reward: "3 Tickets"}
+  "Desperate Booth": {rarity: 1, from: "a hidden sticker (daily)", boost: "+2% Honey From Tokens", reward: "3 Tickets"}
+  "Diamond Cluster": {rarity: 1, from: "a hidden sticker (daily)", boost: "+15% Convert Rate", reward: "10 Tickets"}
+  "Diamond Trim": {rarity: 1, from: "Dropped by Diamond Aphid (Uncommon)", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Doodle S": {rarity: 1, from: "Sticker-Seeker Quest Reward (Uncommon)", boost: "+10,000 Capacity", reward: "5 Tickets"}
+  "Eighth Note": {rarity: 1, from: "the printer, Basic Egg", boost: "+1% Critical Power", reward: "5 Tickets"}
+  "Evil Pig": {rarity: 1, from: "a hidden sticker (daily)", boost: "+1 Epic Bee Attack", reward: "3 Tickets"}
+  "Giraffe": {rarity: 1, from: "Hidden Sticker (Uncommon)", boost: "+10% Convert Rate", reward: "5 Tickets"}
+  "Green Check Mark": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10,000 Capacity", reward: "3 Tickets"}
+  "Green Circle": {rarity: 1, from: "Found by Commander Bee when gathering while very happy (Unco", boost: "+1% Critical Power ", reward: "3 Tickets"}
+  "Green Plus Sign": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10,000 Capacity", reward: "3 Tickets"}
+  "Green SELL": {rarity: 1, from: "the printer, Basic Egg", boost: "+10% Convert Rate At Hive", reward: "5 Tickets"}
+  "Grey Shape Companion": {rarity: 1, from: "a hidden sticker (daily)", boost: "+2% Honey From Tokens", reward: "3 Tickets"}
+  "Interrobang Block": {rarity: 1, from: "a hidden sticker (daily)", boost: "+1% Critical Power", reward: "3 Tickets"}
+  "Launching Rocket": {rarity: 1, from: "Hidden Sticker (Uncommon)", boost: "+15,000 Capacity", reward: "10 Whirligigs"}
+  "Orphan Dog": {rarity: 1, from: "a hidden sticker (daily)", boost: "+2% Bee Gathering Pollen", reward: "3 Tickets"}
+  "Pale Heart": {rarity: 1, from: "Found by Puppy Bee when gathering while very happy (Uncommon", boost: "+2% Bee Gathering Pollen", reward: "50 Strawberries"}
+  "Pink Chair": {rarity: 1, from: "the printer, Basic Egg", boost: "+0.25% Bee Ability Pollen", reward: "10 Tickets"}
+  "Pizza Delivery Man": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10% Red Bee Convert Rate", reward: "3 Tickets"}
+  "Red Palm Hand": {rarity: 1, from: "Found by Rage Bee on the Stump Field (Uncommon)", boost: "+2% Red Field Capacity", reward: "1 Hard Wax"}
+  "Red X": {rarity: 1, from: "Using the Sticker-Seeker on any field (Uncommon)", boost: "+10% Convert Rate", reward: "1 Red Extract"}
+  "Rhubarb": {rarity: 1, from: "the printer, Basic Egg", boost: "+2% Bee Gathering Pollen", reward: "50 Pineapples"}
+  "Round Basic Bee": {rarity: 1, from: "the printer, Basic Egg", boost: "x3 Common Bee Pollen", reward: "1 Basic Egg"}
+  "Rubber Duck": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10% Rare Bee Pollen", reward: "3 Tickets"}
+  "Silly Tongue": {rarity: 1, from: "Found by Rascal Bee in the Pineapple Patch (Uncommon)", boost: "+2% Honey From Tokens", reward: "25 Gumdrops"}
+  "Simple Cloud": {rarity: 1, from: "the printer, Basic Egg", boost: "+1% White Pollen", reward: "1 Cloud Vial"}
+  "Simple Skyscraper": {rarity: 1, from: "Sticker Planter (Uncommon)", boost: "+1% Honey At Hive", reward: "3 Micro-Converters"}
+  "Simple Sun": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10% Convert Rate", reward: "5 Tickets"}
+  "Sitting Green Shirt Bear": {rarity: 1, from: "Found by Bubble Bee in the Clover Field (Uncommon)", boost: "+10,000 Capacity", reward: "5 Tickets"}
+  "Small Dandelion": {rarity: 1, from: "Found by Frosty Bee in the Dandelion Field or Clover Field (", boost: "+5% Dandelion Field Pollen", reward: "10 Honeysuckles"}
+  "Small Flame": {rarity: 1, from: "Found by Fire Bee when gathering while upset (Uncommon)", boost: "+3% Flame Pollen", reward: "1 Red Extract"}
+  "Small Pink Tulip": {rarity: 1, from: "Found by Riley Bee in the Mushroom Field or Strawberry Field", boost: "+5% Mushroom Field Pollen", reward: "10 Honeysuckles"}
+  "Small Tickseed": {rarity: 1, from: "Found by Bucko Bee in the Sunflower Field or Pumpkin Patch (", boost: "+5% Sunflower Field Pollen", reward: "10 Honeysuckles"}
+  "Small White Daisy": {rarity: 1, from: "Found by Hasty Bee in the Spider Field or Pineapple Patch (U", boost: "+1% White Pollen", reward: "10 Honeysuckles"}
+  "Standing Caterpillar": {rarity: 1, from: "Using Super-Scooper in the Pineapple Patch (Uncommon)", boost: "+10% Rare Bee Pollen", reward: "1 Enzymes"}
+  "Theatrical Intruder": {rarity: 1, from: "a hidden sticker (daily)", boost: "+1% Bee Attack", reward: "3 Tickets"}
+  "TNT": {rarity: 1, from: "Found by Demo Bee when gathering while very happy (Uncommon)", boost: "+2% Bomb Pollen", reward: "3 Soft Waxes"}
+  "Tough Potato": {rarity: 1, from: "Sticker-Seeker Quest Reward (Uncommon)", boost: "+1% Bee Attack", reward: "3 Stingers"}
+  "Traffic Light": {rarity: 1, from: "Sticker Sprout (Uncommon)", boost: "+10,000 Capacity", reward: "3 Neonberries"}
+  "Wall Crack": {rarity: 1, from: "the printer, Basic Egg", boost: "+10% Colorless Bee Convert Rate", reward: "10 Tickets"}
+  "Waving Townsperson": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10% Blue Bee Convert Rate", reward: "3 Tickets"}
+  "White Flag": {rarity: 1, from: "a hidden sticker (daily)", boost: "+2% White Pollen", reward: "1 Oil"}
+  "Window": {rarity: 1, from: "Sticker Planter (Uncommon)", boost: "+1% Honey At Hive", reward: "3 Soft Waxes"}
+  "Wishbone": {rarity: 1, from: "Hidden Sticker (Uncommon)", boost: "+1% Critical Power", reward: "5 Field Dice"}
+  "Yellow Coffee Mug": {rarity: 1, from: "a hidden sticker (daily)", boost: "+10% Convert Rate", reward: "1 Oil"}
+  "Yellow Hi": {rarity: 1, from: "Using the Sticker-Seeker on any field (Uncommon)", boost: "+10% Convert Rate", reward: "1 Enzymes"}
+  "Yellow Sticky Hand": {rarity: 1, from: "the printer, Basic Egg", boost: "+0.5 Honey Per Goo", reward: " 1 Glue"}
+  "Young Elf": {rarity: 1, from: "Sticker Planter on the Cactus Field (Uncommon)", boost: "+2% Ungifted Bee Pollen", reward: "5 Paper Planters"}
+  "Alert Icon": {rarity: 2, from: "Using the Sticker-Seeker in any field (Rare)", boost: "+5% Red Bomb Pollen", reward: "3 Micro-Converters"}
+  "Barcode": {rarity: 2, from: "Found by Digital Bee when gathering while very happy (Rare)", boost: "+10% Convert Rate", reward: "3 Soft Waxes"}
+  "Black Star": {rarity: 2, from: "1 in 100.000", boost: "+3% Bomb Pollen", reward: "1 Black Balloon"}
+  "Blob Bumble Bee": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+5% Blue Bomb Pollen", reward: "1 Blue Extract"}
+  "Blowing Leaf": {rarity: 2, from: "Dropped by Wild Windy Bee (Rare)", boost: "+1% White Pollen", reward: "3 Cloud Vials"}
+  "Blue And Green Marble": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2% Blue Pollen", reward: "Smooth Dice 3"}
+  "Bomber Bee Bear": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+5% Buzz Bomb Pollen", reward: "1 Loaded Dice"}
+  "Chanterelle Mushroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+5% Epic Bee Pollen", reward: "3 Soft Waxes"}
+  "Chef Hat Polar Bear": {rarity: 2, from: "1 in 100", boost: "+5% Instant Colorless Bee Conversion", reward: "10 Tickets"}
+  "Comforting Nectar Icon": {rarity: 2, from: "1 in 25", boost: "+2% Blue Pollen", reward: "1 Comforting Vial"}
+  "Cordate Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Cunate Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Dark Flame": {rarity: 2, from: "Heat-Treated Planter in the Pine Tree Forest (Rare)", boost: "+3% Flame Pollen", reward: "5 Stingers"}
+  "Elliptic Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Fly Agaric Mushroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+10% Rare Bee Pollen", reward: "3 Soft Waxes"}
+  "Flying Bee Bear": {rarity: 2, from: "Festive Sprouts (Rare)", boost: "+1% Event Bee Pollen", reward: "10 Tickets"}
+  "Flying Brave Bee": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2 Rare Bee Attack", reward: "3 Stingers"}
+  "Flying Rad Bee": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2% Red Pollen", reward: "1 Red Extract"}
+  "Fork And Knife": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2% White Field Capacity", reward: "500 Treats"}
+  "Forward Facing Aphid": {rarity: 2, from: "Dropped by Aphids (Rare)", boost: "+1% Bee Attack", reward: "1 Magic Bean"}
+  "Grey Diamond Logo": {rarity: 2, from: "Sticker-Seeker Quest Reward (Rare)", boost: "+2% Event Bee Pollen", reward: "3 Micro-Converters"}
+  "Happy Fish": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+3% Bubble Pollen", reward: "3 Tickets"}
+  "Hastate Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Honey Bee Bear": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2% Honey From Tokens", reward: "1 Enzymes"}
+  "Hourglass": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+20,000 Capacity", reward: "5 Tickets"}
+  "Invigorating Nectar Icon": {rarity: 2, from: "1 in 25", boost: "+2% Red Pollen", reward: "1 Invigorating Vial"}
+  "Ionic Column Middle": {rarity: 2, from: "Sticker-Seeker Quest Reward (Rare)", boost: "+20,000 Capacity", reward: "1 Hard Wax"}
+  "Jack-O-Lantern": {rarity: 2, from: "Heat-Treated Planter in the Pumpkin Patch (Rare)", boost: "+19% Pumpkin Patch Capacity (listed as 10% in-game)", reward: "3 Soft Waxes"}
+  "Lanceolate Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Left Gold Swirl Fleuron": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Lightning": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+1% Tool Swing Speed", reward: "3 Micro-Converters"}
+  "Lyrate Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Moai": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2% Capacity", reward: "10 Tickets"}
+  "Morel Mushroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+10% Rare Bee Pollen", reward: "3 Soft Waxes"}
+  "Motivating Nectar Icon": {rarity: 2, from: "1 in 25", boost: "+0.25% Bee Ability Rate", reward: "1 Motivating Vial"}
+  "Oblique Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Oiler Mushroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+5% Epic Bee Pollen", reward: "3 Soft Waxes"}
+  "Orange Green Tri Deco": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+5 Convert Amount", reward: "1 Enzymes"}
+  "Orange Step Array": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+5 Convert Amount", reward: "1 Enzymes"}
+  "Orange Swirled Marble": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+3% Flame Pollen", reward: "Smooth Dice 3"}
+  "Peace Sign Hand": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+10% Convert Rate", reward: "5 Tickets"}
+  "Pink Cupcake": {rarity: 2, from: "Found by Gifted Stubborn Bee in the Strawberry Field (Rare)", boost: "+0.5% Honey Per Goo", reward: " 50 Strawberries"}
+  "Porcini Mushroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+5% Epic Bee Pollen", reward: "3 Soft Waxes"}
+  "Pyramid": {rarity: 2, from: "Found by Lion Bee in the Cactus Field (Rare)", boost: "+19% Cactus Field Capacity (Listed at 10% in-game)", reward: "5 Tickets"}
+  "Refreshing Nectar Icon": {rarity: 2, from: "1 in 25", boost: "+1% Unique Instant Conversion", reward: "1 Refreshing Vial"}
+  "Reniform Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Rhomboid Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Right Facing Stump Snail": {rarity: 2, from: "Dropped by Stump Snail (Rare)", boost: "+5% Stump Field Pollen", reward: "1 Glue"}
+  "Right Gold Swirl Fleuron": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Round Rascal Bee": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+5% Red Bomb Pollen", reward: "1 Red Extract"}
+  "Satisfying Nectar Icon": {rarity: 2, from: "1 in 25", boost: "+2% White Pollen", reward: "1 Satisfying Vial"}
+  "Shy Brown Bear": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+0.25% Bee Ability Pollen", reward: "5 Royal Jellies"}
+  "Simple Mountain": {rarity: 2, from: "Found by Basic Bee in the Mountain Top Field (Rare)", boost: "+19% Mountain Top Field Capacity (Listed as 10% in-game)", reward: "10 Whirligigs"}
+  "Sitting Mother Bear": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+0.5% Gifted Bee Pollen", reward: "10 Tickets"}
+  "Small Blue Chick": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+2% Blue Pollen", reward: "1 Blue Extract"}
+  "Spatulate Leaf": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "5 Tickets"}
+  "Spore Covered Puffshroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+2% Pollen From Tools", reward: "3 Soft Waxes"}
+  "Tabby From Behind": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+1% Critical Power", reward: "10 Tickets"}
+  "Thumbs Up Hand": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+10,000 Capacity", reward: "5 Tickets"}
+  "Tiny House": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+10% Convert Rate At Hive", reward: "50 Sunflower Seeds"}
+  "Uplooking Bear": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+1% Critical Power", reward: "5 Tickets"}
+  "Waxing Crescent Moon": {rarity: 2, from: "leaves or fireflies", boost: "+1% Capacity", reward: "10 Moon Charms"}
+  "White Button Mushroom": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+25% Common Bee Pollen", reward: "3 Soft Waxes"}
+  "Yellow Left Arrow": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+5% Instant Bee Gather Conversion", reward: "3 Tickets"}
+  "Yellow Right Arrow": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+5% Instant Bee Gather Conversion", reward: "3 Tickets"}
+  "Yellow Swirled Marble": {rarity: 2, from: "the printer, Silver or Gold Egg", boost: "+0.5% Honey Per Pollen", reward: "Smooth Dice 3"}
+  "Yellow Umbrella": {rarity: 2, from: "seeker, puffshroom, planter or sprout", boost: "+10% Instant Rare Bee Conversion", reward: "1 Cloud Vial"}
+  "AFK": {rarity: 3, from: "unrated: Awarded after every 24 hours spent in the Hive Hub", boost: "+10% Convert Rate At Hive", reward: "1 Red Extract"}
+  "Atom Symbol": {rarity: 3, from: "Found by Radioactive Bees (Very Rare)", boost: "+5% Instant Bomb Conversion", reward: "5 Neonberries"}
+  "Banana Painting": {rarity: 3, from: "Sticker-Seeker Quest Reward (Very Rare)", boost: "+5% Legendary Bee Pollen", reward: "10 Tickets"}
+  "Blue Triangle Critter": {rarity: 3, from: "Sprouts in the Blue Flower Field (Very Rare)", boost: "+2% Bee Gathering Pollen", reward: "1 Magic Bean"}
+  "Flying Magenta Critter": {rarity: 3, from: "Sprouts in the Dandelion Field (Very Rare)", boost: "+2% Bee Gathering Pollen", reward: "1 Magic Bean"}
+  "Forward Facing Spider": {rarity: 3, from: "Found by Demon Bee when gathering in the Spider Field (Very ", boost: "+10% Spider Field Capacity", reward: "1 Enzymes"}
+  "Grey Raining Cloud": {rarity: 3, from: "1 in 250", boost: "+2% Blue Pollen", reward: "3 Cloud Vials"}
+  "Ionic Column Base": {rarity: 3, from: "Sticker-Seeker Quest Reward (Very Rare)", boost: "+20,000 Capacity", reward: "1 Hard Wax"}
+  "Ionic Column Top": {rarity: 3, from: "Sticker-Seeker Quest Reward (Very Rare)", boost: "+20,000 Capacity", reward: "1 Hard Wax"}
+  "Killroy With Hair": {rarity: 3, from: "Hidden Sticker (Very Rare)", boost: "+10% Convert Rate", reward: "5 Tickets"}
+  "Left Facing Ant": {rarity: 3, from: "Rewarded from Ant Challenge (Very Rare)", boost: "+1 Legendary Bee Attack", reward: "1 Ant Pass"}
+  "Little Scorpion": {rarity: 3, from: "Found by Basic Bee in the Rose Field (Very Rare)", boost: "+5% Rose Field Pollen", reward: "1 Red Extract"}
+  "Menacing Mantis": {rarity: 3, from: "Found by Rage Bee in the Pine Tree Forest (Very Rare)", boost: "+5% Pineapple Patch Pollen", reward: "1 Blue Extract"}
+  "Orange Leg Critter": {rarity: 3, from: "Sprouts in the Pumpkin Patch (Very Rare)", boost: "+2% Bee Gathering Pollen", reward: "1 Magic Bean"}
+  "Palm Tree": {rarity: 3, from: "Using the Sticker-Seeker in the Coconut Field (Very Rare)", boost: "+19% Coconut Field Capacity (listed as 10% in-game)", reward: "10 Coconuts"}
+  "Panicked Science Bear": {rarity: 3, from: "unrated: Found by Radioactive Bees in the Pineapple Patch", boost: "+5% Mutated Bee Convert Rate", reward: "1 Enzymes"}
+  "Prehistoric Boar": {rarity: 3, from: "Using the Sticker-Seeker in the 35 Bee Zone (Very Rare)", boost: "+2% Capacity", reward: "1 Hard Wax"}
+  "Prehistoric Hand": {rarity: 3, from: "Using the Sticker-Seeker in the 35 Bee Zone (Very Rare)", boost: "+20% Convert Rate", reward: "1 Hard Wax"}
+  "Prism Painting": {rarity: 3, from: "Sticker-Seeker Quest Reward (Very Rare)", boost: "+5% Legendary Bee Pollen", reward: "10 Tickets"}
+  "Prismatic Mushroom": {rarity: 3, from: "unrated: Awarded after sticking all other mushrooms to the ", boost: "+1% Mythic Bee Pollen", reward: "1 Caustic Wax"}
+  "Purple 4-Point Flower": {rarity: 3, from: "1 in 250", boost: "+1% Super Crit Power", reward: "10 Tickets"}
+  "Purple Pointed Critter": {rarity: 3, from: "Sprouts in the Cactus Field (Very Rare)", boost: "+2% Bee Gathering Pollen", reward: "1 Magic Bean"}
+  "Red Doodle Person": {rarity: 3, from: "1 in 1,000", boost: "+2% Red Field Capacity", reward: "1 Red Extract"}
+  "Round Green Critter": {rarity: 3, from: "Sprouts in the Clover Field (Very Rare)", boost: "+2% Bee Gathering Pollen", reward: "1 Magic Bean"}
+  "Shiitake Mushroom": {rarity: 3, from: "Puffshrooms in the Starter Zone or 10 Bee Zone (Very Rare)", boost: "+1% Event Bee Pollen", reward: "1 Hard Wax"}
+  "Shining Halo": {rarity: 3, from: "Sticker-Seeker Quest Reward (Very Rare)", boost: "+0.5% Pollen", reward: "1 Glitter"}
+  "Shocked Hive Slot": {rarity: 3, from: "Found by Shocked Bee in the Mushroom Field (Very Rare)", boost: "+1% White Pollen", reward: "50 Pineapples"}
+  "Shrugging Heart": {rarity: 3, from: "Using the Sticker-Seeker in the Rose Field (Very Rare)", boost: "+2% Red Pollen", reward: "1 Red Extract"}
+  "Sideways Spirit Bear": {rarity: 3, from: "1 in 500", boost: "+10% Instant Tool Conversion", reward: "1 Glitter"}
+  "Small Shield": {rarity: 3, from: "Reward from Robo Bear Challenge (Very Rare)", boost: "+0.5% Dodge Chance", reward: "1 Hard Wax"}
+  "Sprout": {rarity: 3, from: "Sprout (Very Rare)", boost: "+1% Capacity", reward: "1 Magic Bean"}
+  "Standing Bean Bug": {rarity: 3, from: "Bean Bugs (Very Rare)", boost: "+2% Pollen From Tools", reward: "5 Jelly Beans"}
+  "Stranded Sun Bear": {rarity: 3, from: "unrated: Reward for completing all 6 \"Waiting With Sun Bear", boost: "+10,000 Capacity", reward: "10 Jelly Beans"}
+  "Tadpole": {rarity: 3, from: "Found by Tadpole Bee in the Mushroom Field (Very Rare)", boost: "+3% Bubble Pollen", reward: "1 Blue Extract"}
+  "Triple Exclamation": {rarity: 3, from: "unrated: Rolling the same field 3 times in a row with Field", boost: "+1% Critical Power", reward: "1 Loaded Dice"}
+  "4-Pronged Vector Bee": {rarity: 4, from: "Sticker-Seeker Quest Reward (Extremely Rare)", boost: "+1% Mark Ability Pollen", reward: "10 Tickets"}
+  "Abstract Color Painting": {rarity: 4, from: "Sticker-Seeker Quest Reward (Extremely Rare)", boost: "+20,000 Capacity", reward: "1 Purple Potion "}
+  "Aquarius Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Aries Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Auryn": {rarity: 4, from: "an achievement (once per player)", boost: "+3% Capacity", reward: "1 Swirled Wax"}
+  "Black Diamond": {rarity: 4, from: "Found by Diamond Bee when gathering while upset (Extremely R", boost: "+3% Critical Power", reward: "1 Caustic Wax"}
+  "Bubble Wand": {rarity: 4, from: "Using the Bubble Wand in any field (Extremely Rare). Higher ", boost: "+2% Pollen From Tools", reward: "1 Blue Extract"}
+  "Cancer Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Capricorn Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Clippers": {rarity: 4, from: "Using the Clippers in any field (Extremely Rare). Higher cha", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Cool Backpack": {rarity: 4, from: "Mythic Meteors (Extremely Rare)", boost: "+1% Capacity", reward: "1 Blue Extract"}
+  "Critter In A Stocking": {rarity: 4, from: "Brown Bear's Stockings (Extremely Rare)", boost: "+2% Bee Gathering Pollen", reward: "1 Magic Bean"}
+  "Cyan Decorative Border": {rarity: 4, from: "Mega Memory Match (Extremely Rare)", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Cyan Star": {rarity: 4, from: "1 in 10,000", boost: "+3% Instant Gifted Bee Conversion", reward: "10 Tickets"}
+  "Dapper From Above": {rarity: 4, from: "an achievement (once per player)", boost: "+0.5% Pollen", reward: "1 Ticket Planter"}
+  "Diamond Diamond Bee": {rarity: 4, from: "an event box or a long-odds roll", boost: "+5% Mutated Bee Convert Rate", reward: "10 Tickets"}
+  "Drooping Stubborn Bee": {rarity: 4, from: "Found by Stubborn Bee when gathering while upset (Extremely ", boost: "+1% Ability Token Lifespan", reward: "1 Oil"}
+  "Electro-Magnet": {rarity: 4, from: "Using the Electro-Magnet in any field (Extremely Rare). High", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Eviction": {rarity: 4, from: "1 in 5,000", boost: "+20,000 Capacity", reward: "1 Hard Wax"}
+  "Flying Ninja Bee": {rarity: 4, from: "Found by Ninja Bee when gathering while very happy (Extremel", boost: "+0.25% Bee Movespeed", reward: "1 Blue Extract"}
+  "Flying Photon Bee": {rarity: 4, from: "Found by Photon Bee when gathering while very happy (Extreme", boost: "+5% Instant Event Bee Conversion", reward: "1 Oil"}
+  "Fuzz Bomb": {rarity: 4, from: "Found by Fuzzy Bee in the Bamboo Field (Extremely Rare)", boost: "+5% Buzz Bomb Pollen", reward: "1 Oil"}
+  "Gemini Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Glowing Smile": {rarity: 4, from: "Chasing Fireflies (Extremely Rare)", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Golden Rake": {rarity: 4, from: "Using the Golden Rake in any field (Extremely Rare). Higher ", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Honey Dipper": {rarity: 4, from: "Using the Honey Dipper in any field (Extremely Rare). Higher", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Left Mythic Gem Fleuron": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Left Shining Diamond Fleuron": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Leo Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Libra Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Magnet": {rarity: 4, from: "Using the Magnet in any field (Extremely Rare). Higher chanc", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Mythic M": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+1% Mythic Bee Pollen", reward: "10 Tickets"}
+  "Pearl Girl": {rarity: 4, from: "Sticker-Seeker Quest Reward (Extremely Rare)", boost: "+2% White Field Capacity", reward: "1 Swirled Wax"}
+  "Petal Wand": {rarity: 4, from: "Using the Petal Wand in any field (Extremely Rare). Higher c", boost: "+2% Pollen From Tools", reward: "10 Moon Charms"}
+  "Pisces Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Porcelain Dipper": {rarity: 4, from: "Using the Porcelain Dipper in any field (Extremely Rare). Hi", boost: "+2% Pollen From Tools", reward: "3 Soft Waxes"}
+  "Precise Eye": {rarity: 4, from: "1 in 3,333", boost: "+1% Super Crit Power", reward: "1 Hard Wax"}
+  "Pulsar": {rarity: 4, from: "Using the Pulsar in any field (Extremely Rare). Higher chanc", boost: "+2% Pollen From Tools", reward: "3 Neonberries"}
+  "Purple Fleuron": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+1% Super Crit Power", reward: "1 Purple Potion "}
+  "Rake": {rarity: 4, from: "Using the Rake in any field (Extremely Rare). Higher chances", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Red Wailing Cry": {rarity: 4, from: "an achievement (once per player)", boost: "+2% Instant Red Bee Conversion", reward: "3 Stingers"}
+  "Right Mythic Gem Fleuron": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Right Shining Diamond Fleuron": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+0.5% Honey Per Pollen", reward: "10 Tickets"}
+  "Robot Head": {rarity: 4, from: "Reward from Robo Bear Challenge (Extremely Rare)", boost: "+1% Duped Ability Pollen", reward: "1 Robo Pass"}
+  "Royal Bear": {rarity: 4, from: "Sticker-Seeker Quest Reward (Extremely Rare)", boost: "+1% Super Crit Power", reward: "1 Purple Potion "}
+  "Royal Symbol": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+1% Super Crit Power", reward: "1 Purple Potion "}
+  "Sagittarius Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Saturn": {rarity: 4, from: "an achievement (once per player)", boost: "+1% Mark Ability Pollen", reward: "5 Tickets"}
+  "Scissors": {rarity: 4, from: "Using the Scissors in any field (Extremely Rare). Higher cha", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Scooper": {rarity: 4, from: "Using the Scooper in any field (Extremely Rare). Higher chan", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Scorpio Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Scythe": {rarity: 4, from: "Using the Scythe in any field (Extremely Rare). Higher chanc", boost: "+2% Pollen From Tools", reward: "1 Red Extract"}
+  "Shining Star": {rarity: 4, from: "the printer, Diamond/Mythic/Star/Gifted eggs only", boost: "+0.5% Gifted Bee Pollen", reward: "10 Tickets"}
+  "Spark Staff": {rarity: 4, from: "Using the Spark Staff in any field (Extremely Rare). Higher ", boost: "+2% Pollen From Tools", reward: "3 Micro-Converters"}
+  "Squashed Head Bear": {rarity: 4, from: "Mythic Meteors (Extremely Rare)", boost: "+1% Super Critical Power", reward: "25 Bitterberries"}
+  "Standing Beekeeper": {rarity: 4, from: "an achievement (once per player)", boost: "+2% White Pollen", reward: "1 Oil"}
+  "Stretched Head Bear": {rarity: 4, from: "Dropped by Wild Windy Bee (Extremely Rare)", boost: "+1% Super Crit Power", reward: "25 Bitterberries"}
+  "Super-Scooper": {rarity: 4, from: "Using the Super-Scooper in any field (Extremely Rare). Highe", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Tabby Scratch": {rarity: 4, from: "Collecting Tabby Love after max stacks while a Stinger is ac", boost: "+10% Scratch Pollen", reward: "10 Tickets"}
+  "Taunting Doodle Person": {rarity: 4, from: "Sticker-Seeker Quest Reward (Extremely Rare)", boost: "+1% Critical Power", reward: "1 Enzymes"}
+  "Taurus Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Tornado": {rarity: 4, from: "Dropped by Wild Windy Bee (Extremely Rare)", boost: "+10% Tornado Pollen", reward: "3 Cloud Vials"}
+  "Vacuum": {rarity: 4, from: "Using the Vacuum in any field (Extremely Rare). Higher chanc", boost: "+2% Pollen From Tools", reward: "3 Tickets"}
+  "Virgo Star Sign": {rarity: 4, from: "Star Jelly, a rare jelly, at long odds", boost: "+2% Capacity", reward: "1 Glitter"}
+  "Walking Stick Nymph": {rarity: 4, from: "Dropped by Stick Nymphs (Extremely Rare)", boost: "+1% Bee Attack", reward: "3 Stingers"}
+  "Wobbly Looker Bee": {rarity: 4, from: "Found by Looker Bee when gathering while very happy (Extreme", boost: "+1% Critical Power", reward: "3 Neonberry"}
+  "Yellow Walking Wiggly Person": {rarity: 4, from: "an achievement (once per player)", boost: "+5% Movement Collection Pollen", reward: "25 Gumdrops"}
+  "Blue Beesmas Light": {rarity: 5, from: "a seasonal event", boost: "+2% Blue Pollen", reward: "3 Neonberries"}
+  "Festive Pea": {rarity: 5, from: "a seasonal event", boost: "+1% Gifted Bee Attack", reward: "1 Magic Bean"}
+  "Festive Pufferfish": {rarity: 5, from: "a seasonal event", boost: "+2% Bomb Pollen", reward: "10 Tickets"}
+  "Flying Festive Bee": {rarity: 5, from: "a seasonal event", boost: "+10% Red Bee Convert Rate", reward: "1 Red Extract"}
+  "Green Beesmas Light": {rarity: 5, from: "a seasonal event", boost: "+1% Critical Power", reward: "3 Neonberries"}
+  "Party Robo Bear": {rarity: 5, from: "a seasonal event", boost: "+1% Duped Ability Pollen", reward: "1 Robo Pass"}
+  "Red Beesmas Light": {rarity: 5, from: "a seasonal event", boost: "+2% Red Pollen", reward: "3 Neonberries"}
+  "Yellow Beesmas Light": {rarity: 5, from: "a seasonal event", boost: "+10% Convert Rate", reward: "3 Neonberries"}
+  "Ant Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+0.5% Bee Attack", reward: "10 Tickets"}
+  "Bamboo Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Bamboo Field Pollen", reward: "10 Tickets"}
+  "Black Truffle Mushroom": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+5% Legendary Bee Pollen", reward: "1 Hard Wax"}
+  "Blue Flower Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Blue Flower Field Pollen", reward: "10 Tickets"}
+  "Cactus Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Cactus Field Pollen", reward: "10 Tickets"}
+  "Clover Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Clover Field Pollen", reward: "10 Tickets"}
+  "Coconut Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Coconut Field Pollen", reward: "10 Tickets"}
+  "Cyan Hilted Sword": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+2% Bee Attack", reward: "10 Stingers"}
+  "Dandelion Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Dandelion Field Pollen", reward: "10 Tickets"}
+  "Glowering Gummy Bear": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+1% Honey Per Goo", reward: "1 Glue"}
+  "Hub Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Hub Field Pollen", reward: "10 Tickets"}
+  "Mountain Top Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Mountain Top Field Pollen", reward: "10 Tickets"}
+  "Mushroom Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Mushroom Field Pollen", reward: "10 Tickets"}
+  "Pepper Patch Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Pepper Patch Pollen", reward: "10 Tickets"}
+  "Pine Tree Forest Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Pine Tree Forest Pollen", reward: "10 Tickets"}
+  "Pineapple Patch Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Pineapple Patch Pollen", reward: "10 Tickets"}
+  "Pumpkin Patch Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Pumpkin Patch Pollen", reward: "10 Tickets"}
+  "Rose Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Rose Field Pollen", reward: "10 Tickets"}
+  "Spider Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Spider Field Pollen", reward: "10 Tickets"}
+  "Strawberry Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Strawberry Field Pollen", reward: "10 Tickets"}
+  "Stump Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Stump Field Pollen", reward: "10 Tickets"}
+  "Sunflower Field Stamp": {rarity: 6, from: "no longer given, or a leaderboard prize", boost: "+10% Sunflower Field Pollen", reward: "10 Tickets"}
+  "Dark Scythe": {rarity: 7, from: "Using the Dark Scythe in any field (Unfathomably Rare). High", boost: "+2% Pollen From Tools", reward: "1 Red Extract"}
+  "Gummyballer": {rarity: 7, from: "Using the Gummyballer in any field (Unfathomably Rare). High", boost: "+2% Pollen From Tools", reward: "25 Gumdrops"}
+  "Nessie": {rarity: 7, from: "Hidden Sticker (Unfathomably Rare)", boost: "+2% Event Bee Pollen", reward: "10 Tickets"}
+  "Tide Popper": {rarity: 7, from: "Using the Tide Popper in any field (Unfathomably Rare). High", boost: "+2% Pollen From Tools", reward: "1 Blue Extract"}
+  "Gamer Chat Icon": {rarity: 8, from: "given by staff or creators", boost: "+10,000 Capacity", reward: "10 Tickets"}
+  "Play Button": {rarity: 8, from: "given by staff or creators", boost: "+10,000 Capacity", reward: "10 Tickets"}

@@ -1,0 +1,125 @@
+# Quests: the main source of eggs, jelly and tickets, and the only part of the
+# game that is actually mandatory.
+#
+# WHY THIS MATTERS TO A BOT THAT FARMS. Quest requirements are overwhelmingly
+# "collect N pollen from field X" -- which is the one thing this bot already
+# does. A farm loop that also turns quests in earns eggs and jelly for work it
+# was doing anyway, and eggs are bees, and bees are the gate on the whole map.
+# Ignoring quests means grinding honey for hive slots the hard way.
+#
+# TWO CHAINS ARE NOT OPTIONAL. The wiki is explicit: "Quests are not necessary
+# for progression, but are highly recommended. There are a few exceptions, such
+# as Science Bear's Translator questline, and Spirit Bear's questline, which
+# are required to complete to progress."
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Quests
+checked: 2026-09-20
+caution: >
+  The wiki's quest tables did not render as text when read, so individual
+  quest requirements and rewards are NOT recorded here. Only the structure is.
+  Filling the tables in needs either a different scrape or reading the quest
+  menu in game. Nothing below is invented.
+
+givers:
+  count:
+    quest_bears: 8
+    quest_bees: 3
+    other: [onett, sticker_seeker_machine]
+
+  black_bear:
+    where: to the right of the hives, in front of the Red Cannon
+    reachable_today: true       # we have a recorded route to the red cannon
+    quests_are: >
+      Entirely pollen collection. This makes him by far the best fit for a bot
+      that can already farm and walk to the cannon.
+    chain:
+      - {to: silver_egg,  quests: 6}
+      - {to: gold_egg,    quests: 9}
+      - {to: diamond_egg, quests: 20}
+      - {to: star_jelly,  quests: 20}
+      - {to: mythic_egg,  quests: 20}
+    then: >
+      After the Mythic Egg line he gives endlessly repeatable quests, at most
+      ONE PER HOUR, with guaranteed rewards and occasional extras.
+    why_first: >
+      Reachable, pollen-only, and the rewards are eggs -- which is bees, which
+      is the gate on most of the map.
+
+  mandatory:
+    science_bear:
+      chain: Translator questline
+      required_for_progression: true
+    spirit_bear:
+      chain: Spirit Bear questline
+      required_for_progression: true
+    note: >
+      Both are called out by the wiki as required rather than recommended.
+      Neither is automated by any macro this project has looked at, which
+      makes them the most valuable unclaimed ground in the whole game.
+
+  science_bear_detail:
+    where: >
+      Next to the Yellow Cannon and below the Red Portal -- up the ramp
+      between the Instant Converter and the Magic Bean Shop, under the Red
+      Teleporter destination.
+    bees_required: 10        # the Brave Bee Gate. This account has 25.
+    quests: {initial: 16, translator: 15, total: 31}
+    translators_given_on: [21, 26, 31]
+    requirements_include: [defeating mobs, discovering bee types,
+                           collecting pollen, goo, ability tokens, badges]
+    reward: >
+      SCIENCE ENHANCEMENT, and it is large: +25% bee honey production per
+      level, stacking. Level 16 is +400%. Formula 25(n+1)%. This is probably
+      the biggest single multiplier reachable from where this account stands.
+    unique: >
+      The only bear whose quests require discovering particular bee types, and
+      the only one that requires obtaining a specific bee ("Beesperanto" needs
+      a Carpenter Bee).
+
+  # RESOLVED. The Power of Information needs the Strawberry and Blueberry
+  # dispensers, which need Bee Swarm Simulator Club -- and the Club is a FREE
+  # ROBLOX GROUP, not a paid tier. This account is in it, so the quest and the
+  # whole Science Bear line are open. The wiki puts it plainly: "Science Bear
+  # also forces players to join the club in order to get all the translators."
+  power_of_information:
+    quest: "The Power of Information (Science Bear)"
+    needs: [strawberry_dispenser, blueberry_dispenser, glue_dispenser]
+    blocked: false
+    why: This account is in the (free) Bee Swarm Simulator Club group.
+
+  others: [mother_bear, brown_bear, panda_bear, polar_bear, dapper_bear,
+           gifted_bucko_bee, gifted_riley_bee, honey_bee, onett]
+
+  sticker_seeker_machine:
+    requires_equipped: sticker_seeker
+    quest: "Sticker-Seeker: Rank X, where X is the player's rank plus one"
+    extra_requirements: >
+      Two requirements always appear; every 10th quest adds a fixed extra. The
+      rest are drawn at random from a pool. The number of extras starts at 1,
+      becomes 2 at quest 100, and 3 at quest 250.
+
+requirement_types:
+  - collecting pollen from particular fields
+  - ability tokens
+  - goo
+  - treat tokens
+  - defeating mobs
+  - crafting items
+  - obtaining badges
+  - finding stickers
+  - discovering bee types
+
+# What a bot would need before it could actually do a quest, written down so
+# the gap is visible rather than assumed away.
+what_the_bot_still_needs:
+  - reading the quest menu to know what is being asked
+  - walking to a quest giver and interacting without pressing anything unsafe
+  - knowing which field a pollen requirement refers to, which
+    vision/whereami can now answer from the reward feed
+  - tracking progress towards a requirement across a session
+
+polar_bear_warning: >
+  The bot has already talked to the Polar Bear by accident once, by pressing
+  the interact key where it believed the hive was. Quest givers are reachable
+  by mistake as well as on purpose, and a dialogue opened by accident is how a
+  menu gets pressed blindly. See act/hive.confirm_hive.

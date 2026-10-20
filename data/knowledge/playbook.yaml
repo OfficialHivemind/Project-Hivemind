@@ -1,0 +1,749 @@
+# THE PLAYBOOK: how a strong player plays this game, as rules the bot can be
+# held to.
+#
+# THE OWNER, 2026-10-02: "look up bss tips and trick and stuff and teach the
+# bot them". A tip the bot only KNOWS is a sentence; a tip it FOLLOWS is code.
+# So every rule says which it is:
+#
+#   taught: followed     the bot does this; `followed_by` names the code
+#                        (file and the function or constant that does it) --
+#                        tests/unit/test_playbook.py checks they exist
+#   taught: known        true and sourced, not acted on yet; `next` says what
+#                        acting on it needs
+#   taught: needs_a_look acting on it needs a screen the bot has never seen
+#
+# And where each came from: `source` (a URL, a file, or "measured" with the
+# frames or log lines) and `confidence` -- wiki, guide (a community guide or
+# macro's documented behaviour), measured (this bot, this account), owner (the
+# owner said so), unconfirmed. Nothing here is a recollection: a rule with no
+# source is not a rule.
+checked: 2026-10-02
+
+rules:
+  # ---------------------------------------------------------------- items --
+  - id: converter_only_when_it_pays
+    topic: items
+    says: >
+      Use a Micro-Converter in the field only when the round trip it saves
+      gathers clearly more than converting away from the hive loses, and be
+      pickier as the stack runs down: 10% of what it risks from a full stack,
+      30% at the last one.
+    numbers: {field_honey_per_pollen: 1.075, hive_honey_per_pollen: 1.33}
+    because: it pays ~1.075 honey a pollen against the hive's ~1.33, so on an
+      ordinary bag it loses ~0.9M; under a field boost the saved trip gathers
+      several times more.
+    source: measured -- var/micro_converter.json (six uses, 2026-10-01/02)
+    confidence: measured
+    taught: followed
+    followed_by: [scripts/run_farm.py:micro_convert, src/hivemind/brain/stash.py:gain_share]
+
+  - id: whirligig_keep_two_for_rescue
+    topic: items
+    says: >
+      Use a spare Whirligig instead of the walk home, but keep two for a walk
+      home that has gone wrong, where the other way back is a rejoin.
+    source: measured -- 7 uses 2026-10-01 night, "on our pad 0.3s after the press"
+    confidence: measured
+    taught: followed
+    followed_by: [src/hivemind/brain/stash.py:RESCUE_KEEP, scripts/run_farm.py:whirligig_home]
+
+  # ------------------------------------------------------------- the hive --
+  - id: jelly_on_unwanted_bees
+    topic: hive
+    says: >
+      Buy Royal Jelly with honey and roll it on bees the guide does not want
+      (never-run, red bees in a blue hive, Basic), never on a comp bee and
+      never on an event bee (Cobalt, Crimson: jelly never rolls one back, and
+      a roll's odds are the same on any cell); keep a cell that lands a
+      Diamond or one of the guide's Mythics.
+    source: owner, 2026-10-02 ("diamond eggs arnt worth it it should buy roysal
+      jellys with honey instead"; "jellys also can get u mythics so dont buy
+      mythic egg"); odds from the wiki's Royal_Jelly page
+    confidence: owner
+    taught: followed
+    followed_by: [src/hivemind/brain/hivejudge.py:judge, data/knowledge/items.yaml:royal_jelly]
+    next: buying at the Royal Jelly Shop and the drag-onto-a-cell flow are
+      needs_a_look (see buy_royal_jelly, use_royal_jelly)
+
+  - id: no_diamond_or_mythic_eggs
+    topic: buying
+    says: Never buy Diamond or Mythic Eggs; jelly bought with honey does it cheaper.
+    # CORRECTED 2026-10-14: cheaper for a legendary (a Diamond Bee), not for a
+    # mythic -- jelly lands one 1 in 25,000 (items.yaml), so mythics come from
+    # quest Mythic Eggs, not jelly (the research of 2026-10-14 (data/knowledge/progression/blue.yaml, wiki Royal_Jelly via api.php)).
+    numbers: {tickets_per_wanted_bee: {dispenser_jelly: 1600, diamond_egg: 2950}}
+    source: owner, 2026-10-02; brain/hivejudge's own sums
+    confidence: owner
+    taught: followed
+    followed_by: [data/knowledge/items.yaml:owner_says]
+
+  - id: bubble_mask_over_honey_mask
+    topic: buying
+    says: >
+      For this bot the Bubble Mask beats the Honey Mask: its convert takes 15 s
+      against a 3-6 minute fill, so a mask that adds pollen pays more than one
+      that adds honey at the hive.
+    numbers: {honey_per_hour_gain: "12-21%"}
+    source: measured -- convert dwell and fill times, runs 555-566; the owner
+      ("people tell me that bubble mask was better")
+    confidence: measured
+    taught: followed
+    followed_by: [data/knowledge/goals.yaml:bubble_mask]
+
+  # ------------------------------------------------------------ the clock --
+  - id: wealth_clock_every_hour_no_rejoin
+    topic: timers
+    says: >
+      Use the Wealth Clock every hour, and keep the session: its tickets rise
+      1, 2, 3, 4, 5 an hour within one server session and a rejoin starts them
+      at 1 again. Deploy or restart only right after a claim.
+    source: owner, 2026-09-23 ("every hour gives u 1 ticket then next hour gives
+      2 then 3 then 4 then 5 ... until u leave")
+    confidence: owner
+    taught: followed
+    followed_by: [scripts/run_farm.py:ERRAND_EARLY_SECONDS]
+
+  - id: reset_only_with_an_empty_bag
+    topic: movement
+    says: >
+      A character reset deletes the pollen in the bag, so reset (Natro's way
+      home after an errand) only with the bag empty -- right after a convert.
+    source: owner, 2026-09-23 ("resetting deletes ur pollen")
+    confidence: owner
+    taught: followed
+    followed_by: [src/hivemind/act/respawn.py:bag_is_empty_enough]
+
+  # ---------------------------------------------------------------- shops --
+  - id: shop_trap_never_reset_in_a_shop
+    topic: buying
+    says: >
+      Never reset with a shop window open, and never open a shop straight
+      after a field booster: either leaves a player unable to close it. When
+      a window may still be open, rejoin instead.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Glitches ("When players
+      reset with the shop open, they are unable to close the interface")
+    confidence: wiki
+    taught: followed
+    followed_by: [src/hivemind/act/shoplook.py:look, scripts/run_farm.py:look_at_the_shop]
+
+  - id: buy_royal_jelly
+    topic: buying
+    says: >
+      Royal Jelly costs 250,000 honey at the Royal Jelly Shop, 10,000 more each
+      purchase, 1,000,000 from the 76th on, sold in lots of 1, 10, 100.
+    numbers: {first: 250000, step: 10000, cap: 1000000}
+    source: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly_Shop
+    confidence: wiki
+    taught: needs_a_look
+    next: a route to the machine (the hill between the Rose Field and the Pine
+      Tree Forest, below the Blue Cannon) and one look at its prompt and its
+      amount buttons
+
+  - id: use_royal_jelly
+    topic: hive
+    says: >
+      Jelly is used from the egg menu by dragging it onto a bee's cell; the
+      game asks "Transform <Bee>?" (Yes/No) and then names what it became.
+      Answer Yes only on the exact bee meant, never on a Gifted one, and keep
+      the game's Auto-Jelly toggles off.
+    source: scratchpad research_craft_jelly_ui.md (wiki Royal_Jelly, Fuzzy
+      Macro's auto-jelly), 2026-10-01
+    confidence: guide
+    taught: needs_a_look
+    next: built and waiting for its first look (2026-10-03) -- the Demon's card
+      by a click on its face (run_farm BEE_CARD_SHOP), one jelly dragged there
+      and answered No to read the prompt (JELLY_OBSERVE_SHOP), then the rolls
+      (roll_the_jelly), each Yes held to that prompt naming the cell's own bee
+
+  # ------------------------------------------------- the routine (macros) --
+  # From research 2026-10-02 (scratchpad research_tips/macro_routine.md):
+  # Natro Macro's open source (NatroTeam/NatroMacro main 094f9c7,
+  # submacros/natro_macro.ahk), Fuzzy Macro's (Fuzzy-Team/Fuzzy-Macro
+  # a2f58b1) and another macro's public docs.
+  - id: no_errands_in_a_boost
+    topic: gathering
+    says: >
+      While a field boost runs where the bot gathers, run no errand -- not
+      even a read -- and go straight back out; the boost's fifteen minutes are
+      the most a trip ever earns. The boost is seen in the trip's own rate (1.5x
+      the field's measured one, a booster pressed within 15 minutes).
+    numbers: {boost_seconds: 900, rate_factor: 1.5, min_left_seconds: 150}
+    source: NatroMacro natro_macro.ahk nm_GatherBoostInterrupt (900 s); another macro's
+      docs bosses-and-buffs/boosters-and-shrine ("leave gather interrupts off");
+      measured Pine Tree 8,400-14,500/s ordinary, 22,000/s boosted (2026-10-02 02:00)
+    confidence: guide
+    taught: followed
+    followed_by: [src/hivemind/brain/boostwindow.py:boost_landed, scripts/run_farm.py:boost_running]
+
+  - id: gather_where_the_boost_landed
+    topic: gathering
+    says: >
+      A booster boosts one of its fields at random, and the game says which
+      ('Activated "Blue Flower Field Boost" x 3'); for the fifteen minutes
+      gather there when it is a blue field worth more boosted than the usual
+      one unboosted -- Blue Flower x3 about 1.5x Pine Tree, Bamboo x1 about 1.3x.
+    numbers: {blue_flower_x3: 30, pine_tree_x1: 21, bamboo_x1: 19, unread: 26}
+    because: >
+      MEASURED over the 96 Blue Field Booster presses kept in var/places
+      (2026-09/10) -- on 69% of the read ones the boost landed on a field the
+      bot was not going to, and it gathered Pine Tree unboosted.
+    source: NatroMacro natro_macro.ahk FieldBooster map and BoostChaserCheck;
+      wiki Field_Booster (stacks, 15 min, a new stack resets the timer);
+      measured -- the feed lines of var/places/*field_booster-pressed-*.jpg
+    confidence: measured
+    taught: followed
+    followed_by: [src/hivemind/vision/whereami.py:boost_in, src/hivemind/brain/boostwindow.py:follow_the_boost, scripts/run_farm.py:boost_to_follow]
+    next: the 1.5x and 1.3x are a proxy (blue share x flower size); every press
+      is written to var/boosts.jsonl so the trips' own rates can replace it
+
+  - id: blue_hive_gathers_pine_tree
+    topic: gathering
+    says: >
+      For a blue hive of 25-45 bees, Pine Tree Forest with a Natro pattern
+      (CornerXSnake or Kettle) is the solid honeymaking field.
+    source: Another macro's docs getting-started/game-progression ("Pine Tree with
+      Kettle or CornerXSnake is a solid early honeymaking setup"); Natro's
+      nm_importFieldDefaults
+    confidence: guide
+    taught: followed
+    followed_by: [src/hivemind/brain/decide.py:class Planner, data/world/natro_patterns.yaml:pine_tree]
+
+  - id: leave_the_field_at_95_percent
+    topic: gathering
+    says: >
+      Leave the field at 95% of the bag and after 10 minutes at most ("you
+      should never go above that"); a Micro-Converter at the threshold keeps
+      the gather going instead.
+    numbers: {bag_percent: 95, gather_minutes_max: 10}
+    source: NatroMacro nm_importFieldDefaults (UntilPack 95, 10 min);
+      meta-bee.com/the-ultimate-guide-to-blue-hive-macro-settings
+    confidence: guide
+    taught: known
+    next: the bot converts at gather.convert_at (the owner's setting) and stays
+      up to 20 minutes; measure honey an hour at 90% against 95% before
+      changing his setting
+
+  - id: mondo_chick_hour
+    topic: timers
+    says: Keep off Mountain Top in the first quarter of each hour, when the Mondo Chick comes.
+    source: NatroMacro nm_Mondo; another macro's docs bosses-and-buffs/mondo-chick-and-hop
+    confidence: guide
+    taught: followed
+    followed_by: [src/hivemind/world/timers.py:class FieldGuard, scripts/run_farm.py:GUARD_LEAVE_BEFORE_SECONDS]
+
+  - id: bug_runs_on_their_respawns
+    topic: materials
+    says: >
+      Kill the field mobs as they respawn -- ladybug and rhino beetle ~5.5
+      min, mantis and scorpion ~20.5, spider ~30.5, werewolf ~60.5 -- for
+      their drops (Oil, Enzymes, Glue, Stingers...).
+    source: NatroMacro nm_Bugrun; data/knowledge/mobs.yaml respawn_seconds
+    confidence: guide
+    taught: followed
+    followed_by: [src/hivemind/act/bugrun.py:def wanted, scripts/run_farm.py:bugrun_any]
+
+  - id: never_let_the_balloon_blessing_lapse
+    topic: converting
+    says: >
+      Converting the hive balloon fully grants Balloon Blessing (capacity and
+      honey at the hive) for an hour; the macros stand on the pad past the
+      empty bag until it is converted. BUT the hive balloon fills only from
+      balloons reaching the hive -- Buoyant Bees' and item balloons -- and this
+      hive has no Buoyant, so today there is nothing to wait for.
+    source: wiki Balloon (via research honey_tactics.md C1-C2); NatroMacro
+      ConvertBalloon "Gather" (2,700 s cap); another macro's docs
+    confidence: wiki
+    taught: known
+    next: when the bee menu reads a Buoyant (the guide's end comp), or the
+      inventory holds item balloons, wait for the balloon past the empty bag
+
+  - id: blue_extract_while_gathering
+    topic: items
+    says: >
+      A blue hive uses Blue Extract every 10 minutes while gathering, Glitter
+      9-15 minutes into a field boost, Enzymes while the balloon converts.
+    source: meta-bee.com blue hive macro guide; NatroMacro HotbarWhile modes
+      and gather loop (Glitter 525-900 s after a boost)
+    confidence: guide
+    taught: known
+    next: all three are reserved for the goals (Bubble Mask 50 Blue Extract, 15
+      Glitter; Honeycomb Belt 50 Enzymes) -- the stash keeps them; spare ones
+      only, after the goals
+
+  - id: planters_for_nectar
+    topic: materials
+    says: >
+      Keep three planters growing (one of each type, one per field), harvested
+      every 2 hours and aligned, toward Natro's blue nectar preset: Comforting
+      70%, Motivating 80%, Satisfying 80%, Refreshing 80%, Invigorating 40%
+      (Pepper is a 35-bee field). A full-grown planter in the Sunflower Field
+      almost always drops Oil.
+    source: NatroMacro ba_planter and nm_NectarPreset; wiki Planters, Sunflower
+      Field; another macro's docs planters/set-up-auto-planters
+    confidence: guide
+    taught: needs_a_look
+    next: the planter engine (src/hivemind/tasks/planters.py) exists; the bot has
+      never seen the planter UI or the nectar bars
+
+  - id: night_vicious_bee
+    topic: materials
+    says: >
+      At night hunt the Vicious Bee for Stingers (the first each day adds 5);
+      at 34 bees its fields are Mountain Top, Rose, Cactus, Spider and Clover.
+    source: NatroMacro nm_locateVB and its bee gates
+    confidence: guide
+    taught: needs_a_look
+    next: telling night from day and reading the game's Vicious Bee message
+
+  - id: memory_match_on_its_timers
+    topic: materials
+    says: >
+      Play Memory Match on its timers (2 h, the Mega 4 h, the Extreme 8 h, the
+      Night one 8 h), skipping low prizes (Treats, Royal Jelly,
+      Micro-Converters, Cloud Vials) for the better pairs.
+    source: meta-bee.com; another macro's docs collect-and-quests/memory-match;
+      NatroMacro lib/data/memorymatch.ahk
+    confidence: guide
+    taught: needs_a_look
+    next: act/memorymatch.py (Natro's solver) is written and not wired; its
+      first game is a supervised one
+
+  - id: polar_quests_to_grandmaster
+    topic: quests
+    says: >
+      Keep Polar Bear quests going to Quest Grandmaster (its 2.5x capacity
+      buff), and Bucko Bee's toward the Hydroponic Planter (150 quests) and the
+      Tide Popper (250); Black and Brown Bear an hour apart.
+    source: Another macro's docs collect-and-quests/automate-quests; meta-bee.com
+    confidence: guide
+    taught: known
+    next: brain/questneeds orders givers by the materials goals need; add the
+      grandmaster and milestone counts once the quest menu's totals are read
+
+  # ------------------------------------------- materials and what to buy --
+  # From research 2026-10-02 (scratchpad research_tips/materials_buying.md):
+  # the wiki's item, recipe and shop pages and Natro's data.
+  - id: royal_jelly_prices_the_materials
+    topic: materials
+    says: >
+      Blue and Red Extract, Oil, Enzymes and Glue each take 10 Royal Jelly in
+      the Blender (plus 50 berries, seeds, pineapples or gumdrops), so a blended
+      one costs ~10M honey at the Royal Jelly Shop's cap -- free drops, quests
+      and planters first, the Blender only to top up.
+    numbers: {rj_per_blend: 10, honey_per_rj_at_cap: 1000000}
+    source: wiki Blender, Royal_Jelly_Shop
+    confidence: wiki
+    taught: known
+    next: the materials planner (Phase 3) prices each source by honey and time
+
+  - id: never_buff_with_a_reserved_material
+    topic: items
+    says: >
+      Never use a material a goal still needs as a buff: Oil, Glitter, Blue and
+      Red Extract, Enzymes, Glue, Stingers, Moon Charms, Magic Beans, Waxes,
+      Blueberries -- after any use, inventory less every goal's reservation
+      must stay at or above zero.
+    source: research materials_buying.md section 9; the goals' recipes (wiki)
+    confidence: guide
+    taught: followed
+    followed_by: [src/hivemind/brain/stash.py:reserved_for]
+
+  - id: hive_slot_35_first
+    topic: buying
+    says: >
+      Buy the hive slot to 35 bees first (209,117,953 honey, then an egg): it
+      opens Spirit Bear's quests, the Extreme Memory Match, the Wind Shrine,
+      Coconut Crab and the Coconut Dispenser, and the Pepper Patch Vicious Bees
+      -- all material sources.
+    source: wiki Hive_Slot, Spirit_Bear; the owner's goal order
+    confidence: wiki
+    taught: followed
+    followed_by: [data/knowledge/goals.yaml:hive_slot]
+    next: buying it is Phase 2 (the Mountain Top Shop is unseen)
+
+  - id: buying_traps
+    topic: buying
+    says: >
+      Do not buy: Ticket Shop tickets past the 500th (~38.8M honey each), Royal
+      Jelly with tickets, Blender speed-ups, Ant Passes for tickets, treats to
+      level bees, Star Treats before beans and stingers are covered, dice
+      crafted from extracts, the Coconut gear at this stage.
+    source: research materials_buying.md section 8 (wiki Ticket_Shop, Treat
+      Shop, Blender; community threads)
+    confidence: guide
+    taught: followed
+    followed_by: [src/hivemind/brain/buyer.py:NEVER]
+
+  - id: sprouts_from_beans
+    topic: materials
+    says: >
+      Plant a Magic Bean in the field being farmed (its pollen costs nothing
+      extra): by day sprouts drop berries and Blue Extract, at night a bean is
+      ~60% a Moon Sprout (Moon Charms, Glitter). Never plant before a rejoin --
+      a sprout gives nothing once its planter leaves the server -- and it
+      despawns after 5 minutes untouched.
+    source: >
+      wiki Sprout, Magic_Bean; Fuzzy Macro collectSprouts; measured 2026-10-03
+      (Magic Beans used in Pine Tree 06:38-08:48, the feed's "(from Sprout)"
+      drops logged: 3 Royal Jelly, 36 treats, 290,700 honey)
+    confidence: measured
+    taught: followed
+    followed_by: [src/hivemind/brain/stash.py:magic_bean, scripts/run_farm.py:FIELD_ITEMS]
+
+  # ----------------------------------------------- honey-making (research) --
+  # From research 2026-10-02 (scratchpad research_tips/honey_tactics.md):
+  # the wiki's field, item, bee and passive pages and Natro's defaults.
+  - id: convert_at_the_hive
+    topic: converting
+    says: >
+      Convert at the hive by default: each Diamond's Shimmering Honey adds 25%
+      (+2.5% a level) honey when converting there, so a Micro-Converter in the
+      field pays less -- keep those for a boosted field with a full bag.
+    numbers: {measured_field: 1.075, measured_hive: 1.33}
+    source: wiki Diamond_Bee (Shimmering Honey); measured -- var/micro_converter.json
+    confidence: measured
+    taught: followed
+    followed_by: [scripts/run_farm.py:micro_convert]
+
+  - id: glitter_extends_a_boost
+    topic: items
+    says: >
+      Glitter gives the field the player stands in +100% pollen for 15 minutes
+      on its own, with a 15-minute cooldown so it never stacks on one field --
+      so spread it: use it where no boost already runs, and keep the Bubble
+      Mask's 15. (Corrected 2026-10-03: this rule said Glitter only extends a
+      running boost; the wiki's Glitter page, read again, says it "grants a
+      +100% pollen boost in the field the player is standing in for 15 minutes
+      upon activation", and the 00:43 trip measured 18,089 pollen/s on it
+      against ~12,000 without.)
+    source: wiki Glitter (read through api.php 2026-10-03); measured 2026-10-03 00:43
+    confidence: measured
+    taught: followed
+    followed_by: [src/hivemind/brain/stash.py:Glitter waits so the boosts spread out]
+
+  - id: consumables_only_in_a_boost
+    topic: items
+    says: >
+      Use pollen consumables only once a field boost is active and the bag is
+      empty, and never stack ones that cancel: a Purple Potion cancels the
+      Extracts and Glue, a Super Smoothie cancels all of them.
+    source: wiki Purple_Potion, Super_Smoothie (via honey_tactics.md B6-B7)
+    confidence: wiki
+    taught: followed
+    followed_by: [src/hivemind/brain/stash.py:kept for a boost]
+
+  - id: honey_bee_quest_before_a_boost
+    topic: quests
+    says: >
+      Hand in the Honey Bee's quest (beside the Pine Tree Forest) just before
+      a boosted window: it gives double convert speed for 30 minutes.
+    source: wiki Honey_Bee (via honey_tactics.md C12)
+    confidence: wiki
+    taught: known
+    next: the quest planner times the Honey Bee hand-in to the booster
+
+  - id: badges_that_pay_at_the_hive
+    topic: progression
+    says: >
+      The Dandelion badge raises honey at the hive (+3% to +15%) and the
+      Pumpkin badge the convert rate at the hive (x1.2 to x2.0) for good;
+      when a white booster boosts Dandelion (x3) or Pumpkin (x2) while those
+      badges are low, farm there for the window.
+    source: wiki Badges (via honey_tactics.md F5)
+    confidence: wiki
+    taught: known
+    next: read the badge tiers (the bot read Goo Cadet once, account.yaml)
+
+  - id: stay_out_of_stump_while_the_snail_lives
+    topic: gathering
+    says: >
+      Keep out of the Stump Field while the Stump Snail lives (30M HP, 96 h
+      respawn): the bees attack it instead of gathering. While it lives the
+      Blue booster cannot pick Stump, which leaves Pine Tree, Bamboo and Blue
+      Flower.
+    source: wiki Stump_Snail, Field_Booster (via honey_tactics.md F3, B1)
+    confidence: wiki
+    taught: followed
+    followed_by: [src/hivemind/brain/boostwindow.py:BLUE_INDEX]
+    next: the planner itself does not know the snail; Stump is simply never
+      followed or chosen by the boost rule
+
+  - id: token_link_first
+    topic: gathering
+    says: >
+      Among tokens, Token Link first (one about every 7.5 s; it collects every
+      other token), then Bear Morph and Baby Love (2x pollen for 30 s), Tabby
+      Love, Melody, Blue Boost, Focus; bubbles from the 17 Bubble Bees last
+      only 4 s, so keep sweeping through the swarm.
+    source: wiki token data module (via honey_tactics.md G1-G2)
+    confidence: wiki
+    taught: known
+    next: brain/tokenbrain scores token classes; set its class weights from
+      this order once the coin detector names the classes
+
+  # ------------------------------------------- the pro tester, round 1 --
+  # An expert's answers, relayed by the owner (var/pro_answers/round1-*.txt).
+  # EXPERT PRIORS, not measurements: where the bot measures the same thing
+  # (a field's pollen/s, a boost's gain) the measurement wins, and each rule
+  # says where. The code is brain/protips.py.
+  - id: pro_pine_tree_is_best
+    topic: gathering
+    says: >
+      Pine Tree is always the best field. A tie-breaker: Pine Tree goes ahead of
+      a leader it scores within 10% of, or one never measured -- never past a
+      field measured clearly better, a quest-first field, or one a quest names.
+    source: pro tester round 1, 19 Oct 2026 ("pine tree is always best")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:pine_tree_first, src/hivemind/brain/decide.py:protips.pine_tree_first]
+
+  - id: pro_convert_at_95
+    topic: gathering
+    says: >
+      Convert at 95% of the bag or higher, so no time goes on gathering into a
+      full bag. The default of gather.convert_at; a value the owner set stays.
+    source: pro tester round 1, 19 Oct 2026 ("convert at 95% or higher")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/world/settings.py:pro_convert_at_95, src/hivemind/brain/decide.py:or 95]
+
+  - id: pro_weak_fields_for_quests
+    topic: quests
+    says: >
+      Gathering in a weak field is fine when a quest needs that field. Already
+      so: a field a quest names gets the quest tilt, ranks first with
+      quests.first, a one-trip step goes first either way, and a quest field
+      under QUEST_WEAK_SHARE of the best still gets every other trip.
+    source: pro tester round 1, 19 Oct 2026 ("gathering from weak fields is fine if it's mandatory")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/decide.py:QUEST_BONUS, src/hivemind/brain/decide.py:one_trip, scripts/run_farm.py:weak_quest_best]
+
+  - id: pro_sprinkler_in_the_pattern_centre
+    topic: gathering
+    says: >
+      Sprinkler in the middle of the field; when macroing, in the centre of the
+      movement pattern (the middle of the box its path covers).
+    source: pro tester round 1, 19 Oct 2026 ("sprinkler in the center of the movement pattern")
+    confidence: expert
+    taught: known
+    next: >
+      LOOK-ONLY (protips SPRINKLER_AT_PATTERN_CENTRE_LIVE) -- run_farm logs
+      "sprinkler rule would: place at pattern centre (dx, dy)"; placing it
+      there needs a walk to the offset and back that a live run has proven
+
+  - id: pro_quest_giver_order
+    topic: quests
+    says: >
+      Mother Bear first, Black Bear second; the Polar Bear becomes first once
+      every main questline but Spirit Bear's is done; the Panda Bear is
+      important but no rush (he keeps his place in the walk order).
+    source: pro tester round 1, 19 Oct 2026
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:GIVER_RANK, scripts/run_farm.py:protips.giver_order, scripts/run_farm.py:protips.MAIN_LINES_DONE]
+    next: the bot does not read which questlines are finished, so MAIN_LINES_DONE
+      stays False (the Polar Bear third) until it does
+
+  - id: pro_rewards_worth_chasing
+    topic: quests
+    says: >
+      Worth chasing -- Black Bear's Mythic and Diamond Eggs (quests.yaml lists
+      both on his chain), Mother Bear's Star Egg and Star Treat, the Panda
+      Bear's Star Treat and Diamond Egg, Spirit Bear's 3 Spirit Petals, Science
+      Bear's translators (quests.yaml translators_given_on). Mother's, the
+      Panda's and Spirit's are the pro's word only: no other file lists them.
+    source: pro tester round 1, 19 Oct 2026 ("worth chasing")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:spirit_bear, src/hivemind/brain/protips.py:science_bear]
+    next: no reward is priced in honey (brain/goalvalue prices none of these);
+      they order the visits only
+
+  - id: pro_no_goo_quests_without_gummy_gear
+    topic: quests
+    says: >
+      Never throw gumdrops for a goo quest step (Bucko's Bamboo goo and the
+      like) until the account owns a Gummy Bee, a Gummy Mask or Gummy Boots --
+      a massive waste of gumdrops. Unknown is not owned. The planner stops
+      owing those fields for their goo; their pollen steps still count.
+    source: pro tester round 1, 19 Oct 2026 ("massive waste of gumdrops")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:gummy_owned, scripts/run_farm.py:gummy_now, src/hivemind/brain/questneeds.py:field_pollen]
+
+  - id: pro_boosters_for_starter_fields
+    topic: items
+    says: >
+      Field boosters are mostly for the weak, 0-bee starter fields; elsewhere
+      there is no need to chase them. The boost keeper presses one for another
+      field only when the boost AI measures it paying.
+    source: pro tester round 1, 19 Oct 2026 ("field boosters are mostly for pollen in weaker fields")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:starter_field, scripts/run_farm.py:protips.starter_field]
+
+  - id: pro_materials_for_crafting_until_hive_16
+    topic: items
+    says: >
+      Materials (consumables.yaml role material: Glitter, Glue, Enzymes,
+      extracts, ...) are for crafting until hive level 16; from then they may
+      boost. The hive level is account.yaml hive.level; unknown is crafting only.
+    source: pro tester round 1, 19 Oct 2026 ("at hive level 16 start boosting with them")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:material_boost_ok, scripts/run_farm.py:material_boost_blocked]
+
+  - id: pro_big_boost_combo
+    topic: items
+    says: >
+      The big boost: a Loaded Dice on the field wanted, Glitter 5 minutes later,
+      and a Super Smoothie or Purple Potion, so the field boost (15 minutes, and
+      a Glitter restarts the 15) runs as long as the drink.
+    source: pro tester round 1, 19 Oct 2026; the 15 minutes from wiki Field_Boost
+      (boostkeeper.BOOST_SECONDS) -- the drinks' own durations are in no file here
+    confidence: expert
+    taught: known
+    next: >
+      LOOK-ONLY -- the boost AI logs "big boost combo: Loaded Dice now on
+      <field>, Glitter at +5:00, then the ..."; the bot never uses a Loaded
+      Dice, a Super Smoothie or a Purple Potion, and never buys with Robux
+
+  # ------------------------------------------- the pro tester, round 2 --
+  # Answers 11-20, relayed by the owner 2026-10-20 (var/pro_answers/round2-
+  # *.txt). Expert priors as in round 1; the code is brain/protips.py (round-2
+  # section), the table docs/pending/pro-round2.md.
+  - id: pro_gear_order
+    topic: buying
+    says: >
+      The pro's gear order: Petal Belt, Crimson Guard, Coconut Clogs, Coconut
+      Canister, Petal Wand, The Supreme Saturator, then the Tide Popper (blue)
+      or Dark Scythe (red). A SUGGESTED order the Goals tab can offer
+      (goals.yaml suggested_orders.pro_tester); the owner's order is untouched.
+    source: pro tester round 2, 20 Oct 2026; prices and recipes wiki (api.php,
+      revisions in goals.yaml beside the list)
+    confidence: expert
+    taught: followed
+    followed_by: [data/knowledge/goals.yaml:pro_tester, src/hivemind/brain/protips.py:def suggested_order, src/hivemind/brain/protips.py:def with_suggested]
+
+  - id: pro_slots_until_dearer_than_the_gear
+    topic: buying
+    says: >
+      Buy hive slots until a slot costs more than the gear being saved for;
+      then the gear. Only with economy.slot_rule "pro" -- the default
+      "current" buys as today. The owner decides: brain/roi's payback puts
+      late slots far behind gear, so the two disagree.
+    source: pro tester round 2, 20 Oct 2026 ("buy hive slots until the hive slot is more than the gear")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:def slot_rule, scripts/run_farm.py:protips.SLOT_RULE_SETTING, src/hivemind/world/settings.py:economy.slot_rule]
+
+  - id: pro_keep_a_new_gifted_type
+    topic: hive
+    says: >
+      On a Royal Jelly roll, keep a gifted bee only when its type is not yet
+      gifted in the hive (var/bees.json gifted); a gifted duplicate is rolled
+      on. Today every gifted roll is kept.
+    source: pro tester round 2, 20 Oct 2026 ("keep it if its a new gifted type that you dont have yet")
+    confidence: expert
+    taught: known
+    next: >
+      LOOK-ONLY -- run_farm logs "jelly rule would: roll on" on a gifted
+      duplicate (protips JELLY_ROLL_PAST_GIFTED_DUPLICATE_LIVE); rolling past a
+      gifted bee spends jelly, so it waits for the owner's word
+
+  - id: pro_treats_to_event_bees_first
+    topic: hive
+    says: >
+      Treats go to the event bees first (bee_types.yaml rarity event), and Star
+      Treats on event bees first too (brain/hiveplan already advises Star
+      Treats for Festive and Tabby).
+    source: pro tester round 2, 20 Oct 2026
+    confidence: expert
+    taught: known
+    next: >
+      LOOK-ONLY -- the quest feed still drops on any bee and logs "feed rule
+      would: give the ... to the <event bee>" (protips FEED_EVENT_BEES_LIVE);
+      finding a named bee for a feed is a scan no live feed has made. The bot
+      never uses a Star Treat.
+
+  - id: pro_bosses_not_worth_the_time
+    topic: timers
+    says: >
+      The Vicious Bee, King Beetle, Tunnel Bear and Commando Chick are not
+      really worth the time a kill takes. They stay opt-in settings. Where the
+      bot prices a fight against gathering (the Commando Chick's Q to its next
+      milestone), a visit measured to lose with nothing unpriced ahead is
+      skipped; the other three have no price yet, so they run as set.
+    source: pro tester round 2, 20 Oct 2026
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:def boss_worth, src/hivemind/act/commando.py:def visit_q, scripts/run_farm.py:protips.boss_worth]
+    next: price the Vicious Bee, King Beetle and Tunnel Bear drops (as act/commando
+      does) so the same check covers them
+
+  - id: pro_mondo_only_some_hours
+    topic: timers
+    says: >
+      Do not kill the Mondo Chick every hour, only some hours. The bot never
+      fights it (world/timers keeps trips off Mountain Top :00-:15); its loot
+      pickup after a kill goes only while a quest step wants the chick.
+    source: pro tester round 2, 20 Oct 2026 ("dont kill mondo every hour only some hours")
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:def mondo_this_hour, src/hivemind/act/mondo.py:quest_wants, scripts/run_farm.py:quest_wants=wants]
+
+  - id: pro_robo_bear_challenge
+    topic: progression
+    says: >
+      Robo Bear Challenge: pick the bee attack and pollen upgrades first, then
+      Homepage Multithread, Router, Base 15 and Wifi; stop the run at round 10+
+      when a quest is too hard for the hive's colour.
+    source: pro tester round 2, 20 Oct 2026
+    confidence: expert
+    taught: known
+    next: the bot has no Robo Bear Challenge feature (nothing in src or scripts
+      names it); this is the upgrade order and stop rule for when one is built
+
+  - id: pro_ant_challenge_dodge
+    topic: timers
+    says: >
+      Ant Challenge: there is no strategy but beating it -- detect the ants and
+      the lawnmowers and keep out of their way.
+    source: pro tester round 2, 20 Oct 2026
+    confidence: expert
+    taught: known
+    next: >
+      the bot plays it Natro's way, standing at one spot swinging
+      (run_farm play_ant_challenge); MEASURED 2026-10-01, all three runs ended
+      in a death with a lawnmower beside the character. Needs an ant and
+      lawnmower detector (none exists) before any dodge, which ships look-only
+
+  - id: pro_efficiency_buffs_over_gear
+    topic: progression
+    says: >
+      Everything is efficiency, not the best gear: an optimised hive comp, good
+      nectars, mutations, beequips, amulets and boosting -- keeping the buffs
+      alive (Melody, Baby Love, bear morphs) -- outperforms a gear-only player
+      "9 times out of 10". brain/roi's payback ranking prices gear only and
+      says so under every ranking; no percentage is put on the buffs.
+    source: pro tester round 2, 20 Oct 2026 (answer 20)
+    confidence: expert
+    taught: followed
+    followed_by: [src/hivemind/brain/protips.py:EFFICIENCY_NOTE, src/hivemind/brain/roi.py:EFFICIENCY_NOTE]
+    next: a measured value for each kept buff (the boost AI's gain, the nectar
+      plan) so roi can rank buff upkeep beside gear
+
+  - id: pro_efficiency_before_macroing
+    topic: progression
+    says: >
+      Most macro players start without high nectars and a good balloon
+      blessing, without a hive comp that keeps Melody, Baby Love and the bear
+      morphs up, and with bad macro settings. Get those right first.
+    source: pro tester round 2, 20 Oct 2026 (answer 19)
+    confidence: expert
+    taught: known
+    next: >
+      brain/nectarplan and the hive plan cover nectars and comp in part; the
+      balloon blessing and buff upkeep are not read or tracked yet -- a check
+      of these at start-up (like startcheck) would follow this rule

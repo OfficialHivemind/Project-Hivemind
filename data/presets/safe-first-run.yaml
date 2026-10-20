@@ -1,0 +1,67 @@
+# SAFE FIRST RUN (RL6i): the Windows installer copies this to the config
+# folder (%LOCALAPPDATA%\Hivemind) as settings.yaml ONLY when none exists there,
+# and as presets\Safe first run.yaml so it can be loaded again from the
+# window's preset list. Taken from the dev build's windows-dev.yaml.
+# One safe field, convert at 95% (a pro player's advice: pollen past a
+# full bag is wasted), every optional errand off, the game
+# guard on. Turn things back on in Settings once the basics are proven.
+# Macro mode: one field near the hive, no mobs (data/knowledge/world.yaml).
+mode.macro: true
+macro.fields:
+  - {field: Sunflower, minutes: 0, pattern: field, convert_at: 95, return: walk, sprinklers: 1}
+gather.auto_field: false
+gather.field: Sunflower
+gather.convert_at: 95
+gather.micro_convert: false
+
+# Windows joins by share link only: paste yours in Settings > Server.
+server.join: this share link
+
+# The game guard stays on.
+guard.enabled: true
+
+# Everything optional OFF.
+quests.enabled: false
+quests.first: false
+quests.science: false
+economy.buy: false
+economy.blender: false
+economy.boosters: false
+economy.planters: false
+economy.use_items: false
+economy.shop_look: false
+economy.dispensers: false
+economy.wealth_clock: false
+economy.memory_match: false
+economy.nectar_vials: false
+economy.sticker_tickets: false
+economy.wind_shrine: false
+economy.beesmas: false
+economy.auto_jelly_off: 'off'
+hive.follow_plan: false
+hive.read_bees: false
+eggs.save_diamond: true
+combat.bosses: false
+combat.mobs: false
+combat.commando: false
+combat.ant_challenge: false
+combat.bug_runs: false
+combat.loot_by_sight: false
+combat.vicious: false
+combat.stump_snail: false
+combat.mondo_loot: false
+boost.keeper: false
+boost.ai: 'off'
+boost.boosters: false
+boost.glitter: false
+boost.dice: false
+boost.item_buffs: false
+badges.look: false
+goals.read_inventory: false
+perf.vlm: false
+stream.voice: false
+telegram.alerts: false
+telegram.commands: false
+telegram.stats_cards: 'off'
+gui.start_on_boot: false
+gui.layout: new

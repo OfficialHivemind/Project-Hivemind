@@ -1,0 +1,57 @@
+# What the game's own wiki says about each field, limited to the things that
+# change what this bot should do.
+#
+# WHY THIS FILE EXISTS. The owner asked for it directly -- "it needs to
+# understand the whole game like BSS wiki and metas and redit pages and
+# progression guides" -- and the first thing it settled was the question that
+# has cost more honey than anything else.
+#
+# THE FINDING. The bot farms Pine Tree Forest. The wiki, verbatim: "It is
+# protected by two mantises and the Werewolf." Two mantises and a werewolf, in
+# the one field this bot visits, while it cannot fight and while a single
+# death empties the entire backpack. The owner reported dying there over and
+# over; this is why.
+#
+# Every fact below is quoted or paraphrased from the field's own wiki page,
+# with the URL, so none of it is inferred from gameplay we have not had.
+source: https://bee-swarm-simulator.fandom.com/wiki/Fields
+checked: 2026-09-20
+
+fields:
+  sunflower:
+    url: https://bee-swarm-simulator.fandom.com/wiki/Sunflower_Field
+    bees_required: 0
+    starter_zone: true
+    mobs: []
+    quote: "There are no mobs that protect this field."
+    safe_for_a_bot_that_cannot_fight: true
+    note: >
+      One of the five starting fields, adjacent to the hive. No gate, no
+      cannon ride and no glide home -- which removes the two steps that have
+      broken almost every cycle so far. Lower pollen per flower than the
+      gated fields, but a cycle that finishes beats a richer one that dies.
+
+  pine_tree:
+    url: https://bee-swarm-simulator.fandom.com/wiki/Pine_Tree_Forest
+    bees_required: 15
+    starter_zone: false
+    mobs: [mantis, mantis, werewolf]
+    quote: "It is protected by two mantises and the Werewolf."
+    safe_for_a_bot_that_cannot_fight: false
+    note: >
+      Where the bot farms today, and the worst choice on the board for
+      something that cannot fight back. 713 flowers, 85% blue, Comforting
+      Nectar. Reached by the red cannon.
+
+  pineapple:
+    url: https://bee-swarm-simulator.fandom.com/wiki/Pineapple_Patch
+    bees_required: 10
+    starter_zone: false
+    mobs: [mantis, rhino_beetle]
+    quote: "It is protected by a level 4 mantis and a level 5 rhino beetle."
+    safe_for_a_bot_that_cannot_fight: false
+
+# THE RULE THIS IMPLIES, and it is a trade the owner should get to make
+# rather than have made for him: for a bot with no combat, expected honey is
+# not pollen-per-hour, it is pollen-per-hour times the chance of getting home
+# with it. A death does not cost a share of the haul, it costs all of it.

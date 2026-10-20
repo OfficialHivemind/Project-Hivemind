@@ -1,0 +1,33 @@
+name: Feature request
+description: An idea that would make Hivemind better.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would you like Hivemind to do?
+      description: Describe it the way you would explain it to a friend.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it help?
+      description: What does it save you, or what does it make possible?
+  - type: textarea
+    id: how
+    attributes:
+      label: How do players do it by hand today? (optional)
+      description: Steps, timings or a screenshot help a lot. Crop your username out.
+  - type: input
+    id: credit
+    attributes:
+      label: Name for the credits (optional)
+      description: If this gets built, the name you would like shown in the Credits tab.
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: House rules
+      options:
+        - label: It does not need Robux, game memory reading or code injection.
+          required: true

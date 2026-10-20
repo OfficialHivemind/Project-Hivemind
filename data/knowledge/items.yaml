@@ -1,0 +1,131 @@
+# The items that turn honey into bees, and the rules for not wasting them.
+#
+# THE MOST IMPORTANT FACT IN THIS FILE, because it is counterintuitive and
+# expensive to learn the hard way:
+#
+#   ROYAL JELLY IS A REROLL, NOT AN UPGRADE.
+#
+# The wiki is explicit: "Royal Jelly does NOT necessarily turn a bee into a
+# better rarity. For example, if a player used it on a Legendary bee, they have
+# the same 70% chance of getting a Rare bee as if they had used it on a Basic
+# Bee." Jellying a good bee is, on average, destroying it.
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly
+checked: 2026-09-20
+
+royal_jelly:
+  what: Used on a bee, it rerolls that bee into another rarity.
+  chances:
+    common: 0.0
+    rare: 0.70
+    epic: 0.27
+    legendary: 0.03
+    mythic: 0.00004        # 1 in 25,000
+    gifted: 0.004          # 1 in 250
+    mutated: 0.0002        # 1 in 5,000
+    mutated_radioactive: 0.01
+  the_rule: >
+    The odds are the SAME whatever the bee already is. So jelly goes on bees
+    the plan does NOT want -- the guide's never-run bees, red bees in a blue
+    hive, Basic bees -- where a roll can only help: it lands a wanted bee, or
+    another unwanted one that is rolled again. Never on a bee the stage's comp
+    counts: there one is a 70% chance of making it worse. (Was "Basic bees and
+    nothing else" until the owner, 2026-10-02: "diamond eggs arnt worth it it
+    should buy roysal jellys with honey instead".)
+
+  prices:
+    royal_jelly_shop:
+      where: >
+        a gumball-style machine on a red-and-white pad, on a rocky hill between
+        the Rose Field and the Pine Tree Forest, to the right of and just below
+        the Blue Cannon (wiki Royal_Jelly_Shop, read 2026-10-02; the Jelly page's
+        "near the Red HQ" is the same hill)
+      honey_from: 250000
+      honey_step: 10000     # each purchase raises the next price: 250,000 + 10,000 n
+      honey_cap: 1000000    # from the 76th on
+      amounts: [1, 10, 100]  # it sells in lots of 1, 10, 100 ... (wiki)
+    dispenser:
+      where: near the Slingshot, Clover Field and Dandelion Field
+      tickets: 6
+      also_gives: 10x Haste
+      warning: >
+        The haste is a problem, not a bonus, for a bot that walks recorded
+        timed routes. See machines.yaml haste_breaks_timed_walking.
+    star_hall_dispenser:
+      cooldown_hours: 22
+      amount_depends_on: the number of Gifted bees in the hive
+    robux: "45 R$ for one, 300 R$ for ten — out of scope, no money is spent"
+
+  best_sources_without_paying:
+    - Brown Bear's quests reward one or more each time
+    - Black Bear's Diamond Egg, Star Jelly and Mythic Egg lines
+    - Spirit Bear's quests, often several, increasing with each quest
+    - The Star Hall dispenser every 22 hours
+    - A sprout in the CLOVER FIELD drops more Royal Jelly than any other field
+    - Ant Challenge: at least 2, more with score
+    - Planters: Ticket, Plastic, Blue Clay, Tacky and Petal
+    - Mob drops, Memory Match, Wind Shrine, Cub Buddy gifts
+  one_time_tokens: >
+    Royal Jelly tokens are hidden around the map in hard-to-reach places and do
+    NOT respawn -- one per player, ever. Several need parkour or a glider, which
+    this bot cannot do. Listed as known-unreachable rather than as a plan.
+    All collected on the owner's account (account.yaml secret_items,
+    2026-10-14).
+
+# How this account should actually spend, given the above.
+# THE EGGS: what each hatches, by rarity, and what it costs. Read through the
+# wiki's API 2026-10-01 (page Egg; the Ticket Tent's prices on the same page).
+# A type is drawn evenly within its rarity, as for Royal Jelly. An egg hatched
+# onto a cell that already has a bee replaces that bee and keeps its level (the
+# wiki's Egg page) -- which is how the guide's "never run" bees are replaced.
+eggs:
+  silver_egg:
+    tickets: 50
+    chances: {rare: 0.649, epic: 0.30, legendary: 0.05, mythic: 0.001}
+  gold_egg:
+    tickets: 100
+    chances: {epic: 0.79, legendary: 0.20, mythic: 0.01}
+  diamond_egg:
+    tickets: 400
+    chances: {legendary: 0.95, mythic: 0.05}
+    owner_says: not worth buying -- Royal Jelly bought with honey instead
+  mythic_egg:
+    tickets: 2500
+    chances: {mythic: 1.0}
+    owner_says: not worth buying -- a Royal Jelly roll can land a Mythic too
+    # CORRECTED 2026-10-14: it can, 1 in 25,000 (royal_jelly.chances above), so
+    # jelly is no plan for a mythic -- the research of 2026-10-14 (data/knowledge/progression/blue.yaml, wiki Royal_Jelly via api.php). The rule
+    # stays the owner's (never bought, buyer.NEVER); his reason was the odds.
+# THE OWNER, 2026-10-02: "diamond eggs arnt worth it it should buy roysal
+# jellys with honey instead" and "jellys also can get u mythics so dont buy
+# mythic egg". So these two are never a plan; their numbers stay so the
+# judgement can show what jelly costs against them.
+  basic_egg:
+    honey: escalating      # the Basic Egg Shop: 1,000 honey for the first, up to 10,000,000
+    chances: {common: 0.87, rare: 0.10, epic: 0.025, legendary: 0.005}
+    note: cannot be used on a Basic Bee
+  source: https://bee-swarm-simulator.fandom.com/wiki/Egg (read through api.php 2026-10-01)
+
+spending_rules:
+  - name: fill before rerolling
+    rule: >
+      An empty hive slot is worth more than a better bee in an existing one.
+      Buy eggs to fill slots first; use jelly only once the hive is full.
+  - name: jelly only basics
+    rule: >
+      Never use Royal Jelly on anything above Rare. The reroll odds ignore what
+      the bee already was, so it is a 70% chance of a downgrade.
+  - name: tickets beat honey for jelly
+    rule: >
+      6 tickets from the dispenser against 250,000-1,000,000 honey in the shop.
+      If tickets are available they are far cheaper, and ticket income comes
+      from quests -- which is another reason quests outrank grinding.
+  - name: clover for jelly sprouts
+    rule: A sprout in the Clover Field yields more Royal Jelly than anywhere else.
+
+not_yet_known:
+  star_jelly: what it does and how it differs from Royal Jelly
+  treats: what treats do and which bees want which
+  glue_glitter_oil: what each is for and where they come from
+  tickets: the full ticket shop price list and ticket income rates
+  sprouts: cost, grow time and yield

@@ -1,0 +1,1160 @@
+# Routes transpiled from BeeTuxMacro's recorded timed holds by
+# scripts/transpile_paths.py, using studs = seconds x 32.2.
+#
+# Travel routes come from stuff/paths.sh; the farm_* field patterns
+# come from stuff/utils.sh, which is where BeeTuxMacro keeps them.
+#
+# EVERY EDGE IS `verified: false`. These are someone else's recordings
+# at an unknown moment, so the distances are approximate. That is
+# tolerable because the walker is closed-loop: it measures real
+# displacement and arrival is confirmed by landmark, not by the clock.
+# An edge length that is wrong costs a slightly wrong route estimate,
+# not a lost character. Edges are re-measured and marked verified as
+# the bot actually walks them.
+#
+# Do not hand-edit: re-run the transpiler.
+schema: 1
+base_speed: 32.2
+edges:
+- name: from_corner_to_hive
+  studs: 16.1
+  steps:
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: shift_lock
+  - op: shift_lock
+  - op: hop_to_slot
+    from_slot: 5
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: shift_lock
+  - op: raw
+    text: if pixel_is_white $(get_claim_hive_c_coords) || pixel_is_white $(get_make_honey_h_coords);
+      then
+  - op: raw
+    text: echo all right
+  - op: call
+    route: re_go_to_hive_slot
+  verified: false
+  from: corner
+  to: hive
+- name: from_corner_to_hive_no_pixel_detection
+  studs: 16.1
+  steps:
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: shift_lock
+  - op: shift_lock
+  - op: hop_to_slot
+    from_slot: 5
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: camera
+    direction: right
+  - op: shift_lock
+  verified: false
+  from: corner
+  to: hive
+  via: pixel_detection
+- name: from_hive_to_blue_field_booster
+  studs: 1658.4
+  steps:
+  - op: walk
+    keys: w
+    studs: 64.4
+  - op: walk
+    keys: d
+    studs: 212.5
+  - op: walk
+    keys: as
+    studs: 386.4
+  - op: walk
+    keys: a
+    studs: 257.6
+  - op: walk
+    keys: w
+    studs: 64.4
+  - op: walk
+    keys: d
+    studs: 9.7
+  - op: walk
+    keys: aw
+    studs: 128.8
+  - op: walk
+    keys: s
+    studs: 96.6
+  - op: walk
+    keys: a
+    studs: 64.4
+  - op: walk
+    keys: w
+    studs: 96.6
+  - op: walk
+    keys: d
+    studs: 128.8
+  - op: walk
+    keys: s
+    studs: 41.9
+  - op: walk
+    keys: a
+    studs: 9.7
+  - op: walk
+    keys: s
+    studs: 96.6
+  verified: false
+  from: hive
+  to: blue_field_booster
+- name: from_hive_to_blueberry_dispenser
+  studs: 1144.1
+  steps:
+  - op: walk
+    keys: w
+    studs: 64.4
+  - op: walk
+    keys: d
+    studs: 212.5
+  - op: walk
+    keys: as
+    studs: 386.4
+  - op: walk
+    keys: a
+    studs: 257.6
+  - op: walk
+    keys: w
+    studs: 64.4
+  - op: walk
+    keys: d
+    studs: 9.7
+  - op: walk
+    keys: aw
+    studs: 128.8
+  - op: walk
+    keys: s
+    studs: 14.5
+  - op: walk
+    keys: d
+    studs: 5.8
+  verified: false
+  from: hive
+  to: blueberry_dispenser
+- name: from_hive_to_honey_wreath_and_back
+  studs: 446.9
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: walk
+    keys: d
+    studs: 42.7
+  - op: interact
+  - op: pause
+    seconds: 5.0
+  - op: call
+    route: collect_around
+  - op: raw
+    text: date +%s > $MACRO_DIR/variables/should_wreath
+  verified: false
+  from: hive
+  to: honey_wreath
+  via: round-trip
+- name: from_hive_to_pine_tree_with_red_cannon
+  studs: 346.0
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: interact
+  - op: pause
+    seconds: 1.0
+  - op: jump
+  - op: jump
+  - op: pause
+    seconds: 8.0
+  - op: camera
+    direction: left
+  - op: shift_lock
+  - op: walk
+    keys: a
+    studs: 22.5
+  verified: false
+  from: hive
+  to: pine_tree
+  via: red_cannon
+- name: from_hive_to_pineapple_with_red_cannon
+  studs: 574.7
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: interact
+  - op: walk
+    keys: a
+    studs: 225.4
+  - op: walk
+    keys: s
+    studs: 25.8
+  verified: false
+  from: hive
+  to: pineapple
+  via: red_cannon
+- name: from_hive_to_pumpkin_with_red_cannon
+  studs: 700.3
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: interact
+  - op: walk
+    keys: ds
+    studs: 41.9
+  - op: raw
+    text: down_ds was never released -- down_d replaced it; the recording keeps the
+      earlier keys down and this graph does not
+  - op: walk
+    keys: d
+    studs: 161.0
+  - op: jump
+  - op: pause
+    seconds: 1.0
+  - op: jump
+  - op: pause
+    seconds: 1.0
+  - op: jump
+  - op: walk
+    keys: d
+    studs: 161.0
+  - op: raw
+    text: down_d stayed down after its `wait`, across [sleep 1 ; sleep 1] -- absolute
+      time under a held key, so no distance can be derived for it
+  - op: walk
+    keys: w
+    studs: 12.9
+  verified: false
+  from: hive
+  to: pumpkin
+  via: red_cannon
+- name: from_hive_to_red_cannon
+  studs: 323.5
+  steps:
+  - op: walk
+    keys: w
+    studs: 64.4
+  - op: walk
+    keys: d
+    studs: 212.5
+  - op: walk
+    keys: a
+    studs: 4.8
+  - op: jump
+  - op: pause
+    seconds: 0.1
+  - op: walk
+    keys: d
+    studs: 22.5
+  - op: jump
+  - op: walk
+    keys: d
+    studs: 19.3
+  verified: false
+  from: hive
+  to: red_cannon
+- name: from_hive_to_red_field_booster
+  studs: 568.2
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: interact
+  - op: pause
+    seconds: 0.5
+  - op: jump
+  - op: pause
+    seconds: 0.1
+  - op: jump
+  - op: shift_lock
+  - op: pause
+    seconds: 2.5
+  - op: jump
+  - op: pause
+    seconds: 4.0
+  - op: walk
+    keys: a
+    studs: 64.4
+  - op: walk
+    keys: s
+    studs: 64.4
+  - op: walk
+    keys: a
+    studs: 45.1
+  - op: walk
+    keys: w
+    studs: 38.6
+  - op: walk
+    keys: a
+    studs: 32.2
+  verified: false
+  from: hive
+  to: red_field_booster
+- name: from_hive_to_rose_field
+  studs: 323.5
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: interact
+  - op: pause
+    seconds: 0.5
+  - op: jump
+  - op: pause
+    seconds: 0.1
+  - op: jump
+  - op: shift_lock
+  - op: pause
+    seconds: 2.5
+  - op: jump
+  - op: pause
+    seconds: 2.0
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  verified: false
+  from: hive
+  to: rose_field
+- name: from_hive_to_royal_jelly_dispenser
+  studs: 946.6
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: interact
+  - op: pause
+    seconds: 3.5
+  - op: walk
+    keys: w
+    studs: 96.6
+  - op: walk
+    keys: d
+    studs: 64.4
+  - op: shift_lock
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: jump
+  - op: pause
+    seconds: 0.2
+  - op: jump
+  - op: walk
+    keys: aw
+    studs: 322.0
+  - op: shift_lock
+  - op: walk
+    keys: wd
+    studs: 80.5
+  - op: walk
+    keys: s
+    studs: 32.2
+  - op: walk
+    keys: d
+    studs: 11.3
+  verified: false
+  from: hive
+  to: royal_jelly_dispenser
+- name: from_hive_to_stockings_and_back
+  studs: 1178.6
+  steps:
+  - op: jump_release
+  - op: walk
+    keys: w
+    studs: 32.2
+  - op: walk
+    keys: d
+    studs: 212.5
+  - op: walk
+    keys: sa
+    studs: 140.1
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 96.6
+  - op: walk
+    keys: d
+    studs: 72.5
+  - op: interact
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: walk
+    keys: d
+    studs: 77.3
+  - op: reset
+  - op: walk
+    keys: w
+    studs: 96.6
+  - op: raw
+    text: date +%s > $MACRO_DIR/variables/should_stockings
+  verified: false
+  from: hive
+  to: stockings
+  via: round-trip
+- name: from_hive_to_strawberry_dispenser
+  studs: 1093.0
+  steps:
+  - op: call
+    route: from_hive_to_red_field_booster
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: walk
+    keys: s
+    studs: 32.2
+  - op: walk
+    keys: d
+    studs: 96.6
+  - op: walk
+    keys: w
+    studs: 48.3
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: walk
+    keys: wa
+    studs: 96.6
+  - op: walk
+    keys: d
+    studs: 48.3
+  - op: walk
+    keys: s
+    studs: 12.9
+  - op: walk
+    keys: a
+    studs: 86.9
+  - op: walk
+    keys: s
+    studs: 48.3
+  - op: walk
+    keys: d
+    studs: 6.4
+  verified: false
+  from: hive
+  to: strawberry_dispenser
+- name: from_hive_to_strawberry_with_red_cannon
+  studs: 339.6
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: interact
+  - op: pause
+    seconds: 0.35
+  - op: jump
+  - op: jump
+  - op: shift_lock
+  - op: pause
+    seconds: 7.0
+  - op: walk
+    keys: as
+    studs: 16.1
+  verified: false
+  from: hive
+  to: strawberry
+  via: red_cannon
+- name: from_hive_to_wealth_clock
+  studs: 911.2
+  steps:
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 212.5
+  - op: walk
+    keys: sa
+    studs: 212.5
+  - op: walk
+    keys: a
+    studs: 128.8
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 64.4
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 193.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 51.5
+  - op: pause
+    seconds: 0.4
+  - op: interact
+  - op: reset
+  - op: raw
+    text: date +%s > $MACRO_DIR/variables/should_wealth
+  verified: false
+  from: hive
+  to: wealth_clock
+- name: from_hive_to_wealth_clock_and_stockings
+  studs: 1318.5
+  steps:
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 212.5
+  - op: walk
+    keys: sa
+    studs: 212.5
+  - op: walk
+    keys: a
+    studs: 128.8
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 64.4
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 193.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 32.2
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 51.5
+  - op: pause
+    seconds: 0.4
+  - op: interact
+  - op: walk
+    keys: w
+    studs: 35.4
+  - op: walk
+    keys: dw
+    studs: 225.4
+  - op: walk
+    keys: s
+    studs: 11.3
+  - op: walk
+    keys: a
+    studs: 6.4
+  - op: interact
+  - op: walk
+    keys: a
+    studs: 64.4
+  - op: walk
+    keys: d
+    studs: 64.4
+  - op: reset
+  - op: raw
+    text: date +%s > $MACRO_DIR/variables/should_wealth
+  - op: raw
+    text: date +%s > $MACRO_DIR/variables/should_stockings
+  verified: false
+  from: hive
+  to: stockings
+  via: via wealth_clock
+- name: from_hive_to_white_field_booster
+  studs: 468.4
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: interact
+  - op: pause
+    seconds: 5.0
+  - op: walk
+    keys: d
+    studs: 144.9
+  verified: false
+  from: hive
+  to: white_field_booster
+- name: from_pine_tree_to_hive
+  studs: 1068.4
+  steps:
+  - op: camera
+    direction: left
+  - op: pause
+    seconds: 0.2
+  - op: camera
+    direction: left
+  - op: walk
+    keys: ds
+    studs: 32.2
+  - op: walk
+    keys: s
+    studs: 96.6
+  - op: walk
+    keys: a
+    studs: 386.4
+  - op: walk
+    keys: w
+    studs: 193.2
+  - op: shift_lock
+  - op: walk
+    keys: s
+    studs: 3.2
+  - op: jump
+  - op: pause
+    seconds: 0.5275
+  - op: jump
+  - op: pause
+    seconds: 1.0
+  - op: walk
+    keys: wd
+    studs: 43.5
+  - op: pause
+    seconds: 4.0
+  - op: hold
+    keys: w
+    seconds: 4.0
+  - op: shift_lock
+  - op: walk
+    keys: w
+    studs: 161.0
+  - op: walk
+    keys: s
+    studs: 6.4
+  - op: walk
+    keys: d
+    studs: 141.7
+  - op: walk
+    keys: s
+    studs: 4.2
+  verified: false
+  from: pine_tree
+  to: hive
+- name: from_pineapple_to_hive
+  studs: 994.9
+  steps:
+  - op: walk
+    keys: d
+    studs: 128.8
+  - op: walk
+    keys: w
+    studs: 96.6
+  - op: walk
+    keys: a
+    studs: 161.0
+  - op: walk
+    keys: w
+    studs: 225.4
+  - op: walk
+    keys: d
+    studs: 54.7
+  - op: walk
+    keys: s
+    studs: 9.7
+  - op: jump
+  - op: pause
+    seconds: 0.4
+  - op: walk
+    keys: s
+    studs: 35.4
+  - op: pause
+    seconds: 0.3
+  - op: interact
+  - op: walk
+    keys: w
+    studs: 128.8
+  - op: walk
+    keys: s
+    studs: 6.4
+  - op: walk
+    keys: d
+    studs: 141.7
+  - op: walk
+    keys: s
+    studs: 6.4
+  verified: false
+  from: pineapple
+  to: hive
+- name: from_pumpkin_to_hive
+  studs: 985.3
+  steps:
+  - op: walk
+    keys: as
+    studs: 128.8
+  - op: walk
+    keys: w
+    studs: 161.0
+  - op: walk
+    keys: d
+    studs: 16.1
+  - op: walk
+    keys: wa
+    studs: 32.2
+  - op: walk
+    keys: w
+    studs: 96.6
+  - op: jump
+  - op: walk
+    keys: wa
+    studs: 9.7
+  - op: walk
+    keys: w
+    studs: 386.4
+  - op: walk
+    keys: s
+    studs: 6.4
+  - op: walk
+    keys: d
+    studs: 141.7
+  - op: walk
+    keys: s
+    studs: 6.4
+  verified: false
+  from: pumpkin
+  to: hive
+- name: from_rose_field_to_hive
+  studs: 908.0
+  steps:
+  - op: walk
+    keys: wd
+    studs: 96.6
+  - op: walk
+    keys: wa
+    studs: 193.2
+  - op: jump
+  - op: jump
+  - op: walk
+    keys: wa
+    studs: 450.8
+  - op: pause
+    seconds: 0.1
+  - op: hold
+    keys: w
+    seconds: 0.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 19.3
+  - op: walk
+    keys: d
+    studs: 141.7
+  - op: walk
+    keys: s
+    studs: 3.2
+  verified: false
+  from: rose_field
+  to: hive
+- name: from_strawberry_to_hive
+  studs: 1268.6
+  steps:
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: walk
+    keys: dw
+    studs: 16.1
+  - op: walk
+    keys: w
+    studs: 96.6
+  - op: walk
+    keys: a
+    studs: 225.4
+  - op: walk
+    keys: w
+    studs: 22.5
+  - op: walk
+    keys: d
+    studs: 12.9
+  - op: walk
+    keys: wd
+    studs: 354.2
+  - op: walk
+    keys: wa
+    studs: 386.4
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 19.3
+  - op: walk
+    keys: d
+    studs: 128.8
+  - op: walk
+    keys: s
+    studs: 3.2
+  verified: false
+  from: strawberry
+  to: hive
+routines:
+- name: collect_around
+  studs: 80.7
+  steps:
+  - op: walk
+    keys: w
+    studs: 8.1
+  - op: walk
+    keys: d
+    studs: 8.1
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: s
+    studs: 8.1
+  - op: walk
+    keys: d
+    studs: 8.1
+  verified: false
+- name: farm_better_snake
+  studs: 124.0
+  steps:
+  - op: walk
+    keys: s
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 9.3
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 9.3
+  - op: walk
+    keys: d
+    studs: 27.2
+  verified: false
+- name: farm_mobs
+  studs: 3938.8
+  steps:
+  - op: call
+    route: from_hive_to_red_cannon
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: shift_lock
+  - op: interact
+  - op: pause
+    seconds: 0.5
+  - op: jump
+  - op: pause
+    seconds: 0.1
+  - op: jump
+  - op: shift_lock
+  - op: pause
+    seconds: 2.5
+  - op: jump
+  - op: pause
+    seconds: 2.0
+  - op: raw
+    text: avoid_mobs 5
+  - op: call
+    route: collect_around
+  - op: walk
+    keys: d
+    studs: 386.4
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: raw
+    text: avoid_mobs 2
+  - op: walk
+    keys: d
+    studs: 32.2
+  - op: camera
+    direction: right
+  - op: camera
+    direction: right
+  - op: walk
+    keys: d
+    studs: 322.0
+  - op: walk
+    keys: s
+    studs: 322.0
+  - op: jump
+  - op: walk
+    keys: s
+    studs: 32.2
+  - op: pause
+    seconds: 2.0
+  - op: raw
+    text: avoid_mobs 5
+  - op: pause
+    seconds: 2.0
+  - op: call
+    route: collect_around
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: jump
+  - op: walk
+    keys: a
+    studs: 96.6
+  - op: raw
+    text: avoid_mobs 5
+  - op: pause
+    seconds: 2.0
+  - op: call
+    route: collect_around
+  - op: walk
+    keys: d
+    studs: 161.0
+  - op: jump
+  - op: walk
+    keys: d
+    studs: 257.6
+  - op: raw
+    text: avoid_mobs 4
+  - op: pause
+    seconds: 2.0
+  - op: call
+    route: collect_around
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: camera
+    direction: left
+  - op: reset
+  - op: pause
+    seconds: 20.0
+  - op: call
+    route: from_hive_to_pineapple_with_red_cannon
+  - op: raw
+    text: avoid_mobs 6
+  - op: call
+    route: collect_around
+  - op: pause
+    seconds: 2.0
+  - op: call
+    route: from_pineapple_to_hive
+  - op: raw
+    text: from_corner_to_hive $(cat $MACRO_DIR/variables/hive_slot)
+  - op: raw
+    text: date +%s > $MACRO_DIR/variables/should_mobs
+  verified: false
+- name: farm_snake
+  studs: 231.6
+  steps:
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: a
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  - op: walk
+    keys: w
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 3.2
+  verified: false
+- name: farm_square
+  studs: 64.4
+  steps:
+  - op: walk
+    keys: a
+    studs: 16.1
+  - op: walk
+    keys: s
+    studs: 16.1
+  - op: walk
+    keys: d
+    studs: 16.1
+  - op: walk
+    keys: w
+    studs: 16.1
+  verified: false

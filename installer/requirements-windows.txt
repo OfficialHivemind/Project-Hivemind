@@ -1,0 +1,24 @@
+# Everything the installed app imports on Windows, pinned to one wheel each
+# (CPython 3.12, win_amd64) with its hash. build.ps1 installs these with
+# --no-deps --only-binary=:all: --require-hashes into the embedded Python.
+# Update: change a version, then take the new win_amd64/abi3 wheel's sha256
+# from https://pypi.org/pypi/<name>/<version>/json.
+#
+# opencv-CONTRIB-python-headless: headless because no cv2 window is ever
+# opened, CONTRIB because OpenCV 5 moved `cv2.ml` there. MEASURED 2026-10-21
+# on Windows: opencv-python-headless 5.0.0.93 has no cv2/ml (0 of its 46
+# files), so vision/fieldsense's SVMs and brain/school's classifier had no
+# model and stayed silent; this wheel has cv2/ml (110 files). It still has no
+# cv2.freetype. windows-capture's declared opencv-python dependency is
+# satisfied by the same `cv2` module (that is why --no-deps). selftest's
+# "opencv ml" check fails the build without it.
+PySide6-Essentials==6.12.0 --hash=sha256:c9a95102aa23c1f86516a30d5a9be37552d324eee7e567eb7508973f1218cb42
+shiboken6==6.12.0 --hash=sha256:a1906cb8116869178c64b6bab52623bbc8b4ceed7b30bfc3c9aa0f6e67f6438e
+opencv-contrib-python-headless==5.0.0.93 --hash=sha256:72605e3ae78f66592705b1abe62e60f57dd9050787fdd99711b85a02760d5259
+numpy==2.5.4 --hash=sha256:a7b1b6353e36a7e50de2973a38d705c88ee93adcf120673cee7f45a4a3fa223a
+windows-capture==2.0.1 --hash=sha256:209c2318e2168802b9afd1005e99499639e8835e71a1e188a3ddc77c7ccc3f04
+dxcam==0.3.0 --hash=sha256:ab75b16529b8bd7337dfcb663525c338233a24b4c5b76193ced82a70e16edf49
+comtypes==1.4.17 --hash=sha256:4e0a221dde2c589b82977bed802efd71cd5eb67a380347b732e02735e597f586
+psutil==7.2.2 --hash=sha256:eb7e81434c8d223ec4a219b5fc1c47d0417b12be7ea866e24fb5ad6e84b3d988
+PyYAML==6.0.3 --hash=sha256:5fcd34e47f6e0b794d17de1b4ff496c00986e1c83f7ab2fb8fcfe9616ff7477b
+platformdirs==4.13.5 --hash=sha256:53d3ec4280b815c1e0b02edad7f9ee8fda1ba9c0865dd9c2e6e63849ce82fc1e

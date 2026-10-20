@@ -1,0 +1,2306 @@
+# NORMALISED 2026-10-14 from ~/.cache/hivemind-work/research/progression_white.yaml
+# for brain/progression: ids as in goals.yaml (hive_slot<=N, silver_star_amulet,
+# science_translator_1), a short `label` and a gear `slot` per goal, costs as
+# numbers (an unknown cost is left out, never 0). Sources kept as researched.
+#
+# White (colourless) hive progression for Hivemind, fresh account -> endgame.
+# Research 2026-10-14. Costs from the official wiki (api.php, revisions in `sources`);
+# strategy from riot003 & anthrox0's 2026 guides, Meta Bee, BSS forum posts. 'DISAGREE:' marks
+# conflicting sources, 'GUESS' marks our own judgement. cost.honey null = not known.
+# The bot never buys: these are goals for the planner and the owner (goals.yaml rule).
+
+hive: white
+updated: 2026-10-14
+sources:
+- id: guide_white_def
+  title: The Definitive White Hive Guide - riot003 & anthrox0 (Abyssal Trench Network), last updated 2026-03-26;
+    linked from another macro's docs
+  url: https://docs.google.com/document/d/1WwpRUvpM7i5LpxVoGzjgjVzy6da3xAOmZ9ZxHHL5qzk/edit?tab=t.0
+- id: guide_early_def
+  title: Complete Earlygame Progression Guide - riot003 & anthrox0, last updated 2026-03-02 (buying-order diagrams
+    are images; only the text was readable)
+  url: https://docs.google.com/document/d/12wvnfNINTc5qElT0T_BcK2i1IWv7_Vv58yTifcFQxc4/edit?tab=t.0
+- id: metabee_white
+  title: Meta Bee - The Ultimate Endgame White Hive Guide! 2026, by Acid (a_cid), 2026-02-01
+  url: https://meta-bee.com/the-ultimate-white-hive-guide-for-endgame/
+- id: forum_prog_2022
+  title: 'BSS Wiki discussion: Progression Guide + Hive guide (UPDATE) Long version - Flame the Spoicy Bee, 2022-01-10
+    (OLD: pre-2024 item changes)'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000682164
+- id: forum_white_2022
+  title: 'BSS Wiki discussion: White Hive Guide - Friendlyhuman1, 2022-02-15 (OLD)'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000701398
+- id: forum_white_2024
+  title: 'BSS Wiki discussion: Updated Best White Hive Build - Lemon-Lime Tongue, 2024-06-22'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000771970
+- id: forum_white_start_2024
+  title: 'BSS Wiki discussion: Is this a decent start for a white hive? - Daweirdonetwo, 2024-09-30'
+  url: https://bee-swarm-simulator.fandom.com/f/p/4400000000000781322
+- id: fanon_white
+  title: 'BSS Fanon wiki: Hive:White Hive (community article, tagged Outdated, rev 44549)'
+  url: https://bee-swarm-simulator-fanon.fandom.com/wiki/Hive:White_Hive
+- id: seo_white
+  title: 'bee-swarm-simulator.wiki: White Hive 2026 Setup Guide (2026-06-24) - LOW RELIABILITY: its Gummy Mask/Boots/Canister/Gummyballer
+    recipes contradict the official wiki'
+  url: https://www.bee-swarm-simulator.wiki/hives/bee-swarm-simulator-white-hive
+- id: macro_docs_progression
+  title: 'Another macro''s docs: Game progression (red and white hives; white boosting needs gumdroppers), fetched
+    2026-10-14'
+  url: ''
+- id: macro_docs_ai_gather
+  title: 'Another macro''s docs: Set up AI Gather / Why AI Gather (token models Blue/Red/Mixed only; patterns ''especially
+    useless'' for red and white)'
+  url: ''
+- id: natro_src
+  title: 'Natro Macro v1.1.2 source (natro_macro.ahk GAME DATA: nectar fields and per-field planter rankings)'
+  url: https://github.com/NatroTeam/NatroMacro
+- id: yt_white_2025
+  title: 'YouTube: The Ultimate 2025 Bee Swarm Simulator White Hive Guide! (title only, not watched)'
+  url: https://www.youtube.com/watch?v=vj8erONPXSk
+- id: yt_white_beesmas_2025
+  title: 'YouTube: The *PERFECT* Beesmas White Hive Guide 2025! (title only, not watched)'
+  url: https://www.youtube.com/watch?v=GhLKTrQ6Sgo
+- id: yt_white_2026
+  title: 'YouTube: BEST WHITE HIVE GUIDE in 2026! | Bee Swarm Simulator (title only, not watched)'
+  url: https://www.youtube.com/watch?v=YcaC8fkmmlI
+- id: hm_goals
+  title: Hivemind data/knowledge/goals.yaml (wt-integ), ids and Ace-shop recipes reused
+  url: file://~/.cache/hivemind-work/wt-integ/data/knowledge/goals.yaml
+- id: hm_hive_slots
+  title: Hivemind data/knowledge/hive_slots.yaml (wiki Hive Slot table, per-slot honey)
+  url: file://~/.cache/hivemind-work/wt-integ/data/knowledge/hive_slots.yaml
+- id: hm_progression
+  title: Hivemind data/knowledge/progression.yaml (tool rates; Spark Staff skip consensus)
+  url: file://~/.cache/hivemind-work/wt-integ/data/knowledge/progression.yaml
+- id: w_tools
+  title: 'BSS Wiki: Tools (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Tools
+- id: w_noob_shop
+  title: 'BSS Wiki: Noob Shop (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Noob_Shop
+- id: w_pro_shop
+  title: 'BSS Wiki: Pro Shop (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pro_Shop
+- id: w_mts
+  title: 'BSS Wiki: Mountain Top Shop (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Mountain_Top_Shop
+- id: w_golden_rake
+  title: 'BSS Wiki: Golden Rake (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Golden_Rake
+- id: w_spark_staff
+  title: 'BSS Wiki: Spark Staff (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Spark_Staff
+- id: w_porcelain_dipper
+  title: 'BSS Wiki: Porcelain Dipper (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Porcelain_Dipper
+- id: w_porcelain_poh
+  title: 'BSS Wiki: Porcelain Port-O-Hive (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Porcelain_Port-O-Hive
+- id: w_petal_wand
+  title: 'BSS Wiki: Petal Wand (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Petal_Wand
+- id: w_gummyballer
+  title: 'BSS Wiki: Gummyballer (rev 2026-10-01, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gummyballer
+- id: w_gummy_lair
+  title: 'BSS Wiki: Gummy Bear''s Lair (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gummy_Bear's_Lair
+- id: w_gummy_mask
+  title: 'BSS Wiki: Gummy Mask (rev 2026-09-02, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gummy_Mask
+- id: w_gummy_boots
+  title: 'BSS Wiki: Gummy Boots (rev 2026-09-14, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gummy_Boots
+- id: w_honey_mask
+  title: 'BSS Wiki: Honey Mask (rev 2025-12-30, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Honey_Mask
+- id: w_diamond_mask
+  title: 'BSS Wiki: Diamond Mask (rev 2026-07-24, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Diamond_Mask
+- id: w_demon_mask
+  title: 'BSS Wiki: Demon Mask (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Demon_Mask
+- id: w_honeycomb_belt
+  title: 'BSS Wiki: Honeycomb Belt (rev 2025-12-30, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Honeycomb_Belt
+- id: w_petal_belt
+  title: 'BSS Wiki: Petal Belt (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Petal_Belt
+- id: w_coconut_belt
+  title: 'BSS Wiki: Coconut Belt (rev 2026-04-21, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Coconut_Belt
+- id: w_coconut_canister
+  title: 'BSS Wiki: Coconut Canister (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Coconut_Canister
+- id: w_coconut_clogs
+  title: 'BSS Wiki: Coconut Clogs (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Coconut_Clogs
+- id: w_hiking_boots
+  title: 'BSS Wiki: Hiking Boots (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Hiking_Boots
+- id: w_elite_red_guard
+  title: 'BSS Wiki: Elite Red Guard (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Elite_Red_Guard
+- id: w_elite_blue_guard
+  title: 'BSS Wiki: Elite Blue Guard (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Elite_Blue_Guard
+- id: w_crimson_guard
+  title: 'BSS Wiki: Crimson Guard (rev 2025-12-30, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Crimson_Guard
+- id: w_cobalt_guard
+  title: 'BSS Wiki: Cobalt Guard (rev 2025-12-30, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Cobalt_Guard
+- id: w_hive_slot
+  title: 'BSS Wiki: Hive Slot (rev 2026-09-07, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Hive_Slot
+- id: w_ticket_tent
+  title: 'BSS Wiki: Ticket Tent (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Ticket_Tent
+- id: w_tabby
+  title: 'BSS Wiki: Tabby Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Tabby_Bee
+- id: w_gummy_bee
+  title: 'BSS Wiki: Gummy Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gummy_Bee
+- id: w_photon
+  title: 'BSS Wiki: Photon Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Photon_Bee
+- id: w_bear_bee
+  title: 'BSS Wiki: Bear Bee (rev 2026-08-29, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Bear_Bee
+- id: w_festive
+  title: 'BSS Wiki: Festive Bee (rev 2026-09-29, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Festive_Bee
+- id: w_puppy
+  title: 'BSS Wiki: Puppy Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Puppy_Bee
+- id: w_vicious
+  title: 'BSS Wiki: Vicious Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Vicious_Bee
+- id: w_windy
+  title: 'BSS Wiki: Windy Bee (rev 2026-03-26, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Windy_Bee
+- id: w_digital
+  title: 'BSS Wiki: Digital Bee (rev 2026-04-23, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Digital_Bee
+- id: w_crimson_bee
+  title: 'BSS Wiki: Crimson Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Crimson_Bee
+- id: w_cobalt_bee
+  title: 'BSS Wiki: Cobalt Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Cobalt_Bee
+- id: w_vector
+  title: 'BSS Wiki: Vector Bee (rev 2025-12-28, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Vector_Bee
+- id: w_precise
+  title: 'BSS Wiki: Precise Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Precise_Bee
+- id: w_fuzzy
+  title: 'BSS Wiki: Fuzzy Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Fuzzy_Bee
+- id: w_baby
+  title: 'BSS Wiki: Baby Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Baby_Bee
+- id: w_carpenter
+  title: 'BSS Wiki: Carpenter Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Carpenter_Bee
+- id: w_music
+  title: 'BSS Wiki: Music Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Music_Bee
+- id: w_honey_bee
+  title: 'BSS Wiki: Honey Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Honey_Bee
+- id: w_gifted
+  title: 'BSS Wiki: Gifted Bee (rev 2026-09-06, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Bee
+- id: w_rj
+  title: 'BSS Wiki: Royal Jelly (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly
+- id: w_rj_shop
+  title: 'BSS Wiki: Royal Jelly Shop (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly_Shop
+- id: w_star_treat
+  title: 'BSS Wiki: Star Treat (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Star_Treat
+- id: w_star_amulet
+  title: 'BSS Wiki: Star Amulet (rev 2026-09-03, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Star_Amulet
+- id: w_ant_amulet
+  title: 'BSS Wiki: Ant Amulet (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Ant_Amulet
+- id: w_shell_amulet
+  title: 'BSS Wiki: Shell Amulet (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Shell_Amulet
+- id: w_stick_amulet
+  title: 'BSS Wiki: Stick Bug Amulet (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Stick_Bug_Amulet
+- id: w_cog_amulet
+  title: 'BSS Wiki: Cog Amulet (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Cog_Amulet
+- id: w_moon_amulet
+  title: 'BSS Wiki: Moon Amulet (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Moon_Amulet
+- id: w_kb_amulet
+  title: 'BSS Wiki: King Beetle Amulet (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/King_Beetle_Amulet
+- id: w_sunflower
+  title: 'BSS Wiki: Sunflower Field (rev 2025-12-30, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Sunflower_Field
+- id: w_dandelion
+  title: 'BSS Wiki: Dandelion Field (rev 2026-09-11, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Dandelion_Field
+- id: w_spider
+  title: 'BSS Wiki: Spider Field (rev 2025-12-28, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Spider_Field
+- id: w_pineapple
+  title: 'BSS Wiki: Pineapple Patch (rev 2026-08-01, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pineapple_Patch
+- id: w_pumpkin
+  title: 'BSS Wiki: Pumpkin Patch (rev 2026-06-18, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Pumpkin_Patch
+- id: w_coconut_field
+  title: 'BSS Wiki: Coconut Field (rev 2026-08-01, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Coconut_Field
+- id: w_mountain_top
+  title: 'BSS Wiki: Mountain Top Field (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Mountain_Top_Field
+- id: w_nectar
+  title: 'BSS Wiki: Template:NectarTypes (rev 2026-02-20, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Template:NectarTypes
+- id: w_planter
+  title: 'BSS Wiki: Planter (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Planter
+- id: w_planters_loot
+  title: 'BSS Wiki: Planters (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Planters
+- id: w_badges
+  title: 'BSS Wiki: Badges (rev 2026-06-02, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Badges
+- id: w_goo
+  title: 'BSS Wiki: Goo (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Goo
+- id: w_quests
+  title: 'BSS Wiki: Quests (rev 2026-09-14, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Quests
+- id: w_black_bear
+  title: 'BSS Wiki: Black Bear (rev 2026-08-23, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear
+- id: w_mother_bear
+  title: 'BSS Wiki: Mother Bear (rev 2026-06-23, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Mother_Bear
+- id: w_brown_bear
+  title: 'BSS Wiki: Brown Bear (rev 2026-06-15, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear
+- id: w_panda_bear
+  title: 'BSS Wiki: Panda Bear (rev 2026-09-20, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Panda_Bear
+- id: w_science_bear
+  title: 'BSS Wiki: Science Bear (rev 2026-07-02, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Science_Bear
+- id: w_polar_bear
+  title: 'BSS Wiki: Polar Bear (rev 2026-06-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Polar_Bear
+- id: w_spirit_bear
+  title: 'BSS Wiki: Spirit Bear (rev 2026-09-13, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Spirit_Bear
+- id: w_dapper_bear
+  title: 'BSS Wiki: Dapper Bear (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Dapper_Bear
+- id: w_onett
+  title: 'BSS Wiki: Onett (rev 2026-06-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Onett
+- id: w_coconut_crab
+  title: 'BSS Wiki: Coconut Crab (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Coconut_Crab
+- id: w_stump_snail
+  title: 'BSS Wiki: Stump Snail (rev 2026-10-06, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Stump_Snail
+- id: w_king_beetle
+  title: 'BSS Wiki: King Beetle (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/King_Beetle
+- id: w_tunnel_bear
+  title: 'BSS Wiki: Tunnel Bear (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Tunnel_Bear
+- id: w_commando
+  title: 'BSS Wiki: Commando Chick (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Commando_Chick
+- id: w_mondo
+  title: 'BSS Wiki: Mondo Chick (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Mondo_Chick
+- id: w_rogue_vic
+  title: 'BSS Wiki: Rogue Vicious Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Rogue_Vicious_Bee
+- id: w_wild_windy
+  title: 'BSS Wiki: Wild Windy Bee (rev 2026-07-12, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Wild_Windy_Bee
+- id: w_updates
+  title: 'BSS Wiki: Updates (rev 2026-09-14, read via api.php 2026-10-14)'
+  url: https://bee-swarm-simulator.fandom.com/wiki/Updates
+stages:
+- id: early
+  name: Fresh account to 25 bees (colourless-leaning starter; white is not a hive colour yet)
+  enter_when:
+    bees: 1
+    honey: 0
+    gear: []
+  goals:
+  - id: basic_egg
+    label: 25 bees
+    kind: bee
+    name: Fill the 25 base slots (Basic Eggs + quest eggs)
+    cost:
+      tickets: 0
+    requires:
+    - slot free
+    why: Bee count gates every field and most quest givers; Black Bear and Panda give 2 Silver + 2 Gold eggs so
+      ~21 Basic Eggs are needed, not 25. Basic Egg price rises per purchase (curve unknown).
+    priority: 1
+    source:
+    - guide_early_def
+    - hm_progression
+    - w_quests
+  - id: backpack
+    label: Backpack
+    kind: gear
+    slot: bag
+    name: Backpack (bag)
+    cost:
+      honey: 5500
+      tickets: 0
+    requires: []
+    why: 3,500 capacity; first real bag. Codes' honey buys it instantly per the earlygame guide.
+    priority: 2
+    source:
+    - w_noob_shop
+    - guide_early_def
+  - id: canister
+    label: Canister
+    kind: gear
+    slot: bag
+    name: Canister (bag)
+    cost:
+      honey: 22000
+      tickets: 0
+    requires:
+    - backpack
+    why: 10,000 capacity, +30% convert rate.
+    priority: 3
+    source:
+    - w_noob_shop
+  - id: magnet
+    label: Magnet
+    kind: gear
+    slot: tool
+    name: Magnet (tool)
+    cost:
+      honey: 5500
+      tickets: 0
+    requires: []
+    why: '18 pollen/s vs Scooper 5. GUESS (ours): skip Clippers (2,200) - the guide skips Clippers for Basic Eggs
+      unless you farm Commando Chick.'
+    priority: 3
+    source:
+    - w_noob_shop
+    - hm_progression
+    - guide_early_def
+  - id: vacuum
+    label: Vacuum
+    kind: gear
+    slot: tool
+    name: Vacuum (tool)
+    cost:
+      honey: 14000
+      tickets: 0
+    requires: []
+    why: 32.5 pollen/s, cheapest big jump in the Noob Shop.
+    priority: 3
+    source:
+    - w_noob_shop
+    - hm_progression
+  - id: helmet
+    label: Helmet
+    kind: gear
+    slot: hat
+    name: Helmet (hat)
+    cost:
+      honey: 30000
+      tickets: 0
+      items:
+        pineapple: 5
+        moon_charm: 1
+    requires: []
+    why: +10% pollen, +25% defense; first hat.
+    priority: 3
+    source:
+    - w_noob_shop
+  - id: belt_pocket
+    label: Belt Pocket
+    kind: gear
+    slot: belt
+    name: Belt Pocket (belt)
+    cost:
+      honey: 14000
+      tickets: 0
+      items:
+        sunflower_seed: 10
+    requires: []
+    why: +5,000 capacity, +10 convert amount.
+    priority: 4
+    source:
+    - w_noob_shop
+  - id: basic_boots
+    label: Basic Boots
+    kind: gear
+    slot: boots
+    name: Basic Boots
+    cost:
+      honey: 4400
+      tickets: 0
+      items:
+        sunflower_seed: 3
+        blueberry: 3
+    requires: []
+    why: '+5 player movespeed: shorter walks = more trips per hour.'
+    priority: 4
+    source:
+    - w_noob_shop
+  - id: mega_jug
+    label: Mega-Jug
+    kind: gear
+    slot: bag
+    name: Mega-Jug -> Compressor -> Elite Barrel (bags, Pro Shop)
+    cost:
+      honey: 860000
+      tickets: 0
+    requires:
+    - canister
+    - bees>=10
+    why: 25k/50k/125k capacity at 50k/160k/650k honey (sum shown). Pro Shop is past the 10-bee Brave Bee Gate.
+    priority: 2
+    source:
+    - w_pro_shop
+  - id: port_o_hive
+    label: Port-O-Hive
+    kind: gear
+    slot: bag
+    name: Port-O-Hive (bag)
+    cost:
+      honey: 1250000
+      tickets: 0
+    requires:
+    - bees>=10
+    why: +250,000 capacity, +100% convert rate, +5% instant conversion; the last bag before the Porcelain Port-O-Hive.
+    priority: 1
+    source:
+    - w_pro_shop
+  - id: pulsar
+    label: Pulsar
+    kind: gear
+    slot: tool
+    name: Pulsar (tool)
+    cost:
+      honey: 125000
+      tickets: 0
+    requires:
+    - bees>=10
+    why: 58 pollen/s.
+    priority: 3
+    source:
+    - w_pro_shop
+    - hm_progression
+  - id: scissors
+    label: Scissors
+    kind: gear
+    slot: tool
+    name: Scissors (tool)
+    cost:
+      honey: 850000
+      tickets: 0
+    requires:
+    - bees>=10
+    why: '120 pollen/s, colour-neutral (unlike Bubble Wand/Scythe) and it cuts the Commando Chick vines. Honey Dipper
+      (1.5M, 108.89/s) is not an upgrade on paper. GUESS (ours) for white: stop here until Golden Rake/Porcelain
+      Dipper.'
+    priority: 2
+    source:
+    - w_pro_shop
+    - hm_progression
+    - w_commando
+  - id: brave_guard
+    label: Brave Guard
+    kind: gear
+    slot: right_guard
+    name: Brave Guard (right shoulder)
+    cost:
+      honey: 300000
+      tickets: 0
+      items:
+        stinger: 3
+    requires:
+    - bees>=10
+    why: +15k capacity, +5% WHITE pollen, +1 colourless attack - the cheapest white-specific gear.
+    priority: 3
+    source:
+    - w_pro_shop
+  - id: bomber_guard
+    label: Bomber Guard
+    kind: gear
+    slot: left_guard
+    name: Bomber Guard (left shoulder)
+    cost:
+      honey: 300000
+      tickets: 0
+      items:
+        sunflower_seed: 25
+    requires:
+    - bees>=10
+    why: +15k capacity, +5% WHITE pollen, +15% bomb pollen.
+    priority: 3
+    source:
+    - w_pro_shop
+  - id: belt_bag
+    label: Belt Bag
+    kind: gear
+    slot: belt
+    name: Belt Bag (belt)
+    cost:
+      honey: 440000
+      tickets: 0
+      items:
+        pineapple: 50
+        sunflower_seed: 50
+        stinger: 3
+    requires:
+    - bees>=10
+    why: +25k capacity, +20 convert amount, +50% loot luck.
+    priority: 3
+    source:
+    - w_pro_shop
+  - id: hiking_boots
+    label: Hiking Boots
+    kind: gear
+    slot: boots
+    name: Hiking Boots
+    cost:
+      honey: 2200000
+      tickets: 0
+      items:
+        blueberry: 50
+        strawberry: 50
+    requires:
+    - bees>=10
+    why: +6 movespeed; with the Propeller Hat it opens Dapper Bear's shop (planters, beequips, quests).
+    priority: 2
+    source:
+    - w_hiking_boots
+    - w_pro_shop
+    - w_dapper_bear
+    - guide_early_def
+  - id: propeller_hat
+    label: Propeller Hat
+    kind: gear
+    slot: hat
+    name: Propeller Hat (hat)
+    cost:
+      honey: 2500000
+      tickets: 0
+      items:
+        gumdrops: 25
+        pineapple: 100
+        moon_charm: 5
+    requires:
+    - bees>=10
+    why: +15% pollen, +5% bee ability rate; Dapper Bear's shop gate (with Hiking Boots). The earlygame guide assumes
+      both by 25 bees.
+    priority: 2
+    source:
+    - w_pro_shop
+    - w_dapper_bear
+    - guide_early_def
+  - id: plastic_planter
+    label: Plastic Planter
+    kind: planter
+    name: Plastic Planter
+    cost:
+      honey: 750000
+      tickets: 0
+      items:
+        magic_bean: 3
+        soft_wax: 1
+    requires: []
+    why: 'First reusable planter: nectar plus waxes; the guide''s planter ladder starts here (Rose for a Caustic
+      Wax).'
+    priority: 3
+    source:
+    - w_planter
+    - guide_early_def
+  - id: field_spider
+    label: Spider Field
+    kind: field_unlock
+    name: Spider Field (5-bee zone)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees>=5
+    why: 100% white flowers, Motivating nectar, Tabby/Vector like it; guarded by the Spider (bees must be able to
+      fight it).
+    priority: 2
+    source:
+    - w_spider
+  - id: field_pineapple
+    label: Pineapple Patch
+    kind: field_unlock
+    name: Pineapple Patch (10-bee zone)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees>=10
+    why: 90% white, 759 flowers, Satisfying nectar (x1.2-x2 white pollen); lvl 4 Mantis + lvl 5 Rhino Beetle.
+    priority: 1
+    source:
+    - w_pineapple
+    - w_nectar
+  - id: field_pumpkin
+    label: Pumpkin Patch
+    kind: field_unlock
+    name: Pumpkin Patch (15-bee zone)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees>=15
+    why: 60% white, 70% triple flowers, Satisfying; the Werewolf guards it.
+    priority: 3
+    source:
+    - w_pumpkin
+  - id: badges_15
+    label: 15 badges
+    kind: badge
+    name: 15 badges (any tier) - Badge Bearer's Guild
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: Opens the sprinkler shop and the Blender; one Ace badge opens the Ace Shop (Honey Mask, Honeycomb Belt,
+      Cobalt/Crimson Guard).
+    priority: 2
+    source:
+    - w_badges
+    - hm_goals
+  - id: bronze_star_amulet
+    label: Bronze Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Bronze Star Amulet
+    cost:
+      honey: 25000000
+      tickets: 0
+    requires:
+    - 5 gifted bee types discovered
+    why: 'Capacity + small buffs. The earlygame guide: do not spend much honey on Star Amulets before SSA.'
+    priority: 4
+    source:
+    - w_star_amulet
+    - guide_early_def
+  fields:
+  - field: sunflower
+    why: '70% white, no mobs, next to the hive, Satisfying nectar: the safe white field for a bot that cannot fight.'
+    source:
+    - w_sunflower
+    - w_nectar
+  - field: dandelion
+    why: 85% white, no mobs, Comforting nectar; another macro's default White Pollen quest field. Best early white
+      field.
+    source:
+    - w_dandelion
+    - macro_docs_ai_gather
+  - field: spider
+    why: 100% white (5 bees) but the Spider attacks; farm once the hive kills it reliably.
+    source:
+    - w_spider
+  - field: pineapple
+    why: 90% white, Satisfying (white pollen) - best white field before 35 bees once bees beat the lvl 4 Mantis
+      / lvl 5 Rhino.
+    source:
+    - w_pineapple
+    - w_nectar
+  - field: clover
+    why: Quest field only (Black Bear, Weed Wacker etc.).
+    source:
+    - w_quests
+  quests:
+  - giver: black_bear
+    chain: Silver Egg (6) -> Gold Egg (9) -> Diamond Egg (20); all pollen collection
+    why: Pollen-only, so a farming bot finishes them while it farms; the eggs are free bees. Several ask for white
+      pollen (White Pollen Wrangler, Colorless Collection).
+    source:
+    - w_quests
+    - w_black_bear
+  - giver: mother_bear
+    chain: 14 quests (level bees, feed treats) -> Star Egg near the end, Star Treat at the end
+    why: 'The Star Treat gifts an event bee (the 2022 guide: use Mother Bear''s Star Treat on Tabby).'
+    source:
+    - w_mother_bear
+    - forum_prog_2022
+  - giver: panda_bear
+    chain: Silver Egg (8) -> Gold Egg (4) -> Star Treat/Ant quests (15); mob kills
+    why: Second source of Silver/Gold eggs; its Star Treat chain can be delayed (earlygame guide).
+    source:
+    - w_panda_bear
+    - guide_early_def
+  - giver: brown_bear
+    chain: infinite, one new quest per hour, random fields
+    why: Royal Jelly, materials and milestone eggs/Star Treats (500th, 750th...).
+    source:
+    - w_brown_bear
+  - giver: science_bear
+    chain: 16 initial + 15 translator quests (10-bee Brave Gate)
+    why: Each quest +25% bee honey production (Science Enhancement); Translators on 21/26/31. Guide order Bucko
+      > Riley >= Stick Bug (Riley earlier if stingers needed).
+    source:
+    - w_science_bear
+    - guide_early_def
+  - giver: polar_bear
+    chain: repeatable (15 bees)
+    why: 'Polar Power multiplies bee energy; earlygame guide: 500 minimum, 1,500+ recommended - rush it.'
+    source:
+    - w_polar_bear
+    - guide_early_def
+  bees:
+  - bee: any rare/epic
+    why: Keep anything except Bumble, Basic, Stubborn and Brave while the hive is small (earlygame guide); gifted
+      copies of Basic/Brave/Stubborn are white-hive bees later, so keep any GIFTED one.
+    gifted_priority: 3
+    source:
+    - guide_early_def
+    - forum_white_2024
+  - bee: gifted basic
+    why: 'Gifted hive bonus x1.2 pollen; any egg/RJ has a 1/250 gifted chance (guide: ~1/287 Basic Eggs).'
+    gifted_priority: 4
+    source:
+    - w_gifted
+    - guide_early_def
+    - forum_white_2024
+  tips:
+  - 'Redeem the codes the earlygame guide lists first (Beesbuzz123, Crawlers, Connoisseur, Roof, Wax, Nectar, Bopmaster,
+    38217): ~10k honey, 30 tickets, 15 gumdrops. Codes may expire - GUESS whether all still work.'
+  - 'Do NOT commit to a white hive now: every current guide transitions to white only after the Supreme Star Amulet
+    (2026 white guide requires a 5/5 dual-passive SSA, Gummyballer and Coconut Belt). Before that, play colourless-leaning/mixed
+    and farm white fields.'
+  - Save Diamond Eggs, Star Eggs, Star Jellies, waxes, fruits, bitterberries and boosting materials (glitter, smoothies)
+    - the earlygame guide's list of things players regret spending.
+  - Hatch every non-Diamond egg on the hive (earlygame guide); a hatch replaces a bee and keeps its level, so a
+    free slot is not needed.
+  - 'A bot that cannot fight should prefer Sunflower/Dandelion (no mobs): a death empties the bag (Hivemind fields.yaml).'
+  - 'MOBS: Panda/Science quests want Ladybugs, Rhino Beetles, Spiders, Mantises, Werewolves - the bees fight them
+    while the bot gathers in their fields; no boss is worth chasing before ~15-20 bees. [w_panda_bear, w_science_bear]'
+- id: mid
+  name: '25-35 bees: Mountain Top white gear, Ace shop, ticket event bees'
+  enter_when:
+    bees: 25
+    honey: 20000000
+    gear:
+    - port_o_hive
+    - scissors
+    - hiking_boots
+    - propeller_hat
+  goals:
+  - id: porcelain_dipper
+    label: Porcelain Dipper
+    kind: gear
+    slot: tool
+    name: Porcelain Dipper (tool)
+    cost:
+      honey: 150000000
+      tickets: 0
+    requires:
+    - bees>=25
+    why: 'THE white tool: 315 pollen/s on white flowers (x1.5), 210 on red/blue, light pillar every 10th swing.
+      Mountain Top Shop.'
+    priority: 1
+    source:
+    - w_porcelain_dipper
+    - w_mts
+    - hm_goals
+  - id: porcelain_port_o_hive
+    label: Porcelain Port-O-Hive
+    kind: gear
+    slot: bag
+    name: Porcelain Port-O-Hive (bag)
+    cost:
+      honey: 250000000
+      tickets: 0
+      items:
+        glitter: 3
+        soft_wax: 3
+        moon_charm: 10
+    requires:
+    - bees>=25
+    why: +600,000 capacity, +250% convert rate, x1.25 convert at hive, +10% instant conversion, +50% WHITE pollen.
+    priority: 1
+    source:
+    - w_porcelain_poh
+    - hm_goals
+  - id: golden_rake
+    label: Golden Rake
+    kind: gear
+    slot: tool
+    name: Golden Rake (tool)
+    cost:
+      honey: 20000000
+      tickets: 0
+    requires:
+    - bees>=25
+    why: '~167 pollen/s colour-neutral stopgap if the Dipper is far off. DISAGREE: buyers who can save 150M skip
+      it; the 2026 earlygame guide''s checkpoints jump straight to the Dipper.'
+    priority: 4
+    source:
+    - w_golden_rake
+    - hm_progression
+    - guide_early_def
+  - id: spark_staff
+    label: Spark Staff
+    kind: gear
+    slot: tool
+    name: Spark Staff - SKIP
+    cost:
+      honey: 60000000
+      tickets: 0
+    requires: []
+    why: 'Community consensus: skip; worse than Golden Rake in single-flower fields and it delays the Dipper. Listed
+      so the planner never buys it.'
+    priority: 5
+    source:
+    - w_spark_staff
+    - hm_progression
+  - id: beekeepers_mask
+    label: Beekeeper's Mask
+    kind: gear
+    slot: hat
+    name: Beekeeper's Mask (hat)
+    cost:
+      honey: 20000000
+      tickets: 0
+      items:
+        enzymes: 5
+        glue: 3
+        glitter: 1
+    requires:
+    - bees>=25
+    why: +20% pollen, +20% bee gather pollen, +10% BAR; hat until the Honey Mask.
+    priority: 2
+    source:
+    - w_mts
+  - id: mondo_belt_bag
+    label: Mondo Belt Bag
+    kind: gear
+    slot: belt
+    name: Mondo Belt Bag (belt)
+    cost:
+      honey: 12400000
+      tickets: 0
+      items:
+        pineapple: 150
+        sunflower_seed: 150
+        stinger: 10
+        soft_wax: 1
+    requires:
+    - bees>=25
+    why: +100k capacity, +50 convert amount, +75% loot luck, +1 colourless attack.
+    priority: 2
+    source:
+    - w_mts
+  - id: beekeepers_boots
+    label: Beekeeper's Boots
+    kind: gear
+    slot: boots
+    name: Beekeeper's Boots
+    cost:
+      honey: 15000000
+      tickets: 0
+      items:
+        oil: 5
+        blue_extract: 3
+        red_extract: 3
+    requires:
+    - bees>=25
+    why: +27% bee gather pollen, +8 movespeed.
+    priority: 2
+    source:
+    - w_mts
+  - id: elite_red_guard
+    label: Elite Red Guard
+    kind: gear
+    slot: left_guard
+    name: Elite Red Guard (left shoulder)
+    cost:
+      honey: 5000000
+      tickets: 0
+      items:
+        red_extract: 3
+        strawberry: 50
+        royal_jelly: 5
+        stinger: 5
+    requires: []
+    why: '+75k capacity, +5% crit chance (+25% red pollen). The earlygame guide assumes Elite guards by 35 bees.
+      GUESS (ours): for white, 75k capacity beats the Bomber Guard''s +5% WP until Crimson Guard.'
+    priority: 3
+    source:
+    - w_elite_red_guard
+    - guide_early_def
+  - id: elite_blue_guard
+    label: Elite Blue Guard
+    kind: gear
+    slot: right_guard
+    name: Elite Blue Guard (right shoulder)
+    cost:
+      honey: 5000000
+      tickets: 0
+      items:
+        blue_extract: 3
+        blueberry: 50
+        royal_jelly: 5
+        moon_charm: 15
+    requires: []
+    why: +75k capacity, +50% crit power (+25% blue pollen); same reasoning as the red one.
+    priority: 3
+    source:
+    - w_elite_blue_guard
+    - guide_early_def
+  - id: honey_mask
+    label: Honey Mask
+    kind: gear
+    slot: hat
+    name: Honey Mask (hat, Ace Shop)
+    cost:
+      honey: 100000000
+      tickets: 0
+      items:
+        treats: 9999
+        oil: 50
+        enzymes: 25
+        gold_egg: 5
+    requires:
+    - badges_15
+    - 1 Ace badge
+    why: '+25% pollen, x1.25 capacity, +50% honey from tokens. WHITE-SPECIFIC: owning it is required for the Gummy
+      Mask''s Coin Scatter passive, so it is not a wasted step. Gifted Gold Eggs do not count.'
+    priority: 1
+    source:
+    - w_honey_mask
+    - w_gummy_mask
+    - hm_goals
+    - forum_prog_2022
+  - id: honeycomb_belt
+    label: Honeycomb Belt
+    kind: gear
+    slot: belt
+    name: Honeycomb Belt (belt, Ace Shop)
+    cost:
+      honey: 75000000
+      tickets: 0
+      items:
+        enzymes: 50
+        glue: 50
+        oil: 25
+    requires:
+    - badges_15
+    - 1 Ace badge
+    why: +150k capacity, +25% capacity, +75 convert amount, +1 colourless attack; belt until the Petal Belt.
+    priority: 2
+    source:
+    - w_honeycomb_belt
+    - hm_goals
+    - forum_prog_2022
+  - id: hive_slot<=35
+    label: Hive slots to 35
+    kind: hive_slot
+    name: Hive slots 26-35
+    cost:
+      honey: 692323540
+      tickets: 0
+    requires:
+    - bees>=25
+    why: 35 bees opens Coconut Field, Pepper Patch and Spirit Bear. Per-slot honey 3,000,000 (26th) to 209,117,953
+      (35th).
+    priority: 1
+    source:
+    - hm_hive_slots
+    - w_hive_slot
+    - w_spirit_bear
+    - w_coconut_field
+  - id: tabby_bee
+    label: Tabby Bee
+    kind: bee
+    name: Tabby Bee (Ticket Tent)
+    cost:
+      honey: 0
+      tickets: 500
+    requires: []
+    why: 'Colourless event bee; gifted hive bonus +50% crit power; Tabby Love stacks to 1,000 permanently. 2022
+      guide: buy Tabby first among event bees.'
+    priority: 1
+    source:
+    - w_tabby
+    - w_ticket_tent
+    - forum_prog_2022
+  - id: gummy_bee
+    label: Gummy Bee
+    kind: bee
+    name: Gummy Bee (Gummy Bee Egg Claim, 20-bee zone)
+    cost:
+      honey: 0
+      tickets: 0
+      items:
+        gumdrops: 2500
+    requires:
+    - bees>=20
+    why: 'The white hive''s goo engine; gifted bonus +5% honey per pollen. Gumdrops: Gumdrop Shop 300 for 100 tickets.'
+    priority: 1
+    source:
+    - w_gummy_bee
+    - hm_goals
+  - id: photon_bee
+    label: Photon Bee
+    kind: bee
+    name: Photon Bee (Ticket Tent)
+    cost:
+      honey: 0
+      tickets: 500
+    requires: []
+    why: 'Gifted: Beamstorm gathers x3 white pollen and instantly converts; +5% instant conversion hive bonus. DISAGREE:
+      earlygame guide (blue path) calls Photon a waste of tickets; white guides run it.'
+    priority: 2
+    source:
+    - w_photon
+    - w_ticket_tent
+    - guide_early_def
+    - guide_white_def
+  - id: festive_bee
+    label: Festive Bee
+    kind: bee
+    name: Festive Bee (Ticket Tent)
+    cost:
+      honey: 0
+      tickets: 500
+    requires: []
+    why: 'Red event bee but every white comp runs it: gifted x1.25 convert rate at hive, Festive Marks.'
+    priority: 2
+    source:
+    - w_festive
+    - w_ticket_tent
+    - forum_white_2024
+  - id: puppy_bee
+    label: Puppy Bee
+    kind: bee
+    name: Puppy Bee (Ticket Tent)
+    cost:
+      honey: 0
+      tickets: 500
+    requires: []
+    why: 'Only worth it gifted (2022 guide: do not buy until you can gift it). Optional in white comps (Reindeer
+      Antlers holder).'
+    priority: 4
+    source:
+    - w_puppy
+    - w_ticket_tent
+    - forum_prog_2022
+    - guide_white_def
+  - id: goo_hotshot
+    label: Goo Badge Hotshot
+    kind: badge
+    name: Goo Badge Hotshot (5,000,000 goo)
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: +4% honey per pollen and entry to Gummy Bear's Lair (Glue Dispenser; Gummy Mask/Boots/Gummyballer shop).
+      Goo comes from Gumdrops, Gummy Bee, Gummy gear.
+    priority: 1
+    source:
+    - w_badges
+    - w_gummy_lair
+  - id: honey_badge_ace
+    label: Honey Badge Ace
+    kind: badge
+    name: Honey Badge Ace (100M honey made)
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: x1.9 convert rate and the Ace badge that opens the Ace Shop.
+    priority: 1
+    source:
+    - w_badges
+    - hm_goals
+  - id: candy_planter
+    label: Candy Planter
+    kind: planter
+    name: Candy Planter
+    cost:
+      honey: 5000000
+      tickets: 0
+      items:
+        magic_bean: 5
+        gumdrops: 30
+        jelly_bean: 3
+        soft_wax: 5
+    requires: []
+    why: 'x1.2 Motivating nectar + gumdrops/glue drops (glue = Gummy gear). Guide: have Candy + Red Clay by 35 bees.'
+    priority: 2
+    source:
+    - w_planter
+    - w_planters_loot
+    - guide_early_def
+  - id: red_clay_planter
+    label: Red Clay Planter
+    kind: planter
+    name: Red Clay Planter
+    cost:
+      honey: 10000000
+      tickets: 0
+      items:
+        magic_bean: 5
+        red_extract: 15
+        soft_wax: 20
+    requires: []
+    why: x1.2 Satisfying (white pollen nectar) and Invigorating; waxes for the next planters.
+    priority: 2
+    source:
+    - w_planter
+    - guide_early_def
+  - id: silver_star_amulet
+    label: Silver Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Silver Star Amulet
+    cost:
+      honey: 50000000
+      tickets: 0
+    requires:
+    - 10 gifted bee types discovered
+    why: More capacity; roll for White Pollen / Pollen.
+    priority: 4
+    source:
+    - w_star_amulet
+  - id: king_beetle_amulet
+    label: King Beetle Amulet
+    kind: amulet
+    name: King Beetle Amulet (daily kill)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees can kill a lvl 7, 2,500 HP boss
+    why: '1/7 drop per kill, 24 h respawn; want +1 bee attack (white guide: field% only matters for RBC).'
+    priority: 3
+    source:
+    - w_king_beetle
+    - w_kb_amulet
+    - guide_white_def
+    - guide_early_def
+  - id: field_mountain_top
+    label: Mountain Top zone
+    kind: field_unlock
+    name: 25-bee zone (Mountain Top, its shop, Mondo Chick)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees>=25
+    why: The Mountain Top Shop sells the white gear above; the field itself is red/blue triple flowers (wiki), not
+      a white farm.
+    priority: 1
+    source:
+    - w_mts
+    - w_mountain_top
+  fields:
+  - field: pineapple
+    why: 'Main white farm here: 90% white, Satisfying nectar stacks x2 white pollen; Gummy, Photon, Lion, Shocked
+      like it.'
+    source:
+    - w_pineapple
+    - w_nectar
+  - field: dandelion
+    why: Safe fallback (no mobs), 85% white.
+    source:
+    - w_dandelion
+  - field: spider
+    why: 100% white once the hive kills the Spider; Spider also drops Enzymes/Glue for gear.
+    source:
+    - w_spider
+    - hm_goals
+  - field: sunflower
+    why: Safe; Oil drops (Paper/Hydroponic planter Oil too) for Honey/Gummy Mask.
+    source:
+    - w_sunflower
+    - w_planters_loot
+  quests:
+  - giver: dapper_bear
+    chain: 16 quests (needs Hiking Boots + Propeller Hat)
+    why: Complete at least 10 for the 4th shop slot, 10th beequip slot and a Diamond Egg; finish all 16 eventually.
+    source:
+    - guide_early_def
+    - w_dapper_bear
+  - giver: science_bear
+    chain: continue to the Translators (21, 26, 31)
+    why: Translators unlock Bucko/Riley quests and the Stick Bug.
+    source:
+    - w_science_bear
+    - guide_early_def
+  - giver: riley_bee
+    chain: repeatable (needs a Translator)
+    why: Stingers + red extract; Riley earlier if stingers are needed for Vicious Bee/Crimson-Cobalt guards.
+    source:
+    - guide_early_def
+    - hm_goals
+  - giver: honey_bee
+    chain: repeatable honey-token quests
+    why: '2022 guide: save them for later when x2 conversion buff pays more.'
+    source:
+    - forum_prog_2022
+    - w_honey_bee
+  - giver: polar_bear
+    chain: keep stacking Polar Power
+    why: Energy multiplier; target 1,500+.
+    source:
+    - guide_early_def
+  - giver: onett
+    chain: Star Journey 1-5 (past the 30-bee Bear Gate)
+    why: Ends in a Star Treat; long (3.67B pollen, 136M goo) and can be delayed.
+    source:
+    - w_onett
+    - guide_early_def
+  bees:
+  - bee: tabby
+    why: First event bee for white; +50% crit power gifted; Tabby Love scales it permanently.
+    gifted_priority: 1
+    source:
+    - w_tabby
+    - forum_prog_2022
+  - bee: gummy
+    why: Goo producer; gifted +5% honey per pollen; Gummy Morph with the Gummy Mask.
+    gifted_priority: 1
+    source:
+    - w_gummy_bee
+    - metabee_white
+  - bee: photon
+    why: Gifted Beamstorm = x3 white pollen + instant convert.
+    gifted_priority: 2
+    source:
+    - w_photon
+  - bee: festive
+    why: Gifted x1.25 convert rate at hive.
+    gifted_priority: 2
+    source:
+    - w_festive
+  - bee: baby
+    why: Baby Love x2 pollen; white guide runs ~5 Baby Love producers. Favourite treat Strawberry.
+    gifted_priority: 3
+    source:
+    - w_baby
+    - guide_white_def
+  - bee: music
+    why: Token Link, Focus, Melody; gifted +25% pollen from bee gathering.
+    gifted_priority: 3
+    source:
+    - w_music
+    - guide_early_def
+  - bee: carpenter
+    why: Honey/Pollen Marks; gifted x1.25 tool pollen (multiplicative since 2026-01-16) - big with the Dipper/Gummyballer.
+    gifted_priority: 3
+    source:
+    - w_carpenter
+    - w_updates
+  tips:
+  - Gear before slots when the bag is the limit; slots before gear when a gate (35 bees) is the limit - 35 bees
+    opens Coconut Field and Spirit Bear.
+  - 'Spend tickets on event bees, then on Star Treats (1,000 tickets). DISAGREE: earlygame guide (blue) says Festive
+    > Cobalt > Tabby; white sources put Tabby first and do not run Cobalt/Crimson bees.'
+  - 'Use Satisfying nectar (Sunflower/Pineapple/Pumpkin planters: x1.2-x2 white pollen) as the white hive''s main
+    nectar; Motivating (Spider/Stump/Mushroom/Rose) is the second (white guide minimum: max Satisfying + Motivating).'
+  - 'Collect Tabby Love tokens (stand in the field where Tabby works): stacks are permanent up to 1,000 and then
+    give Tabby Blessing crit buffs.'
+  - 'Use gumdrops in the field you farm once Gummy Bee is owned: goo bonus honey = pollen x sqrt(flowers/200), so
+    big puddles pay most. [w_goo]'
+  - 'BOSSES worth farming now: Mondo Chick hourly on Mountain Top (lvl 8, 300k HP, loses 333 HP/s by itself, despawns
+    after 15 min, loot shared) [w_mondo]; King Beetle daily (lvl 7, 2,500 HP, amulet 1/7) [w_king_beetle]; Tunnel
+    Bear every 48 h (lvl 9, 10k HP but hits for 1,000; first kill = gifted egg or Star Egg) [w_tunnel_bear]; Commando
+    Chick every 30 min (vines need Clippers/Scissors) [w_commando]; Rogue Vicious Bee at night in Clover/Spider/Cactus/Rose/Mountain
+    Top/Pepper for Stingers [w_rogue_vic].'
+- id: late
+  name: '35-45 bees, pre-SSA: Coconut gear, Gummy Mask, Petal Belt, gifting toward 40 gifted types'
+  enter_when:
+    bees: 35
+    honey: 1000000000
+    gear:
+    - porcelain_dipper
+    - porcelain_port_o_hive
+    - honey_mask
+  goals:
+  - id: field_coconut
+    label: Coconut Field
+    kind: field_unlock
+    name: Coconut Field (35-bee Windy Bee Gate)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees>=35
+    why: 85% white, 100% triple flowers, Refreshing nectar; Vector/Digital/Windy like it. Coconut Crab (lvl 12,
+      250k HP) walks the back wall.
+    priority: 1
+    source:
+    - w_coconut_field
+    - w_coconut_crab
+  - id: gummy_mask
+    label: Gummy Mask
+    kind: gear
+    slot: hat
+    name: Gummy Mask (hat, Gummy Bear's Lair)
+    cost:
+      honey: 5000000000
+      tickets: 0
+      items:
+        glue: 250
+        enzymes: 100
+        oil: 100
+        glitter: 100
+        satisfying_vial: 1
+    requires:
+    - goo_hotshot
+    - honey_mask
+    why: 'THE white mask: x1.25 white pollen, x1.5 capacity, x1.5 white field capacity, +75% goo, +20% BAR, Gummy
+      Morph; Coin Scatter with Honey Mask owned.'
+    priority: 1
+    source:
+    - w_gummy_mask
+    - w_gummy_lair
+    - forum_prog_2022
+    - forum_white_start_2024
+  - id: coconut_canister
+    label: Coconut Canister
+    kind: gear
+    slot: bag
+    name: Coconut Canister (bag, Coconut Cave)
+    cost:
+      honey: 25000000000
+      tickets: 0
+      items:
+        tropical_drink: 150
+        coconut: 250
+        red_extract: 150
+        blue_extract: 150
+        refreshing_vial: 2
+    requires:
+    - bees>=35
+    why: +1,000,000 capacity, +400% convert rate, x1.5 convert at hive, +10% instant (and +10% instant white) conversion,
+      +100% WHITE pollen.
+    priority: 1
+    source:
+    - w_coconut_canister
+    - forum_prog_2022
+  - id: coconut_clogs
+    label: Coconut Clogs
+    kind: gear
+    slot: boots
+    name: Coconut Clogs (boots)
+    cost:
+      honey: 10000000000
+      tickets: 0
+      items:
+        coconut: 150
+        tropical_drink: 50
+        glue: 100
+        oil: 100
+        refreshing_vial: 1
+    requires:
+    - coconut_canister
+    why: '+15% pollen, +25% honey from tokens, +7 movespeed, Coconut Haste. 2022 guide: never clogs before canister.'
+    priority: 2
+    source:
+    - w_coconut_clogs
+    - forum_prog_2022
+  - id: petal_belt
+    label: Petal Belt
+    kind: gear
+    slot: belt
+    name: Petal Belt (Petal Shop)
+    cost:
+      honey: 15000000000
+      tickets: 0
+      items:
+        spirit_petal: 1
+        star_jelly: 25
+        glitter: 50
+        glue: 100
+    requires:
+    - spirit_bear quest 10
+    why: '+250k capacity, +50% capacity, +100 convert amount, +75% honey from tokens, Petal Storm; needed for the
+      Coconut Belt''s Petal Storm. Guide petal order: Belt > Windy >> Wand. DISAGREE: the earlygame guide notes
+      it ''forgot to add Oils'' - the wiki recipe lists no Oil; read the shop.'
+    priority: 1
+    source:
+    - w_petal_belt
+    - guide_early_def
+    - forum_prog_2022
+  - id: crimson_guard
+    label: Crimson Guard
+    kind: gear
+    slot: left_guard
+    name: Crimson Guard (left shoulder, Ace Shop)
+    cost:
+      honey: 200000000
+      tickets: 0
+      items:
+        red_extract: 100
+        stinger: 100
+        oil: 50
+        glitter: 25
+    requires:
+    - 1 Ace badge
+    why: '+250k capacity, +10% crit chance, +3 red bee attack (Precise is red). Earlygame stinger order: Cobalt
+      Guard > Vicious > Crimson Guard.'
+    priority: 2
+    source:
+    - w_crimson_guard
+    - hm_goals
+    - guide_early_def
+  - id: cobalt_guard
+    label: Cobalt Guard
+    kind: gear
+    slot: right_guard
+    name: Cobalt Guard (right shoulder, Ace Shop)
+    cost:
+      honey: 200000000
+      tickets: 0
+      items:
+        blue_extract: 100
+        stinger: 100
+        enzymes: 50
+        glitter: 25
+    requires:
+    - 1 Ace badge
+    why: +250k capacity, +100% crit power, Haste Pulser; blue stats wasted on white but capacity/crit/haste are
+      not.
+    priority: 2
+    source:
+    - w_cobalt_guard
+    - hm_goals
+    - guide_early_def
+  - id: diamond_mask
+    label: Diamond Mask
+    kind: gear
+    slot: hat
+    name: Diamond Mask (OPTIONAL for white)
+    cost:
+      honey: 5000000000
+      tickets: 0
+      items:
+        blue_extract: 250
+        oil: 150
+        glitter: 100
+        diamond_egg: 5
+        comforting_vial: 1
+    requires: []
+    why: 'x3 capacity but blue stats. DISAGREE: 2022 guide mask order Gummy > Diamond (if close to SSA) > Demon;
+      2026 earlygame guide (blue path) assumes Diamond by 45. For a white plan the Gummy Mask comes first; Demon
+      Mask is red - skip.'
+    priority: 4
+    source:
+    - w_diamond_mask
+    - forum_prog_2022
+    - guide_early_def
+    - w_demon_mask
+  - id: vicious_bee
+    label: Vicious Bee
+    kind: bee
+    name: Vicious Bee (Vicious Bee Egg Claim)
+    cost:
+      honey: 0
+      tickets: 0
+      items:
+        stinger: 250
+    requires: []
+    why: 'Blue event bee; gifted -15% mob respawn (Snail, Crab, King Beetle, Tunnel Bear). White guide: Vicious
+      used to kill Wild Windy Bee.'
+    priority: 3
+    source:
+    - w_vicious
+    - guide_white_def
+  - id: gold_star_amulet
+    label: Gold Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Gold Star Amulet
+    cost:
+      honey: 250000000
+      tickets: 0
+    requires:
+    - 20 gifted bee types discovered
+    why: Step toward SSA; roll White Pollen.
+    priority: 3
+    source:
+    - w_star_amulet
+  - id: diamond_star_amulet
+    label: Diamond Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Diamond Star Amulet
+    cost:
+      honey: 1000000000
+      tickets: 0
+    requires:
+    - 30 gifted bee types discovered
+    why: Star passive tier; last step before SSA (40 types).
+    priority: 2
+    source:
+    - w_star_amulet
+  - id: moon_amulet
+    label: Moon Amulet
+    kind: amulet
+    name: Moon Amulet (100 Moon Charms per roll)
+    cost:
+      honey: 0
+      tickets: 0
+      items:
+        moon_charm: 100
+    requires: []
+    why: Replace 11 times to max +250k capacity, then roll +White Pollen (up to +50%). Never Movement Collection
+      (destroys flowers).
+    priority: 3
+    source:
+    - w_moon_amulet
+    - guide_white_def
+    - guide_early_def
+  - id: ant_amulet
+    label: Ant Amulet
+    kind: amulet
+    name: Ant Amulet (Ant Challenge)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - Ant Pass
+    why: Grind alongside Panda quests; white wants White Pollen + crit power (Supreme at 150+ points).
+    priority: 3
+    source:
+    - w_ant_amulet
+    - guide_white_def
+    - guide_early_def
+  - id: hive_slot<=40
+    label: Hive slots to 40
+    kind: hive_slot
+    name: Hive slots 36-40
+    cost:
+      honey: 2743836435
+      tickets: 0
+    requires: []
+    why: 'Guide: 40 slots after all gifted Rares; buy slots when you run out of room for boost producers/babies/musics.'
+    priority: 2
+    source:
+    - hm_hive_slots
+    - guide_early_def
+  - id: hive_slot<=45
+    label: Hive slots to 45
+    kind: hive_slot
+    name: Hive slots 41-45
+    cost:
+      honey: 37687241061
+      tickets: 0
+    requires: []
+    why: 'Guide: 45 after all gifted Epics. 45 is also the minimum the white-transition sources quote.'
+    priority: 2
+    source:
+    - hm_hive_slots
+    - guide_early_def
+    - seo_white
+  - id: blue_clay_planter
+    label: Blue Clay Planter
+    kind: planter
+    name: Blue Clay Planter
+    cost:
+      honey: 10000000
+      tickets: 0
+      items:
+        magic_bean: 5
+        blue_extract: 15
+        soft_wax: 20
+    requires: []
+    why: Refreshing/Comforting nectar; in Spider Field guarantees >=10 Micro-Converters.
+    priority: 3
+    source:
+    - w_planter
+    - w_planters_loot
+  - id: tacky_planter
+    label: Tacky Planter
+    kind: planter
+    name: Tacky Planter
+    cost:
+      honey: 50000000
+      tickets: 0
+      items:
+        magic_bean: 10
+        purple_potion: 1
+        hard_wax: 5
+        soft_wax: 20
+    requires:
+    - red_clay_planter
+    why: x1.25 Satisfying + Comforting; dice drops (Loaded Dice in Mountain Top).
+    priority: 2
+    source:
+    - w_planter
+    - w_planters_loot
+    - guide_early_def
+  - id: pesticide_planter
+    label: Pesticide Planter
+    kind: planter
+    name: Pesticide Planter
+    cost:
+      honey: 750000000
+      tickets: 0
+      items:
+        magic_bean: 25
+        neonberry: 25
+        glue: 15
+        caustic_wax: 3
+        hard_wax: 10
+    requires:
+    - tacky_planter
+    why: x1.3 Satisfying + Motivating - the two nectars the white guide says to max.
+    priority: 2
+    source:
+    - w_planter
+    - guide_early_def
+    - guide_white_def
+  - id: commando_50
+    label: 50 Commando Chick captures
+    kind: quest
+    name: 'Commando Chick: 50 captures (Mythic Egg), 100 (Star Treat)'
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - vines cut with Clippers/Scissors/Scythe
+    why: 'Free Mythic Egg and Star Treat; respawns every 30 min. 2022 guide: start after 45 bees.'
+    priority: 3
+    source:
+    - w_commando
+    - forum_prog_2022
+  fields:
+  - field: coconut
+    why: Best passive white field from 35 bees per the SEO guide; 85% white triple flowers + Refreshing nectar.
+      Risky for a non-fighting bot (crab).
+    source:
+    - w_coconut_field
+    - seo_white
+  - field: pineapple
+    why: Still the Satisfying-nectar white field; enzymes drop here (Heat-Treated 3x in a row = 100 Enzymes).
+    source:
+    - w_pineapple
+    - w_planters_loot
+  - field: spider
+    why: 100% white, Motivating; the white guide's boosting field of choice.
+    source:
+    - w_spider
+    - guide_white_def
+  - field: dandelion
+    why: Safe white fallback; Petal Planter here drops 10 Glitter.
+    source:
+    - w_dandelion
+    - w_planters_loot
+  quests:
+  - giver: spirit_bear
+    chain: 30 quests (35 bees); Spirit Petal at 10, 20, 30
+    why: Petals buy the Petal Belt (first), Windy Bee, Petal Wand. Do not spend Star Jellies before the Belt (needs
+      25).
+    source:
+    - w_spirit_bear
+    - guide_early_def
+    - forum_prog_2022
+  - giver: brown_bear
+    chain: milestones (Gold Eggs 340/390/495, Star Treat 500)
+    why: Keep the hourly quest running; materials for Gummy gear (glue/oil/enzymes).
+    source:
+    - w_brown_bear
+    - hm_goals
+  - giver: panda_bear
+    chain: Star Treat / Ant quests
+    why: Star Treat for a white event bee; Ant Challenge score 100 needed.
+    source:
+    - w_panda_bear
+  - giver: onett
+    chain: Star Journey 1-5
+    why: Star Treat + 100M honey; goo and white-pollen requirements fit a white farm.
+    source:
+    - w_onett
+  bees:
+  - bee: tabby
+    why: Gift it with the first Star Treat (white sources) - +50% crit power.
+    gifted_priority: 1
+    source:
+    - forum_prog_2022
+    - w_tabby
+  - bee: gummy
+    why: Gift early; gifted Glob covers 81 flowers in goo instead of 49.
+    gifted_priority: 1
+    source:
+    - w_gummy_bee
+    - seo_white
+  - bee: photon
+    why: Gift after Tabby/Gummy.
+    gifted_priority: 2
+    source:
+    - forum_prog_2022
+  - bee: bear
+    why: +10% pollen gifted, Bear Morph x2 pollen; Robux/trade/rare Tunnel Bear drop only - a bot cannot buy it.
+    gifted_priority: 2
+    source:
+    - w_bear_bee
+    - guide_early_def
+  - bee: festive
+    why: Gift for x1.25 convert at hive.
+    gifted_priority: 3
+    source:
+    - w_festive
+  - bee: vector
+    why: Start rolling/keeping Vectors (Mythic Egg 2,500 tickets; RJ 1/25,000; Commando 50th capture). Favourite
+      treat Sunflower Seed.
+    gifted_priority: 2
+    source:
+    - w_vector
+    - w_ticket_tent
+    - w_rj
+  - bee: cobalt / crimson
+    why: 'Coloured event bees (gifted +15% instant blue/red conversion). Skip for white; 2022 guide: no need to
+      gift Crimson.'
+    gifted_priority: 5
+    source:
+    - w_cobalt_bee
+    - w_crimson_bee
+    - forum_prog_2022
+  tips:
+  - Gifting toward 40 gifted TYPES is the real late-game goal (SSA). Keep every unique gifted bee; Star Eggs always
+    hatch a gifted type you do not have - use them only when the hive holds all gifted Rares/Epics/Legendaries (earlygame
+    guide).
+  - 'Royal Jelly: ~70% rare, 27% epic, 3% legendary, 1/25,000 mythic, 1/250 gifted. RJ shop price rises 10k per
+    jelly to a 1,000,000 cap. [w_rj, w_rj_shop]'
+  - 'Do not roll gifteds until you hold enough RJ to replace a duplicate (2022 guide: 5-10k RJ).'
+  - 'BOSSES: Wild Windy Bee (Dandelion, Pineapple, Pumpkin, Mountain Top, Coconut; every 2 day/night cycles or from
+    Wind Shrine offerings) for Cloud Vials toward Windy Bee [w_wild_windy]; Coconut Crab every 36 h (2 h kill window,
+    health resets if you leave) for Coconuts/Tropical Drinks [w_coconut_crab]; Stump Snail every 4 days (30M HP,
+    health saved; Shell Amulet + 30M honey + 1-100 Glue + 1-10 Star Jelly) [w_stump_snail].'
+  - 'Coconuts/Tropical Drinks for Canister/Clogs come from the Coconut Crab and Coconut Field planters; a bot without
+    combat cannot farm the crab - GUESS: buy the canister later than a human would.'
+- id: endgame
+  name: 45-50 bees, SSA, then the white transition (Gummyballer, Coconut Belt, Vector/Precise comp)
+  enter_when:
+    bees: 45
+    honey: 10000000000
+    gear:
+    - coconut_canister
+    - petal_belt
+    - gummy_mask
+  goals:
+  - id: supreme_star_amulet
+    label: Supreme Star Amulet
+    kind: amulet
+    slot: star_amulet
+    name: Supreme Star Amulet - Gummy Star + Star Saw
+    cost:
+      honey: 10000000000
+      tickets: 0
+    requires:
+    - 40 gifted bee types discovered
+    why: 'Gummy Star (gumdrops summon it: x2 white field capacity, honey tokens +1.5% per gifted colourless type).
+      2026 white guide: a 5/5 dual-passive SSA is a strict requirement. 500B option guarantees two passives.'
+    priority: 1
+    source:
+    - w_star_amulet
+    - guide_white_def
+    - forum_prog_2022
+  - id: gummy_boots
+    label: Gummy Boots
+    kind: gear
+    slot: boots
+    name: Gummy Boots
+    cost:
+      honey: 100000000000
+      tickets: 0
+      items:
+        glue: 500
+        glitter: 250
+        red_extract: 250
+        blue_extract: 250
+        motivating_vial: 1
+        satisfying_vial: 1
+    requires:
+    - goo_hotshot
+    why: +25% goo, +20% pollen, +50% honey from tokens, +3 bee attack, +9 movespeed, Goo Trail, Coconut Haste.
+    priority: 2
+    source:
+    - w_gummy_boots
+    - forum_white_start_2024
+  - id: coconut_belt
+    label: Coconut Belt
+    kind: gear
+    slot: belt
+    name: Coconut Belt
+    cost:
+      honey: 7500000000000
+      tickets: 0
+      items:
+        coconut: 500
+        tropical_drink: 1500
+        purple_potion: 200
+        hard_wax: 200
+        turpentine: 3
+        refreshing_vial: 3
+    requires:
+    - petal_belt
+    why: +350k capacity, +75% capacity, +100% honey from tokens, Combo Coconuts; a white-transition requirement.
+    priority: 1
+    source:
+    - w_coconut_belt
+    - guide_white_def
+  - id: gummyballer
+    label: Gummyballer
+    kind: gear
+    slot: tool
+    name: Gummyballer (tool)
+    cost:
+      honey: 10000000000000
+      tickets: 0
+      items:
+        glue: 1500
+        gumdrops: 2000
+        caustic_wax: 50
+        super_smoothie: 50
+        turpentine: 5
+        satisfying_vial: 3
+    requires:
+    - goo_hotshot
+    why: The white endgame tool (x2.5 all colours, gummyball grows on goo); white-transition requirement.
+    priority: 1
+    source:
+    - w_gummyballer
+    - guide_white_def
+    - fanon_white
+  - id: petal_wand
+    label: Petal Wand
+    kind: gear
+    slot: tool
+    name: Petal Wand (usually skipped)
+    cost:
+      honey: 1500000000
+      tickets: 0
+      items:
+        spirit_petal: 1
+        star_jelly: 10
+        glitter: 25
+        enzymes: 75
+    requires:
+    - spirit_bear quest 20 or 30
+    why: '528 pollen/s. DISAGREE: earlygame guide ''usually skipped'' (Belt > Windy >> Wand); 2022 guide used the
+      first petal on the wand.'
+    priority: 4
+    source:
+    - w_petal_wand
+    - guide_early_def
+    - forum_prog_2022
+  - id: dark_scythe
+    label: Dark Scythe
+    kind: gear
+    slot: tool
+    name: Dark Scythe (QoL tool outside boosts)
+    cost:
+      honey: 2500000000000
+      tickets: 0
+    requires: []
+    why: 'White guide: keep a Dark Scythe for QoL outside boosting; meta-bee: needed for RBC quests. Recipe not
+      read here.'
+    priority: 4
+    source:
+    - guide_white_def
+    - metabee_white
+    - hm_progression
+  - id: windy_bee
+    label: Windy Bee
+    kind: bee
+    name: Windy Bee (Spirit Petal + Cloud Vials at the Wind Shrine)
+    cost:
+      honey: 0
+      tickets: 0
+      items:
+        spirit_petal: 1
+        cloud_vial: 400
+    requires:
+    - spirit_petal
+    why: Gifted +15% instant WHITE conversion, x2 boosts from clouds. ~4M favour (~400 vials) is standard (earlygame
+      guide).
+    priority: 2
+    source:
+    - w_windy
+    - guide_early_def
+  - id: digital_bee
+    label: Digital Bee
+    kind: bee
+    name: Digital Bee (Robo Bear's Shop)
+    cost:
+      honey: 7777777
+      tickets: 0
+      items:
+        red_drive: 5
+        blue_drive: 5
+        white_drive: 5
+        glitched_drive: 5
+    requires:
+    - Diamond Cog Amulet unlocked
+    why: Smiley tokens/corruption; white guide wants 500 white + 300 glitched drives before switching.
+    priority: 2
+    source:
+    - w_digital
+    - guide_white_def
+  - id: vector_comp
+    label: 18-19 gifted Vector Bees
+    kind: bee
+    name: 18-19 gifted Vector Bees
+    cost:
+      honey: 0
+    requires:
+    - supreme_star_amulet
+    why: Triangulate + Pollen Mark+ (x2 white in marks); Mythic Eggs 2,500 tickets each, Choose-A-Mythic, RJ. Mutation
+      Bee Movespeed (BMS) > BAR.
+    priority: 1
+    source:
+    - guide_white_def
+    - w_vector
+    - w_ticket_tent
+    - forum_white_2024
+  - id: precise_comp
+    label: 7 gifted Precise Bees
+    kind: bee
+    name: 7 (8 while learning) gifted Precise Bees
+    cost:
+      honey: 0
+    requires:
+    - supreme_star_amulet
+    why: Keep 10x Precision and 3 Precise Marks - 'the most IMPORTANT part of White'. Useless ungifted (2024 build).
+      Red bee.
+    priority: 1
+    source:
+    - guide_white_def
+    - w_precise
+    - forum_white_2024
+  - id: supreme_shell_amulet
+    label: Supreme Shell Amulet
+    kind: amulet
+    name: Supreme Shell Amulet (15 Stump Snail kills)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - bees can deal 30M damage over sessions
+    why: 'Goo conversion > HFT > Spider% = Dandelion%. Earlygame guide: a waste of time before endgame.'
+    priority: 3
+    source:
+    - w_shell_amulet
+    - w_stump_snail
+    - guide_white_def
+    - guide_early_def
+  - id: supreme_cog_amulet
+    label: Supreme Cog Amulet
+    kind: amulet
+    name: Supreme Cog Amulet (Robo Bear Challenge round 25)
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: Mark Ability Pollen = HFT > WP > IWC = BA.
+    priority: 3
+    source:
+    - w_cog_amulet
+    - guide_white_def
+  - id: diamond_stick_amulet
+    label: Diamond Stick Bug Amulet
+    kind: amulet
+    name: Diamond Stick Bug Amulet (50M score, lvl 13 Stick Bug)
+    cost:
+      honey: 0
+      tickets: 0
+    requires:
+    - translator
+    why: HFT > WP > red bee attack.
+    priority: 3
+    source:
+    - w_stick_amulet
+    - guide_white_def
+  - id: supreme_ant_amulet
+    label: Supreme Ant Amulet
+    kind: amulet
+    name: Supreme Ant Amulet (150+ Ant Challenge points)
+    cost:
+      honey: 0
+      tickets: 0
+    requires: []
+    why: WP = crit power > movespeed/crit chance/pollen.
+    priority: 3
+    source:
+    - w_ant_amulet
+    - guide_white_def
+  - id: smiley_sticker
+    label: 2 Smiley Stickers
+    kind: beequip
+    name: 2 Smiley Stickers (+Honey Mark)
+    cost:
+      tickets: 0
+    requires: []
+    why: More marks = more Triangulate pollen; on Honey + Stubborn.
+    priority: 2
+    source:
+    - guide_white_def
+    - metabee_white
+  - id: toy_drum
+    label: 2 Toy Drums
+    kind: beequip
+    name: 2 Toy Drums (+2-4% BAP)
+    cost:
+      tickets: 0
+    requires: []
+    why: Haste + BAP; on Demo + Brave.
+    priority: 2
+    source:
+    - guide_white_def
+  - id: sweatband
+    label: Sweatband
+    kind: beequip
+    name: Sweatband (+26%+ White Gather Amount)
+    cost:
+      tickets: 0
+    requires:
+    - digital_bee
+    why: Buffs Smiley tokens; on Digital.
+    priority: 2
+    source:
+    - guide_white_def
+    - metabee_white
+  - id: other_beequips
+    label: Other beequips
+    kind: beequip
+    name: Whistle, Toy Horn, Paper Angel, Kazoo, 2 Paperclips, Pink Shades
+    cost:
+      tickets: 0
+    requires: []
+    why: Rest of the 13-15 slot white loadout (Commander, Lion, Photon, Shocked, Looker+Hasty, Basic/Honey).
+    priority: 3
+    source:
+    - guide_white_def
+  - id: petal_planter
+    label: Petal Planter
+    kind: planter
+    name: Petal Planter
+    cost:
+      honey: 5000000000000
+      tickets: 0
+      items:
+        magic_bean: 100
+        glitter: 100
+        soft_wax: 250
+        swirled_wax: 50
+        super_smoothie: 25
+    requires: []
+    why: x1.5 Satisfying + Comforting; 10 Star Jelly in any white field; keeps Spider/Coconut/Dandelion least-gathered
+      for guiding alts.
+    priority: 2
+    source:
+    - w_planter
+    - w_planters_loot
+    - guide_white_def
+    - natro_src
+  - id: hive_slot<=48
+    label: Hive slots to 48
+    kind: hive_slot
+    name: Hive slots 46-48
+    cost:
+      honey: 443385184096
+      tickets: 0
+    requires: []
+    why: Guide leveling order puts 46-48 with hive levels 13-14.
+    priority: 3
+    source:
+    - hm_hive_slots
+    - forum_prog_2022
+  - id: hive_slot
+    label: Hive slots to 50
+    kind: hive_slot
+    name: Hive slots 49-50
+    cost:
+      honey: 2936706391956
+      tickets: 0
+    requires: []
+    why: 2.94T for the last two; after the white essentials.
+    priority: 4
+    source:
+    - hm_hive_slots
+  fields:
+  - field: spider
+    why: 'White guide consensus boost field: 100% white, small, good shape.'
+    source:
+    - guide_white_def
+    - metabee_white
+    - w_spider
+  - field: coconut
+    why: Good blooms, small, but you can fall off, poor visibility, must kill the crab.
+    source:
+    - guide_white_def
+  - field: dandelion
+    why: Common grey blooms, 2 more duped slots than Spider, easier combo; large.
+    source:
+    - guide_white_def
+  - field: pineapple
+    why: Alternative boost field with Satisfying nectar.
+    source:
+    - seo_white
+    - w_pineapple
+  quests:
+  - giver: spirit_bear
+    chain: quests 20-30 (petals 2 and 3)
+    why: Windy Bee then (optionally) Petal Wand.
+    source:
+    - guide_early_def
+  - giver: brown_bear
+    chain: 750th+ milestones (Star Treat every 500 after 750; 1000th = 5 Star Treats)
+    why: Star Treats for gifting.
+    source:
+    - w_star_treat
+    - w_brown_bear
+  - giver: black_bear
+    chain: Star Jelly (20) -> Mythic Egg (20) -> repeatables
+    why: Mythic Egg for a Vector/Precise.
+    source:
+    - w_quests
+  bees:
+  - bee: vector
+    why: 'Core: 18-19, all gifted, BMS mutation.'
+    gifted_priority: 1
+    source:
+    - guide_white_def
+  - bee: precise
+    why: 'Core: 7-8 gifted; red, but the white engine (crit + Precise Marks).'
+    gifted_priority: 1
+    source:
+    - guide_white_def
+  - bee: gummy
+    why: Gummy Morph via BAR; gifted.
+    gifted_priority: 1
+    source:
+    - metabee_white
+    - forum_white_2024
+  - bee: tabby
+    why: Gifted +50% crit power.
+    gifted_priority: 1
+    source:
+    - forum_white_2024
+  - bee: bear
+    why: Gifted +10% pollen, Bear Morph.
+    gifted_priority: 1
+    source:
+    - forum_white_2024
+  - bee: photon
+    why: Haste, token link, Paper Angel holder; removable but not recommended.
+    gifted_priority: 2
+    source:
+    - guide_white_def
+  - bee: windy
+    why: +15% instant white conversion, White Boost.
+    gifted_priority: 2
+    source:
+    - forum_white_2024
+  - bee: digital
+    why: Smileys; needs drives.
+    gifted_priority: 2
+    source:
+    - guide_white_def
+  - bee: festive
+    why: Festive Marks with the Festive Wreath.
+    gifted_priority: 2
+    source:
+    - forum_white_2024
+  - bee: baby
+    why: 4-5 gifted, BAR mutation for constant Baby Love.
+    gifted_priority: 2
+    source:
+    - forum_white_2024
+    - metabee_white
+  - bee: gifted colourless rares/epics/legendaries
+    why: 'Basic, Brave, Hasty, Looker, Stubborn, Commander, Honey (x1.5 HFT), Shocked, Demo, Carpenter, Lion, Music:
+      one each, gifted, +5 BMS via RJ. Never Ninja.'
+    gifted_priority: 2
+    source:
+    - guide_white_def
+    - forum_white_2024
+  tips:
+  - 'White is a BOOST hive: the 2026 guide requires 2 alt accounts and 2-3 gumdroppers (Gummy Mask + 900-1,200 gumdrops
+    each), max Satisfying + Motivating nectar, 5x Wealth Clock, dice/glitter/smoothies. A solo passive bot will
+    not reach guide numbers.'
+  - Your first white boosts will be poor (~50T even when set up right) - the guide says stick with it.
+  - 'During Gummy Star: stay in marks, stretch Triangulates through as many marks as possible, throw the gummyball
+    at Precise Marks, collect honey tokens after it pops (fanon + white guide).'
+  - 'Roll mythic mutations only with a large honey bank (white guide: 20qd+ if rolling with RJ).'
+  - 'Video guides for the owner (found by title, NOT watched for this file): The Ultimate 2025 White Hive Guide,
+    The PERFECT Beesmas White Hive Guide 2025, BEST WHITE HIVE GUIDE in 2026. [yt_white_2025, yt_white_beesmas_2025,
+    yt_white_2026]'
+  - 'The meta moved: 2022 white comps ran 13-15 Vectors and 4 Precise; 2024-2026 run 18-21 Vectors and 7 Precise.
+    Prefer the newest source. [forum_white_2022, forum_white_2024, guide_white_def]'
+  - 'Alts in the white guide: Fuzzy alts (24 gifted Fuzzy Bees pollinate Spider/Coconut/Dandelion to tier 5), Guiding-Star
+    alts, Balloon (Buoyant) alts and 3-4 gumdroppers; another macro''s docs say the same (white boosting needs enough
+    gumdroppers on-field to keep goo up). [guide_white_def, w_fuzzy, macro_docs_progression]'
+mistakes:
+- 'Switching to white before SSA: every current source makes white an endgame transition (2026 guide: Gummyballer
+  + Coconut Belt + 5/5 dual-passive SSA + 2qd honey + alts). [guide_white_def, seo_white, forum_white_start_2024]'
+- Buying the Spark Staff (skip to the Porcelain Dipper). [hm_progression]
+- Buying the Bubble Wand / Scythe / Demon Mask / Fire Mask - coloured gear for a colourless plan. [w_demon_mask,
+  w_tools]
+- Coconut Clogs before the Coconut Canister. [forum_prog_2022]
+- Spending Star Jellies before the Petal Belt (needs 25), hatching Diamond/Star/gifted eggs on the hive early, donating
+  the first Spirit Petal to the Wind Shrine. [guide_early_def, forum_prog_2022]
+- Wasting boosting materials (glitter, smoothies, dice) in early boosts that make no meaningful honey. [guide_early_def]
+- Buying Puppy (or any event bee) without a Star Treat to gift it; buying Crimson/Cobalt BEES for a white hive.
+  [forum_prog_2022]
+- Running Ninja in a white hive (a colourless gifted type is almost always better). [guide_white_def]
+- Movement Collection on the Moon Amulet (destroys flowers). [guide_white_def, guide_early_def]
+- Fewer than ~12-14 Vectors, or ungifted Precise (useless ungifted). [seo_white, forum_white_2024]
+- 'Trusting third-party SEO guides'' recipes: bee-swarm-simulator.wiki lists the Gummy Mask without its 5B honey/100
+  Oil/vial and invents Canister/Gummyballer recipes. Read the official wiki or the shop screen. [seo_white, w_gummy_mask]'
+- 'Expecting AFK macro honey from white: the fanon page says white ''discourages usage of macros''; another macro says
+  fixed patterns are ''especially useless'' for red and white and ships no white token model (Blue/Red/Mixed only).
+  [fanon_white, macro_docs_ai_gather]'
+- Farming mob fields (Pineapple, Spider, Pumpkin, Coconut) before the hive can kill the guard - a death empties
+  the bag. [w_pineapple, w_coconut_crab]
+open_questions:
+- Is white worth it for Hivemind at all? The account is blue today (account.yaml), the alt is parked, and the 2026
+  white guide calls 2 alts + 2-3 gumdroppers mandatory. A solo bot may be better as 'colourless-leaning blue' until
+  SSA. Owner decision.
+- 'Pineapple Patch colour: wiki FieldTable says 90% white / 5% blue; Hivemind progression.yaml measured 46.8% white
+  / 42.5% blue over 420 frames ''of the Pineapple Patch''. One of them is wrong (maybe a different field was measured).'
+- Mountain Top Field wiki FieldTable reads white 0 / red 0.333 / blue 0.333 (sums to 2/3) - likely a wiki error;
+  read in game.
+- Template:NectarTypes lists Motivating as 'x1.1-x1.5 Blue Pollen' (same as Comforting); white guides treat Motivating
+  as a white nectar. Verify the buff in game.
+- 'Petal Belt recipe: wiki = 15B, 1 petal, 25 Star Jelly, 50 Glitter, 100 Glue; the earlygame guide says it forgot
+  to add Oils. Read the Petal Shop screen.'
+- 'Gummy Mask vs Diamond Mask first for a pre-SSA white-leaning account (2022 guide: Gummy first; 2026 earlygame
+  guide on the blue path: Diamond by 45).'
+- Basic Egg price curve (1,000 -> 10,000,000 cap) is not on the wiki.
+- The earlygame guide's buying-order and comp diagrams are images; this file reconstructs the order from its text
+  checkpoints ('assuming by this point you have ...').
+- 'Gummy Bee Egg Claim gate: 20-bee zone; whether the Goo Hotshot badge is also needed for the Lair entrance only
+  (wiki) or the claim too.'
+- Dark Scythe / Tide Popper / Sticker-Seeker full recipes, sprinkler (Golden Gushers, Diamond Drenchers, Supreme
+  Saturator) costs were not read.
+- 'Coconut Crab: can a non-fighting bot kill it (needs the whole kill in one visit, 2 h limit)? If not, Canister/Clogs/Coconut
+  Belt materials must come from planters in the 35-bee zone and the Coconut Dispenser.'
+- Bear Bee is Robux/trade/rare Tunnel Bear drop only - never buyable by the bot.
+- YouTube guides were found by title only and not watched; numbers in this file do not come from them.

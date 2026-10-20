@@ -1,0 +1,121 @@
+# WHERE THE CHARACTER IS, READ OFF THE GAME'S OWN PROMPT.
+#
+# The top-centre panel names the thing the character is standing at: "Make
+# Honey" on your own hive pad, "Fire the Red Cannon" at the cannon, "Open Shop"
+# at a counter. It appears when you are there and vanishes when you step off
+# (MEASURED: six reads over fifteen seconds on the pad, gone the moment the
+# character stepped away, back on return). That makes every prompt a LANDMARK:
+# an instant, certain position fix that needs no calibration and no model of
+# the world -- the game is simply saying where you are.
+#
+# Until 2026-09-21 these prompts were read for ONE purpose, claiming a hive, and
+# thrown away otherwise. Meanwhile the bot ran a route to the Pine Tree, pressed
+# E to board a cannon it was not standing at, waited eight seconds for a flight
+# that never happened, and farmed the hive pads for five minutes while the panel
+# said "Make Honey" the entire time. Nothing was listening.
+#
+# EVERY PROMPT HERE WAS READ OFF A LIVE FRAME. They come from
+# data/knowledge/learned.yaml, where the bot writes down prompts it has not seen
+# before. Do not add one from a wiki; add it when the bot has seen it. A prompt
+# whose place is not yet known stays in learned.yaml until somebody has stood
+# there and can say where it is.
+#
+# `router_node` is the name the route graph (data/world/paths.yaml) uses for the
+# same place, or null when the graph has no such node -- which is itself useful
+# to know: it means the bot can recognise the place and has no way to walk there.
+schema: 1
+checked: 2026-09-21
+
+# Text the same panel shows that is NOT a prompt about where you are.
+# "You've made 73,013,670 Honey" is an event, not a place.
+not_prompts:
+  - "you've made"
+  - "youve made"
+  - "you have made"
+
+landmarks:
+  hive:
+    kind: hive
+    router_node: hive
+    prompts:
+      - text: make honey
+        means: standing on the hive pad this account OWNS
+        mine: true
+      - text: claim hive
+        means: standing on a FREE hive pad in the hive area
+        mine: false
+      - text: claim this hive
+        means: same as claim hive; the wording varies
+        mine: false
+    evidence: >
+      MEASURED 2026-09-20. "Claim Hive" read live on a free pad, and pressing E
+      turned it into "Make Honey". "Make Honey" then read identically six times
+      in fifteen seconds, disappeared when the character stepped off, and came
+      back on return.
+
+  red_cannon:
+    kind: transport
+    router_node: red_cannon
+    prompts:
+      - text: fire the red cannon
+        means: standing at the red cannon; pressing E boards it
+    evidence: >
+      MEASURED 2026-09-20. The route step that works reads this on the panel
+      when in range; the flight takes about 8 seconds.
+
+  # A SHOP COUNTER, NOT "THE TICKET SHOP". This was `ticket_shop`, near the
+  # red cannon, but two different shops have shown the same prompt: MEASURED
+  # 2026-09-23 04:10 the panel read "Open Shop" inside the Blue HQ
+  # (var/places/honey_dispenser-041002.jpg -- the "All-Time Top Blue Pollen
+  # Collectors" board and a teleporter ring; DESIGN 8bh), and the log called
+  # it "at the ticket shop (98% sure, panel)" (var/night/run-293.log). By the
+  # wiki's map the counter by the red cannon is the Ticket TENT, which sells
+  # eggs for tickets; the Ticket SHOP, which sells tickets for honey, is
+  # outside the Mountain Top Shop (wiki Ticket_Tent, Ticket_Shop rev
+  # 2026-08-10). So the prompt says "at a shop counter" and no more.
+  # DESIGN 8dp.
+  shop_counter:
+    kind: shop
+    router_node: null
+    prompts:
+      - text: open shop
+        means: >
+          at a shop counter -- which one the panel does not say; seen at the
+          Ticket Tent beside the red cannon and inside the Blue HQ
+    evidence: >
+      MEASURED 2026-09-20 beside the red cannon (read live; the bot repeatedly
+      mistook this spot for its destination, and it does not sell tools) and
+      2026-09-23 04:10 inside the Blue HQ. MEASURED 2026-10-02 06:37 (attempt
+      578, run_farm look_at_the_shop): the Ticket Tent's counter is 8 steps of
+      w (0.15 s each over a 1.2-1.3x haste, ~34 studs) straight ahead of the
+      Red Cannon's pad with the camera at spawn heading; E there opens its
+      shop, whose own prompt reads "E Leave Shop" in a RED box over the tent's
+      red wall (vision/banner does not see it; act/shoplook.prompt_text does),
+      and whose window shows the item's name and price at the top of the panel
+      on the right and the button between two blue arrows ("Photon Bee Egg",
+      "500 Tickets", "Can't afford"; var/shoplook/20261002-063750-trapped.png).
+
+  honey_dispenser:
+    kind: dispenser
+    # The graph has walked here since Natro's paths were transpiled
+    # (natro_out_honey_dispenser, hive -> honey_dispenser); null said it could
+    # not be (audit 2026-09-26, senses F9).
+    router_node: honey_dispenser
+    prompts:
+      - text: use the honey dispenser
+        means: standing at the Honey Dispenser
+    evidence: >
+      MEASURED 2026-09-20, read off a live frame by the vision model. Where in
+      the world it is has not been recorded, so this fix says "at the honey
+      dispenser" and cannot yet say how to get there or home.
+
+  black_bear:
+    kind: npc
+    # natro_out_black_bear / natro_back_black_bear (audit 2026-09-26).
+    router_node: black_bear
+    prompts:
+      - text: talk to black bear
+        means: standing at Black Bear
+    evidence: >
+      MEASURED 2026-09-21, read off a live frame during the box search for the
+      hive. Location relative to the hive not recorded.
