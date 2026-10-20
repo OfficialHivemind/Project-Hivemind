@@ -1,0 +1,38 @@
+# THE RARE DROPS (ROADMAP TG4 / ITEM-REP): an item here whose count the
+# inventory reads say rose is told in the run log as "rare drop: +1 Star Jelly
+# (now 3)", which scripts/telegram_alerts sends (the master switch,
+# telegram.alerts) and the Discord webhook repeats. Only the item and its
+# count are sent: no names, servers or paths.
+#
+# A rise counts once a later read confirms it (brain/itemreport.settled), so
+# a drop is told about an hour after the read that first showed it.
+# Only a rise from a COUNTED number is told: the first one of an item none
+# are held of (no row on the page, so no count) is not, yet
+# (brain/itemreport.rare_drops says why). On 27 Oct 11 of these 14 had no
+# count, Star Jelly among them.
+#
+# `label` is the inventory menu's own spelling: the read looks for every one
+# of these (run_farm adds them to the read's extras), counted only where a
+# page names the item exactly ("Star Treat", never inside "Treat").
+#   MEASURED: seen on the test account's inventory pages (var/inventory.json)
+#   ASSUMED: the item's name and rarity from general game knowledge, not
+#            checked on a wiki page or seen on a page here yet
+# The list is the owner's (ROADMAP TG4: mythic, gifted, Star Treat, Diamond
+# Egg) plus the task's (Star Jelly, Neonberry, rare materials); neonberry is
+# slow on the test account's own reads (+3 in 36 reads over 5 days).
+items:
+  star_jelly:   {label: Star Jelly}           # ASSUMED
+  mythic_egg:   {label: Mythic Egg}           # ASSUMED
+  star_egg:     {label: Star Egg}             # ASSUMED
+  star_treat:   {label: Star Treat}           # ASSUMED (TG4 names it)
+  # ASSUMED: gifted versions of the eggs
+  gifted_silver_egg:  {label: Gifted Silver Egg}
+  gifted_gold_egg:    {label: Gifted Gold Egg}
+  gifted_diamond_egg: {label: Gifted Diamond Egg}
+  gifted_mythic_egg:  {label: Gifted Mythic Egg}
+  diamond_egg:  {label: Diamond Egg}          # MEASURED: 2 held, flat for 36 reads
+  neonberry:    {label: Neonberry}            # MEASURED: 122 -> 125 over 5 days
+  spirit_petal: {label: Spirit Petal}         # ASSUMED
+  swirled_wax:  {label: Swirled Wax}          # MEASURED: 1 held
+  turpentine:   {label: Turpentine}           # ASSUMED
+  super_smoothie: {label: Super Smoothie}     # ASSUMED

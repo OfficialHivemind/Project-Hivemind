@@ -1,0 +1,114 @@
+{
+"previousPageCursor": null,
+"nextPageCursor": "eyJzdGFydEluZGV4IjoxMDAsImRpc2NyaW1pbmF0b3IiOiJwbGFjZUlkOjE1Mzc2OTA5NjJzZXJ2ZXJUeXBlOlB1YmxpYyIsImNvdW50IjoxMDB9CjgyZjlkNDBmZGNiN2Q1Yjg1NTI4M2E2NDM4ODExMzE0OWI1MDFiYTVlYmM3ZmU2MmQxNjE1ZDI3ZmU1ZDVhNzk=",
+"data": [
+{
+"id": "28fa2549-052b-4c62-8f7a-3623bcc980d4",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.911915,
+"ping": 35
+},
+{
+"id": "4e3c8556-33ef-4fad-8b2b-57692e7e9a2e",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.903004,
+"ping": 32
+},
+{
+"id": "d092aae0-9566-4a01-8b18-49a94d1723e6",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.91494,
+"ping": 54
+},
+{
+"id": "a0fcb81b-da53-4379-8e18-eb702cc2c672",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.939701,
+"ping": 37
+},
+{
+"id": "84849300-4f28-4125-90ad-fff623863a2c",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.935093,
+"ping": 92
+},
+{
+"id": "a2619356-6f52-4dbe-831d-ef1601ba915d",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.921356,
+"ping": 30
+},
+{
+"id": "e45ef605-fbed-49b2-89c0-c406b5f0bbd8",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.828617,
+"ping": 99
+},
+{
+"id": "beea63b4-057c-4603-a9fb-17be878fda3d",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 53.318172,
+"ping": 40
+},
+{
+"id": "e4c2a0f4-b1e3-4208-b474-83ce50ffe793",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 58.2775,
+"ping": 161
+},
+{
+"id": "b87e110d-cc5f-41ed-a173-86f3f463c9f3",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.811661,
+"ping": 95
+},
+{
+"id": "b5feed6d-7bbf-43a2-90da-db829c42265a",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.947865,
+"ping": 119
+},
+{
+"id": "216ec13e-148e-4fc8-8cab-7528db0fa742",
+"maxPlayers": 6,
+"playing": 5,
+"playerTokens": [],
+"players": [],
+"fps": 59.977509,
+"ping": 92
+}
+]
+}

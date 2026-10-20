@@ -1,0 +1,244 @@
+# The shape of the world, in words the bot can act on.
+#
+# WHY WORDS AND NOT COORDINATES. The owner asked whether a downloaded map
+# would help. Partly. A map gives TOPOLOGY -- what exists and what is next to what -- and
+# that is genuinely useful. What it cannot give is LOCALISATION: this bot has
+# no way to know its own world coordinate, because it reads pixels and never
+# game memory. So "the hive is at (120, 40)" is unusable, while "the hive is
+# in the starter zone, walled in yellow honeycomb, and Pine Tree is past the
+# Honey Bee Gate" is exactly what a model needs to pick a direction.
+#
+# Every line is from the field's own wiki page, quoted where it matters.
+source: https://bee-swarm-simulator.fandom.com/wiki/Fields
+checked: 2026-09-20
+
+landmarks:
+  hive_area:
+    look_for: >
+      A row of six hive pads walled in bright yellow honeycomb. Free pads are
+      marked by a red beam. Standing on your own hive puts "Make Honey" on the
+      top-centre panel; standing on a free one puts "Claim Hive".
+    note: The spawn point is here. Everything starts and ends at this place.
+
+  red_cannon:
+    look_for: >
+      A cannon beside the ticket shop. Standing at it puts "Fire the Red
+      Cannon" on the top-centre panel. It launches the player toward the
+      northern fields.
+    reached_from: hive_area
+
+  shop:
+    look_for: A counter; the panel reads "Open Shop".
+    near: red_cannon
+    warning: >
+      The bot has repeatedly mistaken this for its destination and pressed the
+      interact key here. It is not a field and it is not the hive.
+
+# SAFE means no mob will attack a player who cannot fight. It is the single
+# most important property for this bot, because one death empties the whole
+# backpack -- more than any pollen-rate difference can win back.
+fields:
+  # SAFE means the wiki states nothing there attacks the player. UNKNOWN means
+  # its page simply does not mention a guard, which is NOT the same thing --
+  # absence of a sentence is not evidence of absence, and this bot does not
+  # get to treat it as one.
+  sunflower:
+    colour: white       # MEASURED: 70% white, 15% red, 15% blue
+    zone: starter
+    bees_required: 0
+    flowers: 660
+    mobs: []
+    safe: true
+    quote: "There are no mobs that protect this field."
+
+  dandelion:
+    zone: starter
+    bees_required: 0
+    flowers: 648
+    mobs: []
+    safe: true
+    quote: "There are no mobs that protect this field."
+    # THE OWNER, 2026-09-22, having watched the bot farm it all day: Dandelion
+    # and Blue Flower are the lowest-paying fields for honey, as they give the
+    # least pollen. A flower count alone does
+    # not say this -- 648 is mid-table -- so it is recorded as a fact about
+    # yield, and the planner's guess for an unmeasured field honours it.
+    yield: lowest
+
+  pepper:
+    zone: past the Windy Bee Gate, right of Extreme Memory Match
+    bees_required: 35
+    flowers: 567
+    mobs: []
+    safe: true
+    quote: "There are no mobs that protect this field."
+    note: Needs 35 bees; out of reach for now.
+
+  stump:
+    colour: blue        # blue-leaning: a blue bee gets +50% here
+    zone: past the Brave Bee Gate, next to the Pineapple Patch
+    bees_required: 10
+    flowers: 563
+    mobs: []
+    safe: null
+    quote: ""
+    note: >
+      Its page names no guard, but it does not say there is none either. Two
+      other pages say "There are no mobs that protect this field" explicitly,
+      so the silence here is unverified rather than reassuring. Worth checking
+      in game before trusting it.
+
+  mushroom:
+    zone: starter
+    bees_required: 0
+    flowers: 736
+    mobs: [ladybug]
+    safe: false
+    quote: "The field is protected by a level 1 ladybug."
+
+  blue_flower:
+    colour: blue        # blue-leaning: a blue bee gets +50% here
+    zone: starter
+    bees_required: 0
+    flowers: 731
+    mobs: [rhino_beetle]
+    safe: false
+    quote: "It is protected by a level 1 rhino beetle."
+    # See dandelion: named by the owner as one of the two lowest-yield fields
+    # for honey, despite the highest flower count in the starter zone.
+    yield: lowest
+
+  clover:
+    zone: starter
+    bees_required: 0
+    flowers: 754
+    mobs: [ladybug, rhino_beetle]
+    safe: false
+    quote: "It is protected by a Ladybug and a Rhino Beetle."
+
+  strawberry:
+    zone: past the Basic Bee Gate, left of the Spider Field
+    bees_required: 5
+    flowers: 572
+    mobs: [ladybug, ladybug]
+    safe: false
+    quote: "This field is protected by 2 ladybugs; one of which is level 2 and the other level 3."
+
+  bamboo:
+    colour: blue        # blue-leaning: a blue bee gets +50% here
+    zone: past the Basic Bee Gate, right of the Spider Field
+    bees_required: 5
+    flowers: 702
+    mobs: [rhino_beetle, rhino_beetle]
+    safe: false
+    quote: "It is protected by two Rhino Beetles, one being level 2 and the other level 3."
+
+  spider:
+    zone: past the Basic Bee Gate, between Strawberry and Bamboo
+    bees_required: 5
+    flowers: 728
+    mobs: [spider]
+    safe: false
+    quote: "The field is protected by the spider."
+
+  pineapple:
+    colour: blue        # blue-leaning: a blue bee gets +50% here
+    zone: past the Brave Bee Gate, right of the Pro Shop
+    bees_required: 10
+    flowers: 759
+    mobs: [mantis, rhino_beetle]
+    safe: false
+    quote: "It is protected by a level 4 mantis and a level 5 rhino beetle."
+
+  cactus:
+    colour: blue        # in the wiki's Blue category
+    zone: past the Honey Bee Gate, beside the Pumpkin Patch
+    bees_required: 15
+    flowers: 594
+    mobs: [werewolf]
+    safe: false
+    quote: "It is protected by the Werewolf."
+
+  pumpkin:
+    zone: past the Honey Bee Gate, beside the Cactus Field
+    bees_required: 15
+    flowers: 561
+    mobs: [werewolf]
+    safe: false
+    quote: "It is protected by the werewolf."
+
+  rose:
+    zone: past the Honey Bee Gate, near the Red HQ
+    bees_required: 15
+    flowers: 620
+    mobs: [scorpion, scorpion]
+    safe: false
+    quote: "It is protected by two scorpions, one level 5, and the other level 6."
+
+  pine_tree:
+    colour: blue        # blue-leaning: a blue bee gets +50% here
+    zone: past the Honey Bee Gate, near the Badge Bearer's Guild
+    bees_required: 15
+    flowers: 713
+    mobs: [mantis, mantis, werewolf]
+    safe: false
+    quote: "It is protected by two mantises and the Werewolf."
+    note: >
+      Where the bot farms today, reached by the red cannon, and the most
+      dangerous field it can reach. The owner kept dying to the mantis while
+      walking a small pattern; each death loses all the pollen and sends the
+      character back to the hive.
+
+  mountain_top:
+    zone: past the Lion Bee Gate
+    bees_required: 25
+    flowers: 672
+    mobs: [mondo_chick]
+    safe: false
+    quote: "The Mondo Chick protects this field and respawns roughly every hour."
+
+  coconut:
+    colour: blue        # blue-leaning: a blue bee gets +50% here
+    zone: past the Windy Bee Gate, next to Spirit Bear
+    bees_required: 35
+    flowers: 630
+    mobs: [coconut_crab]
+    safe: false
+    quote: "It is home to and protected by the Coconut Crab."
+
+# ---------------------------------------------------------------------------
+# The shape of the map, from two community map images of unknown licence
+# (data/knowledge/maps/; kept locally as reference only and not part of the
+# public release -- nothing in the code reads them).
+#
+# WHAT THEY ARE GOOD FOR, AND WHAT THEY ARE NOT. They give TOPOLOGY -- which
+# regions border which, roughly which way a field lies from the hive. They do
+# NOT give localisation: this bot reads pixels and never game memory, so it
+# cannot know its own coordinate, and a map coordinate it cannot locate itself
+# on is not actionable. What IS actionable is a bearing a model can act on
+# from one frame: "the fields are away from the hive wall", "Pepper is far".
+#
+# VERIFIED IN THE TOP-DOWN RENDER: the hive row is six pads in a line with a
+# honeycomb wall behind them, which matches act/hive.SLOT_COUNT = 6 and the
+# yellow the bot already steers by. It sits lower-centre of the map, so every
+# field lies away from it in the same general direction.
+map:
+  source: community map images (unknown licence, not redistributed), 2026-09-20
+  files: [maps/regions_labelled.png, maps/topdown.webp]
+  hive_row:
+    seen_as: six pads in a line, honeycomb wall behind, lower-centre of the map
+    confirms: act/hive.SLOT_COUNT == 6
+  regions:
+    # Approximate and relative, read off the labelled map. Good enough to
+    # choose a direction, not good enough to navigate by alone.
+    near_the_hive: [sunflower, dandelion, mushroom, blue_flower, clover]
+    past_basic_bee_gate: [strawberry, spider, bamboo]
+    past_brave_bee_gate: [pineapple, stump]
+    past_honey_bee_gate: [pine_tree, cactus, pumpkin, rose]
+    past_lion_bee_gate: [mountain_top]
+    past_windy_bee_gate: [pepper, coconut]
+  note: >
+    The gates are the real structure here. A field "past the Honey Bee Gate"
+    is a long way from the hive and the trip is where cycles break; the five
+    starter fields need no gate at all and are the shortest round trip on the
+    map.

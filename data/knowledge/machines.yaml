@@ -1,0 +1,122 @@
+# Dispensers, boosters and the other machines: free resources on a timer.
+#
+# WHY THESE MATTER MORE THAN THEIR SIZE SUGGESTS. They are the only income in
+# the game that costs nothing but a walk, and the bot ALREADY HAS RECORDED
+# ROUTES TO SEVERAL OF THEM -- blueberry, strawberry and royal jelly
+# dispensers, the wealth clock, and three field boosters. Everything else in
+# progression needs navigation this project does not have yet; this does not.
+#
+source: https://bee-swarm-simulator.fandom.com/wiki/Dispenser
+checked: 2026-09-20
+
+how_to_use: Stand on the pad in front of the machine. No menu, no typing.
+
+# ---------------------------------------------------------------- CAUTION ---
+# TWO FINDINGS THAT CHANGE WHAT THE EXISTING ROUTES ARE WORTH.
+club_membership:
+  what_it_actually_is: >
+    A FREE ROBLOX GROUP, not a paid subscription. "Bee Swarm Simulator Club"
+    is a group owned by Onett with over 18 million members. Joining it costs
+    nothing and grants access to the Honey, Treat, Strawberry and Blueberry
+    dispensers, fulfils a prerequisite for the Sticker Printer, and is needed
+    to redeem certain codes.
+  i_got_this_wrong: >
+    This file first recorded Club as a paid membership and concluded that two
+    of the bot's recorded routes were dead and that Science Bear's questline
+    was walled off. That was a GUESS, never checked, and wrong; the owner
+    pointed out that Club is just the Roblox group.
+  gated_dispensers: [blueberry, honey, strawberry, treat]
+  this_account: assumed IN the group (it is free to join; the bot cannot read membership). All four are available.
+  source: https://bee-swarm-simulator.fandom.com/wiki/Bee_Swarm_Simulator_Club
+
+haste_breaks_timed_walking:
+  what: Most dispensers grant HASTE when used.
+  which_do_not: [glue, ant_pass, free_ant_pass, robo_pass, free_robo_pass, coconut]
+  why_it_matters: >
+    Every recorded route in this project is a blind timed hold, converted from
+    studs at an assumed walkspeed. Haste makes the character cover more ground
+    in the same time, so a route walked under haste OVERSHOOTS. The owner saw
+    exactly this and guessed the cause: the walk drifted far to the right
+    after haste tokens were picked up. Reading Natro (docs/DESIGN.md 8c) showed the professional answer is
+    to detect the buff and rescale the walk.
+  status_2026_09_22: >
+    Built: vision/buffs reads the Haste stacks off the bar (659 of 662 counts
+    on the recorded corpus) and act/routes divides every timed hold by
+    Natro's (1 + 0.1 x stacks). Not yet verified on a live walk, so the rule
+    below still stands until a haste-buffed route is watched arriving.
+  rule_for_now: >
+    Until walkspeed is measured from buffs, do NOT use a haste dispenser
+    immediately before walking a recorded route.
+
+# ------------------------------------------------------------- the machines --
+dispensers:
+  total_types: 12
+  royal_jelly:
+    # CORRECTED 2026-09-25 (DESIGN 8dq). The one next to the Clover Field is
+    # the TICKET dispenser: "Spend 6 Tickets to Use the Royal Jelly
+    # Dispenser" (var/vlm_cache/69/69a74e3b...d281.txt), 3 s cooldown (wiki
+    # Royal_Jelly_Dispenser). The free 22-hour one is in the Star Hall on the
+    # Noob Shop roof, one jelly per gifted bee, reached only by glider (wiki
+    # Free_Royal_Jelly_Dispenser; Natro's cannon-only gtc-royaljellydis).
+    where: next to the Clover Field and the Noob Shop
+    costs: 6 tickets a press -- never pressed unattended
+    cooldown_seconds: 3
+    gives: royal jelly
+    free_variant:
+      where: the Star Hall, on the Noob Shop roof (needs a glider)
+      cooldown_hours: 22
+  blueberry:
+    where: inside the Blue HQ
+    club_only: true
+    gives: [blueberry, treats]
+    cooldown_hours: 4         # wiki Blueberry_Dispenser; read back "(3:59:59)" twice
+  strawberry:
+    where: outside the Red HQ
+    club_only: true
+    gives: [strawberry, treats]
+    cooldown_hours: 4         # wiki Strawberry_Dispenser
+  treat:
+    where: in front of the Pro Shop
+    club_only: true
+    gives: treats
+    cooldown_hours: 1         # wiki Treat_Dispenser; Natro nm_TreatDis >3600; read back "(59:59)" twice
+  honey:
+    where: in front of the Lava Obby, near the Ant Gate (wiki Honey_Dispenser)
+    club_only: true
+    cooldown_hours: 1         # wiki Honey_Dispenser; Natro nm_HoneyDis >3600
+  glue:
+    where: Gummy Bear's Lair
+    cooldown_hours: 22
+    requires: a badge to access the Lair (Goo Hotshot or above)
+    grants_haste: false
+    note: Gives more when the matching badge is upgraded.
+  ant_pass:
+    where: the 20 Bee Zone
+    grants_haste: false
+  robo_pass:
+    where: the 30 Bee Zone
+    requires_bees: 30
+    grants_haste: false
+  coconut:
+    requires: defeating the Coconut Crab to gain access
+    grants_haste: false
+    note: The only dispenser that gives a field boost.
+
+# Dispensers that a quest actually requires, which turns a nice-to-have walk
+# into a prerequisite.
+required_by_quests:
+  honey: "Honey Bee's Honey Wreath?"
+  royal_jelly: "BBM's Naughty List (Bubble Bee Man)"
+  strawberry: "The Power of Information (Science Bear)"
+  blueberry: "The Power of Information (Science Bear)"
+  glue: "The Power of Information (Science Bear)"
+  note: >
+    Science Bear's line is one of the two MANDATORY questlines (quests.yaml),
+    and it needs three dispensers -- two of which are Club-only. Worth knowing
+    before planning a route to them.
+
+not_yet_known:
+  # The cooldowns, the field boosters and the Wealth Clock are known now and
+  # cited in data/knowledge/errands.yaml (DESIGN 8dq): 45-minute boosters that
+  # boost one random field of their set for 15 minutes; the clock hourly.
+  sprinklers: cost, coverage and whether they are worth running

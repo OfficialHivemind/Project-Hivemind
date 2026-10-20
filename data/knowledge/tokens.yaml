@@ -1,0 +1,363 @@
+# WHAT KIND OF TOKEN IS THAT, and which ones are worth walking to first.
+#
+# `vision/tokens.py` finds token-shaped objects -- a cube with a white glyph and
+# a black outline -- and measures the colour of the cube face the glyph sits on,
+# plus how much of the ring around the glyph is dark. This table turns those two
+# numbers into a NAME, and the name into a chase priority.
+#
+# WHERE THE COLOURS CAME FROM. The owner asked for exactly this: take every
+# token image from the wiki so the AI has the exact images. Every
+# `face_hsv` below was measured from the game's OWN icon on the Ability Tokens
+# page of the wiki -- see data/knowledge/tokens/icon_colours.json for the method
+# and the source URL, and data/knowledge/tokens/wiki/ for the files.
+#
+# AN ICON IS NOT A SCREENSHOT, and this is the honest limit of the whole table.
+# The wiki icon is flat art; the game draws a lit 3D cube, at an angle, through
+# JPEG. So every entry is `confirmed_in_game: false` until a live frame with that
+# token in it agrees with the number. Nothing here has been confirmed yet.
+#
+# FIVE PAIRS SHARE A COLOUR, so colour alone cannot name them:
+#     [16, 208, 255]   Tabby Love / Scratch / Rage  (three, not two)
+#     [60, 255, 255]   Focus / Festive Blessing / Beesmas Cheer
+#     [0, 255, 255]    Festive Gift / Mind Hack
+#     [4, 224, 208]    Inferno / Flame Fuel
+#     [108, 48, 192]   Rain Cloud / Tornado
+# `dark` is the tiebreak: the share of the icon that is dark strokes. The orange
+# trio is Rage 0.00, Tabby Love 0.14 and Scratch 0.64, so a sighting with no dark
+# strokes at all reads as Rage rather than as Tabby Love -- which is the right
+# way round, because claiming the owner's priority token on no evidence would be
+# the worse mistake.
+#
+# A KNOWN RISK, MEASURED. In the Pineapple Patch the scenery is the same orange
+# as Tabby Love: 14 token-sized blobs per frame at H 10-26, and the big pineapple
+# decorations sit at H 20-22. Those blobs must still pass the token detector's
+# glyph-and-dark-outline test to become sightings at all, so this is a risk to
+# PRECISION of naming, not to whether a token is really there. And the cost of
+# naming one wrong is a short walk to a token that was worth collecting anyway.
+#
+# `priority`: lower is chased first. Only two entries have a considered priority;
+# the rest share the default, because ranking all thirty-nine by value would be
+# invented rather than measured. Unlisted kinds are `unknown` and rank last.
+schema: 2
+checked: 2026-09-21
+source: data/knowledge/tokens/icon_colours.json
+
+# How close a sighting's face colour must be to an entry's, in OpenCV HSV units
+# (hue 0-179, saturation and value 0-255). Wide on value because in-game
+# lighting and JPEG move it a long way; tight on hue because that is what
+# actually separates one token from another.
+default_tolerance: {h: 8, s: 70, v: 90}
+
+# How far apart two `dark` shares must be before that number is used to choose
+# between kinds that share a colour.
+dark_tolerance: 0.25
+
+# HOW LONG A TOKEN LIES ON THE FIELD, for a kind not named (most of them on
+# this hive: 11 Diamonds make ~0.8 Blue Boosts a second, plus Focus and Haste,
+# all 4 s -- wiki Module:Ability_Tokens/data, read 2026-10-11). brain/tokenbrain
+# asks whether a chase arrives before it is gone (LIFETIME_GATE_LIVE).
+unknown_life_s: 4
+
+kinds:
+  baby_love:
+    life_s: 8  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 4}
+    priority: 10
+    face_hsv: [96, 112, 240]        # from the official icon
+    dark: 0.05
+    confirmed_in_game: false
+    icon: Baby_Love_Token.png
+  beamstorm:
+    priority: 10
+    face_hsv: [36, 240, 208]        # from the official icon
+    dark: 0.588
+    confirmed_in_game: false
+    icon: Beamstorm_Token.png
+  beesmas_cheer:
+    priority: 10
+    face_hsv: [60, 255, 255]        # from the official icon
+    dark: 0.079
+    confirmed_in_game: false
+    icon: Beesmas_Cheer_Token.png
+  bomb_sync:
+    life_s: 24  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 9}
+    priority: 10
+    face_hsv: [112, 255, 255]        # from the official icon
+    dark: 0.484
+    confirmed_in_game: false
+    icon: Bomb_Sync_Token.png
+  festive_blessing:
+    priority: 10
+    face_hsv: [60, 255, 255]        # from the official icon
+    dark: 0.079
+    confirmed_in_game: false
+    icon: Festive_Blessing_Token.png
+  festive_gift:
+    priority: 10
+    face_hsv: [0, 255, 255]        # from the official icon
+    dark: 0.082
+    confirmed_in_game: false
+    icon: Festive_Gift_Token.png
+  festive_mark:
+    priority: 10
+    face_hsv: [0, 208, 176]        # from the official icon
+    dark: 0.082
+    confirmed_in_game: false
+    icon: Festive_Mark_Token.png
+  fetch:
+    priority: 10
+    face_hsv: [36, 192, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Fetch_Token.png
+  flame_fuel:
+    priority: 10
+    face_hsv: [4, 224, 208]        # from the official icon
+    dark: 0.332
+    confirmed_in_game: false
+    icon: Flame_Fuel_Token.png
+  focus:
+    life_s: 4  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 5}
+    priority: 10
+    face_hsv: [60, 255, 255]        # from the official icon
+    dark: 0.404
+    confirmed_in_game: false
+    icon: Focus_Token.png
+  fuzz_bombs:
+    priority: 10
+    face_hsv: [12, 112, 128]        # from the official icon
+    dark: 0.02
+    confirmed_in_game: false
+    icon: Fuzz_Bombs_Token.png
+  glitch:
+    priority: 10
+    face_hsv: [152, 240, 240]        # from the official icon
+    dark: 0.691
+    confirmed_in_game: false
+    icon: Glitch_Token.png
+  glob:
+    priority: 10
+    face_hsv: [152, 144, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Glob_Token.png
+  gumdrop_barrage:
+    priority: 10
+    face_hsv: [72, 224, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Gumdrop_Barrage_Token.png
+  haste:
+    life_s: 4  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 9}
+    priority: 10
+    face_hsv: [104, 16, 128]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Haste_Token.png
+  honey:
+    life_s: 10  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 120}
+    # a few hundred honey, the least of the tokens: ranked below the unnamed
+    # ones (priority past 100 = brain/tokenbrain BELOW_UNKNOWN_WEIGHT), the
+    # owner 2026-10-07: a honey token is only honey
+    priority: 101
+    # PER-HIVE WEIGHT (brain/tokenbrain WEIGHTS_LIVE, look-only): ASSUMED 0
+    # for a blue hive until the honey arm (brain/arms HONEY_WEIGHT, 0 / 18 /
+    # 36) measures it on the bot's own trips. Why 0: research 2026-10-11
+    # (docs/pending/brain-research-2.md §1) prices it "about 0, unless the
+    # Honey Bee quest is running"; another open bot's default list leaves
+    # honey tokens out; MEASURED 2026-10-26 (runs 1129-1248): 1,791 of 3,430
+    # chases (52%) went to honey tokens, and the school saw 162 of them
+    # collected (the trickle hides the rest), against 535 of 1,639 unnamed
+    # coins (Haste, boosts). Red and white: no row, the ordering's 36 stands.
+    weight_by_hive: {blue: 0}
+    face_hsv: [28, 240, 240]        # from the official icon
+    dark: 0.034
+    confirmed_in_game: false
+    icon: Honey_Token.png
+  impale:
+    priority: 10
+    face_hsv: [88, 64, 255]        # from the official icon
+    dark: 0.719
+    confirmed_in_game: false
+    icon: Impale_Token.png
+  inferno:
+    priority: 10
+    face_hsv: [4, 224, 208]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Inferno_Token.png
+  inflate_balloon:
+    # BALLOON PREEMPT (brain/tokenbrain WEIGHTS_LIVE, look-only): an eligible
+    # one this near beats any other pick, the committed one too. 220 px is
+    # act/chase CLOSE_ENOUGH_PX, and MEASURED (tokenbrain REACH_BY_SPEED)
+    # our chase reaches ~98% of tokens at 215 px at any speed. ASSUMED worth
+    # it: the blue guide's hive (the AG blue hive guide)
+    # runs on Buoyants' balloons, which this token inflates. Unmeasured: no
+    # live sighting has been named a balloon token yet (runs 1129-1248 named
+    # only honey and unknown), so this waits on a typed detector.
+    preempt_px: 220
+    priority: 10
+    face_hsv: [32, 192, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Inflate_Balloon_Token.png
+  inspire:
+    life_s: 8  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority: 10
+    face_hsv: [32, 240, 240]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Inspire_Token.png
+  map_corruption:
+    priority: 10
+    face_hsv: [120, 255, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Map_Corruption_Token.png
+  mark_surge:
+    priority: 10
+    face_hsv: [0, 0, 160]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Mark_Surge_Token.png
+  mind_hack:
+    priority: 10
+    face_hsv: [0, 255, 255]        # from the official icon
+    dark: 0.712
+    confirmed_in_game: false
+    icon: Mind_Hack_Token.png
+  pollen_haze:
+    priority: 10
+    face_hsv: [52, 96, 192]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Pollen_Haze_Token.png
+  puppy_love:
+    life_s: 8  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority: 10
+    face_hsv: [24, 112, 255]        # from the official icon
+    dark: 0.054
+    confirmed_in_game: false
+    icon: Puppy_Love_Token.png
+  rage:
+    priority: 10
+    face_hsv: [16, 240, 240]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Rage_Token.png
+  rain_cloud:
+    priority: 10
+    face_hsv: [108, 48, 192]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Rain_Cloud_Token.png
+  blue_boost:
+    life_s: 4  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 7}
+    priority: 10
+    face_hsv: [106, 171, 240]        # from the official icon (RedBlueBoost.png, right half)
+    dark: 0.0
+    confirmed_in_game: false
+    icon: RedBlueBoost.png
+    why: >
+      P1 (brain-research-2): one of three token kinds missing from this table.
+      Measured 2026-10-11 by the icon method above, in a browser canvas from
+      the wiki's RedBlueBoost.png (its left half, the Red Boost, measured
+      [0, 169, 237] against the table's [179, 176, 240] -- the same colour,
+      H wraps at 180). Melody's icon is a grey gradient (its modal colour
+      covers 6 px) and Bear Morph's is a sheet of bear sprites, so neither
+      has a face colour that is not a guess; both stay unknown.
+  red_boost:
+    priority: 10
+    life_s: 4  # ASSUMED Blue Boost's twin (wiki Module:Ability_Tokens/data: Blue Boost 4 s); MEASURED consistent 2026-10-27, tools/analysis/token_lifespans.py: in view at most 3.5 s, KM p90 3.4 s (n 81 seen landing)
+    face_hsv: [179, 176, 240]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Red_Boost_Token.png
+  scratch:
+    priority: 2
+    face_hsv: [16, 208, 255]        # from the official icon
+    dark: 0.636
+    confirmed_in_game: false
+    icon: Scratch_Token.png
+    why: >
+      Tabby Bee's other token, and the SAME ORANGE as Tabby Love on the
+      icons -- they differ only in how much of the face is dark strokes
+      (0.14 against 0.64). Second priority because collecting it is still
+      Tabby value, and because a mistake between the two costs nothing: both
+      are worth walking to.
+  smile:
+    priority: 10
+    face_hsv: [0, 0, 80]        # from the official icon
+    dark: 0.225
+    confirmed_in_game: false
+    icon: Smile_Token.png
+  snowglobe_shake:
+    priority: 10
+    face_hsv: [96, 32, 144]        # from the official icon
+    dark: 0.117
+    confirmed_in_game: false
+    icon: Snowglobe_Shake_Token.png
+  summon_frog:
+    priority: 10
+    face_hsv: [80, 160, 192]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Summon_Frog_Token.png
+  surprise_party:
+    preempt_px: 220   # the party balloons' token; as inflate_balloon, ASSUMED
+    priority: 10
+    face_hsv: [28, 255, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Surprise_Party_Token.png
+  tabby_love:
+    priority: 1
+    face_hsv: [16, 208, 255]        # from the official icon
+    dark: 0.138
+    confirmed_in_game: false
+    icon: Tabby_Love_Token.png
+    why: >
+      THE OWNER'S ASK, 2026-09-21: each Tabby Love token raises a buff for
+      good, so the AI should look out for it and collect it; missing them
+      costs a lot. The wiki
+      agrees: +1% Gather Amount, Convert Amount and Scratch pollen per
+      token, PERMANENTLY, stacking to 1,000. At the cap Tabby goes from 10
+      pollen/4s to 110. Nothing else in the game compounds like this, so it
+      is chased ahead of anything closer.
+  target_pratice:
+    priority: 10
+    face_hsv: [140, 144, 192]        # from the official icon
+    dark: 0.088
+    confirmed_in_game: false
+    icon: Target_Pratice_Token.png
+  token_link:
+    life_s: 4  # wiki Module:Ability_Tokens/data, read 2026-10-11 (docs/pending/brain-research-2.md §1)
+    priority_by_hive: {blue: 3}
+    priority: 10
+    face_hsv: [0, 0, 96]        # from the official icon
+    dark: 0.103
+    confirmed_in_game: false
+    icon: Token_Link_Token.png
+  tornado:
+    priority: 10
+    face_hsv: [108, 48, 192]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Tornado_Token.png
+  triangulate:
+    priority: 10
+    face_hsv: [112, 16, 208]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: Triangulate_Token.png
+  white_boost:
+    priority: 10
+    face_hsv: [60, 112, 255]        # from the official icon
+    dark: 0.0
+    confirmed_in_game: false
+    icon: White_Boost_Token.png

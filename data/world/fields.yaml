@@ -1,0 +1,51 @@
+# Bee Swarm Simulator fields.
+#
+# VERIFICATION STATUS — read this before trusting any number here.
+#
+# `name`, `colour` and `zone` are display metadata: they group the Fields panel
+# and pick a tint. Getting one wrong costs a misplaced card and nothing else.
+#
+# `bees_required` is UNVERIFIED. It is written from general knowledge of the
+# game, not measured, and the house rule for this project is that unverified
+# numbers must not drive decisions. So nothing reads this field for planning:
+# the agent learns which fields it can actually reach by observing the map, and
+# these values only sort the panel. Each one gets confirmed in-game and marked
+# `verified: true` as it is checked.
+#
+# Field TOKEN colours are what the vision layer bands on, and those ARE measured
+# per field during calibration -- see data/calib/hsv.yaml, not this file.
+
+schema: 1
+
+zones:
+  - id: base
+    name: Around the Hive
+    note: reachable from the first minute
+  - id: lower
+    name: Lower Slope
+  - id: mid
+    name: Middle Slope
+  - id: upper
+    name: Upper Slope
+  - id: summit
+    name: Summit
+    note: the end-game fields
+
+fields:
+  - {name: Sunflower,      zone: base,   colour: "#fbbf24", bees_required: 0,  verified: false}
+  - {name: Dandelion,      zone: base,   colour: "#facc15", bees_required: 0,  verified: false}
+  - {name: Mushroom,       zone: base,   colour: "#f87171", bees_required: 0,  verified: false}
+  - {name: Blue Flower,    zone: lower,  colour: "#60a5fa", bees_required: 0,  verified: false}
+  - {name: Clover,         zone: lower,  colour: "#4ade80", bees_required: 0,  verified: false}
+  - {name: Spider,         zone: lower,  colour: "#a78bfa", bees_required: 0,  verified: false}
+  - {name: Bamboo,         zone: lower,  colour: "#86efac", bees_required: 10, verified: false}
+  - {name: Strawberry,     zone: mid,    colour: "#fb7185", bees_required: 10, verified: false}
+  - {name: Pineapple,      zone: mid,    colour: "#fde047", bees_required: 15, verified: false}
+  - {name: Stump,          zone: mid,    colour: "#a16207", bees_required: 15, verified: false}
+  - {name: Cactus,         zone: upper,  colour: "#34d399", bees_required: 20, verified: false}
+  - {name: Pumpkin,        zone: upper,  colour: "#fb923c", bees_required: 20, verified: false}
+  - {name: Pine Tree,      zone: upper,  colour: "#22c55e", bees_required: 25, verified: false}
+  - {name: Rose,           zone: upper,  colour: "#f472b6", bees_required: 25, verified: false}
+  - {name: Mountain Top,   zone: summit, colour: "#e5e7eb", bees_required: 30, verified: false}
+  - {name: Coconut,        zone: summit, colour: "#d6d3d1", bees_required: 35, verified: false}
+  - {name: Pepper,         zone: summit, colour: "#ef4444", bees_required: 35, verified: false}

@@ -1,0 +1,397 @@
+{
+ "measured": "2026-09-21",
+ "how": "Each official wiki icon fetched in a browser, downscaled to 48x48, transparent pixels and the dark outline and near-white highlights excluded, modal remaining colour taken as the face. H is OpenCV's 0-179 scale. These are ICON colours, not in-game colours: the game renders a lit 3D cube, so treat every one as a hypothesis until a live frame agrees.",
+ "source": "https://bee-swarm-simulator.fandom.com/wiki/Ability_Tokens",
+ "icons": {
+  "Tabby_Love_Token.png": {
+   "face_hsv": [
+    16,
+    208,
+    255
+   ],
+   "face_share": 0.626,
+   "dark": 0.138,
+   "white": 0.0
+  },
+  "Scratch_Token.png": {
+   "face_hsv": [
+    16,
+    208,
+    255
+   ],
+   "face_share": 0.243,
+   "dark": 0.636,
+   "white": 0.0
+  },
+  "Honey_Token.png": {
+   "face_hsv": [
+    28,
+    240,
+    240
+   ],
+   "face_share": 0.44,
+   "dark": 0.034,
+   "white": 0.0
+  },
+  "Focus_Token.png": {
+   "face_hsv": [
+    60,
+    255,
+    255
+   ],
+   "face_share": 0.503,
+   "dark": 0.404,
+   "white": 0.0
+  },
+  "Haste_Token.png": {
+   "face_hsv": [
+    104,
+    16,
+    128
+   ],
+   "face_share": 0.03,
+   "dark": 0.0,
+   "white": 0.673
+  },
+  "Token_Link_Token.png": {
+   "face_hsv": [
+    0,
+    0,
+    96
+   ],
+   "face_share": 0.018,
+   "dark": 0.103,
+   "white": 0.837
+  },
+  "Rage_Token.png": {
+   "face_hsv": [
+    16,
+    240,
+    240
+   ],
+   "face_share": 0.296,
+   "dark": 0.0,
+   "white": 0.121
+  },
+  "Baby_Love_Token.png": {
+   "face_hsv": [
+    96,
+    112,
+    240
+   ],
+   "face_share": 0.356,
+   "dark": 0.05,
+   "white": 0.056
+  },
+  "Puppy_Love_Token.png": {
+   "face_hsv": [
+    24,
+    112,
+    255
+   ],
+   "face_share": 0.537,
+   "dark": 0.054,
+   "white": 0.0
+  },
+  "Smile_Token.png": {
+   "face_hsv": [
+    0,
+    0,
+    80
+   ],
+   "face_share": 0.023,
+   "dark": 0.225,
+   "white": 0.671
+  },
+  "Inspire_Token.png": {
+   "face_hsv": [
+    32,
+    240,
+    240
+   ],
+   "face_share": 0.555,
+   "dark": 0.0,
+   "white": 0.0
+  },
+  "Inflate_Balloon_Token.png": {
+   "face_hsv": [
+    32,
+    192,
+    255
+   ],
+   "face_share": 0.625,
+   "dark": 0.0,
+   "white": 0.0
+  },
+  "Surprise_Party_Token.png": {
+   "face_hsv": [
+    28,
+    255,
+    255
+   ],
+   "face_share": 0.608,
+   "dark": 0.0,
+   "white": 0.0
+  },
+  "Fuzz_Bombs_Token.png": {
+   "face_hsv": [
+    12,
+    112,
+    128
+   ],
+   "face_share": 0.383,
+   "dark": 0.02,
+   "white": 0.032
+  },
+  "Pollen_Haze_Token.png": {
+   "face_hsv": [
+    52,
+    96,
+    192
+   ],
+   "face_share": 0.372,
+   "dark": 0.0,
+   "white": 0.101
+  },
+  "Target_Pratice_Token.png": {
+   "face_hsv": [
+    140,
+    144,
+    192
+   ],
+   "face_share": 0.144,
+   "dark": 0.088,
+   "white": 0.0
+  },
+  "Inferno_Token.png": {
+   "face_hsv": [
+    4,
+    224,
+    208
+   ],
+   "face_share": 0.498,
+   "dark": 0.0,
+   "white": 0.0
+  },
+  "Flame_Fuel_Token.png": {
+   "face_hsv": [
+    4,
+    224,
+    208
+   ],
+   "face_share": 0.335,
+   "dark": 0.332,
+   "white": 0.0
+  },
+  "Summon_Frog_Token.png": {
+   "face_hsv": [
+    80,
+    160,
+    192
+   ],
+   "face_share": 0.482,
+   "dark": 0.0,
+   "white": 0.0
+  },
+  "Triangulate_Token.png": {
+   "face_hsv": [
+    112,
+    16,
+    208
+   ],
+   "face_share": 0.385,
+   "dark": 0.0,
+   "white": 0.233
+  },
+  "Mark_Surge_Token.png": {
+   "face_hsv": [
+    0,
+    0,
+    160
+   ],
+   "face_share": 0.642,
+   "dark": 0.0,
+   "white": 0.271
+  },
+  "Bomb_Sync_Token.png": {
+   "face_hsv": [
+    112,
+    255,
+    255
+   ],
+   "face_share": 0.114,
+   "dark": 0.484,
+   "white": 0.204
+  },
+  "Festive_Gift_Token.png": {
+   "face_hsv": [
+    0,
+    255,
+    255
+   ],
+   "face_share": 0.373,
+   "dark": 0.082,
+   "white": 0.074
+  },
+  "Red_Boost_Token.png": {
+   "face_hsv": [
+    179,
+    176,
+    240
+   ],
+   "face_share": 0.329,
+   "dark": 0.0,
+   "white": 0.062
+  },
+  "White_Boost_Token.png": {
+   "face_hsv": [
+    60,
+    112,
+    255
+   ],
+   "face_share": 0.245,
+   "dark": 0.0,
+   "white": 0.553
+  },
+  "Festive_Blessing_Token.png": {
+   "face_hsv": [
+    60,
+    255,
+    255
+   ],
+   "face_share": 0.408,
+   "dark": 0.079,
+   "white": 0.07
+  },
+  "Beesmas_Cheer_Token.png": {
+   "face_hsv": [
+    60,
+    255,
+    255
+   ],
+   "face_share": 0.643,
+   "dark": 0.079,
+   "white": 0.0
+  },
+  "Glob_Token.png": {
+   "face_hsv": [
+    152,
+    144,
+    255
+   ],
+   "face_share": 0.55,
+   "dark": 0.0,
+   "white": 0.004
+  },
+  "Gumdrop_Barrage_Token.png": {
+   "face_hsv": [
+    72,
+    224,
+    255
+   ],
+   "face_share": 0.547,
+   "dark": 0.0,
+   "white": 0.001
+  },
+  "Beamstorm_Token.png": {
+   "face_hsv": [
+    36,
+    240,
+    208
+   ],
+   "face_share": 0.29,
+   "dark": 0.588,
+   "white": 0.0
+  },
+  "Fetch_Token.png": {
+   "face_hsv": [
+    36,
+    192,
+    255
+   ],
+   "face_share": 0.71,
+   "dark": 0.0,
+   "white": 0.075
+  },
+  "Impale_Token.png": {
+   "face_hsv": [
+    88,
+    64,
+    255
+   ],
+   "face_share": 0.111,
+   "dark": 0.719,
+   "white": 0.0
+  },
+  "Rain_Cloud_Token.png": {
+   "face_hsv": [
+    108,
+    48,
+    192
+   ],
+   "face_share": 0.578,
+   "dark": 0.0,
+   "white": 0.403
+  },
+  "Tornado_Token.png": {
+   "face_hsv": [
+    108,
+    48,
+    192
+   ],
+   "face_share": 0.667,
+   "dark": 0.0,
+   "white": 0.308
+  },
+  "Glitch_Token.png": {
+   "face_hsv": [
+    152,
+    240,
+    240
+   ],
+   "face_share": 0.067,
+   "dark": 0.691,
+   "white": 0.0
+  },
+  "Map_Corruption_Token.png": {
+   "face_hsv": [
+    120,
+    255,
+    255
+   ],
+   "face_share": 0.604,
+   "dark": 0.0,
+   "white": 0.0
+  },
+  "Mind_Hack_Token.png": {
+   "face_hsv": [
+    0,
+    255,
+    255
+   ],
+   "face_share": 0.088,
+   "dark": 0.712,
+   "white": 0.0
+  },
+  "Snowglobe_Shake_Token.png": {
+   "face_hsv": [
+    96,
+    32,
+    144
+   ],
+   "face_share": 0.179,
+   "dark": 0.117,
+   "white": 0.244
+  },
+  "Festive_Mark_Token.png": {
+   "face_hsv": [
+    0,
+    208,
+    176
+   ],
+   "face_share": 0.044,
+   "dark": 0.082,
+   "white": 0.091
+  }
+ }
+}

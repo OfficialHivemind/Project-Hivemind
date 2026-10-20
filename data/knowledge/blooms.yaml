@@ -1,0 +1,17 @@
+# Bloom Petals (2025-12-25 update). Source: BSS Fandom wiki via its API
+# (pages Bloom, Bloom Shaker, Polar Bear, Gifted Riley/Bucko Bee), read
+# 2026-10-20; notes in docs/pending/blooms.md.
+#
+# A Bloom spawns on a field (naturally, rate unknown; or 3 from a Bloom
+# Shaker, 3 min cooldown). Gathering pollen inside its radius pops it (level 1:
+# 30 pollen in Sunflower .. 1K in Spider); petals (3 + 2*level/5, max 11) fly
+# up and fall, and the PLAYER must touch them before they land. Pops chain
+# into higher-level blooms of the same colour for 60 s after the parent.
+# Most petals take the bloom's base colour; the colour odds depend on the field.
+colour_fields:        # colour -> fields where blooms of it spawn (wiki table)
+  red:   [clover, spider, strawberry, rose]      # spider rare
+  blue:  [clover, blue_flower, pineapple]        # pineapple very rare
+  white: [dandelion, spider, clover]
+  green: [clover, cactus, pineapple, pumpkin]
+  pink:  [strawberry]
+  cyan:  [bamboo, stump, pumpkin]

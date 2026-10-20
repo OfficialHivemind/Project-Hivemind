@@ -1,0 +1,79 @@
+name: Bug report
+description: Something in Hivemind did not work the way it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Please check
+        [TROUBLESHOOTING.md](https://github.com/OfficialHivemind/Project-Hivemind/blob/main/docs/TROUBLESHOOTING.md)
+        first: many problems have a one-line fix there.
+
+        **Never paste** a Telegram token, a webhook URL, a private-server link
+        or a password. Crop your Roblox username out of screenshots.
+  - type: dropdown
+    id: build
+    attributes:
+      label: Which build?
+      options:
+        - UI Preview (demo only)
+        - A test build of the bot
+        - From source (git checkout)
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows 11
+        - Windows 10
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: os-details
+    attributes:
+      label: Linux distribution and desktop (Linux only)
+      placeholder: e.g. Fedora 41, KDE Plasma (Wayland)
+  - type: input
+    id: pc
+    attributes:
+      label: Graphics card and screen size
+      placeholder: "e.g. your GPU model, 1920x1080 (Windows: also your display scale, e.g. 100%)"
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to make it happen again
+      placeholder: |
+        1. Open the app
+        2. Click ...
+        3. See ...
+  - type: textarea
+    id: doctor
+    attributes:
+      label: What `hivemind doctor` printed (Linux)
+      render: text
+  - type: textarea
+    id: log
+    attributes:
+      label: Log or error text
+      description: |
+        The relevant lines only. Check them for tokens, links and names first.
+        A debug bundle holds pictures of your game: never attach it here, the
+        team will ask for it privately.
+      render: text
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed tokens, links, passwords and my username from everything above.
+          required: true

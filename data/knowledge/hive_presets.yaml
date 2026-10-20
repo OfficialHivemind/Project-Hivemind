@@ -1,0 +1,173 @@
+# STARTER HIVE PRESETS for the Hive Planner (ROADMAP H17, a viewer's ask).
+# Read by brain/hivepresets; built in and read-only (Presets > Starter presets).
+#
+# NOTHING HERE IS OURS. Every count is a number a source already in this repo
+# gives, cited per preset:
+#   * blue_hive_plan.yaml / the AG blue hive guide -- the AG Definitive Blue
+#     Hive Guide's comp line for each of its four stages, quoted in `source`;
+#   * progression/{blue,red,white}.yaml -- the stage's `bees:` list (researched
+#     2026-10-14, each entry with its own source ids).
+#
+# THE RULES used to turn a source into slots, the same for every preset:
+#   1. A range ("13-14", "8-10") takes its LOW end: the preset asks for the
+#      least the source does and leaves the rest of the hive open for you.
+#   2. Where sources DISAGREE, the count most of them give (red Vector: 8-10 in
+#      three sources vs 2 and 3 in one each).
+#   3. A bee a stage's list names with no count is ONE bee (a type to collect).
+#   4. Left out: bees a source says not to run (red Demon), bees the sources
+#      disagree on running at all (red Fire, red Fuzzy), entries that are not
+#      a bee ("any rare/epic"), and bees a source says to skip for that hive
+#      (white: Cobalt / Crimson).
+#   5. The AG guide's support bees (Music, Looker, Bear...) are pictures in its
+#      comps, not text, so the Blue stage presets fill only its counted bees.
+#   6. Order = the planner's own (hiveplanner.fill_from_comp): the biggest
+#      group first from slot 1, ties in the order written here. Slot order is
+#      the hatch order (H13d).
+# A stage with no bee named or counted has no preset (white early: "keep
+# anything except Bumble, Basic, Stubborn and Brave").
+presets:
+  # ---------------------------------------------------------------- blue --
+  - id: blue_early
+    hive: blue
+    stage: early
+    name: Blue types to keep
+    bees: {bubble: 1, bucko: 1, bumble: 1, cool: 1}
+    source: >
+      progression/blue.yaml stage early, bee any_blue_rare_epic: "keep
+      Bubble/Bucko/Bumble/Cool, roll red ones later" (w_blue_hq, w_q_science)
+    note: Four blue types open the Blue HQ. The rest of the hive is open.
+  - id: blue_ag1
+    hive: blue
+    stage: mid
+    name: AG Stage 1, Earlygame Blue
+    bees: {bubble: 13, diamond: 5}
+    source: >
+      blue_hive_plan.yaml stage 1 (AG guide, Stage 1: Earlygame Blue):
+      "13-14 Bubbles | 5 Diamonds"; progression/blue.yaml stage mid, bubble
+    note: Bubbles hold the slots of the Tadpoles and Buoyants to come.
+  - id: blue_ag2
+    hive: blue
+    stage: late
+    name: AG Stage 2, Transition Blue
+    bees: {buoyant: 14, tadpole: 10, diamond: 5}
+    source: >
+      the AG blue hive guide Stage 2: Transition Blue, the stage's last
+      comp: "14 Buoyants | 10 Tadpoles | 5 Diamonds" (blue_hive_plan.yaml
+      stage 2: "10 | 12 | 2 -> 14 | 10 | 5")
+    note: The guide also keeps Windy and Vicious for amulet and tool grinding.
+  - id: blue_ag3_semi
+    hive: blue
+    stage: endgame
+    name: AG Stage 3, Semi Diamond
+    bees: {buoyant: 17, tadpole: 9, diamond: 6}
+    source: >
+      blue_hive_plan.yaml stage 3 comp_semi_diamond (AG guide, Stage 3:
+      Honeymaking Blue, can't maintain 80x+): "17 Buoyants | 9 Tadpoles | 6 Diamonds"
+    note: Level 18, fully gifted, blessing under 80x.
+  - id: blue_ag3_full
+    hive: blue
+    stage: endgame
+    name: AG Stage 3, Full Diamond
+    bees: {buoyant: 16, tadpole: 8, diamond: 8}
+    source: >
+      blue_hive_plan.yaml stage 3 comp_full_diamond (AG guide, can maintain
+      80x+): "16-17 Buoyants | 8 Tadpoles | 8-9 Diamonds"
+    note: The guide assumes at least one Tadpole alt.
+  - id: blue_ag4
+    hive: blue
+    stage: endgame
+    name: AG Stage 4, Standard Endgame
+    bees: {buoyant: 16, diamond: 10, tadpole: 7}
+    source: >
+      blue_hive_plan.yaml stage 4 comp_standard (AG guide, Standard Endgame
+      Comp, outside Beesmas): "16 Buoyants | 7 Tadpoles | 10 Diamonds"
+    note: The guide assumes 2 Tadpole alts and 1-3 Guiding alts.
+  - id: blue_ag4_glitter
+    hive: blue
+    stage: endgame
+    name: AG Stage 4, Glitter Extend
+    bees: {buoyant: 16, diamond: 12, tadpole: 6}
+    source: >
+      blue_hive_plan.yaml stage 4 comp_glitter_extend (AG guide, inside
+      Beesmas): "16 Buoyants | 6-7 Tadpoles | 12-13 Diamonds"
+    note: A Beesmas comp.
+  # ----------------------------------------------------------------- red --
+  - id: red_early
+    hive: red
+    stage: early
+    name: Red types for the Red HQ
+    bees: {rad: 1, riley: 1, rage: 1, rascal: 1, baby: 1}
+    source: >
+      progression/red.yaml stage early bees: rad, riley, rage, rascal ("Counts
+      toward the 4 red types"), baby ("2022 guide: 1-2 in every hive")
+    note: Four red types open the Red HQ. The rest of the hive is open.
+  - id: red_mid
+    hive: red
+    stage: mid
+    name: Red mid, Riley quests
+    bees: {carpenter: 4, rad: 1, riley: 1, rage: 1, rascal: 1, baby: 1, shy: 1,
+           tabby: 1, crimson: 1, commander: 1}
+    source: >
+      progression/red.yaml stage early bees plus stage mid bees: shy,
+      carpenter ("2022 guide 4-5 per hive"), tabby, crimson, commander
+    note: The early types stay; the mid stage adds these.
+  - id: red_late
+    hive: red
+    stage: late
+    name: Red late, start the mythics
+    bees: {carpenter: 4, rad: 1, riley: 1, rage: 1, rascal: 1, baby: 1, shy: 1,
+           tabby: 1, crimson: 1, commander: 1, spicy: 1, precise: 1, vector: 1,
+           tadpole: 1, photon: 1}
+    source: >
+      red_mid plus progression/red.yaml stage late bees: spicy ("Start
+      collecting now"), precise, vector, tadpole, photon
+    note: One of each mythic to start the collection for the endgame comp.
+  - id: red_endgame
+    hive: red
+    stage: endgame
+    name: Red endgame, Precise / Spicy / Vector
+    bees: {precise: 11, spicy: 8, vector: 8, tadpole: 2, riley: 1, carpenter: 1,
+           digital: 1, crimson: 1, tabby: 1, photon: 1, bear: 1, commander: 1,
+           basic: 1, rad: 1}
+    source: >
+      progression/red.yaml stage endgame bees: precise "11-12", spicy "8-10",
+      vector "8-10" (fanon_red, disc_best_build_2024, ffbooyah_red; metabee
+      says 2, xzxc 3), tadpole "2-4", riley "1-2", carpenter "1-3", and one
+      each of digital, crimson, tabby, photon, bear, commander, basic, rad.
+      Left out: fire, fuzzy (DISAGREE), demon ("do not run")
+    note: All gifted in the sources. Bear needs Robux or a trade.
+  # --------------------------------------------------------------- white --
+  - id: white_mid
+    hive: white
+    stage: mid
+    name: White mid, event bees
+    bees: {baby: 5, tabby: 1, gummy: 1, photon: 1, festive: 1, music: 1, carpenter: 1}
+    source: >
+      progression/white.yaml stage mid bees: tabby, gummy, photon, festive,
+      baby ("white guide runs ~5 Baby Love producers"), music, carpenter
+    note: Gift Tabby first (the stage's first event bee).
+  - id: white_late
+    hive: white
+    stage: late
+    name: White late, gifting toward the SSA
+    bees: {baby: 5, tabby: 1, gummy: 1, photon: 1, festive: 1, music: 1, carpenter: 1,
+           bear: 1, vector: 1}
+    source: >
+      white_mid plus progression/white.yaml stage late bees: bear, vector
+      ("Start rolling/keeping Vectors"); cobalt / crimson skipped ("Skip for white")
+    note: Bear needs Robux or a trade.
+  - id: white_endgame
+    hive: white
+    stage: endgame
+    name: White endgame, Vector / Precise
+    bees: {vector: 18, precise: 7, baby: 4, gummy: 1, tabby: 1, bear: 1, photon: 1,
+           windy: 1, digital: 1, festive: 1, basic: 1, brave: 1, hasty: 1, looker: 1,
+           stubborn: 1, commander: 1, honey: 1, shocked: 1, demo: 1, carpenter: 1,
+           lion: 1, music: 1}
+    source: >
+      progression/white.yaml stage endgame bees: vector "18-19", precise "7-8"
+      (goal precise_comp: "7 (8 while learning)"), baby "4-5", one each of
+      gummy, tabby, bear, photon, windy, digital, festive, and the gifted
+      colourless list "Basic, Brave, Hasty, Looker, Stubborn, Commander,
+      Honey, Shocked, Demo, Carpenter, Lion, Music: one each" (guide_white_def)
+    note: All gifted in the sources ("Never Ninja"). Bear needs Robux or a trade.

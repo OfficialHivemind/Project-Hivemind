@@ -1,0 +1,55 @@
+# THE CREDITS TAB (gui/panels/credits): who came up with each idea.
+# The owner asked (2026-10-21) for a tab showing who came up with each
+# suggestion. Names as they appear on Discord -- never their Discord IDs. `roadmap` is the item in docs/ROADMAP.md; `status` one
+# of built / testing / next / planned / researching.
+# tests/unit/test_credits.py fails when a VIEWER in the roadmap is missing here.
+credits:
+  - {name: Sonny, idea: "Materials checklist for gear", roadmap: G11, status: built, date: 2026-10-18}
+  - {name: zayd, idea: "Make and share your own gather patterns", roadmap: T17, status: built, date: 2026-10-17}
+  - {name: zayd, idea: "Farm the right colour for Bucko and Riley quests", roadmap: Q8, status: built, date: 2026-10-20}
+  - {name: mouseinapizzabox, idea: "Hive preset browser", roadmap: H17, status: built, date: 2026-10-16}
+  - {name: mouseinapizzabox, idea: "Discord webhook alerts", roadmap: U21, status: built, date: 2026-10-16}
+  - {name: koj1l, idea: "Auto nectar vial collection", roadmap: N4, status: built, date: 2026-10-18}
+  - {name: a community member, idea: "Collect goo with the Gummy Bee's ability", roadmap: Q7, status: next, date: 2026-10-19}
+  - {name: Orange cogwheel from granny, idea: "Vicious Bee server hopping", roadmap: M5, status: next, date: 2026-10-18}
+  - {name: a community member, idea: "Get a working public build out first", roadmap: U15, status: next, date: 2026-10-19}
+  - {name: lmu, idea: "Light / Standard / Heavy AI models for every PC", roadmap: F0b, status: next, date: 2026-10-21}
+  - {name: a community member, idea: "Wax cycles with planters", roadmap: P9, status: planned, date: 2026-10-19}
+  - {name: DarkWolfRfM, idea: "Auto budget, and alts", roadmap: G12, status: planned, date: 2026-10-19}
+  - {name: DarkWolfRfM, idea: "Use Hivemind from your phone", roadmap: U23, status: planned, date: 2026-10-21}
+  - {name: Indo, idea: "Shared night servers for Vicious Bee hopping", roadmap: M10b, status: planned, date: 2026-10-20}
+  - {name: Linden 1, idea: "Hive analysis: which bees to add or drop", roadmap: H3, status: planned, date: 2026-10-21}
+  - {name: Evee, idea: "Self-learning setup", roadmap: F0, status: planned, date: 2026-10-20}
+  - {name: lmu, idea: "Bring your own AI key", roadmap: F0c, status: planned, date: 2026-10-21}
+  - {name: Max, idea: "Robo Bear Challenge runs", roadmap: CM1, status: planned, date: 2026-10-16}
+  - {name: ابوسوسان, idea: "Badge farming mode", roadmap: CM2, status: planned, date: 2026-10-16}
+  - {name: a community member, idea: "Combo and guide rotations", roadmap: CM3, status: researching, date: 2026-10-16}
+  - {name: Mr_AngryDog, idea: "A Mac version", roadmap: RL7, status: planned, date: 2026-10-21}
+  - {name: a community member, idea: "Several accounts on macOS", roadmap: RL7b, status: researching, date: 2026-10-19}
+  - {name: Linden 1, idea: "Wax calculator: the odds of each beequip stat", roadmap: H4b, status: planned, date: 2026-10-22}
+  - {name: Dillion, idea: "Find and pop puffshrooms when they spawn (an option)", roadmap: T5, status: planned, date: 2026-10-22}
+  - {name: a community member, idea: "Beginner friendly, and a Linux download", roadmap: U15, status: next, date: 2026-10-22}
+  - {name: erie, idea: "Find and pop Blooms, then catch the petals", roadmap: T14, status: planned, date: 2026-10-22}
+  - {name: Speedy, idea: "UI testing: the (?) help on click, the Nectar icon", roadmap: U15d, status: built, date: 2026-10-22}
+  - {name: ToxicBedwars, idea: "Kill the Commando Chick automatically", roadmap: M3, status: planned, date: 2026-10-22}
+  - {name: ToxicBedwars, idea: "Keep distance from mobs and fight from range", roadmap: M3b, status: planned, date: 2026-10-22}
+  - {name: a community member, idea: "Scan the hive and set the pattern, token and quest priorities from it", roadmap: F0, status: planned, date: 2026-10-23}
+  - {name: a community member, idea: "Auto planters: pick the nectars, their priority and how much", roadmap: N2, status: planned, date: 2026-10-23}
+  - {name: raiden.shotg4n, idea: "Auto update", roadmap: U15f, status: planned, date: 2026-10-23}
+  - {name: Marceel, idea: "Kill the Coconut Crab automatically", roadmap: M4, status: built, date: 2026-10-23}
+  - {name: alex-flightissmart, idea: "Edit the progression route to fit your needs", roadmap: G10, status: built, date: 2026-10-23}
+  - {name: raiden.shotg4n, idea: "Emulator support, so the PC stays usable while it plays", roadmap: RL6j, status: researching, date: 2026-10-23}
+  - {name: longF, idea: "Gather where the next gear's materials drop, checked after each craft", roadmap: G11, status: planned, date: 2026-10-23}
+  - {name: longF, idea: "Chase the most wanted tokens first (Token Link, balloons, Haste, Flame)", roadmap: T2, status: testing, date: 2026-10-23}
+  - {name: Trav, idea: "A fast pathway to build Fuzzy / Tad alts", roadmap: G12, status: testing, date: 2026-10-23}
+  - {name: Dawson, idea: "Robo Bear drive runs, with an on/off switch", roadmap: CM1, status: planned, date: 2026-10-23}
+  - {name: longF, idea: "Keep buffs up through converts (Balloon Blessing, nectar, Focus...)", roadmap: B19, status: built, date: 2026-10-24}
+  - {name: raiden.shotg4n, idea: "Beesmas event features (Gingerbread Bear and more)", roadmap: I1, status: planned, date: 2026-10-24}
+  - {name: raiden.shotg4n, idea: "Set goals for an account (bees, hive, an item)", roadmap: G9, status: built, date: 2026-10-24}
+  - {name: longF, idea: "Hop servers when ghost tokens show the server is laggy", roadmap: M10, status: testing, date: 2026-10-24}
+  - {name: raiden.shotg4n, idea: "Auto Wind Shrine", roadmap: $4, status: planned, date: 2026-10-24}
+  - {name: b, idea: "Read the inventory, show how close the next gear or planter is, farm what it needs", roadmap: G11, status: planned, date: 2026-10-25}
+  - {name: longF, idea: "Choose which petals to collect, and show the best materials found", roadmap: T14b, status: planned, date: 2026-10-25}
+  - {name: a community member, idea: "Auto Royal / Star Jelly until a chosen bee or a gifted", roadmap: H1, status: planned, date: 2026-10-25}
+  - {name: zayd, idea: "Auto Stick Bug: go to its field, dodge the nymphs, fight it alone", roadmap: X5, status: next, date: 2026-10-25}
+  - {name: Queen.89, idea: "Very low CPU and GPU use", roadmap: S4, status: built, date: 2026-10-26}

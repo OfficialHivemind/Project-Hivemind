@@ -1,0 +1,156 @@
+# MUTATIONS: what the bot knows about them (ROADMAP K11). Read by
+# brain/mutations.py (bounds, chance_at_least, worth, plan), which the bee
+# menu's hive judgement logs LOOK-ONLY ("mutations would: ...") and which the
+# Royal Jelly rolling plan (H1/H5) asks what is worth chasing and what it costs.
+#
+# SOURCES, read 2026-10-27 through the wiki's API (the pages answer HTTP 402):
+#   wiki_mutation:  https://bee-swarm-simulator.fandom.com/wiki/Mutation
+#                   (its data: Module:Mutation_Stats/data, "copied directly from
+#                   the datamined file", datamined 2024-12-19; the roll's shape:
+#                   Module:RandomBias)
+#   wiki_rj:        https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly
+#   wiki_bitter:    https://bee-swarm-simulator.fandom.com/wiki/Bitterberry
+#   wiki_neon:      https://bee-swarm-simulator.fandom.com/wiki/Neonberry
+#   wiki_radiation: https://bee-swarm-simulator.fandom.com/wiki/Radiation
+#   wiki_atomic:    https://bee-swarm-simulator.fandom.com/wiki/Atomic_Treat
+#   ag_guide:       the AG blue hive guide 2.3 Mutations (the chosen blue
+#                   guide, https://docs.google.com/document/d/1i9rz9mGYeVQQD7j2PaBB5p2gZPp_PX1HP-0GltTlWgA;
+#                   paraphrased). Its per-bee table is bee ICONS,
+#                   lost in a text copy: re-fetched 2026-10-27 from the
+#                   document's mobilebasic view and the 11 icons matched BY EYE
+#                   to data/bee_faces (tadpole/music/bubble, buoyant/bear/tabby/
+#                   festive/gummy/digital, diamond, digital) -- ASSUMED where the
+#                   guide's own text does not name the bee too (it names Music,
+#                   Bubble, Bear, Diamond, Digital; not Tadpole, Buoyant's BAR,
+#                   Tabby, Festive, Gummy).
+#   red / white:    the tips and bee rows already in progression/red.yaml and
+#                   progression/white.yaml (their source ids kept below).
+#
+# Every game number here is the WIKI's (datamined), not MEASURED by this bot:
+# MEASURED 2026-10-27 -- 353 roll cards kept by the jelly errand
+# (var/shoplook/*jelly-roll[0-9]*.jpg, 2026-10-05..10-19) OCR'd:
+# none shows a mutation, as expected at 1 in 5,000 a roll.
+source: https://bee-swarm-simulator.fandom.com/wiki/Mutation (and the pages above)
+checked: 2026-10-27
+
+# THE CHANCE THAT A USE MUTATES THE BEE (wiki_mutation, wiki_rj table,
+# wiki_bitter). A radioactive bee (11 min; a Neonberry always makes one,
+# a mutated bee sometimes spreads it) gets 1 in 100 from either.
+odds:
+  royal_jelly: 0.0002              # 1/5,000 (Star Jelly the same)
+  royal_jelly_radioactive: 0.01    # 1/100
+  bitterberry: 0.001               # 1/1,000, keeps the bee (+100 bond)
+  bitterberry_radioactive: 0.01    # 1/100
+  special_treat_radioactive: 0.00004   # 1/25,000: Sunflower Seed, Strawberry, Blueberry, Pineapple, Moon Charm
+  atomic_treat: 1.0                # always; only Attack / Convert / Gather / Energy / Ability Rate (wiki_atomic)
+radioactive_minutes: 11            # wiki_neon, wiki_radiation
+# A Royal Jelly or an egg on a mutated bee almost always loses the mutation
+# (1 in 5,000 to get one back, likely a different one) -- wiki_rj, as for gifted.
+loses_on_jelly: true
+# A NEW MUTATION UNEQUIPS THE BEE'S BEEQUIP (wiki_mutation trivia).
+unequips_beequip: true
+# THE ROYAL JELLY'S RARITY ODDS (wiki_rj): which bee a roll lands, before the
+# mutation. Within a rarity each type is ASSUMED equally likely (no page says).
+royal_jelly_rarity: {rare: 0.69996, epic: 0.27, legendary: 0.03, mythic: 0.00004}
+
+# THE 11 MUTATIONS (wiki_mutation, Module:Mutation_Stats/data). Any of them can
+# land on any bee (some are useless: Attack on Baby, Ability Rate on an
+# ungifted Basic/Brave, Energy on Photon/Exhausted). `weight` is the data's
+# BaseChance: a mutation is this kind with weight / 5.8. `unit` pct = a
+# percent (shown "+N%"), flat = added to the base stat ("+N").
+# THE VALUE'S RANGE: `lo` at every level; the top grows with the bee's level,
+# hi[0] at level 1 to hi[1] at level 25, in a straight line. The roll lands
+# between, biased towards `lo` (randomBias(lo, top, lo, 0.5)), and is rounded
+# to `step`. So the top values are rare and need a high-level bee.
+level_max: 25
+mutations:
+  convert_amount_pct:   {name: Convert Amount,     short: CA,  unit: pct,  weight: 1.0,  lo: 10, hi: [15, 30], step: 1, level_colour: orange}
+  convert_amount_flat:  {name: Convert Amount,     short: CA#, unit: flat, weight: 0.5,  lo: 20, hi: [40, 80], step: 1, level_colour: orange}
+  attack_pct:           {name: Attack,             short: ATK, unit: pct,  weight: 1.0,  lo: 5,  hi: [10, 20], step: 1, level_colour: red}
+  attack_flat:          {name: Attack,             short: ATK#, unit: flat, weight: 0.25, lo: 1, hi: [1, 2],  step: 1, level_colour: red}
+  gather_amount_pct:    {name: Gather Amount,      short: GA,  unit: pct,  weight: 1.0,  lo: 10, hi: [20, 30], step: 1, level_colour: light green}
+  gather_amount_flat:   {name: Gather Amount,      short: GA#, unit: flat, weight: 0.5,  lo: 2,  hi: [6, 10],  step: 1, level_colour: light green}
+  energy_pct:           {name: Energy,             short: EN,  unit: pct,  weight: 1.0,  lo: 10, hi: [30, 40], step: 1, level_colour: brown}
+  instant_conversion_pct: {name: Instant Conversion, short: IC, unit: pct, weight: 0.25, lo: 8,  hi: [14, 20], step: 1, level_colour: yellow}
+  movespeed:            {name: Movespeed,          short: BMS, unit: flat, weight: 0.1,  lo: 2,  hi: [4, 6],   step: 1, level_colour: dark cyan}
+  critical_chance_pct:  {name: Critical Chance,    short: CC,  unit: pct,  weight: 0.1,  lo: 1,  hi: [1, 3],   step: 1, level_colour: green}
+  ability_rate_pct:     {name: Ability Rate,       short: BAR, unit: pct,  weight: 0.1,  lo: 1,  hi: [2, 5],   step: 1, level_colour: purple}
+# The blue guide AGREES with these tops (ag_guide 2.3: "BMS up to +5, BAR up
+# to +4%, CA/GA up to +28%; +6 / +5% / 29-30% possible but extremely rare").
+
+# WHICH MUTATION IS WORTH CHASING, per hive colour. Rules are tried in order;
+# the first one naming the bee (`bees`) or its rarity (`rarity`, from
+# bee_types.yaml) wins. `want` is best first, each with the least value worth
+# keeping (null: the source names no value, so any roll of it counts);
+# `avoid` = keep the bee off these. Every value is the cited guide's.
+worth:
+  blue:
+    - bees: [diamond]
+      want: [{kind: convert_amount_pct, min: 25}]
+      why: "Diamonds carry the hive's convert: CA% first; at level 13-17 keep the first mutation, push 25%+ from level 18"
+      source: ag_guide 2.3 (Consensus; Mutation Order 'Diamonds >' in both orders)
+    - bees: [music, bubble, tadpole]
+      want: [{kind: movespeed, min: 4}]
+      why: "4+ BMS on Musics and Bubble from level 18 makes tokens / gather bubbles much faster (Tadpole: icon, ASSUMED)"
+      source: ag_guide 2.3 table row BMS + 'Common Hive errors'
+    - bees: [digital]
+      want: [{kind: ability_rate_pct, min: 3}, {kind: gather_amount_pct, min: null}]
+      why: "BAR as smileys are weak with few drives; GA% only for active play / 100+ Glitched Drives"
+      source: ag_guide 2.3 table rows BAR + GA, 1.2 Digital Bee
+    - bees: [buoyant, tabby, festive]
+      want: [{kind: ability_rate_pct, min: 3}, {kind: movespeed, min: 4}]
+      avoid: [convert_amount_pct]
+      why: "BAR (BMS as good for mythic/event bees: 3%+ BAR or 4+ BMS); never CA%: it steals converts from Diamonds"
+      source: ag_guide 2.3 table row BAR (icons, ASSUMED) + the note naming these three
+    - bees: [bear, gummy]
+      want: [{kind: ability_rate_pct, min: 3}, {kind: movespeed, min: 4}]
+      why: "BAR (BMS as good for event bees: 3%+ BAR or 4+ BMS)"
+      source: ag_guide 2.3 table row BAR (Bear named in 'Common Hive errors'; Gummy icon, ASSUMED)
+    - rarity: [rare, epic, legendary]
+      want: [{kind: movespeed, min: 4}]
+      why: "every other Rare/Epic/Legendary: 4+ BMS only, rolled with Royal Jelly (not Bitterberries), then gifted with fruit"
+      source: ag_guide 2.3 ('+ all other Rare / Epic / Leg', 'Stick to 4+ BMS exclusively')
+  red:
+    - bees: [precise]
+      want: [{kind: movespeed, min: 5}, {kind: attack_pct, min: null}, {kind: critical_chance_pct, min: null}, {kind: instant_conversion_pct, min: null}]
+      why: "+5 movespeed > attack > crit chance / instant conversion (attack as %: ASSUMED, the sources say only 'attack')"
+      source: progression/red.yaml (metabee_red, disc_best_build_2024)
+    - bees: [spicy]
+      want: [{kind: attack_pct, min: null}, {kind: convert_amount_pct, min: null}]
+      why: "attack (metabee) or convert amount (fanon) -- the sources DISAGREE"
+      source: progression/red.yaml (metabee_red, fanon_red)
+    - bees: [vector]
+      want: [{kind: movespeed, min: null}, {kind: ability_rate_pct, min: null}]
+      why: "movespeed > ability rate"
+      source: progression/red.yaml (metabee_red, fanon_red)
+    - bees: [digital]
+      want: [{kind: gather_amount_pct, min: null}]
+      why: "gather amount %"
+      source: progression/red.yaml (metabee_red, fanon_red)
+    - rarity: [rare, epic, legendary, mythic, event]
+      want: [{kind: movespeed, min: 5}, {kind: ability_rate_pct, min: null}]
+      why: "everyone else +5 movespeed or ability rate; convert beats gather for Flame Fuel"
+      source: progression/red.yaml (metabee_red, fanon_red, disc_best_build_2024, noks_doc)
+  white:
+    - bees: [vector]
+      want: [{kind: movespeed, min: null}, {kind: ability_rate_pct, min: null}]
+      why: "core bee, all gifted, BMS > BAR; roll mythic mutations only with a big honey bank (20qd+ with RJ)"
+      source: progression/white.yaml (guide_white_def)
+    - bees: [baby]
+      want: [{kind: ability_rate_pct, min: null}]
+      why: "BAR for constant Baby Love"
+      source: progression/white.yaml (forum_white_2024, metabee_white)
+    - bees: [gummy]
+      want: [{kind: ability_rate_pct, min: null}]
+      why: "Gummy Morph via BAR"
+      source: progression/white.yaml (metabee_white)
+    - rarity: [rare, epic, legendary]
+      want: [{kind: movespeed, min: 5}]
+      why: "one gifted copy of each colourless Rare/Epic/Legendary with +5 BMS via Royal Jelly"
+      source: progression/white.yaml (guide_white_def)
+
+# THE ORDER THE BLUE GUIDE MUTATES IN (ag_guide 2.3), by what is used.
+order:
+  blue:
+    bitterberry: [diamond, digital, bear, tadpole, event, buoyant]
+    royal_jelly: [diamond, bubble, music, "token link and focus producers", rest]

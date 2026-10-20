@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: FAQ
+    url: https://github.com/OfficialHivemind/Project-Hivemind/blob/main/docs/FAQ.md
+    about: Quick answers about safety, bans, systems and setup.
+  - name: Troubleshooting
+    url: https://github.com/OfficialHivemind/Project-Hivemind/blob/main/docs/TROUBLESHOOTING.md
+    about: Fixes for the problems players hit most often.

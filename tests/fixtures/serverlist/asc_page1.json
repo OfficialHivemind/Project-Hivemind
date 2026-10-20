@@ -1,0 +1,93 @@
+{
+"previousPageCursor": null,
+"nextPageCursor": "eyJzdGFydEluZGV4IjoxMDAsImRpc2NyaW1pbmF0b3IiOiJwbGFjZUlkOjE1Mzc2OTA5NjJzZXJ2ZXJUeXBlOlB1YmxpYyIsImNvdW50IjoxMDB9CjgyZjlkNDBmZGNiN2Q1Yjg1NTI4M2E2NDM4ODExMzE0OWI1MDFiYTVlYmM3ZmU2MmQxNjE1ZDI3ZmU1ZDVhNzk=",
+"data": [
+{
+"id": "4f758197-0337-4ff3-8f18-19eae501d6f7",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.919682,
+"ping": 272
+},
+{
+"id": "b739484a-aded-4f10-81bb-b10eae4898e5",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.968559,
+"ping": 138
+},
+{
+"id": "31315dd2-efd2-4acb-a8fa-a01a8bcee30a",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.980339,
+"ping": 33
+},
+{
+"id": "aa5a4527-3878-45b5-8267-98d45ad128ed",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.727512,
+"ping": 26
+},
+{
+"id": "1785baeb-b88e-4700-af19-bd44bfeb2356",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.937012,
+"ping": 134
+},
+{
+"id": "720b6266-475d-492d-99e7-a00abf8b0ace",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.984627,
+"ping": 254
+},
+{
+"id": "03e2045c-9a2e-4ed0-80c4-30336327b570",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.981194,
+"ping": 174
+},
+{
+"id": "1e586398-7ffe-4882-a1c5-79668191b8d4",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 59.987015,
+"ping": 34
+},
+{
+"id": "99e0677c-6001-4fe7-9584-41b0ab0dfb13",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": [],
+"fps": 57.722702
+},
+{
+"id": "52004e50-4e54-442d-8cda-a1058be955e8",
+"maxPlayers": 6,
+"playing": 1,
+"playerTokens": [],
+"players": []
+}
+]
+}

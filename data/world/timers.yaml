@@ -1,0 +1,203 @@
+# Recurring deadlines: bosses, machines, shrines, events.
+#
+# ALL TIMES ARE UTC. Every hardcoded boss clock written in local time drifts by
+# an hour twice a year when daylight saving moves, and then quietly sends the bot
+# to an empty field for six months.
+#
+# VERIFICATION, and why `persistent_hp` is the dangerous field:
+#
+#   persistent_hp: true   damage is kept between visits, so the boss can be
+#                         chipped at opportunistically in passing
+#   persistent_hp: false  health resets when you leave, so the fight must never
+#                         be preempted -- starting it and wandering off wastes
+#                         the whole attempt
+#
+# These are OPPOSITE scheduling rules, and getting one backwards wastes real
+# time. Neither has been measured on this account, so every entry is marked
+# `verified: false` and the engine treats them ALL as resetting -- the reading
+# that merely forgoes an optimisation if wrong, rather than wasting fights.
+#
+# `cooldown_s` values are likewise unverified. The engine learns real respawn
+# times by observing kills, and prefers what it has observed over what is here.
+
+schema: 1
+
+timers:
+  - id: stump_snail
+    name: Stump Snail
+    category: boss
+    cooldown_s: 345600            # 96h after a kill (Natro natro_macro.ahk:15483 `floor(345600*...)`; wiki)
+    persistent_hp: true
+    # MEASURED 2026-10-06 (var/routes/attempt-676): its bar read 29,879,792,
+    # 29,774,018, 29,720,512, 29,635,540 at four arrivals with the character
+    # gone between them -- the damage is kept. Left unverified here only
+    # because tests/unit/test_timers.py pins "nothing shipped is verified".
+    verified: false
+    note: saves damage between visits (MEASURED 2026-10-06); act/stumpsnail chips at it
+
+  - id: coconut_crab
+    name: Coconut Crab
+    category: boss
+    cooldown_s: 21600             # 6h
+    persistent_hp: false
+    verified: false
+    note: believed to reset if you leave the field
+    # IT HOLDS THE COCONUT FIELD ALL THE TIME, AND KILLS. MEASURED 2026-10-06:
+    # both trips that reached the field (run-694 17:03 and 17:37, var/routes/
+    # attempt-694/1703*/1737*) died within seconds of landing -- the crab in the
+    # frame, then "You died! Your bees must recover at the hive." -- and their
+    # bags held about 1,100 pollen, under brain/alive DeathWatch's floor, so
+    # neither was noticed: the gathers ran on at the hive and the route took the
+    # blame. It stays until it is beaten, which this hive never has, so its
+    # guard lasts the whole hour (stays_s 3600): no trip goes there.
+    guards: coconut
+    arrives_at_minute: 0
+    stays_s: 3600
+
+  - id: mondo_chick
+    name: Mondo Chick
+    category: boss
+    cooldown_s: 3600              # every hour, on the hour
+    persistent_hp: false
+    verified: false
+    # IT HOLDS MOUNTAIN TOP FOR THE FIRST QUARTER OF EVERY HOUR, AND KILLS.
+    # The planner keeps trips off the field while it is there and ends a
+    # gather before it arrives (world/timers FieldGuard, run_farm
+    # `field_guarded`). MEASURED 2026-09-27: its panel read "Time: 12:05" at
+    # 2 min 55 s past the hour (a mob-sighting incident), which is a despawn
+    # at a quarter past to within the second the frame is stamped with, and
+    # "HP: 242,439" -- 300,000 less 333 a second for 173 s, the wiki's figures
+    # for a spawn on the hour. It killed the character twice on the field, at
+    # 9:47 and 11:33 past the hour ("You died! Your bees must recover at the
+    # hive."). The wiki: it respawns at every full hour and despawns 15
+    # minutes after spawning if not defeated.
+    guards: mountain_top
+    arrives_at_minute: 0
+    stays_s: 900
+
+  - id: king_beetle
+    name: King Beetle
+    category: boss
+    cooldown_s: 86400             # 24h (Natro natro_macro.ahk:15324 `floor(86400*...)`; wiki)
+    persistent_hp: false
+    verified: false
+
+  - id: tunnel_bear
+    name: Tunnel Bear
+    category: boss
+    cooldown_s: 172800            # 48h (Natro natro_macro.ahk:15175 `floor(172800*...)`; wiki)
+    persistent_hp: false
+    verified: false
+
+  - id: wealth_clock
+    name: Wealth Clock
+    category: machine
+    cooldown_s: 3600
+    persistent_hp: false
+    verified: false
+
+  - id: blender
+    name: Blender
+    category: machine
+    cooldown_s: 0
+    persistent_hp: false
+    verified: false
+    note: continuous; the deadline is whatever is currently in it
+
+  # THE FREE MACHINES THE ERRANDS USE (DESIGN 8dq), so the GUI's timers tab
+  # shows each one's deadline: run_farm seeds these from var/errand_log.json
+  # and var/errand_ready.json, and a countdown read off a machine's own panel
+  # beats the period here. Periods from the wiki page named, each matching
+  # Natro's own check (natro_macro.ahk, cited in data/knowledge/errands.yaml).
+  - id: treat_dispenser
+    name: Treat Dispenser
+    category: machine
+    cooldown_s: 3600              # wiki Treat_Dispenser; read back "(59:59)" twice
+    persistent_hp: false
+    verified: false
+
+  - id: honey_dispenser
+    name: Honey Dispenser
+    category: machine
+    cooldown_s: 3600              # wiki Honey_Dispenser
+    persistent_hp: false
+    verified: false
+
+  - id: ant_pass
+    name: Free Ant Pass Dispenser
+    category: machine
+    cooldown_s: 7200              # wiki Free_Ant_Pass_Dispenser
+    persistent_hp: false
+    verified: false
+
+  - id: blueberry_dispenser
+    name: Blueberry Dispenser
+    category: machine
+    cooldown_s: 14400             # wiki Blueberry_Dispenser; read back "(3:59:59)" twice
+    persistent_hp: false
+    verified: false
+
+  - id: strawberry_dispenser
+    name: Strawberry Dispenser
+    category: machine
+    cooldown_s: 14400             # wiki Strawberry_Dispenser
+    persistent_hp: false
+    verified: false
+
+  - id: coconut_dispenser
+    name: Coconut Dispenser
+    category: machine
+    cooldown_s: 14400             # wiki Coconut_Dispenser
+    persistent_hp: false
+    verified: false
+    note: behind the 35-bee gate and the Coconut Crab
+
+  - id: glue_dispenser
+    name: Glue Dispenser
+    category: machine
+    cooldown_s: 79200             # wiki Glue_Dispenser
+    persistent_hp: false
+    verified: false
+    note: needs the Goo Hotshot badge
+
+  - id: blue_field_booster
+    name: Blue Field Booster
+    category: machine
+    cooldown_s: 2700              # wiki Blue_Field_Booster, 45 minutes
+    persistent_hp: false
+    verified: false
+
+  - id: red_field_booster
+    name: Red Field Booster
+    category: machine
+    cooldown_s: 2700              # wiki Red_Field_Booster, 45 minutes
+    persistent_hp: false
+    verified: false
+
+  - id: white_field_booster
+    name: Field Booster (Mountain Top)
+    category: machine
+    cooldown_s: 2700              # wiki Field_Booster, 45 minutes
+    persistent_hp: false
+    verified: false
+
+  - id: wind_shrine
+    name: Wind Shrine
+    category: shrine
+    cooldown_s: 86400
+    persistent_hp: false
+    verified: false
+
+  - id: robo_bear_challenge
+    name: Robo Bear Challenge
+    category: event
+    cooldown_s: 86400
+    persistent_hp: false
+    verified: false
+
+  - id: ant_challenge
+    name: Ant Challenge
+    category: event
+    cooldown_s: 86400
+    persistent_hp: false
+    verified: false

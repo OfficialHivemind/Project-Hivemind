@@ -1,0 +1,115 @@
+# THE ITEMS A PLAYER DECIDES ABOUT, and what kind of decision each one is.
+#
+# WHY THIS FILE EXISTS. The owner asked (2026-10-01) for the AI to buy, use,
+# craft and save items by itself: keep what a goal needs, and use the rest when
+# it has plenty, does not need to save it, or it is clearly worth it (boosting).
+# brain/stash makes that call per item from three things: how many the
+# inventory read counted (act/inventory, `extras` below), how many the goals
+# still need (brain/goals, reserved), and this file's `role`.
+#
+# `label` is the inventory menu's own spelling, as its pages were transcribed on
+# 2026-10-01 19:25 (var/inventory/20261001-192542/page-0*.txt); `cap` is the
+# count/cap the menu draws for capped items, read then. `does` is the item's own
+# description from the same pages where the page showed it, quoted; elsewhere
+# it is marked as from the wiki or unknown.
+#
+# role:
+#   material     an input to a recipe or a gear purchase: kept while a goal
+#                needs it, the surplus usable
+#   time_saver   saves walking or converting time; used when the time it saves
+#                is worth more than the item
+#   field_boost  raises a field's pollen for a while; used where the bot is
+#                about to gather, best stacked on another boost
+#   bee_boost    raises the bees for a while (attack, ability, pollen)
+#   bee_change   changes the hive itself (a new bee, a level): the hive plan's
+#                decision (data/knowledge/blue_hive_plan.yaml)
+#   pass         entry to an event or machine
+#   currency     spent at a shop
+items:
+  tickets:          {label: Ticket, role: currency,
+                     does: "Used to activate and purchase special things!"}
+  # PLANTERS, so the read counts them: the planter errand treats a planter as
+  # owned when bought (var/purchases.json) OR counted here (run_farm
+  # planter_errand `held_count`). 2026-10-12 Paper Planters bought by hand
+  # left no purchase row and no count, so the bot could not see them.
+  paper_planter:     {label: Paper Planter, role: tool}
+  blue_clay_planter: {label: Blue Clay Planter, role: tool}
+  # "Ticket Planter: 1/100" on the 2026-10-12 20:00 read's page 04 (uncounted:
+  # it was not listed here); the Plastic for when one is bought (act/planter)
+  ticket_planter:    {label: Ticket Planter, role: tool}
+  plastic_planter:   {label: Plastic Planter, role: tool}
+  sprinkler_builder: {label: Sprinkler Builder, role: tool,
+                     does: "Use while standing in flowers to place a Sprinkler."}
+  gumdrops:         {label: Gumdrops, role: field_boost, hotbar: true,
+                     does: "Use while standing in a field to cover flowers in goo. Goo grants bonus honey."}
+  coconut:          {label: Coconut, role: field_boost, cap: 500, hotbar: true,
+                     does: "Drops a huge Coconut into the field. Catch it to convert Pollen to Honey Tokens."}
+  stinger:          {label: Stinger, role: bee_boost,
+                     does: "Grants your bees x1.5 attack for 30 seconds."}
+  # Not sold for honey or tickets (wiki Micro-Converter, read 2026-10-08):
+  # the ways the bot can earn them are the Coconut Crab (a sure drop), a Blue
+  # Clay Planter (10+ in the Spider Field), stacking the Simple Skyscraper,
+  # Alert Icon, Grey Diamond Logo, Lightning or Spark Staff (3 each,
+  # stickers.yaml `reward`), the Wind Shrine, and rare mob drops.
+  micro_converter:  {label: Micro-Converter, role: time_saver, cap: 15, hotbar: true,
+                     does: "Instantly converts all Pollen in your bag to Honey."}
+  whirligig:        {label: Whirligig, role: time_saver, cap: 100, hotbar: true,
+                     does: "Teleports you and your bees back to your hive and briefly increases Convert Rate. (Cooldown: 3m)"}
+  field_dice:       {label: Field Dice, role: field_boost, hotbar: true,
+                     does: "Boosts a random field, granting +100% pollen for 15 minutes."}
+  smooth_dice:      {label: Smooth Dice, role: field_boost}
+  loaded_dice:      {label: Loaded Dice, role: field_boost}
+  # G6 (wiki Jelly_Beans, Red_Extract, Oil, Tropical_Drink via api.php, 2026-10-12):
+  # Jelly Beans' cap is the infobox's "cap = 100" -- the menu draws none.
+  jelly_beans:      {label: Jelly Beans, role: bee_boost, hotbar: true, cap: 100,
+                     does: "(wiki) Scatters various buff-granting beans on nearby flowers. Works best when shared."}
+  red_extract:      {label: Red Extract, role: material,
+                     does: "(wiki) Grants x1.25 Red Pollen for 10 minutes."}
+  blue_extract:     {label: Blue Extract, role: material}
+  glitter:          {label: Glitter, role: material}
+  glue:             {label: Glue, role: material}
+  oil:              {label: Oil, role: material,
+                     does: "(wiki) Grants x1.2 Bee and Player Movespeed for 10 minutes"}
+  enzymes:          {label: Enzymes, role: material}
+  tropical_drink:   {label: Tropical Drink, role: bee_boost,
+                     does: "(wiki) Grants x1.25 White Pollen, +10% Instant Conversion and +5% Critical Chance for 10 minutes."}
+  purple_potion:    {label: Purple Potion, role: bee_boost}
+  super_smoothie:   {label: Super Smoothie, role: bee_boost}
+  marshmallow_bee:  {label: Marshmallow Bee, role: bee_boost, cap: 25}
+  cloud_vial:       {label: Cloud Vial, role: field_boost, cap: 10}
+  # N4: the five Nectar Vials (wiki Nectar_Condenser, [assumed]): 4 h of their
+  # nectar each. Labels by the wiki's spelling -- no vial has been on this
+  # account's inventory page yet. Materials: a goal may keep them (Diamond Mask).
+  comforting_vial:  {label: Comforting Vial, role: material}
+  invigorating_vial: {label: Invigorating Vial, role: material}
+  motivating_vial:  {label: Motivating Vial, role: material}
+  refreshing_vial:  {label: Refreshing Vial, role: material}
+  satisfying_vial:  {label: Satisfying Vial, role: material}
+  ant_pass:         {label: Ant Pass, role: pass, cap: 10}
+  robo_pass:        {label: Robo Pass, role: pass}
+  treats:           {label: Treat, role: bee_change}
+  sunflower_seed:   {label: Sunflower Seed, role: material}
+  strawberry:       {label: Strawberry, role: material}
+  pineapple:        {label: Pineapple, role: material}
+  blueberry:        {label: Blueberry, role: material}
+  bitterberry:      {label: Bitterberry, role: material}
+  neonberry:        {label: Neonberry, role: material}
+  moon_charm:       {label: Moon Charm, role: material}
+  soft_wax:         {label: Soft Wax, role: material}
+  hard_wax:         {label: Hard Wax, role: material}
+  caustic_wax:      {label: Caustic Wax, role: material}
+  swirled_wax:      {label: Swirled Wax, role: material}
+  turpentine:       {label: Turpentine, role: material}
+  royal_jelly:      {label: Royal Jelly, role: bee_change}
+  star_jelly:       {label: Star Jelly, role: bee_change}
+  magic_bean:       {label: Magic Bean, role: field_boost}
+  gold_egg:         {label: Gold Egg, role: bee_change}
+  silver_egg:       {label: Silver Egg, role: bee_change}
+  diamond_egg:      {label: Diamond Egg, role: bee_change}
+  basic_egg:        {label: Basic Egg, role: bee_change}
+  # HATCHED LATE (2026-10-14, data/knowledge/progression/blue.yaml from
+  # itemlevel.net): a Star Egg never gives a gifted mythic until every other
+  # non-event gifted type is in the hive -- so it waits (goals.SLOT_EGGS).
+  star_egg:         {label: Star Egg, role: bee_change, hatch: late}
+  bumble_bee_egg:   {label: Bumble Bee Egg, role: bee_change}
+  festive_bee_egg:  {label: Festive Bee Egg, role: bee_change}

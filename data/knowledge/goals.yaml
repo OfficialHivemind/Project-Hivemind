@@ -1,0 +1,730 @@
+# THE GEAR THE OWNER ASKED FOR, what each costs, and where each material comes from.
+#
+# THE REQUEST, paraphrased: the porcelain "staff" and backpack, the Honey Mask
+# and all the Ace equipment.
+#
+#   * There is no "porcelain staff". The wiki has exactly two Porcelain items
+#     (api.php allpages prefix=Porcelain): the Porcelain Dipper, a tool, and the
+#     Porcelain Port-O-Hive, a bag. The only staff among the twenty tools is the
+#     Spark Staff, which progression.yaml already says to skip. So "staff" is
+#     read as the Dipper and "backpack" as the Port-O-Hive.
+#   * "Ace equipment" is the Ace Shop: a gated room in the Badge Bearer's Guild
+#     that sells exactly four items -- the Honey Mask, the Honeycomb Belt, the
+#     Cobalt Guard and the Crimson Guard (wiki Badge_Bearer's_Guild, Ace Shop
+#     tab, rev 2026-07-12).
+#   Both readings are interpretations and say so. `goals.order` in the settings
+#   is how a player changes or drops them.
+#
+# RULES FOR THIS FILE, the same as progression.yaml's:
+#   * Every price and recipe is quoted from the wiki page named beside it, with
+#     the revision it was read at (research of 2026-09-24; local research
+#     notes, not shipped).
+#     None of these prices changed in any update from 2024-05-23 to the newest
+#     the wiki lists (2026-06-08), but the wiki can lag the game: read the
+#     price on the shop's own screen before buying.
+#   * A count nobody has seen is UNKNOWN, never zero. From 2026-09-26 the bot
+#     reads the inventory once a session (act/inventory, DESIGN 8ea) into
+#     var/inventory.json; what it has not read, and the player has not typed
+#     into Settings > Goals (`goals.have`), stays unknown.
+#   * `capacity:` is the item's own capacity figure, read by brain/owned when
+#     a lasting jump in capacity might be a bag (gear_prices.yaml says how).
+#
+# THE BOT NEVER BUYS ANY OF THIS. The shop's purchase screen has never been
+# recorded, and spending honey is the one irreversible action in this game --
+# the one thing this bot does not do unattended (DESIGN 8bh, 8bv). When a goal
+# becomes affordable it says so in the Decision Inbox and the player buys it.
+# `brain/goals.py` reads this file; so do the GUI's Goals tab and the morning
+# report, through the same module.
+checked: 2026-09-24
+source: >
+  bee-swarm-simulator.fandom.com item and shop pages via api.php, revisions
+  as noted per entry; the owner's gear request of 2026-09-24
+
+# The order used when `goals.order` is empty. It is the order of the request
+# -- the Dipper, the backpack, the Honey Mask, then the rest of the Ace room
+# -- with the other three Ace items cheapest first, and the Cobalt Guard ahead
+# of the Crimson because the plan is a blue hive (account.yaml hive.colour).
+#
+# THE BUBBLE MASK, added 2026-10-01. The owner heard from other players that
+# the Bubble Mask beats the Honey Mask for a blue hive. Checked against this bot's own trips before it
+# was put here: the mask swap pays when the convert at the hive is short
+# against the fill and the walk (H < 0.5 F + 1.25 T, from the two masks' stats:
+# x1.82 bag in the Pine Tree against x1.25, the Honey Mask's +80 convert
+# amount lost), and MEASURED on run-563 the Pine Tree bag filled in 178-353 s
+# (F), the convert took 14-15 s (H) and the round trip 59 s (T: the walks'
+# medians, 17.8 s out and 41.3 s home) -- 15 against 162 or more. By the
+# research's 10-20% pollen gain that is 12-21% more honey an hour (3.5% if the
+# pollen gain were nothing). And it is the closer of the two: only 9 Oil short
+# (16/25), where the Belt is short 42 Enzymes, 44 Glue and 9 Oil.
+#
+# THE NEXT HIVE SLOT BEFORE THE MASK, 2026-10-01. `hive_slot` is priced from
+# the hive's own count (brain/goals.with_next_slot): on an example 34-bee hive,
+# the slot for the 35th. It needs nothing but honey, where the Bubble
+# Mask is held up by 9 Oil that nothing the bot does pays quickly (the Blender
+# wants 10 Royal Jelly and 50 Sunflower Seeds an Oil), and saving its 100M
+# ahead of the slot would hold the slot back for days. The
+# guide's Stage 1 ends at 48 bees; 35 opens the 35-bee zone.
+# THE BUBBLE MASK BEFORE THE NEXT HIVE SLOT, 2026-10-06 -- the owner asked for
+# the Bubble Mask first, then the Diamond Mask or whatever the blue hive guide
+# says. The reason the slot went first (9 Oil short, above) is gone once every
+# material is held, and 100M honey is a few hours' farming, where a late hive
+# slot costs many times that.
+#
+# AND AFTER IT, THE GUIDES' ORDER, 2026-10-06 -- the owner asked to follow the
+# blue hive guides' order after the mask. Researched
+# across Meta Bee (the BSGH authors), itemlevel.net, the 2022 fandom progression
+# guide and the fanon colour guide (local research notes, not shipped):
+# all put hive slots 40-42 before the Diamond Mask; Meta Bee's alt order runs
+# Bubble Mask, slot 40, Riley, slot 42, Cobalt, slot 45, Canister,
+# Diamond Mask. The Diamond Mask (5B) comes before slots 43-45 here (34.0B
+# between them). The Cobalt Guard replaces a Bucko Guard (both right
+# shoulder); the Crimson replaces a Riley (left). The Honeycomb Belt
+# is optional -- the guides disagree -- so it is last but for the slots.
+# "hive_slot<=N" asks for the next slot only up to slot N (brain/goals
+# with_next_slot).
+# GEAR BEFORE SLOTS, BY PAYBACK (approved by the owner, 2026-10-13). The
+# research (a gear-order study, local research notes, not shipped: the guide,
+# the wiki, meta-bee, 321 trips measured on the test account):
+# capacity binds -- the bag is 93-100% at the end of most trips and ~45% of a
+# trip is overhead -- so the Honeycomb Belt (~140 h to pay back at 100M/h) and
+# the Cobalt Guard (~230 h) come before slot 42 (2.38B, +1.75%, ~1,360 h). The
+# Crimson Guard is mostly +100k capacity for a blue hive, so after the mask.
+# No Bronze Star Amulet: the plan assumes a Silver one is already held.
+default_order:
+  - porcelain_dipper
+  - porcelain_port_o_hive
+  - honey_mask
+  - bubble_mask
+  - honeycomb_belt
+  - cobalt_guard
+  - hive_slot<=42
+  - diamond_mask
+  - crimson_guard
+  - hive_slot<=45
+  - hive_slot
+
+# SUGGESTED ORDERS: named lists the Goals tab may OFFER, never applied by
+# themselves -- `goals.order` (the player's) and `default_order` above stay what they
+# are. brain/protips.suggested_order / with_suggested resolve each key to this
+# file's own goal, else the progression file's (data/knowledge/progression/
+# <colour>.yaml, whose prices and recipes were checked again 2026-10-20 against
+# the wiki through api.php action=parse: Petal_Belt rev 448413, Coconut_Clogs
+# 448349, Coconut_Canister 448207, Petal_Wand 446918, The_Supreme_Saturator
+# 441788, Tide_Popper 448469, Dark_Scythe 446034 -- all agree; the Crimson
+# Guard is this file's own). A {blue: , red: } entry is the colour's pick.
+suggested_orders:
+  # an experienced tester, round 2 (20 Oct 2026), answer 11 -- their order, as said
+  pro_tester:
+    - petal_belt
+    - crimson_guard
+    - coconut_clogs
+    - coconut_canister
+    - petal_wand
+    - supreme_saturator
+    # no white tool was named: a white hive takes the first (an assumption)
+    - {blue: tide_popper, red: dark_scythe}
+
+shops:
+  mountain_top_shop:
+    label: Mountain Top Shop
+    where: past the Lion Bee Gate, at the end of the slope beside the Pumpkin Patch
+    gate_bees: 25
+    gate: the Lion Bee Gate needs 25 bees
+    route: >
+      none to the counter. `natro_out_white_field_booster` (Natro's
+      gtb-mountain) ends at the Field Booster between this shop and the
+      Ticket Shop, which sells tickets for honey.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Lion_Bee_Gate ; https://bee-swarm-simulator.fandom.com/wiki/Field_Booster (rev 2026-07-12)
+  blue_hq:
+    label: Blue HQ
+    where: the blue building by the Pine Tree Forest; its shop counter reads "Open Shop"
+    gate: blue bee types discovered (the wiki's Blue HQ page; the Blue Field Booster on its second floor needs 5)
+    gate_evidence: >
+      MET on the test account: it owned the Bucko Guard (goals.owned), which the Blue HQ
+      sells, and the bot's natro_out_blue_field_booster walks into it every
+      45 minutes (landed 10 of its last 10, 2026-10-01). The panel read "Open
+      Shop" inside it on 2026-09-23 04:10 (landmarks.yaml shop_counter).
+    route: >
+      natro_out_blue_field_booster passes the counter on its way to the
+      booster upstairs; nothing stops at it.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Blue_HQ (read through api.php 2026-10-01)
+  diamond_room:
+    label: Diamond Mask's room
+    where: past the Cloud Obby (or glided into); its platforms are solid only at night until the mask is owned
+    gate: none read; reached by the obby or a glide
+    route: none -- the bot has no way there yet, so the purchase is the player's
+    source: https://bee-swarm-simulator.fandom.com/wiki/Diamond_Mask (api.php, 2026-10-06)
+  ace_shop:
+    label: Ace Shop (Badge Bearer's Guild)
+    where: a gated room inside the Badge Bearer's Guild, near the Pine Tree Forest, on the side opposite the sprinklers
+    gate: the Guild needs 15 badges; the Ace room needs 1 Ace badge
+    gate_evidence: >
+      LIKELY MET on the test account, NOT READ ON SCREEN. The quest menu read
+      "Earn 15 Badges -- Complete!" (var/quests.json, 2026-09-24). The Honey
+      badge turns Ace at 100,000,000 honey made, and two cached reward-feed
+      reads of 2026-09-21 (var/vlm_cache) say "Obtained Honey Badge - Ace!".
+      The badge menu has never been read.
+    route: >
+      none. `natro_out_blender` walks into the Guild and ends at the Blender;
+      nothing reaches the Ace room.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Badge_Bearer%27s_Guild (rev 2026-07-12)
+
+goals:
+  porcelain_dipper:
+    label: Porcelain Dipper
+    slot: tool
+    shop: mountain_top_shop
+    honey: 150000000
+    materials: {}
+    aliases: [porcelain staff, dipper, staff]
+    what: >
+      315 pollen/s on white flowers, 210 on red and blue (3 pollen from 49
+      patches every 0.7 s, x1.5 on white); every 10th swing a light pillar.
+      Replaces the Golden Rake.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Porcelain_Dipper (rev 2026-07-12); https://bee-swarm-simulator.fandom.com/wiki/Mountain_Top_Shop (rev 2026-07-12)
+  porcelain_port_o_hive:
+    label: Porcelain Port-O-Hive
+    slot: bag
+    capacity: {add: 600000}     # replaces the bag's own (brain/owned)
+    shop: mountain_top_shop
+    honey: 250000000
+    materials: {glitter: 3, soft_wax: 3, moon_charm: 10}
+    aliases: [backpack, porcelain backpack, porcelain bag, port-o-hive, port o hive]
+    what: >
+      +600,000 capacity, +250% convert rate, x1.25 convert rate at the hive,
+      +10% instant conversion, +50% white pollen. Replaces the Blue
+      Port-O-Hive. (The Mountain Top Shop page's Bags tab still shows the
+      pre-2024-05-23 stats.)
+    source: https://bee-swarm-simulator.fandom.com/wiki/Porcelain_Port-O-Hive (rev 2026-07-12); https://bee-swarm-simulator.fandom.com/wiki/Updates (2024-05-23)
+  honey_mask:
+    label: Honey Mask
+    slot: hat
+    capacity: {times: 1.25}
+    shop: ace_shop
+    honey: 100000000
+    materials: {treats: 9999, oil: 50, enzymes: 25, gold_egg: 5}
+    aliases: [mask]
+    what: >
+      +25% pollen, +25% bee gather pollen, x1.25 capacity, +50% honey from
+      tokens, +80 convert amount, +30% defense, +15% bee ability rate, Coin
+      Scatter. Gifted Gold Eggs do NOT count towards the five. Replaces the
+      Beekeeper's Mask, so the pollen gain over it is +5% and +5%.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Honey_Mask (rev 2025-12-30); https://bee-swarm-simulator.fandom.com/wiki/Egg#Gold_Egg (rev 2026-08-31)
+  bubble_mask:
+    label: Bubble Mask
+    slot: hat
+    capacity: {times: 1.5}
+    shop: blue_hq
+    honey: 100000000
+    materials: {blueberry: 500, blue_extract: 50, oil: 25, glitter: 15}
+    aliases: [bubble]
+    what: >
+      x1.5 blue pollen, x1.5 capacity, x1.25 blue field capacity, x1.25 bubble
+      pollen, +30% defense, +15% bee ability rate, Bubble Bombs (every 25th
+      Bomb token, 25 bubbles). Changed 2024-05-23 (lost +15% instant blue
+      conversion; Bubble Pollen x2 to x1.25; gained the blue field capacity).
+      Replaces the Honey Mask in the hat slot, so the Honey Mask's +25% pollen,
+      +25% bee gather pollen, +50% honey from tokens and +80 convert amount go.
+      Owning it passes Bubble Bombs to the Diamond Mask.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Bubble_Mask (read through api.php 2026-10-01); https://bee-swarm-simulator.fandom.com/wiki/Diamond_Mask
+  diamond_mask:
+    label: Diamond Mask
+    slot: hat
+    capacity: {times: 3}
+    shop: diamond_room
+    honey: 5000000000
+    materials: {blue_extract: 250, oil: 150, glitter: 100, diamond_egg: 5, comforting_vial: 1}
+    aliases: [diamond]
+    what: >
+      x3 capacity, x1.5 blue pollen, Diamond Drain (+10% per blue bee). Replaces
+      the Bubble Mask in the hat slot, and keeps its Bubble Bombs when the Bubble
+      Mask is owned. Its 5 Diamond Eggs are saved for it (the fanon and 2022
+      guides: never hatch them).
+    source: https://bee-swarm-simulator.fandom.com/wiki/Diamond_Mask ; https://www.sportskeeda.com/roblox-news/bee-swarm-simulator-diamond-mask-guide
+  honeycomb_belt:
+    label: Honeycomb Belt
+    slot: belt
+    capacity: {add: 150000, times: 1.25}
+    shop: ace_shop
+    honey: 75000000
+    materials: {enzymes: 50, glue: 50, oil: 25}
+    aliases: [belt]
+    what: >
+      +150,000 capacity, +25% capacity, +75 convert amount, +100% loot luck,
+      +20% buzz bomb pollen, +50% honey from tokens, +1 colourless bee attack.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Honeycomb_Belt (rev 2025-12-30)
+  cobalt_guard:
+    label: Cobalt Guard
+    slot: right shoulder
+    capacity: {add: 250000}
+    shop: ace_shop
+    honey: 200000000
+    materials: {blue_extract: 100, stinger: 100, enzymes: 50, glitter: 25}
+    aliases: [cobalt]
+    what: >
+      +250,000 capacity, +50% blue pollen, +20% blue bomb pollen, +3 blue bee
+      attack, +10% defense, +100% critical power, Haste Pulser. Right shoulder,
+      so it can be worn with the Crimson Guard.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Cobalt_Guard (rev 2025-12-30)
+  crimson_guard:
+    label: Crimson Guard
+    slot: left shoulder
+    capacity: {add: 250000}
+    shop: ace_shop
+    honey: 200000000
+    materials: {red_extract: 100, stinger: 100, oil: 50, glitter: 25}
+    aliases: [crimson]
+    what: >
+      +250,000 capacity, +50% red pollen, +20% red bomb pollen, +3 red bee
+      attack, +10% defense, +10% critical chance, Focus Pulser. Left shoulder.
+    source: https://bee-swarm-simulator.fandom.com/wiki/Crimson_Guard (rev 2025-12-30)
+
+# NOT A MATERIAL, but what the Ticket Tent (Gold Eggs, 100 each) and the
+# Stinger Shop (10 each) take, so the player can type their count into
+# `goals.have` and the planner can say how many either would buy.
+currencies:
+  tickets:
+    label: Tickets
+    sources:
+      - kind: machine
+        place: wealth_clock
+        bot: does
+        gives: 1, 2, 3, 4, then 5 tickets per hourly use in one unbroken session
+        source: https://bee-swarm-simulator.fandom.com/wiki/Wealth_Clock (rev 2026-07-12); data/knowledge/tickets.yaml
+
+# WHERE EACH MATERIAL COMES FROM, and whether THIS bot does that activity.
+#
+#   bot: does     -- something the bot already does unattended: a quest giver it
+#                    walks to and hands in at (act/bearvisit.GIVERS, with a
+#                    Natro route), a dispenser it uses (act/errands), or a drop
+#                    its bees pick up while it gathers.
+#   bot: gated    -- a game gate this account has not passed yet.
+#   bot: cannot   -- needs something the bot does not have: a menu it cannot
+#                    drive (the Blender), a fight, a route.
+#   bot: yours    -- spends honey or tickets. Never done unattended; listed so
+#                    the owner knows it is there.
+#
+# `bot: does` IS CHECKED, NOT TRUSTED, for a giver or a dispenser: the planner
+# (`brain/goals.source_now`) counts a giver only once its prompt is in
+# var/bear_panels.json, a dispenser only once var/place_panels.json holds a
+# panel naming it, and neither when the owner has switched it off -- otherwise
+# the row says "prompt not read yet", "switched off" or "not the bot". So a
+# giver the bot learns to reach tomorrow counts from then on without an edit.
+#
+# `giver:` and `place:` are the names the bot's errands use. `brain/goals`
+# sends the givers it does hand in at whose quests pay a material the next
+# goals are missing ahead of the others (DESIGN 8dp). `quest:` is a quest name
+# (or a list) the planner looks for in the last quest-menu read, to say
+# "in the quest menu now".
+materials:
+  blueberry:
+    label: Blueberry
+    sources:
+      - kind: drop
+        bot: does
+        gives: dropped while gathering in the blue fields -- the Pine Tree Forest it farms is one -- and by Rhino Beetles and Mantises; 3,816 held on 2026-10-01
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blueberry (read through api.php 2026-10-01)
+      - kind: dispenser
+        place: blueberry_dispenser
+        bot: cannot
+        gives: one per blue bee every 4 hours, Bee Swarm Simulator Club members only
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blueberry_Dispenser
+  treats:
+    label: Treats
+    sources:
+      - kind: dispenser
+        place: treat_dispenser
+        bot: does
+        gives: floor(bees^2.5/100 + 0.5) per use, 34 at 26 bees, on a 1-hour cooldown
+        source: >
+          https://bee-swarm-simulator.fandom.com/wiki/Treat_Dispenser (rev
+          2026-02-26); the machine's own timer read "Use the Treat Dispenser
+          (59:59)" (var/errand_ready.json) and var/errand_log.json records the
+          bot using it
+      - kind: quest
+        giver: black_bear
+        quest: [Get Red-y, One Stop On The Tip Top, Blue Mushrooms 2,
+                Pretty Pumpkins, "Black Bear, Why?", Bee A Star]
+        bot: does
+        gives: >
+          100, 200, 300, 400, 500 and 1,000 for those six Star Jelly quests in
+          turn, then 2,000 and 2,500 for the first two Mythic quests -- about
+          7,000 before "Can't Without Ants" needs the Ant Field
+        source: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear (rev 2026-08-23)
+      - kind: quest
+        giver: polar_bear
+        bot: does
+        gives: 10 per quest
+        source: https://bee-swarm-simulator.fandom.com/wiki/Polar_Bear (rev 2026-06-12)
+      - kind: quest
+        giver: honey_bee
+        bot: does
+        gives: 10 treats at 10/41 odds per Honey Hunt
+        source: https://bee-swarm-simulator.fandom.com/wiki/Honey_Bee_(NPC) (rev 2026-09-21)
+      - kind: drop
+        bot: does
+        gives: field and mob drops while gathering; the reward feed has shown Treats many times, at no measured rate
+        source: https://bee-swarm-simulator.fandom.com/wiki/Treat (rev 2026-05-05); var/vlm_cache feed reads
+      - kind: shop
+        place: treat_shop
+        bot: yours
+        gives: 100 honey for the first, +100 per treat, capped at 10,000 each -- 99,495,000 honey for 9,999 from fresh
+        source: https://bee-swarm-simulator.fandom.com/wiki/Treat_Shop (rev 2026-08-04)
+  oil:
+    label: Oil
+    sources:
+      - kind: quest
+        giver: polar_bear
+        bot: does
+        gives: about 6.67% chance per quest
+        source: https://bee-swarm-simulator.fandom.com/wiki/Polar_Bear (rev 2026-06-12)
+      - kind: quest
+        giver: brown_bear
+        bot: does
+        gives: milestone quests 35 and 105 (1 each), 160 (3), 185 (1), 255 (3), 285 (3); how many this account has done is unknown
+        source: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear (rev 2026-06-15, datamined; the Oil page's older table disagrees on 160, 255 and 285)
+      - kind: drop
+        bot: does
+        gives: rare while gathering in the Sunflower Field; common from Werewolves, rare from Mantises, which the bees fight while gathering
+        source: https://bee-swarm-simulator.fandom.com/wiki/Oil (rev 2026-02-09)
+      - kind: blender
+        bot: cannot
+        gives: 50 Sunflower Seeds + 10 Royal Jelly, 5 minutes -- the Blender's menu is not driven by this bot
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  enzymes:
+    label: Enzymes
+    sources:
+      - kind: quest
+        giver: polar_bear
+        bot: does
+        gives: about 6.67% chance per quest
+        source: https://bee-swarm-simulator.fandom.com/wiki/Polar_Bear (rev 2026-06-12)
+      - kind: quest
+        giver: brown_bear
+        bot: does
+        gives: milestone quests 45, 115, 130 and 165 (1 each), 230 (3), 305 (3)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear (rev 2026-06-15)
+      - kind: drop
+        bot: does
+        gives: common from Spiders (1-25), rare while gathering in the Pineapple Patch and the Spider Field
+        source: https://bee-swarm-simulator.fandom.com/wiki/Enzymes (rev 2026-09-14); https://bee-swarm-simulator.fandom.com/wiki/Spider (rev 2026-07-12)
+      - kind: blender
+        bot: cannot
+        gives: 50 Pineapples + 10 Royal Jelly
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  glue:
+    label: Glue
+    sources:
+      - kind: drop
+        bot: does
+        gives: common from Spiders and Werewolves; the feed read "+1 Glue (from Spider)"
+        source: https://bee-swarm-simulator.fandom.com/wiki/Glue (rev 2026-07-12); var/vlm_cache/2c/2cfc177571a89ea9d859ebc51be1dcc1b3dee309b39278780a3b55743ef66020.txt
+      - kind: quest
+        giver: brown_bear
+        bot: does
+        gives: milestone quests 140 and 235 (1 each), 310 (3), 395, 470 and 510 (5 each)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear (rev 2026-06-15)
+      - kind: dispenser
+        place: glue_dispenser
+        bot: gated
+        gives: 2-5 every 22 hours (3 at Goo Ace), in Gummy Bear's Lair, entered with a gumdrop used on the Gummy Bee at the Egg Claim -- a step the route does not do; the badge gate (Goo Hotshot) is passed, the test account's badge menu read "Goo Badge - Ace" on 2026-10-14
+        source: https://bee-swarm-simulator.fandom.com/wiki/Glue_Dispenser (rev 2026-07-12); var/badges/20261014-053607/page.txt
+      # THE GUMDROP SHOP, for the Blender's Glue (the owner agreed 2026-10-14
+      # that tickets may go on Gumdrops or Glue). Not Glue itself: no shop sells it
+      # for tickets or honey. `price` is tickets a Glue, 16.7 rounded up.
+      # run_farm gumdrop_buy_due buys 300 when the Blender's Glue lacks them;
+      # `bot: yours` stops that.
+      - kind: shop
+        place: gumdrop_shop
+        bot: does
+        currency: tickets
+        price: 17
+        gives: the Blender's 50 Gumdrops a Glue (with 10 Royal Jelly), 300 for 100 tickets -- the cheapest Glue for tickets
+        source: https://bee-swarm-simulator.fandom.com/wiki/Gumdrop_Shop (rev 2026-07-12); https://bee-swarm-simulator.fandom.com/wiki/Glue (rev 2026-07-12); var/purchases.json ("300 Gumdrops | 100 Tickets" bought 2026-10-07 and 2026-10-09)
+      - kind: blender
+        bot: cannot
+        gives: 50 Gumdrops + 10 Royal Jelly
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  glitter:
+    label: Glitter
+    sources:
+      - kind: quest
+        giver: black_bear
+        quest: Pretty Pumpkins
+        bot: does
+        gives: 1 from "Pretty Pumpkins" (Star Jelly quest 18); 10% on some repeatables after the Mythic line
+        source: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear (rev 2026-08-23)
+      - kind: quest
+        giver: polar_bear
+        bot: does
+        gives: 2% chance per quest
+        source: https://bee-swarm-simulator.fandom.com/wiki/Polar_Bear (rev 2026-06-12)
+      - kind: drop
+        bot: does
+        gives: rare while gathering in Dandelion, Pineapple or Spider, and from fireflies and sparkles
+        source: https://bee-swarm-simulator.fandom.com/wiki/Glitter (rev 2026-08-28)
+      - kind: quest
+        giver: science_bear
+        bot: gated
+        gives: quests 20, 25, 27 and 31 pay 1, 1, 3 and 4 -- behind "Meticulously Crafted", which needs 10 Blender crafts
+        source: https://bee-swarm-simulator.fandom.com/wiki/Science_Bear (rev 2026-07-02); var/quests.json
+      - kind: blender
+        bot: cannot
+        gives: 25 Moon Charms + 1 Magic Bean
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  soft_wax:
+    label: Soft Wax
+    sources:
+      - kind: drop
+        bot: does
+        gives: a Normal Aphid always drops one; aphids spawn from about 1 in 107 leaf collections and the bees kill them while gathering -- the feed has read "+1 Soft Wax (from Aphid)" several times
+        source: https://bee-swarm-simulator.fandom.com/wiki/Soft_Wax (rev 2026-09-14); https://bee-swarm-simulator.fandom.com/wiki/Aphid (rev 2026-07-12); var/vlm_cache/dc/dc097fb56e7c9910c3608b72d86a73bb5624a641686f2d030d9d719b6c08014d.txt
+      - kind: blender
+        bot: cannot
+        gives: 5 Honeysuckle + 1 Oil + 1 Enzymes + 10 Royal Jelly
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  moon_charm:
+    label: Moon Charms
+    sources:
+      - kind: drop
+        bot: does
+        gives: at night fireflies land in Rose, Cactus, Pineapple, Spider, Strawberry or Bamboo and usually leave 1, 5 or 10; sparkles drop them commonly -- the feed has read "+1 Moon Charm (from Fireflies)" and "+3 Moon Charms (from Sprout)"
+        source: https://bee-swarm-simulator.fandom.com/wiki/Moon_Charm (rev 2026-07-12); https://bee-swarm-simulator.fandom.com/wiki/Fireflies (rev 2026-02-04); var/vlm_cache/c4/c41d013c746bb3fa2ea120a7563f3d19c40cbe0064c8a95cdb945ad85195f717.txt
+      - kind: blender
+        bot: cannot
+        gives: 1 Royal Jelly + 5 Pineapples + 5 Gumdrops
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  blue_extract:
+    label: Blue Extract
+    sources:
+      - kind: quest
+        giver: black_bear
+        quest: Bamboo Boogie 2
+        bot: does
+        gives: 1 from "Bamboo Boogie 2" (Mythic quest 1)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear (rev 2026-08-23)
+      - kind: drop
+        bot: does
+        gives: rare while gathering in Blue Flower, Bamboo, Pine Tree or Stump; rare from Rhino Beetles
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blue_Extract (rev 2026-02-09)
+      - kind: quest
+        giver: bucko_bee
+        bot: gated
+        gives: at least 1 per quest, once Science Bear's first Translator (quest 21) is in hand; "Meticulously Crafted" (quest 19) is still open
+        source: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Bucko_Bee (rev 2026-06-12); var/quests.json
+      - kind: blender
+        bot: cannot
+        gives: 50 Blueberries + 10 Royal Jelly (the Blueberry Dispenser, which the bot uses, gives 1 blueberry per blue bee every 4 hours)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19); https://bee-swarm-simulator.fandom.com/wiki/Blueberry_Dispenser (rev 2026-02-26)
+  red_extract:
+    label: Red Extract
+    sources:
+      - kind: quest
+        giver: black_bear
+        quest: [Get Red-y, Rocky Red Mountain]
+        bot: does
+        gives: 1 each from "Get Red-y" and "Rocky Red Mountain"
+        source: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear (rev 2026-08-23)
+      - kind: drop
+        bot: does
+        gives: rare while gathering in Mushroom, Strawberry, Rose or Pepper -- the feed has read "+1 Red Extract (from Strawberry Field)"
+        source: https://bee-swarm-simulator.fandom.com/wiki/Red_Extract (rev 2026-02-09); var/vlm_cache/04/042bee1897f2f5933b623ef226c5960ddf4cacf6b19acbc3873ffe82c6207dd6.txt
+      - kind: quest
+        giver: riley_bee
+        bot: gated
+        gives: 1 per quest, once a Translator is in hand
+        source: https://bee-swarm-simulator.fandom.com/wiki/Gifted_Riley_Bee (rev 2026-06-20)
+      - kind: blender
+        bot: cannot
+        gives: 50 Strawberries + 10 Royal Jelly
+        source: https://bee-swarm-simulator.fandom.com/wiki/Blender (rev 2026-02-19)
+  stinger:
+    label: Stingers
+    sources:
+      - kind: quest
+        giver: black_bear
+        quest: "Black Bear, Why?"
+        bot: does
+        gives: 15 from "Black Bear, Why?" (Star Jelly quest 19)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Black_Bear (rev 2026-08-23)
+      - kind: drop
+        bot: does
+        gives: 1, 3 or 5 from Scorpions (Rose Field); very rare from Spiders
+        source: https://bee-swarm-simulator.fandom.com/wiki/Stinger (rev 2026-09-14)
+      - kind: shop
+        place: stinger_shop
+        bot: yours
+        currency: tickets
+        price: 10
+        gives: 10 tickets each, behind the Ant Gate
+        source: https://bee-swarm-simulator.fandom.com/wiki/Stinger_Shop (rev 2026-07-12)
+  gold_egg:
+    label: Gold Eggs
+    sources:
+      - kind: quest
+        giver: brown_bear
+        bot: does
+        gives: one each at Brown Bear quests 50, 340, 390 and 495
+        source: https://bee-swarm-simulator.fandom.com/wiki/Brown_Bear (rev 2026-06-15)
+      - kind: quest
+        giver: panda_bear
+        quest: The REAL Final Showdown
+        bot: does
+        gives: >
+          1 Gold Egg + 100,000 honey for 10 Ladybugs, 10 Rhino Beetles, 10
+          Scorpions, 10 Mantises, 10 Spiders and 5 Werewolves, which the bees
+          fight while gathering; handing it in needs the Panda Bear's prompt,
+          which the bot has never read (checked at plan time)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Panda_Bear (rev 2026-09-20); var/quests.json
+      - kind: shop
+        place: ticket_tent
+        bot: yours
+        currency: tickets
+        price: 100
+        gives: 100 tickets each at the Ticket Tent behind the Red Cannon; hatching one is irreversible, so hold them for the mask
+        source: https://bee-swarm-simulator.fandom.com/wiki/Ticket_Tent (rev 2026-07-12); https://bee-swarm-simulator.fandom.com/wiki/Egg#Gold_Egg (rev 2026-08-31)
+  # THE SEVEN THE MATERIALS PAGE SAID "no source on record" FOR (2026-10-21,
+  # when the owner asked for the materials page to be checked): read
+  # through the wiki's api.php that day, each with its page and revision.
+  # `bot:` as the rest of this file: a giver the bot hands in at is `does`
+  # (goals.source_now checks its records), the Blender `cannot` like the
+  # entries above, a Ticket Tent buy `yours`, Robux never the bot's.
+  diamond_egg:
+    label: Diamond Egg
+    sources:
+      - kind: shop
+        place: ticket_tent
+        bot: yours
+        gives: 1 Diamond Egg for 400 Tickets each
+        source: https://bee-swarm-simulator.fandom.com/wiki/Egg (api.php rev 449684, read 2026-10-21)
+      - kind: quest
+        giver: black_bear
+        bot: does
+        gives: reward for completing Black Bear's Diamond Egg questline
+        source: https://bee-swarm-simulator.fandom.com/wiki/Egg (api.php rev 449684, read 2026-10-21)
+      - kind: drop
+        bot: cannot
+        gives: rare drop from Stump Snail, Diamond Aphids, King Beetle, Tunnel Bear, Coconut Crab and Legendary sprouts; Supreme sprouts always drop one
+        source: https://bee-swarm-simulator.fandom.com/wiki/Egg (api.php rev 449684, read 2026-10-21)
+      - kind: other
+        place: bear_gate
+        bot: cannot
+        gives: a Diamond Egg token past the Bear Gate, under Onett's platform, in front of Shadow Bear; reached by glider or parachute
+        source: https://bee-swarm-simulator.fandom.com/wiki/Egg (api.php rev 449684, read 2026-10-21)
+      - kind: robux
+        place: robux_shop
+        bot: cannot
+        gives: 400 Robux each -- never the bot's
+        source: https://bee-swarm-simulator.fandom.com/wiki/Egg (api.php rev 449684, read 2026-10-21)
+  comforting_vial:
+    label: Comforting Vial
+    sources:
+      - kind: quest
+        giver: dapper_bear
+        bot: does
+        gives: 1 each from Dapper Bear's 6th, 10th and 13th quests, and 1 from his Blue Drive quest
+        source: https://bee-swarm-simulator.fandom.com/wiki/Comforting_Vial (api.php rev 444107, read 2026-10-21)
+      - kind: craft
+        place: nectar_condenser
+        bot: cannot
+        gives: 12 hours of Comforting Nectar condensed into 1 vial
+        source: https://bee-swarm-simulator.fandom.com/wiki/Comforting_Vial (api.php rev 444107, read 2026-10-21)
+      - kind: other
+        place: sticker_stack
+        bot: cannot
+        gives: 1 for adding the Comforting Nectar Icon sticker to the Sticker Stack
+        source: https://bee-swarm-simulator.fandom.com/wiki/Comforting_Vial (api.php rev 444107, read 2026-10-21)
+      - kind: other
+        giver: bucko_bee
+        bot: cannot
+        gives: a Present given to a Gifted Bucko Bee rewards 1 and other items
+        source: https://bee-swarm-simulator.fandom.com/wiki/Comforting_Vial (api.php rev 444107, read 2026-10-21)
+  refreshing_vial:
+    label: Refreshing Vial
+    sources:
+      - kind: quest
+        giver: dapper_bear
+        bot: does
+        gives: 1 each from Dapper Bear's 7th and 14th quests
+        source: https://bee-swarm-simulator.fandom.com/wiki/Refreshing_Vial (api.php rev 448804, read 2026-10-21)
+      - kind: craft
+        place: nectar_condenser
+        bot: cannot
+        gives: 12 hours of Refreshing Nectar condensed into 1 vial
+        source: https://bee-swarm-simulator.fandom.com/wiki/Refreshing_Vial (api.php rev 448804, read 2026-10-21)
+      - kind: other
+        place: sticker_stack
+        bot: cannot
+        gives: 1 for adding the Refreshing Nectar Icon sticker to the Sticker Stack
+        source: https://bee-swarm-simulator.fandom.com/wiki/Refreshing_Vial (api.php rev 448804, read 2026-10-21)
+  coconut:
+    label: Coconut
+    sources:
+      - kind: dispenser
+        place: coconut_dispenser
+        bot: cannot
+        gives: 3 Coconuts per use, rising with each Coconut Badge tier up to 15 (the bot's walk there has never landed, 2026-10-21)
+        source: https://bee-swarm-simulator.fandom.com/wiki/Coconut (api.php rev 449511, read 2026-10-21)
+      - kind: drop
+        bot: cannot
+        gives: from leaves, sprouts and planters in the Coconut Field (shut by the Coconut Crab), and planters in Pine Tree Forest and Pepper Patch
+        source: https://bee-swarm-simulator.fandom.com/wiki/Coconut (api.php rev 449511, read 2026-10-21)
+      - kind: drop
+        bot: cannot
+        gives: from the Coconut Crab (by kill time), Armored Aphids and 35-bee-zone puffshrooms
+        source: https://bee-swarm-simulator.fandom.com/wiki/Coconut (api.php rev 449511, read 2026-10-21)
+      - kind: other
+        place: memory_match
+        bot: cannot
+        gives: Mega Memory Match prizes come in 3s, Extreme Memory Match in 5s
+        source: https://bee-swarm-simulator.fandom.com/wiki/Coconut (api.php rev 449511, read 2026-10-21)
+  tropical_drink:
+    label: Tropical Drink
+    sources:
+      - kind: blender
+        bot: cannot
+        gives: 10 Coconuts + 2 Enzymes + 2 Oil
+        source: https://bee-swarm-simulator.fandom.com/wiki/Tropical_Drink (api.php rev 448473, read 2026-10-21)
+      - kind: quest
+        giver: black_bear
+        bot: does
+        gives: 3 from the "Boss Battles" quest; a chance of one after "Triple Treck" in the repeatable questline
+        source: https://bee-swarm-simulator.fandom.com/wiki/Tropical_Drink (api.php rev 448473, read 2026-10-21)
+      - kind: quest
+        giver: brown_bear
+        bot: does
+        gives: 1 from Brown Bear's 85th quest
+        source: https://bee-swarm-simulator.fandom.com/wiki/Tropical_Drink (api.php rev 448473, read 2026-10-21)
+      - kind: drop
+        bot: cannot
+        gives: sprouts in the Coconut Field; the odds rise with the sprout's rarity
+        source: https://bee-swarm-simulator.fandom.com/wiki/Tropical_Drink (api.php rev 448473, read 2026-10-21)
+  spirit_petal:
+    label: Spirit Petal
+    sources:
+      - kind: quest
+        giver: spirit_bear
+        bot: does
+        gives: 1 per 10th Spirit Bear quest (Sway Away, Tickle The Wind, Spring Out Of The Mountain), 3 in all; quests are the only source
+        source: https://bee-swarm-simulator.fandom.com/wiki/Spirit_Petal (api.php rev 448444, read 2026-10-21)
+  star_jelly:
+    label: Star Jelly
+    sources:
+      - kind: blender
+        bot: cannot
+        gives: 100 Royal Jelly + 3 Glitter
+        source: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly (section Star Jelly; api.php rev 448745, read 2026-10-21)
+      - kind: quest
+        giver: honey_bee
+        bot: does
+        gives: 1 every 10 Honey Bee quests, up to the 100th
+        source: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly (api.php rev 448745, read 2026-10-21)
+      - kind: quest
+        giver: black_bear
+        bot: does
+        gives: a chance from repeatable quests; the Star Jelly questline; Bubble Trouble and Pollen Fetcher 6 in the Mythic Egg questline
+        source: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly (api.php rev 448745, read 2026-10-21)
+      - kind: drop
+        bot: cannot
+        gives: always dropped by the Stump Snail and the Coconut Crab, and on the 15th Commando Chick capture
+        source: https://bee-swarm-simulator.fandom.com/wiki/Royal_Jelly (api.php rev 448745, read 2026-10-21)

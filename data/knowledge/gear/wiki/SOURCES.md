@@ -1,0 +1,76 @@
+# Gear pictures: sources
+
+Fetched by `scripts/fetch_gear_images.py` from the Bee Swarm Simulator Fandom
+wiki (bee-swarm-simulator.fandom.com). Bee Swarm Simulator Fandom wiki, CC BY-SA 3.0; game art (c) Onett.
+
+- `backpack.png` (Backpack): https://static.wikia.nocookie.net/bee-swarm-simulator/images/b/b1/Backpack.png/revision/latest?cb=20190402215341
+- `basic_boots.png` (Basic Boots): https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/7c/Basic_Boots.png/revision/latest?cb=20190402214940
+- `beekeepers_boots.png` (Beekeeper's Boots): https://static.wikia.nocookie.net/bee-swarm-simulator/images/8/89/Beekeeper%27s_Boots.png/revision/latest?cb=20190403024614
+- `beekeepers_mask.png` (Beekeeper's Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/5e/Beekeeper%27s_Mask.png/revision/latest?cb=20200403235417
+- `belt_bag.png` (Belt Bag): https://static.wikia.nocookie.net/bee-swarm-simulator/images/c/c0/Belt_Bag.png/revision/latest?cb=20190403022426
+- `belt_pocket.png` (Belt Pocket): https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f2/Belt_Pocket.png/revision/latest?cb=20190402215230
+- `blue_guard.png` (Blue Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/94/Blue_Guard.png/revision/latest?cb=20190403020304
+- `blue_port_o_hive.png` (Blue Port-O-Hive): https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/56/Blue_Port-O-Hive.png/revision/latest?cb=20190405220756
+- `bomber_guard.png` (Bomber Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/7b/Bomber_Guard.png/revision/latest?cb=20190403022713
+- `brave_guard.png` (Brave Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/a1/Brave_Guard.png/revision/latest?cb=20190403022436
+- `bronze_star_amulet.png` (Bronze Star Amulet): https://static.wikia.nocookie.net/bee-swarm-simulator/images/b/bc/Bronze_Star_Amulet.png/revision/latest?cb=20180731024140
+- `bubble_mask.png` (Bubble Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/4/42/Bubble_Mask.png/revision/latest?cb=20190403020355
+- `bubble_wand.png` (Bubble Wand): https://static.wikia.nocookie.net/bee-swarm-simulator/images/1/16/Bubble_Wand.png/revision/latest?cb=20190403015841
+- `bucko_guard.png` (Bucko Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/22/Bucko_Guard.png/revision/latest?cb=20190403020330
+- `canister.png` (Canister): https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/5f/Canister.png/revision/latest?cb=20190402214838
+- `clippers.png` (Clippers): https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/27/Clippers.png/revision/latest?cb=20190402214557
+- `cobalt_guard.png` (Cobalt Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/3/3c/Cobalt_Guard.png/revision/latest?cb=20181128090512
+- `coconut_belt.png` (Coconut Belt): https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/23/Coconut_Belt.png/revision/latest?cb=20240525131914
+- `coconut_canister.png` (Coconut Canister): https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/9b/Coconut_Canister.png/revision/latest?cb=20191006004936
+- `coconut_clogs.png` (Coconut Clogs): https://static.wikia.nocookie.net/bee-swarm-simulator/images/4/43/Coconut_Clogs.png/revision/latest?cb=20240127223737
+- `compressor.png` (Compressor): https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/ac/Compressor.png/revision/latest?cb=20190403021556
+- `crimson_guard.png` (Crimson Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/1/17/Crimson_Guard.png/revision/latest?cb=20181128090650
+- `dark_scythe.png` (Dark Scythe): https://static.wikia.nocookie.net/bee-swarm-simulator/images/6/6b/Dark_Scythe.png/revision/latest?cb=20211226225244
+- `demon_mask.png` (Demon Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/96/Demon_Mask.png/revision/latest?cb=20210919013026
+- `diamond_mask.png` (Diamond Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/75/Diamond_Mask.png/revision/latest?cb=20190403022722
+- `electro_magnet.png` (Electro-Magnet): https://static.wikia.nocookie.net/bee-swarm-simulator/images/0/0b/Electro-Magnet.png/revision/latest?cb=20190403015936
+- `elite_barrel.png` (Elite Barrel): https://static.wikia.nocookie.net/bee-swarm-simulator/images/6/62/Elite_Barrel.png/revision/latest?cb=20190403021616
+- `elite_blue_guard.png` (Elite Blue Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/8/8b/Elite_Blue_Guard.png/revision/latest?cb=20190403020315
+- `elite_red_guard.png` (Elite Red Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/56/Elite_Red_Guard.png/revision/latest?cb=20190403020221
+- `fire_mask.png` (Fire Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/70/Fire_Mask.png/revision/latest?cb=20190403020251
+- `glider.png` (Glider): https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/79/Glider.png/revision/latest?cb=20190403022840
+- `golden_gushers.png` (Golden Gushers): https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/aa/Golden_Gushers.png/revision/latest?cb=20181128091833
+- `golden_rake.png` (Golden Rake): https://static.wikia.nocookie.net/bee-swarm-simulator/images/d/d8/Golden_Rake.png/revision/latest?cb=20190405220755
+- `gummy_boots.png` (Gummy Boots): https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/fb/Gummy_Boots.png/revision/latest?cb=20181128213854
+- `gummy_mask.png` (Gummy Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/50/Gummy_Mask.png/revision/latest?cb=20210919012419
+- `gummyballer.png` (Gummyballer): https://static.wikia.nocookie.net/bee-swarm-simulator/images/c/c4/Gummyballer.png/revision/latest?cb=20211227045658
+- `hasty_guard.png` (Hasty Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/1/10/Hasty_Guard.png/revision/latest?cb=20190403022730
+- `helmet.png` (Helmet): https://static.wikia.nocookie.net/bee-swarm-simulator/images/3/37/Helmet.png/revision/latest?cb=20190402215018
+- `hiking_boots.png` (Hiking Boots): https://static.wikia.nocookie.net/bee-swarm-simulator/images/1/1e/Hiking_Boots.png/revision/latest?cb=20190403022412
+- `honey_dipper.png` (Honey Dipper): https://static.wikia.nocookie.net/bee-swarm-simulator/images/c/c7/Honey_Dipper.png/revision/latest?cb=20190403020052
+- `honey_mask.png` (Honey Mask): https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f0/Honey_Mask.png/revision/latest?cb=20190403022334
+- `honeycomb_belt.png` (Honeycomb Belt): https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/91/Honeycomb_Belt.png/revision/latest?cb=20181128214212
+- `jar.png` (Jar): https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/77/Jar.png/revision/latest?cb=20190402214910
+- `looker_guard.png` (Looker Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/b/b4/Looker_Guard.png/revision/latest?cb=20190403022752
+- `magnet.png` (Magnet): https://static.wikia.nocookie.net/bee-swarm-simulator/images/8/8c/Magnet.png/revision/latest?cb=20200403234529
+- `mega_jug.png` (Mega-Jug): https://static.wikia.nocookie.net/bee-swarm-simulator/images/d/d6/Mega-Jug.png/revision/latest?cb=20190403021540
+- `mondo_belt_bag.png` (Mondo Belt Bag): https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/ad/Mondo_Belt_Bag.png/revision/latest?cb=20190403020419
+- `parachute.png` (Parachute): https://static.wikia.nocookie.net/bee-swarm-simulator/images/8/86/Parachute.png/revision/latest?cb=20190403022358
+- `petal_belt.png` (Petal Belt): https://static.wikia.nocookie.net/bee-swarm-simulator/images/0/0d/Petal_Belt.png/revision/latest?cb=20210402170808
+- `petal_wand.png` (Petal Wand): https://static.wikia.nocookie.net/bee-swarm-simulator/images/d/d9/Petal_Wand.png/revision/latest?cb=20210402171049
+- `porcelain_dipper.png` (Porcelain Dipper): https://static.wikia.nocookie.net/bee-swarm-simulator/images/e/e1/Porcelain_Dipper.png/revision/latest?cb=20240625063750
+- `porcelain_port_o_hive.png` (Porcelain Port-O-Hive): https://static.wikia.nocookie.net/bee-swarm-simulator/images/6/6f/Porcelain_Port-O-Hive.png/revision/latest?cb=20200403235537
+- `port_o_hive.png` (Port-O-Hive): https://static.wikia.nocookie.net/bee-swarm-simulator/images/4/4a/Port-O-Hive.png/revision/latest?cb=20190403021635
+- `propeller_hat.png` (Propeller Hat): https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/96/Propeller_Hat.png/revision/latest?cb=20190403022321
+- `pulsar.png` (Pulsar): https://static.wikia.nocookie.net/bee-swarm-simulator/images/4/49/Pulsar.png/revision/latest?cb=20190403015905
+- `rake.png` (Rake): https://static.wikia.nocookie.net/bee-swarm-simulator/images/b/bd/Rake.png/revision/latest?cb=20190402214714
+- `red_guard.png` (Red Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/4/4c/Red_Guard.png/revision/latest?cb=20190403020205
+- `red_port_o_hive.png` (Red Port-O-Hive): https://static.wikia.nocookie.net/bee-swarm-simulator/images/e/ed/Red_Port-O-Hive.png/revision/latest?cb=20190405220757
+- `riley_guard.png` (Riley Guard): https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f8/Riley_Guard.png/revision/latest?cb=20190403020236
+- `scissors.png` (Scissors): https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/92/Scissors.png/revision/latest?cb=20200403234545
+- `scythe.png` (Scythe): https://static.wikia.nocookie.net/bee-swarm-simulator/images/c/cd/Scythe.png/revision/latest?cb=20190403020018
+- `silver_soakers.png` (Silver Soakers): https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f4/Silver_Soakers.png/revision/latest?cb=20180911213312
+- `silver_star_amulet.png` (Silver Star Amulet): https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f7/Silver_Star_Amulet.png/revision/latest?cb=20180715034234
+- `spark_staff.png` (Spark Staff): https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/22/Spark_Staff.png/revision/latest?cb=20190405220757
+- `sticker_seeker.png` (Sticker Seeker): https://static.wikia.nocookie.net/bee-swarm-simulator/images/d/d6/Stickerseeker.png/revision/latest?cb=20240112221629
+- `super_scooper.png` (Super-Scooper): https://static.wikia.nocookie.net/bee-swarm-simulator/images/8/82/Super-Scooper.png/revision/latest?cb=20190403020037
+- `supreme_saturator.png` (The Supreme Saturator): https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/a4/The_Supreme_Saturator.png/revision/latest?cb=20230910221943
+- `tide_popper.png` (Tide Popper): https://static.wikia.nocookie.net/bee-swarm-simulator/images/c/cc/Tide_Popper.png/revision/latest?cb=20220103045407
+- `vacuum.png` (Vacuum): https://static.wikia.nocookie.net/bee-swarm-simulator/images/e/e1/Vacuum.png/revision/latest?cb=20190402214642
+
+Not fetched (the page draws the item's initials): gold_star_amulet
