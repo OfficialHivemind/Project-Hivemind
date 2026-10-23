@@ -40,7 +40,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from hivemind.datapaths import config_dir, runtime_dir  # noqa: E402  (stdlib only)
+from hivemind.datapaths import config_dir, runtime_dir, var  # noqa: E402  (stdlib only)
 # HIVEMIND_TELEGRAM_ENV: another file, for tests and offscreen renders, which
 # must never read or write the real token.
 ENV = Path(os.environ.get("HIVEMIND_TELEGRAM_ENV")
@@ -264,6 +264,21 @@ PING_IF = re.compile(r"Decision Inbox|Agreements|I Agree|Not enough free memory|
                      r"Gifted Basic grinder|game may have updated")
 
 
+def honey_line(now: float | None = None, path: Path | None = None) -> str:
+    """"🍯 Total honey: 1,234,567,890 (read 4 min ago)" from the bot's last HUD
+    read (var/balance.json), or "" when there is none. THE OWNER, 2026-10-22:
+    "make hivemind alerts channel show my total honey every time"; the age is
+    said so an old read is never passed off as now."""
+    try:
+        got = json.loads((path or var("balance.json")).read_text(encoding="utf-8"))
+        honey, at = int(got["honey"]), float(got["at"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return ""
+    mins = max(0, int(((now or time.time()) - at) // 60))
+    age = "just now" if mins < 1 else f"{mins} min ago" if mins < 120 else f"{mins // 60} h ago"
+    return f"🍯 Total honey: {honey:,} (read {age})"
+
+
 def discord_send(text: str, image: Path | None = None, ping: bool | None = None) -> bool:
     """The alert to his Discord webhook, if one is saved; True when sent.
     `ping` None = only when PING_IF matches. Errors name curl's exit code or
@@ -274,7 +289,8 @@ def discord_send(text: str, image: Path | None = None, ping: bool | None = None)
         return False
     ping = e.get("DISCORD_PING", "").strip() if (
         PING_IF.search(text) if ping is None else ping) else ""
-    content = (f"<@{ping}> " if ping.isdigit() else "") + "🐝 " + text
+    honey = honey_line()
+    content = (f"<@{ping}> " if ping.isdigit() else "") + "🐝 " + text + (f"\n{honey}" if honey else "")
     payload = json.dumps({"content": content[:1990], "username": "Hivemind",
                           "allowed_mentions": {"users": [ping] if ping.isdigit() else []}})
     cmd = ["curl", "-s", "-m", "30", "-o", "/dev/null", "-w", "%{http_code}"]

@@ -634,3 +634,19 @@ def test_the_palette_says_ai_not_ai(shell):
     """UI panel round 2 (2026-10-22): .title() showed "Ai Progress"."""
     tabs = {t for t, where, *_ in shell.search_index() if where == "Tab"}
     assert "AI progress" in tabs and "Ai Progress" not in tabs
+
+
+def test_a_help_dot_shows_its_help_on_a_click():
+    """A tester, 2026-10-22: clicking the (?) did nothing."""
+    from PySide6.QtCore import QEvent, QPointF, Qt
+    from PySide6.QtGui import QMouseEvent
+    from PySide6.QtWidgets import QApplication, QToolTip
+    from hivemind.gui.shell import HelpDot
+    QApplication.instance() or QApplication([])
+    dot = HelpDot("?")
+    dot.setToolTip("the help text")
+    dot.show()
+    press = QMouseEvent(QEvent.MouseButtonPress, QPointF(4, 4), QPointF(4, 4),
+                        Qt.LeftButton, Qt.LeftButton, Qt.NoModifier)
+    dot.mousePressEvent(press)
+    assert QToolTip.isVisible() and QToolTip.text() == "the help text"

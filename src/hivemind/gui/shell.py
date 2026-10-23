@@ -190,6 +190,17 @@ def game_icon(kind: str, name: str, size: int = 24) -> QLabel:
     return label
 
 
+class HelpDot(QLabel):
+    """The (?) beside a setting: its help shows on hover AND on a click. A
+    tester on Windows (2026-10-22, "does nothing") clicked it and got nothing;
+    most people click a "?" before they think of hovering."""
+
+    def mousePressEvent(self, event):
+        from PySide6.QtWidgets import QToolTip
+        QToolTip.showText(self.mapToGlobal(self.rect().bottomLeft()), self.toolTip(), self)
+        event.accept()
+
+
 class SettingCard(QFrame):
     """One setting: its label, a (?) with the schema's own help text, and the
     right control. Saving is the caller's (`save(key, value)`), so the card
@@ -235,7 +246,7 @@ class SettingCard(QFrame):
         else:
             row.addWidget(name, 1)
         if help_text:
-            ask = QLabel("?")
+            ask = HelpDot("?")
             ask.setObjectName("Help")
             ask.setFixedSize(16, 16)
             ask.setAlignment(Qt.AlignCenter)
@@ -1240,7 +1251,7 @@ GLOSSARY = (
                     "sometimes a rarer one, rarely a gifted one. Hivemind never buys it "
                     "with Robux.", "items", "Royal Jelly"),
     ("Nectar", "Five kinds of boost for your whole hive. You get them by harvesting "
-               "planters.", "items", "Sunflower Seed"),
+               "planters.", "items", "Nectar Shower Vial"),
 )
 
 

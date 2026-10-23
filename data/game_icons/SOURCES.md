@@ -55,3 +55,4 @@ before a public release.
 - `items/moon_charm.png`: https://static.wikia.nocookie.net/bee-swarm-simulator/images/b/b6/Moon_Charm.png/revision/latest?cb=20230404041630
 - `items/stinger.png`: https://static.wikia.nocookie.net/bee-swarm-simulator/images/b/b6/Stinger.png/revision/latest?cb=20230404042929
 
+- `items/nectar_shower_vial.png`: https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/a2/Nectar_Shower_Vial.png/revision/latest?cb=20241225154532 (fetched 2026-10-22, WebP converted to PNG; a tester asked for it on the Nectar card)

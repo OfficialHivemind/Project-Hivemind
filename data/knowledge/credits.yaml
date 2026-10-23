@@ -30,3 +30,15 @@ credits:
   - {name: Linden 1, idea: "Wax calculator: the odds of each beequip stat", roadmap: H4b, status: planned, date: 2026-10-22}
   - {name: Dillion, idea: "Find and pop puffshrooms when they spawn (an option)", roadmap: T5, status: planned, date: 2026-10-22}
   - {name: jew, idea: "Beginner friendly, and a Linux download", roadmap: U15, status: next, date: 2026-10-22}
+  - {name: erie, idea: "Find and pop Blooms, then catch the petals", roadmap: T14, status: planned, date: 2026-10-22}
+  - {name: Speedy, idea: "UI testing: the (?) help on click, the Nectar icon", roadmap: U15d, status: built, date: 2026-10-22}
+  - {name: ToxicBedwars, idea: "Kill the Commando Chick automatically", roadmap: M3, status: planned, date: 2026-10-22}
+  - {name: ToxicBedwars, idea: "Keep distance from mobs and fight from range", roadmap: M3b, status: planned, date: 2026-10-22}
+  - {name: 100 m jacky spray, idea: "Scan the hive and set the pattern, token and quest priorities from it", roadmap: F0, status: planned, date: 2026-10-23}
+  - {name: Repsect my crippin, idea: "Auto planters: pick the nectars, their priority and how much", roadmap: N2, status: planned, date: 2026-10-23}
+  - {name: raiden.shotg4n, idea: "Auto update", roadmap: U15f, status: planned, date: 2026-10-23}
+  - {name: Marceel, idea: "Kill the Coconut Crab automatically", roadmap: M4, status: built, date: 2026-10-23}
+  - {name: alex-flightissmart, idea: "Edit the progression route to fit your needs", roadmap: G10, status: planned, date: 2026-10-23}
+  - {name: raiden.shotg4n, idea: "Emulator support, so the PC stays usable while it plays", roadmap: RL6j, status: researching, date: 2026-10-23}
+  - {name: longF, idea: "Gather where the next gear's materials drop, checked after each craft", roadmap: G11, status: planned, date: 2026-10-23}
+  - {name: longF, idea: "Chase the most wanted tokens first (Token Link, balloons, Haste, Flame)", roadmap: T2, status: testing, date: 2026-10-23}
