@@ -148,6 +148,8 @@ No. Hivemind is free.
 - **Next:** test builds of the real bot for testers, on Windows and Linux.
 - **Later:** a Mac version, and more of the ideas the community has sent in.
 
+The full list, with what's built, being tested, next and planned: [`docs/ROADMAP-PUBLIC.md`](docs/ROADMAP-PUBLIC.md).
+
 ## Run from source
 
 For developers. Linux needs Python 3.12+, a Wayland desktop, Sober (the
